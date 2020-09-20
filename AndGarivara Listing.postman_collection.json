@@ -1,0 +1,272 @@
+{
+	"info": {
+		"_postman_id": "b00cdbff-5e77-4cf0-864e-75686b02ebb7",
+		"name": "AndGarivara Listing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Vehicle",
+					"item": [
+						{
+							"name": "http://localhost:5000/user/add_vehicle",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"user_id\":\"5f6344477e377e0b80d01bbf\",\r\n        \"title\": \"Share Ride\",\r\n        \"vehicle_type\": \"5f65d65760b9f0120064af29\",\r\n        \"description\": \"Bike for ride\",\r\n        \"country\": \"bd\",\r\n        \"city\": \"Khulna\",\r\n        \"car_location\": \"Nirala\",\r\n        \"total_seat\": 2,\r\n        \"min_price_per_day\": 800,\r\n        \"cover_img\": \"\",\r\n        \"brand\": \"Hero\",\r\n        \"model\": \"Ronuld\",\r\n        \"year_of_manufacture\": \"2018\",\r\n        \"color\": \"black\",\r\n        \"ac\": false,\r\n        \"vehicle_imgs\": [           \r\n        ],\r\n        \"create_date\": \"\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/user/add_vehicle",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"user",
+										"add_vehicle"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:5000/user/delete_vehicle",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n       \"_id\":\"5f65da3defe823779f0722ef\",\r\n        \"del_satus\": false,\r\n        \"del_resone\": \"test Delete\",\r\n        \"del_date\":\"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/user/delete_vehicle",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"user",
+										"delete_vehicle"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:5000/user/vehicle_list",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"user_id\":\"5f6344477e377e0b80d01bbf\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/user/vehicle_list",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"user",
+										"vehicle_list"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:5000/user/edit_vehicle",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n       \"_id\":\"5f65da3defe823779f0722ef\",\r\n        \"user_id\":\"5f6344477e377e0b80d01bbf\",\r\n        \"title\": \"Car Rent\",\r\n        \"vehicle_type\": \"5f65d65760b9f0120064af28\",\r\n        \"description\": \"car descriptions\",\r\n        \"country\": \"bd\",\r\n        \"city\": \"khulna\",\r\n        \"car_location\": \"Gollamari\",\r\n        \"total_seat\": 4,\r\n        \"min_price_per_day\": 3000,\r\n        \"cover_img\": \"\",\r\n        \"brand\": \"Toyota\",\r\n        \"model\": \"X-fielder\",\r\n        \"year_of_manufacture\": \"2014\",\r\n        \"color\": \"Red\",\r\n        \"ac\": true,\r\n        \"vehicle_imgs\": [           \r\n        ],\r\n        \"update_date\": \"\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/user/edit_vehicle",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"user",
+										"edit_vehicle"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Profile",
+					"item": [
+						{
+							"name": "http://localhost:5000/user/delete_profile",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"_id\":\"5f65976b777625ee625fe2fc\",\r\n    \"del_satus\": \"\",\r\n    \"del_resone\": \"deleted profile\",\r\n    \"del_date\":\"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/user/delete_profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"user",
+										"delete_profile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:5000/user/profile_edit",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"_id\":\"5f6344477e377e0b80d01bbf\",\r\n    \"f_name\": \"Tama\",\r\n    \"l_name\": \"Sarker\",\r\n    \"email\": \"tsarker@gmail\",\r\n    \"country\": \"Bangladesh\",\r\n    \"city\": \"Barishal\",\r\n    \"address\": \"Khulna\",\r\n    \"password\": \"1111\",\r\n    \"phn_no\":\"01717302554\",    \r\n    \"update_date\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/user/profile_edit",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"user",
+										"profile_edit"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "http://localhost:5000/user/login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phn_no\": \"01717302554\",\r\n    \"password\": \"1111\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/user/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:5000/user/signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"f_name\":\"sds\",\r\n        \"l_name\": \"HKy\",\r\n        \"email\": \"\",\r\n        \"country\": \"\",\r\n        \"city\": \"\",\r\n        \"address\": \"\",\r\n        \"password\":\"\",\r\n        \"phn_no\": \"sjkh\",\r\n        \"del_date\": \"\",\r\n        \"del_resone\": \"\",\r\n        \"profile_pic\": \"\",\r\n        \"bookmarks\": [\r\n        ],\r\n        \"create_date\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/user/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"user",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "FrontEnd",
+			"item": [],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
