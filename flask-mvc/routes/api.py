@@ -6,6 +6,9 @@ from controllers.users.userLogin import UserLogin
 from controllers.users.userSignup import UserSignup, PhoneVerification
 from controllers.users.userOperation import ProfileEdit, ProfileDelete, GetAllUser
 from controllers.users.vehicles import UserVehicleList, AddVehicle, EditVehicle, DeleteVehicle
+from controllers.users.favorites import FavoriteList, AddFavorite, DeleteFavorite
+from controllers.admin.adminLogin import AdminLogin
+from controllers.admin.adminDashboard import Dashboard
 
 
 def create_routes(api: Api):
@@ -25,12 +28,13 @@ def create_routes(api: Api):
     api.add_resource(EditVehicle, '/user/edit_vehicle')
     api.add_resource(DeleteVehicle, '/user/delete_vehicle')
 
-    #api.add_resource(Favorites, '/user/favorites')
-    #api.add_resource(Favorites, '/user/favorites')
+    api.add_resource(FavoriteList, '/user/favorite_list')
+    api.add_resource(AddFavorite, '/user/add_favorites')
+    api.add_resource(DeleteFavorite, '/user/delete_favorites')
 
     # Admin
-    #api.add_resource(Login, '/admin/login')
-    #api.add_resource(Dashboard, '/admin/dashboard')
+    api.add_resource(AdminLogin, '/admin/login')
+    api.add_resource(Dashboard, '/admin/dashboard')
     #api.add_resource(VehicleTypes, '/admin/vehicle_type')
     #api.add_resource(UserList, '/admin/user_list')
     #api.add_resource(VehicleList, '/admin/vehicle_list')

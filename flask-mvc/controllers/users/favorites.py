@@ -11,50 +11,127 @@ class AddFavorite(Resource):
     @staticmethod
     def post() -> Response:
         data = request.get_json()
+        uId = bsonO.ObjectId(data["u_id"])
         vID = bsonO.ObjectId(data["_id"])
-        flag = insertData(vID)
-        if flag == True:
-            msg = "SUCCESS"
-            error = False
-            vData = GetAllVehicleData(vID)
+        vData = GetAllVehicleData(vID)
+        if vData is not None:
+            flag = insertData(vData, vID, uId)
+            if flag is not None:
+                msg = "SUCCESS"
+                error = False
+                dataR = flag
+            else:
+                msg = "FAILED"
+                error = True
+            return jsonify({
+                "msg": msg,
+                "error": error,
+                "data": json.loads(dumps(flag))
+            })
         else:
-            msg = "FAILED"
-            error = True
-        return jsonify({
-            "msg": msg,
-            "error": error,
-            "data": json.loads(dumps(vData))
-        })
+            return jsonify({
+                "msg": "FAILED",
+                "error": True,
+                "data": json.loads(dumps(data))
+            })
 
 
-def insertData(vID):
+def insertData(vData, vID, uId):
+    for i in vData:
+        title = i["title"]
     dt = mongo.db.users.update(
-        {"_id": vID},
+        {"_id": uId},
         {
-            " $push": {
-                "bookmarks": vID
+            "$addToSet": {
+                "bookmarks": {
+                    "_id": bsonO.ObjectId(),
+                    "car_id": vID,
+                    "title": title,
+                    "bookmark_date": str(datetime.datetime.now())
+                }
             }
         }
     )
+    return dt
 
 
 def GetAllVehicleData(vID):
-    pass
+    try:
+        dt = mongo.db.vehicles.aggregate(
+            [{
+                "$match": {
+                    "_id": vID,
+                    "del_satus": False
+                }
+            },
+                {
+                "$lookup": {
+                    "from": "vehicle_types",
+                    "localField": "vehicle_type",
+                    "foreignField": "_id",
+                    "as": "vehicle_type_details"
+                }
+            },
+            ])
+    except:
+        dt = None
+    return dt
 
 
 class DeleteFavorite(Resource):
     @staticmethod
     def post() -> Response:
         data = request.get_json()
+        uID = bsonO.ObjectId(data["_id"])
+        vID = bsonO.ObjectId(data["car_id"])
         try:
-
+            dt = mongo.db.users.update(
+                {
+                    "_id": uID
+                },
+                {
+                    "$pull": {
+                        "bookmarks": {
+                            "_id": vID
+                        }
+                    }
+                }
+            )
             msg = "SUCCESS"
             error = False
         except:
             msg = "FAILED"
             error = True
+            dt = None
         return jsonify({
             "msg": msg,
             "error": error,
-            "data": None
+            "data": json.loads(dumps(dt))
+        })
+
+
+class FavoriteList(Resource):
+    @staticmethod
+    def post() -> Response:
+        data = request.get_json()
+        try:
+            dt = mongo.db.users.find(
+                {
+                    "_id": bsonO.ObjectId(data["_id"])
+                },
+                {
+                    "_id": 0,
+                    "bookmarks": 1
+                }
+            )
+            msg = "SUCCESS"
+            error = False
+        except:
+            msg = "FAILED"
+            error = True
+            dt = None
+        return jsonify({
+            "msg": msg,
+            "error": error,
+            "data": json.loads(dumps(dt))
         })
