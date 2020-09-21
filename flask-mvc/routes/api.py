@@ -8,7 +8,12 @@ from controllers.users.userOperation import ProfileEdit, ProfileDelete, GetAllUs
 from controllers.users.vehicles import UserVehicleList, AddVehicle, EditVehicle, DeleteVehicle
 from controllers.users.favorites import FavoriteList, AddFavorite, DeleteFavorite
 from controllers.admin.adminLogin import AdminLogin
-from controllers.admin.adminDashboard import Dashboard
+from controllers.admin.adminVehicleTypeOp import AddVehicleType, EditVehicleType, DeleteVehicleType, VehicleTypeList
+from controllers.admin.adminUser import UserList, DeleteUser
+from controllers.admin.adminVehicleOp import AdminVehicleList, AddVehicleAdmin, EditVehicleAdmin, DeleteVehicleAdmin
+from controllers.admin.adminCityOp import CityList, AddCity, EditCity, DeleteCity
+from controllers.frontEnd.vehicleProfile import VehicleProfile
+from controllers.frontEnd.homepage import HomePage
 
 
 def create_routes(api: Api):
@@ -34,13 +39,26 @@ def create_routes(api: Api):
 
     # Admin
     api.add_resource(AdminLogin, '/admin/login')
-    api.add_resource(Dashboard, '/admin/dashboard')
-    #api.add_resource(VehicleTypes, '/admin/vehicle_type')
-    #api.add_resource(UserList, '/admin/user_list')
-    #api.add_resource(VehicleList, '/admin/vehicle_list')
-    #api.add_resource(VehicleAdd, '/admin/vehicle_add')
+
+    api.add_resource(VehicleTypeList, '/admin/vehicle_type_list')
+    api.add_resource(AddVehicleType, '/admin/add_vehicle_type')
+    api.add_resource(EditVehicleType, '/admin/edit_vehicle_type')
+    api.add_resource(DeleteVehicleType, '/admin/delete_vehicle_type')
+
+    api.add_resource(UserList, '/admin/user_list')
+    api.add_resource(DeleteUser, '/admin/delete_user')
+
+    api.add_resource(AdminVehicleList, '/admin/vehicle_list')
+    api.add_resource(AddVehicleAdmin, '/admin/add_vehicle')
+    api.add_resource(EditVehicleAdmin, '/admin/edit_vehicle')
+    api.add_resource(DeleteVehicleAdmin, '/admin/delete_vehicle')
+
+    api.add_resource(CityList, '/admin/city_list')
+    api.add_resource(AddCity, '/admin/add_city')
+    api.add_resource(EditCity, '/admin/edit_city')
+    api.add_resource(DeleteCity, '/admin/delete_city')
 
     # Frontend
-    #api.add_resource(HomePage, '/and_gari_vara/list_homepage')
+    api.add_resource(HomePage, '/and_gari_vara/list_homepage')
     #api.add_resource(SearchResult, '/and_gari_vara/search_result_page')
-    #api.add_resource(VehicleProfile, '/and_gari_vara/vehicle_profile')
+    api.add_resource(VehicleProfile, '/and_gari_vara/vehicle_profile')
