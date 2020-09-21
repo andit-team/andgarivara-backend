@@ -40,7 +40,7 @@ def UpdateData(data):
                     "l_name": data["l_name"],
                     "email": data["email"],
                     "country": data["country"],
-                    "city": data["city"],
+                    "city":  bson.ObjectId(data["city"]),
                     "address": data["address"],
                     "password": data["password"],
                     "phn_no": data["phn_no"],

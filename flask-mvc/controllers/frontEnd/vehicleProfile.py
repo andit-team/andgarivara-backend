@@ -34,6 +34,14 @@ class VehicleProfile(Resource):
                         "foreignField": "_id",
                         "as": "user_details"
                     }
+                },
+                    {
+                    "$lookup": {
+                        "from": "locationCity",
+                        "localField": "city",
+                        "foreignField": "_id",
+                        "as": "location_details"
+                    }
                 }
                 ])
             msg = "SUCCESS"

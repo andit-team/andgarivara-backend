@@ -12,7 +12,8 @@ class HomePage(Resource):
     def post() -> Response:
         data = request.get_json()
         try:
-            dt = mongo.db.locationCity.find({})
+            dtLocation = mongo.db.locationCity.find({})
+            dtVT = mongo.db.vehicle_types.find({})
             msg = "SUCCESS"
             error = False
         except:
@@ -21,5 +22,6 @@ class HomePage(Resource):
         return jsonify({
             "msg": msg,
             "error": error,
-            "data": json.loads(dumps(dt))
+            "loc_data": json.loads(dumps(dtLocation)),
+            "vichle_type_data": json.loads(dumps(dtVT))
         })

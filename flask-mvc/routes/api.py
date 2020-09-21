@@ -14,6 +14,7 @@ from controllers.admin.adminVehicleOp import AdminVehicleList, AddVehicleAdmin, 
 from controllers.admin.adminCityOp import CityList, AddCity, EditCity, DeleteCity
 from controllers.frontEnd.vehicleProfile import VehicleProfile
 from controllers.frontEnd.homepage import HomePage
+from controllers.frontEnd.searchVehicle import SearchVehicle
 
 
 def create_routes(api: Api):
@@ -60,5 +61,5 @@ def create_routes(api: Api):
 
     # Frontend
     api.add_resource(HomePage, '/and_gari_vara/list_homepage')
-    #api.add_resource(SearchResult, '/and_gari_vara/search_result_page')
+    api.add_resource(SearchVehicle, '/and_gari_vara/search_result_page')
     api.add_resource(VehicleProfile, '/and_gari_vara/vehicle_profile')
