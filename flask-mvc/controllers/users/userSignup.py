@@ -62,7 +62,7 @@ def insertData(data):
         "bookmarks": [
         ],
         "del_status": False,
-        "create_date": str(datetime.datetime.now())
+        "create_date": datetime.datetime.now()
     }
 
     try:

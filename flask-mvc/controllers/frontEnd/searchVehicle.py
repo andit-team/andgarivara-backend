@@ -23,14 +23,6 @@ class SearchVehicle(Resource):
             vId = bsonO.ObjectId(data["vehicle_type"])
             city = bsonO.ObjectId(data["city"])
             dt = SearchVehicleFIlter(vId, city)
-        try:
-            dtLocation = mongo.db.locationCity.find({})
-            dtVT = mongo.db.vehicle_types.find({})
-            msg = "SUCCESS"
-            error = False
-        except:
-            msg = "FAILED"
-            error = True
         return dt
 
 

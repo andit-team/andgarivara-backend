@@ -14,7 +14,7 @@ class AddVehicleType(Resource):
         data = request.get_json()
         dt = {
             "title": data["title"],
-            "create_date": str(datetime.datetime.now())
+            "create_date": datetime.datetime.now()
         }
         try:
             insD = mongo.db.vehicle_types.insert_one(dt)
@@ -43,7 +43,7 @@ class EditVehicleType(Resource):
                 {
                     "$set": {
                         "title": data["title"],
-                        "Update_date": str(datetime.datetime.now())
+                        "Update_date": datetime.datetime.now()
                     }
                 }
             )

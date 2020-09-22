@@ -45,7 +45,7 @@ def UpdateData(data):
                     "password": data["password"],
                     "phn_no": data["phn_no"],
                     "profile_pic": data["profile_pic"],
-                    "update_date": str(datetime.datetime.now())
+                    "update_date": datetime.datetime.now()
                 }
             }
         )
@@ -85,7 +85,7 @@ def DeleteData(data):
                 "$set": {
                     "del_satus": True,
                     "del_resone": data["del_resone"],
-                    "del_date": str(datetime.datetime.now())
+                    "del_date": datetime.datetime.now()
                 }
             }
         )

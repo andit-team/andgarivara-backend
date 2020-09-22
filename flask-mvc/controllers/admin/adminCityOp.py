@@ -34,7 +34,7 @@ class AddCity(Resource):
             dt = mongo.db.locationCity.insert_one(
                 {
                     "city": data["city"],
-                    "create_date": str(datetime.datetime.now())
+                    "create_date": datetime.datetime.now()
                 }
             )
             msg = "SUCCESS"
@@ -62,7 +62,7 @@ class EditCity(Resource):
                     "$set":
                         {
                             "city": data["city"],
-                            "update_date": str(datetime.datetime.now())
+                            "update_date": datetime.datetime.now()
                         }
                 }
             )

@@ -47,7 +47,7 @@ def insertData(data):
 
         ],
         "del_status": False,
-        "create_date": str(datetime.datetime.now())
+        "create_date": datetime.datetime.now()
     }
     try:
         ins = mongo.db.vehicles.insert(dt)
@@ -120,7 +120,7 @@ class DeleteVehicle(Resource):
                     "$set": {
                         "del_satus": True,
                         "del_resone": data["del_resone"],
-                        "del_date": str(datetime.datetime.now())
+                        "del_date": datetime.datetime.now()
                     }
                 }
             )
@@ -163,7 +163,7 @@ def UpdateVehicleInfo(data):
                     "vehicle_imgs": [
 
                     ],
-                    "update_date": str(datetime.datetime.now())
+                    "update_date": datetime.datetime.now()
                 }
             }
         )

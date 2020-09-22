@@ -47,7 +47,7 @@ def insertData(vData, vID, uId):
                     "_id": bsonO.ObjectId(),
                     "car_id": vID,
                     "title": title,
-                    "bookmark_date": str(datetime.datetime.now())
+                    "bookmark_date": datetime.datetime.now()
                 }
             }
         }

@@ -10,9 +10,9 @@ class AdminLogin(Resource):
     def post() -> Response:
         data = request.get_json()
         user_collection = mongo.db.users
-        adminId = data["admin_id"]
+        adminId = data["phn_no"]
         psw = data["password"]
-        adminData = user_collection.find_one({"admin_id": adminId})
+        adminData = user_collection.find_one({"phn_no": adminId})
         if adminData is not None:
             if adminData["password"] == psw:
                 id = adminData["_id"]
