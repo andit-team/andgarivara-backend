@@ -12,13 +12,13 @@
 					"name": "Vehicle Types",
 					"item": [
 						{
-							"name": "http://localhost:5000/admin/edit_vehicle_type",
+							"name": "Edit Vehicle Type",
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"_id\":\"5f65d65760b9f0120064af2a\",\r\n    \"title\":\"Micro Bus\",\r\n    \"Update_date\":\"\"\r\n}",
+									"raw": "{\r\n    \"_id\":\"5f65d65760b9f0120064af2a\",\r\n    \"title\":\"Micro Bus\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -41,13 +41,13 @@
 							"response": []
 						},
 						{
-							"name": "http://localhost:5000/admin/add_vehicle_type",
+							"name": "Add Vehicle Type",
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n   \"title\": \"dwt\",\r\n    \"create_date\": \"\"\r\n}",
+									"raw": "{\r\n   \"title\": \"Ambulance\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -70,7 +70,7 @@
 							"response": []
 						},
 						{
-							"name": "http://localhost:5000/admin/delete_vehicle_type",
+							"name": "Delete Vehicle Type",
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -99,7 +99,7 @@
 							"response": []
 						},
 						{
-							"name": "http://localhost:5000/admin/vehicle_type_list",
+							"name": "Vehicle Type List",
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -135,13 +135,13 @@
 					"name": "Vehicles",
 					"item": [
 						{
-							"name": "http://localhost:5000/admin/add_vehicle",
+							"name": "Add Vehicle",
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n        \"user_id\":\"5f6344477e377e0b80d01bbf\",\r\n        \"title\": \"Bike Rent\",\r\n        \"vehicle_type\": \"5f65d65760b9f0120064af29\",\r\n        \"description\": \"Bike\",\r\n        \"country\": \"bd\",\r\n        \"city\": \"Khulna\",\r\n        \"car_location\": \"Nirala\",\r\n        \"total_seat\": 2,\r\n        \"min_price_per_day\": 500,\r\n        \"cover_img\": \"\",\r\n        \"brand\": \"Yamaha\",\r\n        \"model\": \"Valentino\",\r\n        \"year_of_manufacture\": \"2016\",\r\n        \"color\": \"black\",\r\n        \"ac\": false,\r\n        \"vehicle_imgs\": [           \r\n        ],\r\n        \"create_date\": \"\"\r\n    }",
+									"raw": "{\r\n        \"user_id\":\"5f67189a034c350d7bd2e43c\",\r\n        \"title\": \"Micro Bus\",\r\n        \"vehicle_type\": \"5f65d65760b9f0120064af2a\",\r\n        \"description\": \"Micro Bus Rent\",\r\n        \"country\": \"bd\",\r\n        \"city\": \"Khulna\",\r\n        \"car_location\": \"Gollamari\",\r\n        \"total_seat\": 13,\r\n        \"min_price_per_day\": 8000,\r\n        \"cover_img\": \"\",\r\n        \"brand\": \"Corolla\",\r\n        \"model\": \"SUV\",\r\n        \"year_of_manufacture\": \"2016\",\r\n        \"color\": \"black\",\r\n        \"ac\": false,\r\n        \"vehicle_imgs\": [           \r\n        ]\r\n    }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -164,7 +164,7 @@
 							"response": []
 						},
 						{
-							"name": "http://localhost:5000/admin/vehicle_list",
+							"name": "Vehicle List",
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -193,13 +193,13 @@
 							"response": []
 						},
 						{
-							"name": "http://localhost:5000/admin/edit_vehicle",
+							"name": "Edit Vehicle",
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n        \"_id\": \"5f6842398ae00e3b9541c7c8\",  \r\n        \"user_id\":\"5f6344477e377e0b80d01bbf\",\r\n        \"title\": \"Bike Rent\",\r\n        \"vehicle_type\": \"5f65d65760b9f0120064af29\",\r\n        \"description\": \"Bike\",\r\n        \"country\": \"bd\",\r\n        \"city\": \"Khulna\",\r\n        \"car_location\": \"Nirala\",\r\n        \"total_seat\": 2,\r\n        \"min_price_per_day\": 1500,\r\n        \"cover_img\": \"\",\r\n        \"brand\": \"Yamaha\",\r\n        \"model\": \"Valentino\",\r\n        \"year_of_manufacture\": \"2016\",\r\n        \"color\": \"black-red\",\r\n        \"ac\": false,\r\n        \"vehicle_imgs\": [           \r\n        ],\r\n        \"update_date\": \"\"\r\n    }",
+									"raw": "{\r\n        \"_id\": \"5f6842398ae00e3b9541c7c8\",  \r\n        \"user_id\":\"5f6344477e377e0b80d01bbf\",\r\n        \"title\": \"Bike Rent\",\r\n        \"vehicle_type\": \"5f65d65760b9f0120064af29\",\r\n        \"description\": \"Bike\",\r\n        \"country\": \"bd\",\r\n        \"city\": \"Khulna\",\r\n        \"car_location\": \"Nirala\",\r\n        \"total_seat\": 2,\r\n        \"min_price_per_day\": 1500,\r\n        \"cover_img\": \"\",\r\n        \"brand\": \"Yamaha\",\r\n        \"model\": \"Valentino\",\r\n        \"year_of_manufacture\": \"2016\",\r\n        \"color\": \"black-red\",\r\n        \"ac\": false,\r\n        \"vehicle_imgs\": [           \r\n        ]\r\n    }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -222,13 +222,13 @@
 							"response": []
 						},
 						{
-							"name": "http://localhost:5000/admin/delete_vehicle",
+							"name": "Delete Vehicle",
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n       \"_id\":\"5f684446ef9b2d92f7e25356\",\r\n        \"del_satus\": false,\r\n        \"del_resone\": \"test Delete\",\r\n        \"del_date\":\"\"\r\n}",
+									"raw": "{\r\n       \"_id\":\"5f684446ef9b2d92f7e25356\",\r\n        \"del_satus\": false,\r\n        \"del_resone\": \"test Delete\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -258,7 +258,7 @@
 					"name": "Users",
 					"item": [
 						{
-							"name": "http://localhost:5000/admin/delete_user",
+							"name": "Delete User",
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -287,7 +287,7 @@
 							"response": []
 						},
 						{
-							"name": "http://localhost:5000/admin/user_list",
+							"name": "User List",
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -305,6 +305,35 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Add User",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"f_name\":\"Raju\",\r\n        \"l_name\": \"Da\",        \r\n        \"password\":\"1213\",\r\n        \"phn_no\": \"01856956475\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/admin/add_user",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"add_user"
+									]
+								}
+							},
+							"response": []
 						}
 					],
 					"protocolProfileBehavior": {},
@@ -314,13 +343,13 @@
 					"name": "City",
 					"item": [
 						{
-							"name": "http://localhost:5000/admin/add_city",
+							"name": "Add City",
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n       \"city\": \"barguna\",\r\n        \"create_date\": \"\"\r\n\r\n}",
+									"raw": "{\r\n       \"city\": \"barguna\"\r\n\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -343,13 +372,13 @@
 							"response": []
 						},
 						{
-							"name": "http://localhost:5000/admin/edit_city",
+							"name": "Edit City",
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n       \"city\": \"Barguna\",\r\n        \"update_date\": \"\",\r\n        \"_id\":\"5f6870ce8e4335ceef53e130\"\r\n}",
+									"raw": "{\r\n       \"city\": \"Barguna\",\r\n        \"_id\":\"5f6870ce8e4335ceef53e130\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -372,7 +401,7 @@
 							"response": []
 						},
 						{
-							"name": "http://localhost:5000/admin/city_list",
+							"name": "City List",
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -401,7 +430,7 @@
 							"response": []
 						},
 						{
-							"name": "http://localhost:5000/admin/delete_city",
+							"name": "Delete City",
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -434,13 +463,13 @@
 					"_postman_isSubFolder": true
 				},
 				{
-					"name": "http://localhost:5000/admin/login",
+					"name": "Admin Login",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"admin_id\":\"admin\",\r\n    \"password\":\"admin\"\r\n}",
+							"raw": "{\r\n    \"phn_no\":\"admin\",\r\n    \"password\":\"admin\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -472,13 +501,13 @@
 					"name": "Vehicle",
 					"item": [
 						{
-							"name": "http://localhost:5000/user/add_vehicle",
+							"name": "Add Vehicle",
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n        \"user_id\":\"5f6344477e377e0b80d01bbf\",\r\n        \"title\": \"Share Ride\",\r\n        \"vehicle_type\": \"5f65d65760b9f0120064af29\",\r\n        \"description\": \"Bike for ride\",\r\n        \"country\": \"bd\",\r\n        \"city\": \"Khulna\",\r\n        \"car_location\": \"Nirala\",\r\n        \"total_seat\": 2,\r\n        \"min_price_per_day\": 800,\r\n        \"cover_img\": \"\",\r\n        \"brand\": \"Hero\",\r\n        \"model\": \"Ronuld\",\r\n        \"year_of_manufacture\": \"2018\",\r\n        \"color\": \"black\",\r\n        \"ac\": false,\r\n        \"vehicle_imgs\": [           \r\n        ],\r\n        \"create_date\": \"\"\r\n    }",
+									"raw": "{\r\n        \"user_id\":\"5f6344477e377e0b80d01bbf\",\r\n        \"title\": \"Bike Rent\",\r\n        \"vehicle_type\": \"5f65d65760b9f0120064af29\",\r\n        \"description\": \"Bike\",\r\n        \"country\": \"bd\",\r\n        \"city\": \"Khulna\",\r\n        \"car_location\": \"Nirala\",\r\n        \"total_seat\": 2,\r\n        \"min_price_per_day\": 500,\r\n        \"cover_img\": \"\",\r\n        \"brand\": \"Yamaha\",\r\n        \"model\": \"Valentino\",\r\n        \"year_of_manufacture\": \"2016\",\r\n        \"color\": \"black\",\r\n        \"ac\": false,\r\n        \"vehicle_imgs\": [           \r\n        ]\r\n    }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -486,14 +515,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/user/add_vehicle",
+									"raw": "http://localhost:5000/admin/add_vehicle",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "5000",
 									"path": [
-										"user",
+										"admin",
 										"add_vehicle"
 									]
 								}
@@ -501,7 +530,7 @@
 							"response": []
 						},
 						{
-							"name": "http://localhost:5000/user/delete_vehicle",
+							"name": "Delete Vehicle",
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -530,7 +559,7 @@
 							"response": []
 						},
 						{
-							"name": "http://localhost:5000/user/vehicle_list",
+							"name": "Vehicle List",
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -559,13 +588,13 @@
 							"response": []
 						},
 						{
-							"name": "http://localhost:5000/user/edit_vehicle",
+							"name": "Edit Vehicle",
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n       \"_id\":\"5f65da3defe823779f0722ef\",\r\n        \"user_id\":\"5f6344477e377e0b80d01bbf\",\r\n        \"title\": \"Car Rent\",\r\n        \"vehicle_type\": \"5f65d65760b9f0120064af28\",\r\n        \"description\": \"car descriptions\",\r\n        \"country\": \"bd\",\r\n        \"city\": \"khulna\",\r\n        \"car_location\": \"Gollamari\",\r\n        \"total_seat\": 4,\r\n        \"min_price_per_day\": 3000,\r\n        \"cover_img\": \"\",\r\n        \"brand\": \"Toyota\",\r\n        \"model\": \"X-fielder\",\r\n        \"year_of_manufacture\": \"2014\",\r\n        \"color\": \"Red\",\r\n        \"ac\": true,\r\n        \"vehicle_imgs\": [           \r\n        ],\r\n        \"update_date\": \"\"\r\n    }",
+									"raw": "{\r\n       \"_id\":\"5f65da3defe823779f0722ef\",\r\n        \"user_id\":\"5f6344477e377e0b80d01bbf\",\r\n        \"title\": \"Car Rent\",\r\n        \"vehicle_type\": \"5f65d65760b9f0120064af28\",\r\n        \"description\": \"car descriptions\",\r\n        \"country\": \"bd\",\r\n        \"city\": \"khulna\",\r\n        \"car_location\": \"Gollamari\",\r\n        \"total_seat\": 4,\r\n        \"min_price_per_day\": 3000,\r\n        \"cover_img\": \"\",\r\n        \"brand\": \"Toyota\",\r\n        \"model\": \"X-fielder\",\r\n        \"year_of_manufacture\": \"2014\",\r\n        \"color\": \"Red\",\r\n        \"ac\": true,\r\n        \"vehicle_imgs\": [           \r\n        ]\r\n    }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -595,13 +624,13 @@
 					"name": "Profile",
 					"item": [
 						{
-							"name": "http://localhost:5000/user/delete_profile",
+							"name": "Delete Profile",
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"_id\":\"5f65976b777625ee625fe2fc\",\r\n    \"del_satus\": \"\",\r\n    \"del_resone\": \"deleted profile\",\r\n    \"del_date\":\"\"\r\n}",
+									"raw": "{\r\n    \"_id\":\"5f65976b777625ee625fe2fc\",\r\n    \"del_satus\": \"\",\r\n    \"del_resone\": \"deleted profile\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -624,13 +653,13 @@
 							"response": []
 						},
 						{
-							"name": "http://localhost:5000/user/profile_edit",
+							"name": "Profile Edit",
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"_id\":\"5f6344477e377e0b80d01bbf\",\r\n    \"f_name\": \"Tama\",\r\n    \"l_name\": \"Sarker\",\r\n    \"email\": \"tsarker@gmail\",\r\n    \"country\": \"Bangladesh\",\r\n    \"city\": \"Barishal\",\r\n    \"address\": \"Khulna\",\r\n    \"password\": \"1111\",\r\n    \"phn_no\":\"01717302554\",    \r\n    \"update_date\": \"\"\r\n}",
+									"raw": "{\r\n    \"_id\":\"5f6344477e377e0b80d01bbf\",\r\n    \"f_name\": \"Tama\",\r\n    \"l_name\": \"Sarker\",\r\n    \"email\": \"tsarker@gmail\",\r\n    \"country\": \"Bangladesh\",\r\n    \"city\": \"Barishal\",\r\n    \"address\": \"Khulna\",\r\n    \"password\": \"1111\",\r\n    \"phn_no\":\"01717302554\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -660,7 +689,7 @@
 					"name": "Favorites",
 					"item": [
 						{
-							"name": "http://localhost:5000/user/add_favorites",
+							"name": "Favorites List",
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -689,7 +718,7 @@
 							"response": []
 						},
 						{
-							"name": "http://localhost:5000/user/add_favorites",
+							"name": "Add Favorites",
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -718,7 +747,7 @@
 							"response": []
 						},
 						{
-							"name": "http://localhost:5000/user/delete_favorites",
+							"name": "Delete Favorites",
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -751,7 +780,7 @@
 					"_postman_isSubFolder": true
 				},
 				{
-					"name": "http://localhost:5000/user/login",
+					"name": "User Login",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -780,13 +809,13 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:5000/user/signup",
+					"name": "User Signup",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"f_name\":\"sds\",\r\n        \"l_name\": \"HKy\",\r\n        \"email\": \"\",\r\n        \"country\": \"\",\r\n        \"city\": \"\",\r\n        \"address\": \"\",\r\n        \"password\":\"\",\r\n        \"phn_no\": \"sjkh\",\r\n        \"del_date\": \"\",\r\n        \"del_resone\": \"\",\r\n        \"profile_pic\": \"\",\r\n        \"bookmarks\": [\r\n        ],\r\n        \"create_date\": \"\"\r\n}",
+							"raw": "{\r\n        \"f_name\":\"Raju\",\r\n        \"l_name\": \"Da\",        \r\n        \"password\":\"1213\",\r\n        \"phn_no\": \"01856956475\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -815,7 +844,7 @@
 			"name": "FrontEnd",
 			"item": [
 				{
-					"name": "http://localhost:5000/and_gari_vara/vehicle_profile",
+					"name": "Vehicle Profile",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -844,7 +873,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:5000//and_gari_vara/list_homepage",
+					"name": "Listing Homepage",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -874,13 +903,13 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:5000//and_gari_vara/search_result_page",
+					"name": "Search Result Page",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"vehicle_type\":\"5f68705220361ea820216963\",\r\n    \"city\": \"5f6870af8e4335ceef53e12f\"\r\n}",
+							"raw": "{\r\n    \"vehicle_type\":\"\",\r\n    \"city\": \"\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
