@@ -4,6 +4,7 @@ from flask_cors import CORS
 from flask_restful import Api
 from extension import mongo
 from routes.api import create_routes
+from flask_jwt_extended import JWTManager
 
 
 def create_app(config_object='settings'):
@@ -14,6 +15,10 @@ def create_app(config_object='settings'):
     mongo.init_app(flask_app)
 
     api = Api(app=flask_app)
+    
+
+    # init jwt manager
+    jwt = JWTManager(app=flask_app)
     create_routes(api=api)
 
     return flask_app

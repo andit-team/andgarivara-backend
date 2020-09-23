@@ -5,13 +5,15 @@ import bson.json_util as bsonO
 import datetime
 import json
 from bson.json_util import dumps
+from flask_jwt_extended import jwt_required, get_jwt_identity,create_access_token
 
 
 class AddFavorite(Resource):
     @staticmethod
+    @jwt_required
     def post() -> Response:
         data = request.get_json()
-        uId = bsonO.ObjectId(data["u_id"])
+        uId = bsonO.ObjectId(get_jwt_identity())
         vID = bsonO.ObjectId(data["_id"])
         vData = GetAllVehicleData(vID)
         if vData is not None:
@@ -80,9 +82,10 @@ def GetAllVehicleData(vID):
 
 class DeleteFavorite(Resource):
     @staticmethod
+    @jwt_required
     def post() -> Response:
         data = request.get_json()
-        uID = bsonO.ObjectId(data["_id"])
+        uID = bsonO.ObjectId(get_jwt_identity())
         vID = bsonO.ObjectId(data["car_id"])
         try:
             dt = mongo.db.users.update(
@@ -112,12 +115,13 @@ class DeleteFavorite(Resource):
 
 class FavoriteList(Resource):
     @staticmethod
+    @jwt_required
     def post() -> Response:
         data = request.get_json()
         try:
             dt = mongo.db.users.find(
                 {
-                    "_id": bsonO.ObjectId(data["_id"])
+                    "_id": bsonO.ObjectId(get_jwt_identity())
                 },
                 {
                     "_id": 0,

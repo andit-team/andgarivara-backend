@@ -5,10 +5,12 @@ from extension import mongo
 import datetime
 import bson
 import json
+from flask_jwt_extended import jwt_required, get_jwt_identity,create_access_token
 
 
 class ProfileEdit(Resource):
     @staticmethod
+    @jwt_required
     def post() -> Response:
         data = request.get_json()
         flag = UpdateData(data)
@@ -28,7 +30,7 @@ class ProfileEdit(Resource):
 
 
 def UpdateData(data):
-    idU = bson.ObjectId(data["_id"])
+    idU = bson.ObjectId(get_jwt_identity())
     try:
         update_ = mongo.db.users.update(
             {
@@ -56,6 +58,7 @@ def UpdateData(data):
 
 class ProfileDelete(Resource):
     @staticmethod
+    @jwt_required
     def post() -> Response:
         data = request.get_json()
         flag = DeleteData(data)
@@ -75,7 +78,7 @@ class ProfileDelete(Resource):
 
 
 def DeleteData(data):
-    idU = bson.ObjectId(data["_id"])
+    idU = bson.ObjectId(get_jwt_identity())
     try:
         update_ = mongo.db.users.update(
             {
@@ -93,29 +96,3 @@ def DeleteData(data):
     except:
         return False
 
-
-class GetAllUser(Resource):
-    @staticmethod
-    def post() -> Response:
-        dat = request.get_json()
-
-        data = mongo.db.users.find()
-        x = json.loads(dumps(data))
-        return jsonify({
-            'data': x
-        })
-        return jsonify(x)
-
-
-def GetAllUserData():
-    try:
-        data = mongo.db.users.find()
-        for i in data:
-            print(i)
-            print(i["_id"])
-            print(data[i]["_id"])
-            data[i]["_id"] = str(i["_id"])
-        print(data)
-        return data
-    except:
-        return None

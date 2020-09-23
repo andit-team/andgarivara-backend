@@ -5,10 +5,11 @@ import bson.json_util as bsonO
 import datetime
 import json
 from bson.json_util import dumps
-
+from flask_jwt_extended import jwt_required, get_jwt_identity,create_access_token
 
 class AddVehicle(Resource):
     @staticmethod
+    @jwt_required
     def post() -> Response:
         data = request.get_json()
         flag = insertData(data)
@@ -26,9 +27,9 @@ class AddVehicle(Resource):
 
 
 def insertData(data):
-    userId = bsonO.ObjectId(data["user_id"])
+    current_user = bsonO.ObjectId(get_jwt_identity())
     dt = {
-        "user_id": userId,
+        "user_id": current_user,
         "title": data["title"],
         "vehicle_type": bsonO.ObjectId(data["vehicle_type"]),
         "description": data["description"],
@@ -58,13 +59,15 @@ def insertData(data):
 
 class UserVehicleList(Resource):
     @staticmethod
+    @jwt_required
     def post() -> Response:
         data = request.get_json()
+        current_user = bsonO.ObjectId(get_jwt_identity())
         try:
             dt = mongo.db.vehicles.aggregate(
                 [{
                     "$match": {
-                        "user_id": bsonO.ObjectId(data["user_id"]),
+                        "user_id": current_user,
                         "del_satus": False
                     }
                 },
@@ -91,6 +94,7 @@ class UserVehicleList(Resource):
 
 class EditVehicle(Resource):
     @staticmethod
+    @jwt_required
     def post() -> Response:
         data = request.get_json()
         flag = UpdateVehicleInfo(data)
@@ -109,6 +113,7 @@ class EditVehicle(Resource):
 
 class DeleteVehicle(Resource):
     @staticmethod
+    @jwt_required
     def post() -> Response:
         data = request.get_json()
         try:
@@ -137,7 +142,7 @@ class DeleteVehicle(Resource):
 
 
 def UpdateVehicleInfo(data):
-    userId = bsonO.ObjectId(data["user_id"])
+    current_user = bsonO.ObjectId(get_jwt_identity())
     try:
         update_ = mongo.db.vehicles.update(
             {
@@ -145,7 +150,7 @@ def UpdateVehicleInfo(data):
             },
             {
                 "$set": {
-                    "user_id": userId,
+                    "user_id": current_user,
                     "title": data["title"],
                     "vehicle_type": bsonO.ObjectId(data["vehicle_type"]),
                     "description": data["description"],

@@ -3,7 +3,8 @@ from flask_restful import Resource
 from extension import mongo
 from bson.json_util import dumps
 import json
-
+from flask_jwt_extended import jwt_required, get_jwt_identity,create_access_token
+import datetime
 
 class UserLogin(Resource):
     @staticmethod
@@ -17,7 +18,9 @@ class UserLogin(Resource):
             if userData["password"] == psw:
                 id = userData["_id"]
                 x = json.loads(dumps(userData))
-                msg = "ok"
+                expires = datetime.timedelta(hours=8)
+                accessToken = create_access_token(identity=str(id), expires_delta=expires)
+                msg = "SUCCESS"
                 error = False
             else:
                 x = None
@@ -32,5 +35,6 @@ class UserLogin(Resource):
         return jsonify({
             "msg": msg,
             "error": error,
-            "data": x
+            "data": x,
+            "token":accessToken
         })
