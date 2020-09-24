@@ -33,7 +33,7 @@ def SearchVehicleByLocation(city):
             [{
                 "$match": {
                     "city": city,
-                    "del_satus": False
+                    "del_status": False
                 }
             },
                 {
@@ -83,7 +83,7 @@ def SearchVehicleByType(vId):
             [{
                 "$match": {
                     "vehicle_type": vId,
-                    "del_satus": False
+                    "del_status": False
                 }
             },
                 {
@@ -134,7 +134,7 @@ def SearchVehicleFIlter(vId, city):
                 "$match": {
                     "vehicle_type": vId,
                     "city": city,
-                    "del_satus": False
+                    "del_status": False
                 }
             },
                 {
@@ -184,7 +184,7 @@ def SearchVehicleAll():
         dt = mongo.db.vehicles.aggregate(
             [{
                 "$match": {
-                    "del_satus": False
+                    "del_status": False
                 }
             },
                 {
