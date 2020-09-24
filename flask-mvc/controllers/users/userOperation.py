@@ -14,19 +14,7 @@ class ProfileEdit(Resource):
     def post() -> Response:
         data = request.get_json()
         flag = UpdateData(data)
-        if flag == True:
-            msg = "SUCCESS"
-            error = False
-
-        else:
-            error = True
-            msg = "FAILED"
-
-        return jsonify({
-            "msg": msg,
-            "error": error,
-            "data": json.loads(dumps(data))
-        })
+        return flag
 
 
 def UpdateData(data):
@@ -51,9 +39,16 @@ def UpdateData(data):
                 }
             }
         )
-        return True
+        msg = "SUCCESS"
+        error = False
     except:
-        return False
+        error = True
+        msg = "FAILED"
+    return jsonify({
+            "msg": msg,
+            "error": error,
+            "data": json.loads(dumps(update_))
+        })
 
 
 class ProfileDelete(Resource):
@@ -62,19 +57,7 @@ class ProfileDelete(Resource):
     def post() -> Response:
         data = request.get_json()
         flag = DeleteData(data)
-        if flag == True:
-            msg = "SUCCESS"
-            error = False
-
-        else:
-            error = True
-            msg = "FAILED"
-
-        return jsonify({
-            "msg": msg,
-            "error": error,
-            "data": data
-        })
+        return flag
 
 
 def DeleteData(data):
@@ -92,7 +75,14 @@ def DeleteData(data):
                 }
             }
         )
-        return True
+        msg = "SUCCESS"
+        error = False
     except:
-        return False
+        error = True
+        msg = "FAILED"
+    return jsonify({
+            "msg": msg,
+            "error": error,
+            "data": json.loads(dumps(update_))
+        })
 

@@ -228,7 +228,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n       \"_id\":\"5f684446ef9b2d92f7e25356\",\r\n        \"del_satus\": false,\r\n        \"del_resone\": \"test Delete\"\r\n}",
+									"raw": "{\r\n       \"_id\":\"5f6b2e4d1b4df6b7aa03e799\",\r\n        \"del_satus\": true,\r\n        \"del_resone\": \"test Delete\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -469,7 +469,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"phn_no\":\"admin\",\r\n    \"password\":\"admin\"\r\n}",
+							"raw": "{\r\n    \"phn_no\":\"00000000\",\r\n    \"password\":\"andit\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -548,7 +548,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"_id\":\"4654SD4SDADVSD\",\r\n        \"del_satus\": false,\r\n        \"del_resone\": \"test Delete\",\r\n        \"del_date\":\"\"\r\n}",
+									"raw": "{\r\n    \"_id\":\"5f6b30176426a438ef65bf25\",\r\n        \"del_satus\": true,\r\n        \"del_resone\": \"test Delete With token\",\r\n        \"del_date\":\"\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -621,10 +621,16 @@
 							"name": "Edit Vehicle",
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDA4NTIxMDcsIm5iZiI6MTYwMDg1MjEwNywianRpIjoiODJhNzVkYzQtNTk4My00OTcwLWIyN2UtNjY2MjBhY2E1Mjk0IiwiZXhwIjoxNjAwODgwOTA3LCJpZGVudGl0eSI6IjVmNjM0NDQ3N2UzNzdlMGI4MGQwMWJiZiIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.fokkDGJGfSwDdE79ff583QU64E8uE0RcSrAIZT28q0o",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n       \"_id\":\"5f65da3defe823779f0722ef\",\r\n        \"title\": \"Car Rent\",\r\n        \"vehicle_type\": \"5f65d65760b9f0120064af28\",\r\n        \"description\": \"car descriptions\",\r\n        \"country\": \"bd\",\r\n        \"city\": \"khulna\",\r\n        \"car_location\": \"Gollamari\",\r\n        \"total_seat\": 4,\r\n        \"min_price_per_day\": 3000,\r\n        \"cover_img\": \"\",\r\n        \"brand\": \"Toyota\",\r\n        \"model\": \"X-fielder\",\r\n        \"year_of_manufacture\": \"2014\",\r\n        \"color\": \"Red\",\r\n        \"ac\": true,\r\n        \"vehicle_imgs\": [           \r\n        ]\r\n    }",
+									"raw": "{\r\n       \"_id\":\"5f6b30176426a438ef65bf25\",\r\n        \"title\": \"Bike new with token\",\r\n        \"vehicle_type\": \"5f65d65760b9f0120064af29\",\r\n        \"description\": \"Bike3 new with token\",\r\n        \"country\": \"bd\",\r\n        \"city\": \"5f6981637d08ff7ac77eff3f\",\r\n        \"car_location\": \"Uttara\",\r\n        \"total_seat\": 2,\r\n        \"min_price_per_day\": 300,\r\n        \"cover_img\": \"\",\r\n        \"brand\": \"Hero\",\r\n        \"model\": \"p90\",\r\n        \"year_of_manufacture\": \"2014\",\r\n        \"color\": \"Red\",\r\n        \"ac\": false,\r\n        \"vehicle_imgs\": [           \r\n        ]\r\n    }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -680,7 +686,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/user/delete_profile?Authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDA4NTIxMDcsIm5iZiI6MTYwMDg1MjEwNywianRpIjoiODJhNzVkYzQtNTk4My00OTcwLWIyN2UtNjY2MjBhY2E1Mjk0IiwiZXhwIjoxNjAwODgwOTA3LCJpZGVudGl0eSI6IjVmNjM0NDQ3N2UzNzdlMGI4MGQwMWJiZiIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.fokkDGJGfSwDdE79ff583QU64E8uE0RcSrAIZT28q0o",
+									"raw": "http://localhost:5000/user/delete_profile?Authorization=Bearer Bearere eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDA5MTkzNjgsIm5iZiI6MTYwMDkxOTM2OCwianRpIjoiMWMxN2FhODUtNDNkZS00OTk5LWJiYzYtOGQ3MWI4YTZmMGYzIiwiZXhwIjoxNjAwOTQ4MTY4LCJpZGVudGl0eSI6IjVmNmIyYThhM2I4MGE5MmYyNTgyNzExMSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.Zbnwn6qkWQPG1LpHLaVjWV-fgkLARDYjjVOhDhyLOJc",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -693,7 +699,7 @@
 									"query": [
 										{
 											"key": "Authorization",
-											"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDA4NTIxMDcsIm5iZiI6MTYwMDg1MjEwNywianRpIjoiODJhNzVkYzQtNTk4My00OTcwLWIyN2UtNjY2MjBhY2E1Mjk0IiwiZXhwIjoxNjAwODgwOTA3LCJpZGVudGl0eSI6IjVmNjM0NDQ3N2UzNzdlMGI4MGQwMWJiZiIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.fokkDGJGfSwDdE79ff583QU64E8uE0RcSrAIZT28q0o"
+											"value": "Bearer Bearere eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDA5MTkzNjgsIm5iZiI6MTYwMDkxOTM2OCwianRpIjoiMWMxN2FhODUtNDNkZS00OTk5LWJiYzYtOGQ3MWI4YTZmMGYzIiwiZXhwIjoxNjAwOTQ4MTY4LCJpZGVudGl0eSI6IjVmNmIyYThhM2I4MGE5MmYyNTgyNzExMSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.Zbnwn6qkWQPG1LpHLaVjWV-fgkLARDYjjVOhDhyLOJc"
 										}
 									]
 								}
@@ -704,10 +710,16 @@
 							"name": "Profile Edit",
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearere eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDA5MTkzNjgsIm5iZiI6MTYwMDkxOTM2OCwianRpIjoiMWMxN2FhODUtNDNkZS00OTk5LWJiYzYtOGQ3MWI4YTZmMGYzIiwiZXhwIjoxNjAwOTQ4MTY4LCJpZGVudGl0eSI6IjVmNmIyYThhM2I4MGE5MmYyNTgyNzExMSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.Zbnwn6qkWQPG1LpHLaVjWV-fgkLARDYjjVOhDhyLOJc",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \r\n    \"f_name\": \"Tama\",\r\n    \"l_name\": \"Sarker\",\r\n    \"email\": \"tsarker@gmail\",\r\n    \"country\": \"Bangladesh\",\r\n    \"city\": \"Barishal\",\r\n    \"address\": \"Khulna\",\r\n    \"password\": \"1111\",\r\n    \"phn_no\":\"01717302554\"\r\n}",
+									"raw": "{    \r\n    \"f_name\": \"Kamal\",\r\n    \"l_name\": \"Hasan\",\r\n    \"email\": \"tsarker@gmail\",\r\n    \"country\": \"Bangladesh\",\r\n    \"city\": \"5f6870ce8e4335ceef53e130\",\r\n    \"address\": \"Khulna\",\r\n    \"password\": \"1001\",\r\n    \"phn_no\":\"000000\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -715,7 +727,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/user/profile_edit?Authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDA4NTIxMDcsIm5iZiI6MTYwMDg1MjEwNywianRpIjoiODJhNzVkYzQtNTk4My00OTcwLWIyN2UtNjY2MjBhY2E1Mjk0IiwiZXhwIjoxNjAwODgwOTA3LCJpZGVudGl0eSI6IjVmNjM0NDQ3N2UzNzdlMGI4MGQwMWJiZiIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.fokkDGJGfSwDdE79ff583QU64E8uE0RcSrAIZT28q0o",
+									"raw": "http://localhost:5000/user/profile_edit",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -727,8 +739,9 @@
 									],
 									"query": [
 										{
-											"key": "Authorization",
-											"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDA4NTIxMDcsIm5iZiI6MTYwMDg1MjEwNywianRpIjoiODJhNzVkYzQtNTk4My00OTcwLWIyN2UtNjY2MjBhY2E1Mjk0IiwiZXhwIjoxNjAwODgwOTA3LCJpZGVudGl0eSI6IjVmNjM0NDQ3N2UzNzdlMGI4MGQwMWJiZiIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.fokkDGJGfSwDdE79ff583QU64E8uE0RcSrAIZT28q0o"
+											"key": "",
+											"value": "",
+											"disabled": true
 										}
 									]
 								}
@@ -749,7 +762,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDA4NTIxMDcsIm5iZiI6MTYwMDg1MjEwNywianRpIjoiODJhNzVkYzQtNTk4My00OTcwLWIyN2UtNjY2MjBhY2E1Mjk0IiwiZXhwIjoxNjAwODgwOTA3LCJpZGVudGl0eSI6IjVmNjM0NDQ3N2UzNzdlMGI4MGQwMWJiZiIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.fokkDGJGfSwDdE79ff583QU64E8uE0RcSrAIZT28q0o",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDA4NjA2MzIsIm5iZiI6MTYwMDg2MDYzMiwianRpIjoiOTYxMjQyZDAtMzk3Zi00NTRiLThmOTgtYTk0N2QyNjA0NzQ1IiwiZXhwIjoxNjAwODg5NDMyLCJpZGVudGl0eSI6IjVmNmIyYThhM2I4MGE5MmYyNTgyNzExMSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.0QwYBosKAn3rcsi4vnZPlec9KX7AxZzTDAbLnzdXAJg",
 										"type": "text"
 									}
 								],
@@ -784,13 +797,13 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDA4NTIxMDcsIm5iZiI6MTYwMDg1MjEwNywianRpIjoiODJhNzVkYzQtNTk4My00OTcwLWIyN2UtNjY2MjBhY2E1Mjk0IiwiZXhwIjoxNjAwODgwOTA3LCJpZGVudGl0eSI6IjVmNjM0NDQ3N2UzNzdlMGI4MGQwMWJiZiIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.fokkDGJGfSwDdE79ff583QU64E8uE0RcSrAIZT28q0o",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDA4NjA2MzIsIm5iZiI6MTYwMDg2MDYzMiwianRpIjoiOTYxMjQyZDAtMzk3Zi00NTRiLThmOTgtYTk0N2QyNjA0NzQ1IiwiZXhwIjoxNjAwODg5NDMyLCJpZGVudGl0eSI6IjVmNmIyYThhM2I4MGE5MmYyNTgyNzExMSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.0QwYBosKAn3rcsi4vnZPlec9KX7AxZzTDAbLnzdXAJg",
 										"type": "text"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{    \r\n    \"_id\":\"5f671aa9563ce0014a00be7a\"\r\n}",
+									"raw": "{    \r\n    \"_id\":\"5f6b19aaa0419a8f6512d3fa\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -858,7 +871,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"phn_no\": \"01717302554\",\r\n    \"password\": \"1111\"\r\n}",
+							"raw": "{\r\n    \"phn_no\": \"09632584562\",\r\n    \"password\": \"abcd\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -887,7 +900,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"f_name\":\"Raju\",\r\n        \"l_name\": \"Da\",        \r\n        \"password\":\"1213\",\r\n        \"phn_no\": \"01856956475\"\r\n}",
+							"raw": "{\r\n        \"f_name\":\"Kamal\",\r\n        \"l_name\": \"Hasan\",        \r\n        \"password\":\"0000\",\r\n        \"phn_no\": \"00000000000\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

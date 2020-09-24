@@ -5,6 +5,7 @@ import bson.json_util as bsonO
 import datetime
 import json
 from bson.json_util import dumps
+from werkzeug.security import generate_password_hash
 
 
 class UserSignup(Resource):
@@ -12,20 +13,7 @@ class UserSignup(Resource):
     def post() -> Response:
         data = request.get_json()
         flag = insertData(data)
-        if flag == True:
-            msg = "SUCCESS"
-            error = False
-
-        else:
-            msg = "FAILED"
-            error = True
-
-        return jsonify({
-            "msg": msg,
-            "error": error,
-            "data": json.loads(dumps(data))
-        })
-
+        return flag
 
 class PhoneVerification(Resource):
     @staticmethod
@@ -54,7 +42,7 @@ def insertData(data):
         "country": "",
         "city": "",
         "address": "",
-        "password": data["password"],
+        "password": generate_password_hash(data["password"]),
         "phn_no": data["phn_no"],
         "del_date": "",
         "del_resone": "",
@@ -67,6 +55,13 @@ def insertData(data):
 
     try:
         ins = mongo.db.users.insert(dt)
-        return True
+        msg = "SUCCESS"
+        error = False
     except:
-        return False
+        msg = "FAILED"
+        error = True
+    return jsonify({
+            "msg": msg,
+            "error": error,
+            "data": json.loads(dumps(data))
+        })

@@ -9,7 +9,7 @@ class AdminLogin(Resource):
     @staticmethod
     def post() -> Response:
         data = request.get_json()
-        user_collection = mongo.db.users
+        user_collection = mongo.db.adminsLog
         adminId = data["phn_no"]
         psw = data["password"]
         adminData = user_collection.find_one({"phn_no": adminId})
