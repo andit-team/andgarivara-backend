@@ -13,21 +13,12 @@ class AddVehicle(Resource):
     def post() -> Response:
         data = request.get_json()
         flag = insertData(data)
-        if flag == True:
-            msg = "SUCCESS"
-            error = False
-        else:
-            msg = "FAILED"
-            error = True
-        return jsonify({
-            "msg": msg,
-            "error": error,
-            "data": json.loads(dumps(data))
-        })
+        return flag
 
 
 def insertData(data):
     current_user = bsonO.ObjectId(get_jwt_identity())
+    err_msg=None
     dt = {
         "user_id": current_user,
         "title": data["title"],
@@ -52,9 +43,18 @@ def insertData(data):
     }
     try:
         ins = mongo.db.vehicles.insert(dt)
-        return True
-    except:
-        return False
+        msg = "SUCCESS"
+        error = False
+    except Exception as ex:
+            msg = "FAILED"
+            error = True
+            err_msg=ex
+    return jsonify({
+        "msg": msg,
+        "error": error,
+        "err_msg" : str(err_msg),
+        "data": json.loads(dumps(dt))
+    })
 
 
 class UserVehicleList(Resource):
@@ -62,13 +62,15 @@ class UserVehicleList(Resource):
     @jwt_required
     def post() -> Response:
         data = request.get_json()
+        err_msg=None
+        dt=None
         current_user = bsonO.ObjectId(get_jwt_identity())
         try:
             dt = mongo.db.vehicles.aggregate(
                 [{
                     "$match": {
                         "user_id": current_user,
-                        "del_satus": False
+                        "del_status": False
                     }
                 },
                     {
@@ -82,12 +84,14 @@ class UserVehicleList(Resource):
                 ])
             msg = "SUCCESS"
             error = False
-        except:
+        except Exception as ex:
             msg = "FAILED"
             error = True
+            err_msg=ex
         return jsonify({
             "msg": msg,
             "error": error,
+            "err_msg" : str(err_msg),
             "data": json.loads(dumps(dt))
         })
 
@@ -98,24 +102,14 @@ class EditVehicle(Resource):
     def post() -> Response:
         data = request.get_json()
         flag = UpdateVehicleInfo(data)
-        if flag == True:
-            msg = "SUCCESS"
-            error = False
-        else:
-            msg = "FAILED"
-            error = True
-        return jsonify({
-            "msg": msg,
-            "error": error,
-            "data": json.loads(dumps(data))
-        })
-
+        return flag
 
 class DeleteVehicle(Resource):
     @staticmethod
     @jwt_required
     def post() -> Response:
         data = request.get_json()
+        err_msg=None
         try:
             update_ = mongo.db.vehicles.update(
                 {
@@ -123,7 +117,7 @@ class DeleteVehicle(Resource):
                 },
                 {
                     "$set": {
-                        "del_satus": True,
+                        "del_status": True,
                         "del_resone": data["del_resone"],
                         "del_date": datetime.datetime.now()
                     }
@@ -131,18 +125,21 @@ class DeleteVehicle(Resource):
             )
             msg = "SUCCESS"
             error = False
-        except:
+        except Exception as ex:
             msg = "FAILED"
             error = True
+            err_msg=ex
         return jsonify({
             "msg": msg,
             "error": error,
-            "data": None
+            "err_msg" : str(err_msg),
+            "data": json.loads(dumps(data))
         })
 
 
 def UpdateVehicleInfo(data):
     current_user = bsonO.ObjectId(get_jwt_identity())
+    err_msg=None
     try:
         update_ = mongo.db.vehicles.update(
             {
@@ -172,6 +169,15 @@ def UpdateVehicleInfo(data):
                 }
             }
         )
-        return True
-    except:
-        return False
+        msg = "SUCCESS"
+        error = False
+    except Exception as ex:
+            msg = "FAILED"
+            error = True
+            err_msg=ex
+    return jsonify({
+        "msg": msg,
+        "error": error,
+        "err_msg" : str(err_msg),
+        "data": json.loads(dumps(data))
+    })

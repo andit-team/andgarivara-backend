@@ -11,6 +11,7 @@ class VehicleProfile(Resource):
     @staticmethod
     def post() -> Response:
         data = request.get_json()
+        err_msg=None
         try:
             dt = mongo.db.vehicles.aggregate(
                 [{
@@ -46,12 +47,14 @@ class VehicleProfile(Resource):
                 ])
             msg = "SUCCESS"
             error = False
-        except:
+        except Exception as ex:
             msg = "FAILED"
             error = True
+            err_msg=ex
 
         return jsonify({
             "msg": msg,
             "error": error,
+            "err_msg" : str(err_msg),
             "data": json.loads(dumps(dt))
         })

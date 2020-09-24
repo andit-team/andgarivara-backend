@@ -12,21 +12,12 @@ class AddVehicleAdmin(Resource):
     def post() -> Response:
         data = request.get_json()
         flag = insertData(data)
-        if flag == True:
-            msg = "SUCCESS"
-            error = False
-        else:
-            msg = "FAILED"
-            error = True
-        return jsonify({
-            "msg": msg,
-            "error": error,
-            "data": json.loads(dumps(data))
-        })
+        return flag
 
 
 def insertData(data):
     userId = bsonO.ObjectId(data["user_id"])
+    err_msg=None
     dt = {
         "user_id": userId,
         "title": data["title"],
@@ -51,15 +42,26 @@ def insertData(data):
     }
     try:
         ins = mongo.db.vehicles.insert(dt)
-        return True
-    except:
-        return False
+        msg = "SUCCESS"
+        error = False
+    except Exception as ex:
+        msg = "SUCCESS"
+        error = True
+        err_msg=ex
+        dt = None
+    return jsonify({
+        "msg": msg,
+        "error": error,
+        "err_msg" : str(err_msg),
+        "data": json.loads(dumps(dt))
+    })
 
 
 class AdminVehicleList(Resource):
     @staticmethod
     def post() -> Response:
         data = request.get_json()
+        err_msg=None
         try:
             dt = mongo.db.vehicles.aggregate(
                 [
@@ -74,12 +76,15 @@ class AdminVehicleList(Resource):
                 ])
             msg = "SUCCESS"
             error = False
-        except:
-            msg = "FAILED"
+        except Exception as ex:
+            msg = "SUCCESS"
             error = True
+            err_msg=ex
+            dt = None
         return jsonify({
             "msg": msg,
             "error": error,
+            "err_msg" : str(err_msg),
             "data": json.loads(dumps(dt))
         })
 
@@ -89,23 +94,14 @@ class EditVehicleAdmin(Resource):
     def post() -> Response:
         data = request.get_json()
         flag = UpdateVehicleInfo(data)
-        if flag == True:
-            msg = "SUCCESS"
-            error = False
-        else:
-            msg = "FAILED"
-            error = True
-        return jsonify({
-            "msg": msg,
-            "error": error,
-            "data": json.loads(dumps(data))
-        })
+        return flag
 
 
 class DeleteVehicleAdmin(Resource):
     @staticmethod
     def post() -> Response:
         data = request.get_json()
+        err_msg=None
         try:
             update_ = mongo.db.vehicles.update(
                 {
@@ -113,26 +109,29 @@ class DeleteVehicleAdmin(Resource):
                 },
                 {
                     "$set": {
-                        "del_satus": True,
+                        "del_status": True,
                         "del_resone": "Deleted By Admin",
                         "del_date": datetime.datetime.now()
                     }
                 }
             )
-            msg = "SUCCESS"
+            msg = "SUCCESSFULL"
             error = False
-        except:
-            msg = "FAILED"
+        except Exception as ex:
+            msg = "SUCCESS"
             error = True
+            err_msg=ex
         return jsonify({
             "msg": msg,
             "error": error,
-            "data": None
+            "err_msg" : str(err_msg),
+            "data": json.loads(dumps(data))
         })
 
 
 def UpdateVehicleInfo(data):
     userId = bsonO.ObjectId(data["user_id"])
+    err_msg=None
     try:
         update_ = mongo.db.vehicles.update(
             {
@@ -162,6 +161,15 @@ def UpdateVehicleInfo(data):
                 }
             }
         )
-        return True
-    except:
-        return False
+        msg = "SUCCESSFULL"
+        error = False
+    except Exception as ex:
+        msg = "SUCCESS"
+        error = True
+        err_msg=ex
+    return jsonify({
+        "msg": msg,
+        "error": error,
+        "err_msg" : str(err_msg),
+        "data": json.loads(dumps(data))
+    })

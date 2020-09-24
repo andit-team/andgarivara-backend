@@ -12,6 +12,7 @@ class AddVehicleType(Resource):
     @staticmethod
     def post() -> Response:
         data = request.get_json()
+        err_msg=None
         dt = {
             "title": data["title"],
             "create_date": datetime.datetime.now()
@@ -20,13 +21,15 @@ class AddVehicleType(Resource):
             insD = mongo.db.vehicle_types.insert_one(dt)
             msg = "SUCCESSFULL"
             error = False
-        except:
-            msg = "Failed"
+        except Exception as ex:
+            msg = "SUCCESS"
             error = True
+            err_msg=ex
         return jsonify({
             "msg": msg,
             "error": error,
-            "data": json.loads(dumps(data))
+            "err_msg" : str(err_msg),
+            "data": json.loads(dumps(dt))
         })
 
 
@@ -34,7 +37,7 @@ class EditVehicleType(Resource):
     @staticmethod
     def post() -> Response:
         data = request.get_json()
-
+        err_msg=None
         try:
             insD = mongo.db.vehicle_types.update_one(
                 {
@@ -49,12 +52,14 @@ class EditVehicleType(Resource):
             )
             msg = "SUCCESSFULL"
             error = False
-        except:
-            msg = "Failed"
+        except Exception as ex:
+            msg = "SUCCESS"
             error = True
+            err_msg=ex
         return jsonify({
             "msg": msg,
             "error": error,
+            "err_msg" : str(err_msg),
             "data": json.loads(dumps(data))
         })
 
@@ -63,6 +68,7 @@ class DeleteVehicleType(Resource):
     @staticmethod
     def post() -> Response:
         data = request.get_json()
+        err_msg=None
         dt = {
             "_id": bson.ObjectId(data["_id"])
         }
@@ -70,13 +76,15 @@ class DeleteVehicleType(Resource):
             delD = mongo.db.vehicle_types.delete_one(dt)
             msg = "SUCCESSFULL"
             error = False
-        except:
-            msg = "Failed"
+        except Exception as ex:
+            msg = "SUCCESS"
             error = True
+            err_msg=ex
         return jsonify({
             "msg": msg,
             "error": error,
-            "data": json.loads(dumps(data))
+            "err_msg" : str(err_msg),
+            "data": json.loads(dumps(dt))
         })
 
 
@@ -84,15 +92,19 @@ class VehicleTypeList(Resource):
     @staticmethod
     def post() -> Response:
         data = request.get_json()
+        err_msg=None
         try:
             dt = mongo.db.vehicle_types.find({})
             msg = "SUCCESSFULL"
             error = False
-        except:
-            msg = "Failed"
+        except Exception as ex:
+            msg = "SUCCESS"
             error = True
+            err_msg=ex
+            dt = None
         return jsonify({
             "msg": msg,
             "error": error,
+            "err_msg" : str(err_msg),
             "data": json.loads(dumps(dt))
         })

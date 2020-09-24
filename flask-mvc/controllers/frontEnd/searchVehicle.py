@@ -28,6 +28,7 @@ class SearchVehicle(Resource):
 
 def SearchVehicleByLocation(city):
     try:
+        err_msg=None
         dt = mongo.db.vehicles.aggregate(
             [{
                 "$match": {
@@ -63,18 +64,21 @@ def SearchVehicleByLocation(city):
             ])
         msg = "SUCCESS"
         error = False
-    except:
+    except Exception as ex:
         msg = "FAILED"
         error = True
+        err_msg=ex
     return jsonify({
         "msg": msg,
         "error": error,
+        "err_msg" : str(err_msg),
         "data": json.loads(dumps(dt))
     })
 
 
 def SearchVehicleByType(vId):
     try:
+        err_msg=None
         dt = mongo.db.vehicles.aggregate(
             [{
                 "$match": {
@@ -110,18 +114,21 @@ def SearchVehicleByType(vId):
             ])
         msg = "SUCCESS"
         error = False
-    except:
+    except Exception as ex:
         msg = "FAILED"
         error = True
+        err_msg=ex
     return jsonify({
         "msg": msg,
         "error": error,
+        "err_msg" : str(err_msg),
         "data": json.loads(dumps(dt))
     })
 
 
 def SearchVehicleFIlter(vId, city):
     try:
+        err_msg=None
         dt = mongo.db.vehicles.aggregate(
             [{
                 "$match": {
@@ -159,18 +166,21 @@ def SearchVehicleFIlter(vId, city):
 
         msg = "SUCCESS"
         error = False
-    except:
+    except Exception as ex:
         msg = "FAILED"
         error = True
+        err_msg=ex
     return jsonify({
         "msg": msg,
         "error": error,
+        "err_msg" : str(err_msg),
         "data": json.loads(dumps(dt))
     })
 
 
 def SearchVehicleAll():
     try:
+        err_msg=None
         dt = mongo.db.vehicles.aggregate(
             [{
                 "$match": {
@@ -205,11 +215,13 @@ def SearchVehicleAll():
             ])
         msg = "SUCCESS"
         error = False
-    except:
+    except Exception as ex:
         msg = "FAILED"
         error = True
+        err_msg=ex
     return jsonify({
         "msg": msg,
         "error": error,
+        "err_msg" : str(err_msg),
         "data": json.loads(dumps(dt))
     })

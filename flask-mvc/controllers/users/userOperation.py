@@ -6,7 +6,7 @@ import datetime
 import bson
 import json
 from flask_jwt_extended import jwt_required, get_jwt_identity,create_access_token
-
+from werkzeug.security import generate_password_hash
 
 class ProfileEdit(Resource):
     @staticmethod
@@ -19,8 +19,9 @@ class ProfileEdit(Resource):
 
 def UpdateData(data):
     idU = bson.ObjectId(get_jwt_identity())
+    err_msg=None
     try:
-        update_ = mongo.db.users.update(
+        update_ = mongo.db.users.update_one(
             {
                 "_id": idU
             },
@@ -32,7 +33,7 @@ def UpdateData(data):
                     "country": data["country"],
                     "city":  bson.ObjectId(data["city"]),
                     "address": data["address"],
-                    "password": data["password"],
+                    "password": generate_password_hash(data["password"]),
                     "phn_no": data["phn_no"],
                     "profile_pic": data["profile_pic"],
                     "update_date": datetime.datetime.now()
@@ -41,14 +42,16 @@ def UpdateData(data):
         )
         msg = "SUCCESS"
         error = False
-    except:
-        error = True
-        msg = "FAILED"
+    except Exception as ex:
+            msg = "FAILED"
+            error = True
+            err_msg=ex
     return jsonify({
-            "msg": msg,
-            "error": error,
-            "data": json.loads(dumps(update_))
-        })
+        "msg": msg,
+        "error": error,
+        "err_msg":str(err_msg),
+        "data": json.loads(dumps(data))
+    })
 
 
 class ProfileDelete(Resource):
@@ -62,6 +65,7 @@ class ProfileDelete(Resource):
 
 def DeleteData(data):
     idU = bson.ObjectId(get_jwt_identity())
+    err_msg=None
     try:
         update_ = mongo.db.users.update(
             {
@@ -77,12 +81,14 @@ def DeleteData(data):
         )
         msg = "SUCCESS"
         error = False
-    except:
-        error = True
-        msg = "FAILED"
+    except Exception as ex:
+            msg = "FAILED"
+            error = True
+            err_msg=ex
     return jsonify({
-            "msg": msg,
-            "error": error,
-            "data": json.loads(dumps(update_))
-        })
+        "msg": msg,
+        "error": error,
+        "err_msg" : str(err_msg),
+        "data": json.loads(dumps(data))
+    })
 

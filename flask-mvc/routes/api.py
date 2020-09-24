@@ -3,11 +3,12 @@ from flask_restful import Api
 from controllers.user import SignUp
 from controllers.user import Login
 from controllers.users.userLogin import UserLogin
-from controllers.users.userSignup import UserSignup, PhoneVerification
+from controllers.users.userSignup import UserSignup
 from controllers.users.userOperation import ProfileEdit, ProfileDelete
 from controllers.users.vehicles import UserVehicleList, AddVehicle, EditVehicle, DeleteVehicle
 from controllers.users.favorites import FavoriteList, AddFavorite, DeleteFavorite
 from controllers.admin.adminLogin import AdminLogin
+from controllers.admin.adminSignup import AdminSignup
 from controllers.admin.adminVehicleTypeOp import AddVehicleType, EditVehicleType, DeleteVehicleType, VehicleTypeList
 from controllers.admin.adminUser import UserList, DeleteUser, AddUser
 from controllers.admin.adminVehicleOp import AdminVehicleList, AddVehicleAdmin, EditVehicleAdmin, DeleteVehicleAdmin
@@ -22,7 +23,7 @@ def create_routes(api: Api):
    ########################## User ##########################
     api.add_resource(UserSignup, '/user/signup')
     api.add_resource(UserLogin, '/user/login')
-    api.add_resource(PhoneVerification, '/user/phone_verification')
+   #  api.add_resource(PhoneVerification, '/user/phone_verification')
 
     api.add_resource(ProfileEdit, '/user/profile_edit')
     api.add_resource(ProfileDelete, '/user/delete_profile')
@@ -38,6 +39,7 @@ def create_routes(api: Api):
 
     ########################## Admin ##########################
     api.add_resource(AdminLogin, '/admin/login')
+    api.add_resource(AdminSignup, '/admin/signup')
 
     api.add_resource(VehicleTypeList, '/admin/vehicle_type_list')
     api.add_resource(AddVehicleType, '/admin/add_vehicle_type')

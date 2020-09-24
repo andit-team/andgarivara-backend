@@ -6,6 +6,7 @@ from extension import mongo
 import datetime
 import bson
 import json
+from werkzeug.security import generate_password_hash
 
 
 class AddUser(Resource):
@@ -14,6 +15,7 @@ class AddUser(Resource):
         data = request.get_json()
         userId = data["phn_no"]
         psw = data["password"]
+        err_msg=None
         dt = {
             "f_name": data["f_name"],
             "l_name": data["l_name"],
@@ -21,7 +23,7 @@ class AddUser(Resource):
             "country": "",
             "city": "",
             "address": "",
-            "password": data["password"],
+            "password": generate_password_hash(data["password"]),
             "phn_no": data["phn_no"],
             "del_date": "",
             "del_resone": "",
@@ -36,12 +38,14 @@ class AddUser(Resource):
             ins = mongo.db.users.insert(dt)
             msg = "SUCCESS"
             error = False
-        except:
+        except Exception as ex:
             msg = "SUCCESS"
             error = True
+            err_msg=ex
         return jsonify({
             "msg": msg,
             "error": error,
+            "err_msg" : str(err_msg),
             "data": json.loads(dumps(dt))
         })
 
@@ -50,6 +54,7 @@ class DeleteUser(Resource):
     @staticmethod
     def post() -> Response:
         data = request.get_json()
+        err_msg=None
         try:
             delD = mongo.db.users.update(
                 {
@@ -57,7 +62,7 @@ class DeleteUser(Resource):
                 },
                 {
                     "$set": {
-                        "del_satus": True,
+                        "del_status": True,
                         "del_resone": "Deleted By Admin",
                         "del_date": datetime.datetime.now()
                     }
@@ -65,12 +70,15 @@ class DeleteUser(Resource):
             )
             msg = "SUCCESSFULL"
             error = False
-        except:
-            msg = "Failed"
+        except Exception as ex:
+            msg = "SUCCESS"
             error = True
+            err_msg=ex
+            delD = None
         return jsonify({
             "msg": msg,
             "error": error,
+            "err_msg" : str(err_msg),
             "data": json.loads(dumps(delD))
         })
 
@@ -79,15 +87,19 @@ class UserList(Resource):
     @staticmethod
     def post() -> Response:
         data = request.get_json()
+        err_msg=None
         try:
             dt = mongo.db.users.find({})
             msg = "SUCCESSFULL"
             error = False
-        except:
-            msg = "Failed"
+        except Exception as ex:
+            msg = "SUCCESS"
             error = True
+            err_msg=ex
+            dt = None
         return jsonify({
             "msg": msg,
             "error": error,
+            "err_msg" : str(err_msg),
             "data": json.loads(dumps(dt))
         })

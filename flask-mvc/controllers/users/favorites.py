@@ -13,71 +13,40 @@ class AddFavorite(Resource):
     @jwt_required
     def post() -> Response:
         data = request.get_json()
+        err_msg=None
         uId = bsonO.ObjectId(get_jwt_identity())
         vID = bsonO.ObjectId(data["_id"])
-        vData = GetAllVehicleData(vID)
-        if vData is not None:
-            flag = insertData(vData, vID, uId)
-            if flag is not None:
-                msg = "SUCCESS"
-                error = False
-                dataR = flag
-            else:
-                msg = "FAILED"
-                error = True
-            return jsonify({
-                "msg": msg,
-                "error": error,
-                "data": json.loads(dumps(flag))
-            })
-        else:
-            return jsonify({
-                "msg": "FAILED",
-                "error": True,
-                "data": json.loads(dumps(data))
-            })
-
-
-def insertData(vData, vID, uId):
-    for i in vData:
-        title = i["title"]
-    dt = mongo.db.users.update(
-        {"_id": uId},
-        {
-            "$addToSet": {
-                "bookmarks": {
-                    "_id": bsonO.ObjectId(),
-                    "car_id": vID,
-                    "title": title,
-                    "bookmark_date": datetime.datetime.now()
-                }
-            }
-        }
-    )
-    return dt
-
-
-def GetAllVehicleData(vID):
-    try:
-        dt = mongo.db.vehicles.aggregate(
-            [{
-                "$match": {
-                    "_id": vID,
-                    "del_satus": False
-                }
-            },
+        vData=None
+        try:
+            vData=mongo.db.vehicles.find({"_id": vID})
+            for i in vData:
+                title = i["title"]
+            dt = mongo.db.users.update(
+                {"_id": uId},
                 {
-                "$lookup": {
-                    "from": "vehicle_types",
-                    "localField": "vehicle_type",
-                    "foreignField": "_id",
-                    "as": "vehicle_type_details"
+                    "$addToSet": {
+                        "bookmarks": {
+                            "_id": bsonO.ObjectId(),
+                            "car_id": vID,
+                            "title": title,
+                            "bookmark_date": datetime.datetime.now()
+                        }
+                    }
                 }
-            },
-            ])
-    except:
-        dt = None
-    return dt
+            )
+            msg = "SUCCESS"
+            error = False            
+        except Exception as ex:
+            msg = "FAILED"
+            error = True
+            err_msg=ex
+        return jsonify({
+            "msg": msg,
+            "error": error,
+            "err_msg" : str(err_msg),
+            "data": json.loads(dumps(vData))
+        })
+        
 
 
 class DeleteFavorite(Resource):
@@ -85,31 +54,33 @@ class DeleteFavorite(Resource):
     @jwt_required
     def post() -> Response:
         data = request.get_json()
+        err_msg=None
         uID = bsonO.ObjectId(get_jwt_identity())
-        vID = bsonO.ObjectId(data["car_id"])
+        bId = bsonO.ObjectId(data["_id"])
         try:
-            dt = mongo.db.users.update(
+            dt = mongo.db.users.update_one(
                 {
                     "_id": uID
                 },
                 {
                     "$pull": {
                         "bookmarks": {
-                            "_id": vID
+                            "_id": bId
                         }
                     }
                 }
             )
             msg = "SUCCESS"
             error = False
-        except:
+        except Exception as ex:
             msg = "FAILED"
             error = True
-            dt = None
+            err_msg=ex
         return jsonify({
             "msg": msg,
             "error": error,
-            "data": json.loads(dumps(dt))
+            "err_msg" : str(err_msg),
+            "data": json.loads(dumps(data))
         })
 
 
@@ -118,24 +89,27 @@ class FavoriteList(Resource):
     @jwt_required
     def post() -> Response:
         data = request.get_json()
+        err_msg=None
+        uId = bsonO.ObjectId(get_jwt_identity())
         try:
-            dt = mongo.db.users.find(
+            dt = mongo.db.users.find_one(
                 {
-                    "_id": bsonO.ObjectId(get_jwt_identity())
+                    "_id":uId 
                 },
                 {
-                    "_id": 0,
-                    "bookmarks": 1
+                    "bookmarks":1
                 }
             )
             msg = "SUCCESS"
             error = False
-        except:
+        except Exception as ex:
             msg = "FAILED"
             error = True
+            err_msg=ex
             dt = None
         return jsonify({
             "msg": msg,
             "error": error,
+            "err_msg" : str(err_msg),
             "data": json.loads(dumps(dt))
         })
