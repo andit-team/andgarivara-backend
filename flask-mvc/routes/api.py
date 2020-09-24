@@ -4,7 +4,7 @@ from controllers.user import SignUp
 from controllers.user import Login
 from controllers.users.userLogin import UserLogin
 from controllers.users.userSignup import UserSignup, PhoneVerification
-from controllers.users.userOperation import ProfileEdit, ProfileDelete, GetAllUser
+from controllers.users.userOperation import ProfileEdit, ProfileDelete
 from controllers.users.vehicles import UserVehicleList, AddVehicle, EditVehicle, DeleteVehicle
 from controllers.users.favorites import FavoriteList, AddFavorite, DeleteFavorite
 from controllers.admin.adminLogin import AdminLogin
@@ -26,7 +26,6 @@ def create_routes(api: Api):
 
     api.add_resource(ProfileEdit, '/user/profile_edit')
     api.add_resource(ProfileDelete, '/user/delete_profile')
-    api.add_resource(GetAllUser, '/user/show_users')
 
     api.add_resource(UserVehicleList, '/user/vehicle_list')
     api.add_resource(AddVehicle, '/user/add_vehicle')
