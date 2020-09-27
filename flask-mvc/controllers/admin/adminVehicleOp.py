@@ -34,9 +34,7 @@ def insertData(data):
         "year_of_manufacture": data["year_of_manufacture"],
         "color": data["color"],
         "ac": data["ac"],
-        "vehicle_imgs": [
-
-        ],
+        "vehicle_imgs":data["vehicle_imgs"],
         "del_status": False,
         "create_date": datetime.datetime.now()
     }
