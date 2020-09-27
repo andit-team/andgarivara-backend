@@ -25,6 +25,6 @@ def create_app(config_object='settings'):
 
 
 if __name__ == '__main__':
-    # Main entry point when run in stand-alone mode.
+    # Main entry point when run in stand-alone mode..
     app = create_app()
     app.run(debug=True, host='0.0.0.0')
