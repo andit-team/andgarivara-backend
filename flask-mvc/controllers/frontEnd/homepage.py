@@ -13,7 +13,7 @@ class HomePage(Resource):
         data = request.get_json()
         err_msg=None
         try:
-            dtLocation = mongo.db.locationCity.find({})
+            dtLocation = mongo.db.locationArea.find({})
             dtVT = mongo.db.vehicle_types.find({})
             msg = "SUCCESS"
             error = False

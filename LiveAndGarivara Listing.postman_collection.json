@@ -159,7 +159,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n        \"user_id\":\"5f6c6492c276dc822e4912e3\",\r\n        \"title\": \"Bike\",\r\n        \"vehicle_type\": \"5f6c456fb867ba46a489721b\",\r\n        \"description\": \"VIP Bike Ride\",\r\n        \"country\": \"bd\",\r\n        \"city\": \"5f701eb86fb8ed0407e59a7a\",\r\n        \"car_location\": \"Barishal Sadar\",\r\n        \"total_seat\": 3,\r\n        \"min_price_per_day\": 1000,\r\n        \"cover_img\": \"https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80\",\r\n        \"brand\": \"Hero\",\r\n        \"model\": \"oi9\",\r\n        \"year_of_manufacture\": \"2020\",\r\n        \"color\": \"black\",\r\n        \"ac\": false,\r\n        \"vehicle_imgs\": [  \r\n                   \r\n        ]\r\n    }",
+									"raw": "{\r\n        \"user_id\":\"5f6c6492c276dc822e4912e3\",\r\n        \"title\": \"Bike\",\r\n        \"vehicle_type\": \"5f6c456fb867ba46a489721b\",\r\n        \"description\": \"VIP Bike Ride\",\r\n        \"country\": \"bd\",\r\n        \"city\": \"5f701eb86fb8ed0407e59a7a\",\r\n        \"area\":  \"5f71619e76b00857d456c60a\",\r\n        \"car_location\": \"Barishal Sadar\",\r\n        \"total_seat\": 3,\r\n        \"min_price_per_day\": 1000,\r\n        \"cover_img\": \"https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80\",\r\n        \"brand\": \"Hero\",\r\n        \"model\": \"oi9\",\r\n        \"year_of_manufacture\": \"2020\",\r\n        \"color\": \"black\",\r\n        \"ac\": false,\r\n        \"vehicle_imgs\": [  \r\n                   \r\n        ]\r\n    }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -223,7 +223,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n        \"_id\":\"5f702b376fb8ed0407e59a7e\",\r\n        \"user_id\":\"5f6c6492c276dc822e4912e3\",\r\n        \"title\": \"Bike\",\r\n        \"vehicle_type\": \"5f6c456fb867ba46a489721b\",\r\n        \"description\": \"VIP Bike Ride\",\r\n        \"country\": \"bd\",\r\n        \"city\": \"5f701eb86fb8ed0407e59a7a\",\r\n        \"car_location\": \"Barishal Sadar\",\r\n        \"total_seat\": 3,\r\n        \"min_price_per_day\": 1000,\r\n        \"cover_img\": \"https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80\",\r\n        \"brand\": \"Hero\",\r\n        \"model\": \"oi9\",\r\n        \"year_of_manufacture\": \"2020\",\r\n        \"color\": \"black-red\",\r\n        \"ac\": false,\r\n        \"vehicle_imgs\": [  \r\n            \"https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80\",\r\n            \"https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80\"      \r\n        ]\r\n    }",
+									"raw": "{\r\n        \"_id\":\"5f702b376fb8ed0407e59a7e\",\r\n        \"user_id\":\"5f6c6492c276dc822e4912e3\",\r\n        \"title\": \"Bike\",\r\n        \"vehicle_type\": \"5f6c456fb867ba46a489721b\",\r\n        \"description\": \"VIP Bike Ride\",\r\n        \"country\": \"bd\",\r\n        \"city\": \"5f701eb86fb8ed0407e59a7a\",\r\n         \"area\":  \"5f71619e76b00857d456c60a\",\r\n        \"car_location\": \"Barishal Sadar\",\r\n        \"total_seat\": 3,\r\n        \"min_price_per_day\": 1000,\r\n        \"cover_img\": \"https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80\",\r\n        \"brand\": \"Hero\",\r\n        \"model\": \"oi9\",\r\n        \"year_of_manufacture\": \"2020\",\r\n        \"color\": \"black-red\",\r\n        \"ac\": false,\r\n        \"vehicle_imgs\": [  \r\n            \"https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80\",\r\n            \"https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80\"      \r\n        ]\r\n    }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -734,7 +734,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{        \r\n        \"title\": \"Pickup for transportation\",\r\n        \"vehicle_type\": \"5f6c45c2b867ba46a489721c\",\r\n        \"description\": \"Pickup for transportation all over the bd\",\r\n        \"country\": \"bd\",\r\n        \"city\": \"5f6c52f247c066c589e4d5c0\",\r\n        \"car_location\": \"Nirala\",\r\n        \"total_seat\": 3,\r\n        \"min_price_per_day\": 15000,\r\n        \"cover_img\": \"http://www.alirentacarbd.com/allcar/pickup.jpg\",\r\n        \"brand\": \"Toyota\",\r\n        \"model\": \"SuperAce\",\r\n        \"year_of_manufacture\": \"2014\",\r\n        \"color\": \"Red\",\r\n        \"ac\": false,\r\n        \"vehicle_imgs\": [           \r\n        ]\r\n    }",
+									"raw": "{        \r\n        \"title\": \"Pickup for transportation\",\r\n        \"vehicle_type\": \"5f6c45c2b867ba46a489721c\",\r\n        \"description\": \"Pickup for transportation all over the bd\",\r\n        \"country\": \"bd\",\r\n        \"city\": \"5f6c52f247c066c589e4d5c0\",\r\n         \"area\":  \"5f71619e76b00857d456c60a\",\r\n        \"car_location\": \"Nirala\",\r\n        \"total_seat\": 3,\r\n        \"min_price_per_day\": 15000,\r\n        \"cover_img\": \"http://www.alirentacarbd.com/allcar/pickup.jpg\",\r\n        \"brand\": \"Toyota\",\r\n        \"model\": \"SuperAce\",\r\n        \"year_of_manufacture\": \"2014\",\r\n        \"color\": \"Red\",\r\n        \"ac\": false,\r\n        \"vehicle_imgs\": [           \r\n        ]\r\n    }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -862,7 +862,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n       \"_id\":\"5f6c6651630b518638976ab6\",\r\n        \"title\": \"Pickup for transportation\",\r\n        \"vehicle_type\": \"5f6c45c2b867ba46a489721c\",\r\n        \"description\": \"Pickup for transportation all over the bd\",\r\n        \"country\": \"bd\",\r\n        \"city\": \"5f6c52f247c066c589e4d5c0\",\r\n        \"car_location\": \"Nirala\",\r\n        \"total_seat\": 3,\r\n        \"min_price_per_day\": 15000,\r\n        \"cover_img\": \"http://www.alirentacarbd.com/allcar/pickup.jpg\",\r\n        \"brand\": \"Toyota\",\r\n        \"model\": \"SuperAce\",\r\n        \"year_of_manufacture\": \"2020\",\r\n        \"color\": \"Red-Black\",\r\n        \"ac\": false,\r\n        \"vehicle_imgs\": [           \r\n        ]\r\n    }",
+									"raw": "{\r\n       \"_id\":\"5f6c6651630b518638976ab6\",\r\n        \"title\": \"Pickup for transportation\",\r\n        \"vehicle_type\": \"5f6c45c2b867ba46a489721c\",\r\n        \"description\": \"Pickup for transportation all over the bd\",\r\n        \"country\": \"bd\",\r\n        \"city\": \"5f6c52f247c066c589e4d5c0\",\r\n         \"area\":  \"5f71619e76b00857d456c60a\",\r\n        \"car_location\": \"Nirala\",\r\n        \"total_seat\": 3,\r\n        \"min_price_per_day\": 15000,\r\n        \"cover_img\": \"http://www.alirentacarbd.com/allcar/pickup.jpg\",\r\n        \"brand\": \"Toyota\",\r\n        \"model\": \"SuperAce\",\r\n        \"year_of_manufacture\": \"2020\",\r\n        \"color\": \"Red-Black\",\r\n        \"ac\": false,\r\n        \"vehicle_imgs\": [           \r\n        ]\r\n    }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1257,7 +1257,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"vehicle_type\":\"\",\r\n    \"city\": \"\"\r\n}",
+							"raw": "{\r\n    \"vehicle_type\":\"\",\r\n    \"area\": \"5f71619e76b00857d456c60a\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1265,13 +1265,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://178.128.18.132:5000/and_gari_vara/search_result_page",
+							"raw": "http://localhost:5000/and_gari_vara/search_result_page",
 							"protocol": "http",
 							"host": [
-								"178",
-								"128",
-								"18",
-								"132"
+								"localhost"
 							],
 							"port": "5000",
 							"path": [
