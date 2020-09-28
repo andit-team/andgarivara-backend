@@ -514,6 +514,141 @@
 					"_postman_isSubFolder": true
 				},
 				{
+					"name": "Areas",
+					"item": [
+						{
+							"name": "Area Add",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n       \"area\": \"gollamari\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://178.128.18.132:5000/admin/add_area",
+									"protocol": "http",
+									"host": [
+										"178",
+										"128",
+										"18",
+										"132"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"add_area"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Area List",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://178.128.18.132:5000/admin/area_list",
+									"protocol": "http",
+									"host": [
+										"178",
+										"128",
+										"18",
+										"132"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"area_list"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Area",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"_id\":\"5f71615b76b00857d456c609\",\r\n    \"area\": \"Gollamari\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://178.128.18.132:5000/admin/edit_area",
+									"protocol": "http",
+									"host": [
+										"178",
+										"128",
+										"18",
+										"132"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"edit_area"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Area",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n      \"_id\":\"5f71615b76b00857d456c609\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://178.128.18.132:5000/admin/delete_area",
+									"protocol": "http",
+									"host": [
+										"178",
+										"128",
+										"18",
+										"132"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"delete_area"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
 					"name": "Admin Login",
 					"request": {
 						"method": "POST",
