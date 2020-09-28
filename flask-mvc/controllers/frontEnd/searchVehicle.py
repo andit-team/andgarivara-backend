@@ -55,10 +55,18 @@ def SearchVehicleByLocation(area):
             },
                 {
                 "$lookup": {
+                    "from": "locationCity",
+                    "localField": "city",
+                    "foreignField": "_id",
+                    "as": "city_details"
+                }
+            },
+                {
+                "$lookup": {
                     "from": "locationArea",
                     "localField": "area",
                     "foreignField": "_id",
-                    "as": "location_details"
+                    "as": "area_details"
                 }
             }
             ])
@@ -105,10 +113,18 @@ def SearchVehicleByType(vId):
             },
                 {
                 "$lookup": {
+                    "from": "locationCity",
+                    "localField": "city",
+                    "foreignField": "_id",
+                    "as": "city_details"
+                }
+            },
+                {
+                "$lookup": {
                     "from": "locationArea",
                     "localField": "area",
                     "foreignField": "_id",
-                    "as": "location_details"
+                    "as": "area_details"
                 }
             }
             ])
@@ -156,10 +172,18 @@ def SearchVehicleFIlter(vId, area):
             },
                 {
                 "$lookup": {
+                    "from": "locationCity",
+                    "localField": "city",
+                    "foreignField": "_id",
+                    "as": "city_details"
+                }
+            },
+                {
+                "$lookup": {
                     "from": "locationArea",
                     "localField": "area",
                     "foreignField": "_id",
-                    "as": "location_details"
+                    "as": "area_details"
                 }
             }
             ])
@@ -206,10 +230,18 @@ def SearchVehicleAll():
             },
                 {
                 "$lookup": {
+                    "from": "locationCity",
+                    "localField": "city",
+                    "foreignField": "_id",
+                    "as": "city_details"
+                }
+            },
+                {
+                "$lookup": {
                     "from": "locationArea",
                     "localField": "area",
                     "foreignField": "_id",
-                    "as": "location_details"
+                    "as": "area_details"
                 }
             }
             ])
