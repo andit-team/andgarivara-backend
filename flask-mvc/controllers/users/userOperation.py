@@ -5,8 +5,9 @@ from extension import mongo
 import datetime
 import bson
 import json
-from flask_jwt_extended import jwt_required, get_jwt_identity,create_access_token
+from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
 from werkzeug.security import generate_password_hash
+
 
 class ProfileEdit(Resource):
     @staticmethod
@@ -19,7 +20,7 @@ class ProfileEdit(Resource):
 
 def UpdateData(data):
     idU = bson.ObjectId(get_jwt_identity())
-    err_msg=None
+    err_msg = None
     try:
         update_ = mongo.db.users.update_one(
             {
@@ -43,13 +44,13 @@ def UpdateData(data):
         msg = "SUCCESS"
         error = False
     except Exception as ex:
-            msg = "FAILED"
-            error = True
-            err_msg=ex
+        msg = "FAILED"
+        error = True
+        err_msg = ex
     return jsonify({
         "msg": msg,
         "error": error,
-        "err_msg":str(err_msg),
+        "err_msg": str(err_msg),
         "data": json.loads(dumps(data))
     })
 
@@ -65,7 +66,7 @@ class ProfileDelete(Resource):
 
 def DeleteData(data):
     idU = bson.ObjectId(get_jwt_identity())
-    err_msg=None
+    err_msg = None
     try:
         update_ = mongo.db.users.update(
             {
@@ -82,13 +83,12 @@ def DeleteData(data):
         msg = "SUCCESS"
         error = False
     except Exception as ex:
-            msg = "FAILED"
-            error = True
-            err_msg=ex
+        msg = "FAILED"
+        error = True
+        err_msg = ex
     return jsonify({
         "msg": msg,
         "error": error,
-        "err_msg" : str(err_msg),
+        "err_msg": str(err_msg),
         "data": json.loads(dumps(data))
     })
-

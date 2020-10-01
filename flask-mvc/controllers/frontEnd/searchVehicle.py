@@ -28,7 +28,7 @@ class SearchVehicle(Resource):
 
 def SearchVehicleByLocation(area):
     try:
-        err_msg=None
+        err_msg = None
         dt = mongo.db.vehicles.aggregate(
             [{
                 "$match": {
@@ -75,18 +75,17 @@ def SearchVehicleByLocation(area):
     except Exception as ex:
         msg = "FAILED"
         error = True
-        err_msg=ex
+        err_msg = ex
     return jsonify({
         "msg": msg,
         "error": error,
-        "err_msg" : str(err_msg),
         "data": json.loads(dumps(dt))
     })
 
 
 def SearchVehicleByType(vId):
     try:
-        err_msg=None
+        err_msg = None
         dt = mongo.db.vehicles.aggregate(
             [{
                 "$match": {
@@ -133,18 +132,17 @@ def SearchVehicleByType(vId):
     except Exception as ex:
         msg = "FAILED"
         error = True
-        err_msg=ex
+        err_msg = ex
     return jsonify({
         "msg": msg,
         "error": error,
-        "err_msg" : str(err_msg),
         "data": json.loads(dumps(dt))
     })
 
 
 def SearchVehicleFIlter(vId, area):
     try:
-        err_msg=None
+        err_msg = None
         dt = mongo.db.vehicles.aggregate(
             [{
                 "$match": {
@@ -193,18 +191,17 @@ def SearchVehicleFIlter(vId, area):
     except Exception as ex:
         msg = "FAILED"
         error = True
-        err_msg=ex
+        err_msg = ex
     return jsonify({
         "msg": msg,
         "error": error,
-        "err_msg" : str(err_msg),
         "data": json.loads(dumps(dt))
     })
 
 
 def SearchVehicleAll():
     try:
-        err_msg=None
+        err_msg = None
         dt = mongo.db.vehicles.aggregate(
             [{
                 "$match": {
@@ -250,10 +247,9 @@ def SearchVehicleAll():
     except Exception as ex:
         msg = "FAILED"
         error = True
-        err_msg=ex
+        err_msg = ex
     return jsonify({
         "msg": msg,
         "error": error,
-        "err_msg" : str(err_msg),
         "data": json.loads(dumps(dt))
     })

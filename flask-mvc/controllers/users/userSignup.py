@@ -16,19 +16,17 @@ class UserSignup(Resource):
         return flag
 
 
-
-
 def insertData(data):
     userId = data["phn_no"]
     psw = data["password"]
-    err_msg=None
-    countUser=mongo.db.users.find({"phn_no":userId}).count()
+    err_msg = None
+    countUser = mongo.db.users.find({"phn_no": userId}).count()
     if countUser > 0:
         msg = "User Already Exist."
         error = True
-        err_msg="Duplicate user found"
-        dt=None
-    else:        
+        err_msg = "Duplicate user found"
+        dt = None
+    else:
         dt = {
             "f_name": data["f_name"],
             "l_name": data["l_name"],
@@ -52,12 +50,11 @@ def insertData(data):
             msg = "SUCCESS"
             error = False
         except Exception as ex:
-                msg = "FAILED"
-                error = True
-                err_msg=ex
+            msg = "FAILED"
+            error = True
+            err_msg = ex
     return jsonify({
         "msg": msg,
         "error": error,
-        "err_msg" : str(err_msg),
         "data": json.loads(dumps(dt))
     })

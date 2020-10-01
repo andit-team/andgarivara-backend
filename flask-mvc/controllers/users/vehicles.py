@@ -90,7 +90,6 @@ class UserVehicleList(Resource):
         return jsonify({
             "msg": msg,
             "error": error,
-            "err_msg" : str(err_msg),
             "data": json.loads(dumps(dt))
         })
 
@@ -131,7 +130,6 @@ class DeleteVehicle(Resource):
         return jsonify({
             "msg": msg,
             "error": error,
-            "err_msg" : str(err_msg),
             "data": json.loads(dumps(data))
         })
 

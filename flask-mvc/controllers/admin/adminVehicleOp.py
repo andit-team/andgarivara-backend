@@ -17,7 +17,7 @@ class AddVehicleAdmin(Resource):
 
 def insertData(data):
     userId = bsonO.ObjectId(data["user_id"])
-    err_msg=None
+    err_msg = None
     dt = {
         "user_id": userId,
         "title": data["title"],
@@ -35,7 +35,7 @@ def insertData(data):
         "year_of_manufacture": data["year_of_manufacture"],
         "color": data["color"],
         "ac": data["ac"],
-        "vehicle_imgs":data["vehicle_imgs"],
+        "vehicle_imgs": data["vehicle_imgs"],
         "del_status": False,
         "create_date": datetime.datetime.now()
     }
@@ -46,12 +46,12 @@ def insertData(data):
     except Exception as ex:
         msg = "FAILED"
         error = True
-        err_msg=ex
+        err_msg = ex
         dt = None
     return jsonify({
         "msg": msg,
         "error": error,
-        "err_msg" : str(err_msg),
+        "err_msg": str(err_msg),
         "data": json.loads(dumps(dt))
     })
 
@@ -60,7 +60,7 @@ class AdminVehicleList(Resource):
     @staticmethod
     def post() -> Response:
         data = request.get_json()
-        err_msg=None
+        err_msg = None
         try:
             dt = mongo.db.vehicles.aggregate(
                 [
@@ -78,12 +78,11 @@ class AdminVehicleList(Resource):
         except Exception as ex:
             msg = "FAILED"
             error = True
-            err_msg=ex
+            err_msg = ex
             dt = None
         return jsonify({
             "msg": msg,
             "error": error,
-            "err_msg" : str(err_msg),
             "data": json.loads(dumps(dt))
         })
 
@@ -100,7 +99,7 @@ class DeleteVehicleAdmin(Resource):
     @staticmethod
     def post() -> Response:
         data = request.get_json()
-        err_msg=None
+        err_msg = None
         try:
             update_ = mongo.db.vehicles.update(
                 {
@@ -119,18 +118,17 @@ class DeleteVehicleAdmin(Resource):
         except Exception as ex:
             msg = "FAILED"
             error = True
-            err_msg=ex
+            err_msg = ex
         return jsonify({
             "msg": msg,
             "error": error,
-            "err_msg" : str(err_msg),
             "data": json.loads(dumps(data))
         })
 
 
 def UpdateVehicleInfo(data):
     userId = bsonO.ObjectId(data["user_id"])
-    err_msg=None
+    err_msg = None
     try:
         update_ = mongo.db.vehicles.update(
             {
@@ -154,7 +152,7 @@ def UpdateVehicleInfo(data):
                     "year_of_manufacture": data["year_of_manufacture"],
                     "color": data["color"],
                     "ac": data["ac"],
-                    "vehicle_imgs":data["vehicle_imgs"],
+                    "vehicle_imgs": data["vehicle_imgs"],
                     "update_date": datetime.datetime.now()
                 }
             }
@@ -164,10 +162,10 @@ def UpdateVehicleInfo(data):
     except Exception as ex:
         msg = "SUCCESS"
         error = True
-        err_msg=ex
+        err_msg = ex
     return jsonify({
         "msg": msg,
         "error": error,
-        "err_msg" : str(err_msg),
+        "err_msg": str(err_msg),
         "data": json.loads(dumps(data))
     })
