@@ -18,7 +18,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"_id\":\"5f6c45c2b867ba46a489721c\",\r\n    \"title\":\"Pick-up van\"\r\n}",
+									"raw": "{\r\n    \"_id\":\"5f701dcd6fb8ed0407e59a78\",\r\n    \"title\":\"Mini Truck\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -26,10 +26,13 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/admin/edit_vehicle_type",
+									"raw": "http://178.128.18.132:5000/admin/edit_vehicle_type",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"178",
+										"128",
+										"18",
+										"132"
 									],
 									"port": "5000",
 									"path": [
@@ -53,7 +56,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n   \"title\": \"Ambulance\"\r\n}",
+									"raw": "{\r\n   \"title\": \"Truck\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -61,10 +64,13 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/admin/add_vehicle_type",
+									"raw": "http://178.128.18.132:5000/admin/add_vehicle_type",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"178",
+										"128",
+										"18",
+										"132"
 									],
 									"port": "5000",
 									"path": [
@@ -82,7 +88,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": " {\r\n            \"_id\": \"5f6c46f15e31ef9338a20752\"\r\n        }",
+									"raw": " {\r\n            \"_id\": \"5f701e3d6fb8ed0407e59a79\"\r\n        }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -90,10 +96,13 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/admin/delete_vehicle_type",
+									"raw": "http://178.128.18.132:5000/admin/delete_vehicle_type",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"178",
+										"128",
+										"18",
+										"132"
 									],
 									"port": "5000",
 									"path": [
@@ -119,10 +128,13 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/admin/vehicle_type_list",
+									"raw": "http://178.128.18.132:5000/admin/vehicle_type_list",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"178",
+										"128",
+										"18",
+										"132"
 									],
 									"port": "5000",
 									"path": [
@@ -147,7 +159,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n        \"user_id\":\"5f6c54081fa085104fb2b7d8\",\r\n        \"title\": \"Bike\",\r\n        \"vehicle_type\": \"5f6c456fb867ba46a489721b\",\r\n        \"description\": \"VIP Bike Ride\",\r\n        \"country\": \"bd\",\r\n        \"city\": \"5f6c52ec47c066c589e4d5bf\",\r\n        \"car_location\": \"Gollamari\",\r\n        \"total_seat\": 13,\r\n        \"min_price_per_day\": 800,\r\n        \"cover_img\": \"\",\r\n        \"brand\": \"Hero\",\r\n        \"model\": \"oi9\",\r\n        \"year_of_manufacture\": \"2020\",\r\n        \"color\": \"black\",\r\n        \"ac\": false,\r\n        \"vehicle_imgs\": [           \r\n        ]\r\n    }",
+									"raw": "{\r\n        \"user_id\":\"5f6c6492c276dc822e4912e3\",\r\n        \"title\": \"Bike\",\r\n        \"vehicle_type\": \"5f6c456fb867ba46a489721b\",\r\n        \"description\": \"VIP Bike Ride\",\r\n        \"country\": \"bd\",\r\n        \"city\": \"5f701eb86fb8ed0407e59a7a\",\r\n        \"area\":  \"5f71619e76b00857d456c60a\",\r\n        \"car_location\": \"Barishal Sadar\",\r\n        \"total_seat\": 3,\r\n        \"min_price_per_day\": 1000,\r\n        \"cover_img\": \"https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80\",\r\n        \"brand\": \"Hero\",\r\n        \"model\": \"oi9\",\r\n        \"year_of_manufacture\": \"2020\",\r\n        \"color\": \"black\",\r\n        \"ac\": false,\r\n        \"vehicle_imgs\": [  \r\n                   \r\n        ]\r\n    }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -155,10 +167,13 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/admin/add_vehicle",
+									"raw": "http://178.128.18.132:5000/admin/add_vehicle",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"178",
+										"128",
+										"18",
+										"132"
 									],
 									"port": "5000",
 									"path": [
@@ -184,10 +199,13 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/admin/vehicle_list",
+									"raw": "http://178.128.18.132:5000/admin/vehicle_list",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"178",
+										"128",
+										"18",
+										"132"
 									],
 									"port": "5000",
 									"path": [
@@ -205,7 +223,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n        \"_id\": \"5f6842398ae00e3b9541c7c8\",  \r\n        \"user_id\":\"5f6344477e377e0b80d01bbf\",\r\n        \"title\": \"Bike Rent\",\r\n        \"vehicle_type\": \"5f65d65760b9f0120064af29\",\r\n        \"description\": \"Bike\",\r\n        \"country\": \"bd\",\r\n        \"city\": \"Khulna\",\r\n        \"car_location\": \"Nirala\",\r\n        \"total_seat\": 2,\r\n        \"min_price_per_day\": 1500,\r\n        \"cover_img\": \"\",\r\n        \"brand\": \"Yamaha\",\r\n        \"model\": \"Valentino\",\r\n        \"year_of_manufacture\": \"2016\",\r\n        \"color\": \"black-red\",\r\n        \"ac\": false,\r\n        \"vehicle_imgs\": [           \r\n        ]\r\n    }",
+									"raw": "{\r\n        \"_id\":\"5f702b376fb8ed0407e59a7e\",\r\n        \"user_id\":\"5f6c6492c276dc822e4912e3\",\r\n        \"title\": \"Bike\",\r\n        \"vehicle_type\": \"5f6c456fb867ba46a489721b\",\r\n        \"description\": \"VIP Bike Ride\",\r\n        \"country\": \"bd\",\r\n        \"city\": \"5f701eb86fb8ed0407e59a7a\",\r\n         \"area\":  \"5f71619e76b00857d456c60a\",\r\n        \"car_location\": \"Barishal Sadar\",\r\n        \"total_seat\": 3,\r\n        \"min_price_per_day\": 1000,\r\n        \"cover_img\": \"https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80\",\r\n        \"brand\": \"Hero\",\r\n        \"model\": \"oi9\",\r\n        \"year_of_manufacture\": \"2020\",\r\n        \"color\": \"black-red\",\r\n        \"ac\": false,\r\n        \"vehicle_imgs\": [  \r\n            \"https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80\",\r\n            \"https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80\"      \r\n        ]\r\n    }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -213,10 +231,13 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/admin/edit_vehicle",
+									"raw": "http://178.128.18.132:5000/admin/edit_vehicle",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"178",
+										"128",
+										"18",
+										"132"
 									],
 									"port": "5000",
 									"path": [
@@ -242,10 +263,13 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/admin/delete_vehicle",
+									"raw": "http://178.128.18.132:5000/admin/delete_vehicle",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"178",
+										"128",
+										"18",
+										"132"
 									],
 									"port": "5000",
 									"path": [
@@ -270,7 +294,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "\r\n{\r\n    \"_id\":\"5f6c54241fa085104fb2b7d9\"\r\n}",
+									"raw": "\r\n{\r\n    \"_id\":\"5f7020b96fb8ed0407e59a7d\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -278,10 +302,13 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/admin/delete_user",
+									"raw": "http://178.128.18.132:5000/admin/delete_user",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"178",
+										"128",
+										"18",
+										"132"
 									],
 									"port": "5000",
 									"path": [
@@ -298,10 +325,13 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:5000/admin/user_list",
+									"raw": "http://178.128.18.132:5000/admin/user_list",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"178",
+										"128",
+										"18",
+										"132"
 									],
 									"port": "5000",
 									"path": [
@@ -319,7 +349,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n        \"f_name\":\"dfgdfg\",\r\n        \"l_name\": \"dfgd\",        \r\n        \"password\":\"1213\",\r\n        \"phn_no\": \"000\"\r\n}",
+									"raw": "{\r\n        \"f_name\":\"aaa\",\r\n        \"l_name\": \"bbb\",        \r\n        \"password\":\"1213\",\r\n        \"phn_no\": \"000\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -327,10 +357,13 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/admin/add_user",
+									"raw": "http://178.128.18.132:5000/admin/add_user",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"178",
+										"128",
+										"18",
+										"132"
 									],
 									"port": "5000",
 									"path": [
@@ -355,7 +388,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n       \"city\": \"Khulna\"\r\n\r\n}",
+									"raw": "{\r\n       \"city\": \"Barishal\"\r\n\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -363,10 +396,13 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/admin/add_city",
+									"raw": "http://178.128.18.132:5000/admin/add_city",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"178",
+										"128",
+										"18",
+										"132"
 									],
 									"port": "5000",
 									"path": [
@@ -384,7 +420,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n       \"city\": \"Barguna\",\r\n        \"_id\":\"5f6c52e347c066c589e4d5be\"\r\n}",
+									"raw": "{\r\n       \"city\": \"x01\",\r\n        \"_id\":\"5f701ebe6fb8ed0407e59a7b\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -392,10 +428,13 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/admin/edit_city",
+									"raw": "http://178.128.18.132:5000/admin/edit_city",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"178",
+										"128",
+										"18",
+										"132"
 									],
 									"port": "5000",
 									"path": [
@@ -421,10 +460,13 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/admin/city_list",
+									"raw": "http://178.128.18.132:5000/admin/city_list",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"178",
+										"128",
+										"18",
+										"132"
 									],
 									"port": "5000",
 									"path": [
@@ -442,7 +484,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n       \r\n        \"_id\":\"5f6c530e47c066c589e4d5c1\"\r\n}",
+									"raw": "{\r\n       \r\n        \"_id\":\"5f701ebe6fb8ed0407e59a7b\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -450,15 +492,153 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/admin/delete_city",
+									"raw": "http://178.128.18.132:5000/admin/delete_city",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"178",
+										"128",
+										"18",
+										"132"
 									],
 									"port": "5000",
 									"path": [
 										"admin",
 										"delete_city"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Areas",
+					"item": [
+						{
+							"name": "Area Add",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n       \"area\": \"gollamari\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://178.128.18.132:5000/admin/add_area",
+									"protocol": "http",
+									"host": [
+										"178",
+										"128",
+										"18",
+										"132"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"add_area"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Area List",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://178.128.18.132:5000/admin/area_list",
+									"protocol": "http",
+									"host": [
+										"178",
+										"128",
+										"18",
+										"132"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"area_list"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Area",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"_id\":\"5f71615b76b00857d456c609\",\r\n    \"area\": \"Gollamari\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://178.128.18.132:5000/admin/edit_area",
+									"protocol": "http",
+									"host": [
+										"178",
+										"128",
+										"18",
+										"132"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"edit_area"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Area",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n      \"_id\":\"5f71615b76b00857d456c609\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://178.128.18.132:5000/admin/delete_area",
+									"protocol": "http",
+									"host": [
+										"178",
+										"128",
+										"18",
+										"132"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"delete_area"
 									]
 								}
 							},
@@ -475,7 +655,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"phn_no\":\"00000000000\",\r\n    \"password\":\"admin login\"\r\n}",
+							"raw": "{\r\n    \"phn_no\":\"10101010\",\r\n    \"password\":\"admin login\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -483,10 +663,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5000/admin/login",
+							"raw": "http://178.128.18.132:5000/admin/login",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"178",
+								"128",
+								"18",
+								"132"
 							],
 							"port": "5000",
 							"path": [
@@ -504,7 +687,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"f_name\":\"And\",\r\n        \"l_name\": \"IT\",        \r\n        \"password\":\"admin login\",\r\n        \"phn_no\": \"00000000000\"\r\n}",
+							"raw": "{\r\n        \"f_name\":\"And\",\r\n        \"l_name\": \"IT3\",        \r\n        \"password\":\"admin login\",\r\n        \"phn_no\": \"10101010\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -512,10 +695,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5000/admin/signup",
+							"raw": "http://178.128.18.132:5000/admin/signup",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"178",
+								"128",
+								"18",
+								"132"
 							],
 							"port": "5000",
 							"path": [
@@ -548,7 +734,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{        \r\n        \"title\": \"Pickup for transportation\",\r\n        \"vehicle_type\": \"5f6c45c2b867ba46a489721c\",\r\n        \"description\": \"Pickup for transportation all over the bd\",\r\n        \"country\": \"bd\",\r\n        \"city\": \"5f6c52f247c066c589e4d5c0\",\r\n        \"car_location\": \"Nirala\",\r\n        \"total_seat\": 3,\r\n        \"min_price_per_day\": 15000,\r\n        \"cover_img\": \"http://www.alirentacarbd.com/allcar/pickup.jpg\",\r\n        \"brand\": \"Toyota\",\r\n        \"model\": \"SuperAce\",\r\n        \"year_of_manufacture\": \"2014\",\r\n        \"color\": \"Red\",\r\n        \"ac\": false,\r\n        \"vehicle_imgs\": [           \r\n        ]\r\n    }",
+									"raw": "{        \r\n        \"title\": \"Pickup for transportation\",\r\n        \"vehicle_type\": \"5f6c45c2b867ba46a489721c\",\r\n        \"description\": \"Pickup for transportation all over the bd\",\r\n        \"country\": \"bd\",\r\n        \"city\": \"5f6c52f247c066c589e4d5c0\",\r\n         \"area\":  \"5f71619e76b00857d456c60a\",\r\n        \"car_location\": \"Nirala\",\r\n        \"total_seat\": 3,\r\n        \"min_price_per_day\": 15000,\r\n        \"cover_img\": \"http://www.alirentacarbd.com/allcar/pickup.jpg\",\r\n        \"brand\": \"Toyota\",\r\n        \"model\": \"SuperAce\",\r\n        \"year_of_manufacture\": \"2014\",\r\n        \"color\": \"Red\",\r\n        \"ac\": false,\r\n        \"vehicle_imgs\": [           \r\n        ]\r\n    }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -556,10 +742,13 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/user/add_vehicle",
+									"raw": "http://178.128.18.132:5000/user/add_vehicle",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"178",
+										"128",
+										"18",
+										"132"
 									],
 									"port": "5000",
 									"path": [
@@ -591,10 +780,13 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/user/delete_vehicle",
+									"raw": "http://178.128.18.132:5000/user/delete_vehicle",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"178",
+										"128",
+										"18",
+										"132"
 									],
 									"port": "5000",
 									"path": [
@@ -633,10 +825,13 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/user/vehicle_list",
+									"raw": "http://178.128.18.132:5000/user/vehicle_list",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"178",
+										"128",
+										"18",
+										"132"
 									],
 									"port": "5000",
 									"path": [
@@ -667,7 +862,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n       \"_id\":\"5f6c6651630b518638976ab6\",\r\n        \"title\": \"Pickup for transportation\",\r\n        \"vehicle_type\": \"5f6c45c2b867ba46a489721c\",\r\n        \"description\": \"Pickup for transportation all over the bd\",\r\n        \"country\": \"bd\",\r\n        \"city\": \"5f6c52f247c066c589e4d5c0\",\r\n        \"car_location\": \"Nirala\",\r\n        \"total_seat\": 3,\r\n        \"min_price_per_day\": 15000,\r\n        \"cover_img\": \"http://www.alirentacarbd.com/allcar/pickup.jpg\",\r\n        \"brand\": \"Toyota\",\r\n        \"model\": \"SuperAce\",\r\n        \"year_of_manufacture\": \"2020\",\r\n        \"color\": \"Red-Black\",\r\n        \"ac\": false,\r\n        \"vehicle_imgs\": [           \r\n        ]\r\n    }",
+									"raw": "{\r\n       \"_id\":\"5f6c6651630b518638976ab6\",\r\n        \"title\": \"Pickup for transportation\",\r\n        \"vehicle_type\": \"5f6c45c2b867ba46a489721c\",\r\n        \"description\": \"Pickup for transportation all over the bd\",\r\n        \"country\": \"bd\",\r\n        \"city\": \"5f6c52f247c066c589e4d5c0\",\r\n         \"area\":  \"5f71619e76b00857d456c60a\",\r\n        \"car_location\": \"Nirala\",\r\n        \"total_seat\": 3,\r\n        \"min_price_per_day\": 15000,\r\n        \"cover_img\": \"http://www.alirentacarbd.com/allcar/pickup.jpg\",\r\n        \"brand\": \"Toyota\",\r\n        \"model\": \"SuperAce\",\r\n        \"year_of_manufacture\": \"2020\",\r\n        \"color\": \"Red-Black\",\r\n        \"ac\": false,\r\n        \"vehicle_imgs\": [           \r\n        ]\r\n    }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -675,10 +870,13 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/user/edit_vehicle",
+									"raw": "http://178.128.18.132:5000/user/edit_vehicle",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"178",
+										"128",
+										"18",
+										"132"
 									],
 									"port": "5000",
 									"path": [
@@ -724,10 +922,13 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/user/delete_profile",
+									"raw": "http://178.128.18.132:5000/user/delete_profile",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"178",
+										"128",
+										"18",
+										"132"
 									],
 									"port": "5000",
 									"path": [
@@ -766,10 +967,13 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/user/profile_edit",
+									"raw": "http://178.128.18.132:5000/user/profile_edit",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"178",
+										"128",
+										"18",
+										"132"
 									],
 									"port": "5000",
 									"path": [
@@ -815,10 +1019,13 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/user/favorite_list",
+									"raw": "http://178.128.18.132:5000/user/favorite_list",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"178",
+										"128",
+										"18",
+										"132"
 									],
 									"port": "5000",
 									"path": [
@@ -850,10 +1057,13 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/user/add_favorites",
+									"raw": "http://178.128.18.132:5000/user/add_favorites",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"178",
+										"128",
+										"18",
+										"132"
 									],
 									"port": "5000",
 									"path": [
@@ -885,10 +1095,13 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/user/delete_favorites",
+									"raw": "http://178.128.18.132:5000/user/delete_favorites",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"178",
+										"128",
+										"18",
+										"132"
 									],
 									"port": "5000",
 									"path": [
@@ -918,10 +1131,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5000/user/login",
+							"raw": "http://178.128.18.132:5000/user/login",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"178",
+								"128",
+								"18",
+								"132"
 							],
 							"port": "5000",
 							"path": [
@@ -947,10 +1163,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5000/user/signup",
+							"raw": "http://178.128.18.132:5000/user/signup",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"178",
+								"128",
+								"18",
+								"132"
 							],
 							"port": "5000",
 							"path": [
@@ -982,10 +1201,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5000/and_gari_vara/vehicle_profile",
+							"raw": "http://178.128.18.132:5000/and_gari_vara/vehicle_profile",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"178",
+								"128",
+								"18",
+								"132"
 							],
 							"port": "5000",
 							"path": [
@@ -1011,10 +1233,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5000/and_gari_vara/list_homepage",
+							"raw": "http://178.128.18.132:5000/and_gari_vara/list_homepage",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"178",
+								"128",
+								"18",
+								"132"
 							],
 							"port": "5000",
 							"path": [
@@ -1032,7 +1257,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"vehicle_type\":\"\",\r\n    \"city\": \"\"\r\n}",
+							"raw": "{\r\n    \"vehicle_type\":\"\",\r\n    \"area\": \"5f71619e76b00857d456c60a\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

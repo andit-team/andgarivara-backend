@@ -3,9 +3,10 @@ from flask_restful import Resource
 from extension import mongo
 from bson.json_util import dumps
 import json
-from flask_jwt_extended import jwt_required, get_jwt_identity,create_access_token
+from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
 import datetime
 from werkzeug.security import check_password_hash
+
 
 class UserLogin(Resource):
     @staticmethod
@@ -14,15 +15,16 @@ class UserLogin(Resource):
         user_collection = mongo.db.users
         userId = data["phn_no"]
         psw = data["password"]
-        accessToken=None
+        accessToken = None
 
         userData = user_collection.find_one({"phn_no": userId})
         if userData is not None:
-            if check_password_hash(userData["password"],psw)==True:
+            if check_password_hash(userData["password"], psw) == True:
                 id = userData["_id"]
                 x = json.loads(dumps(userData))
                 expires = datetime.timedelta(hours=8)
-                accessToken = create_access_token(identity=str(id), expires_delta=expires)
+                accessToken = create_access_token(
+                    identity=str(id), expires_delta=expires)
                 msg = "SUCCESS"
                 error = False
             else:
@@ -39,5 +41,5 @@ class UserLogin(Resource):
             "msg": msg,
             "error": error,
             "data": x,
-            "token":accessToken
+            "token": accessToken
         })

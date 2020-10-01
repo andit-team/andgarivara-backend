@@ -12,7 +12,7 @@ class AddVehicleType(Resource):
     @staticmethod
     def post() -> Response:
         data = request.get_json()
-        err_msg=None
+        err_msg = None
         dt = {
             "title": data["title"],
             "create_date": datetime.datetime.now()
@@ -24,11 +24,10 @@ class AddVehicleType(Resource):
         except Exception as ex:
             msg = "SUCCESS"
             error = True
-            err_msg=ex
+            err_msg = ex
         return jsonify({
             "msg": msg,
             "error": error,
-            "err_msg" : str(err_msg),
             "data": json.loads(dumps(dt))
         })
 
@@ -37,7 +36,7 @@ class EditVehicleType(Resource):
     @staticmethod
     def post() -> Response:
         data = request.get_json()
-        err_msg=None
+        err_msg = None
         try:
             insD = mongo.db.vehicle_types.update_one(
                 {
@@ -55,11 +54,10 @@ class EditVehicleType(Resource):
         except Exception as ex:
             msg = "SUCCESS"
             error = True
-            err_msg=ex
+            err_msg = ex
         return jsonify({
             "msg": msg,
             "error": error,
-            "err_msg" : str(err_msg),
             "data": json.loads(dumps(data))
         })
 
@@ -68,7 +66,7 @@ class DeleteVehicleType(Resource):
     @staticmethod
     def post() -> Response:
         data = request.get_json()
-        err_msg=None
+        err_msg = None
         dt = {
             "_id": bson.ObjectId(data["_id"])
         }
@@ -79,11 +77,10 @@ class DeleteVehicleType(Resource):
         except Exception as ex:
             msg = "SUCCESS"
             error = True
-            err_msg=ex
+            err_msg = ex
         return jsonify({
             "msg": msg,
             "error": error,
-            "err_msg" : str(err_msg),
             "data": json.loads(dumps(dt))
         })
 
@@ -92,7 +89,7 @@ class VehicleTypeList(Resource):
     @staticmethod
     def post() -> Response:
         data = request.get_json()
-        err_msg=None
+        err_msg = None
         try:
             dt = mongo.db.vehicle_types.find({})
             msg = "SUCCESSFULL"
@@ -100,11 +97,10 @@ class VehicleTypeList(Resource):
         except Exception as ex:
             msg = "SUCCESS"
             error = True
-            err_msg=ex
+            err_msg = ex
             dt = None
         return jsonify({
             "msg": msg,
             "error": error,
-            "err_msg" : str(err_msg),
             "data": json.loads(dumps(dt))
         })

@@ -5,7 +5,7 @@ from bson.json_util import dumps
 import json
 import bson
 from werkzeug.security import check_password_hash
-from flask_jwt_extended import jwt_required, get_jwt_identity,create_access_token
+from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
 import datetime
 
 
@@ -16,15 +16,16 @@ class AdminLogin(Resource):
         admin_collection = mongo.db.adminsLog
         userId = data["phn_no"]
         psw = data["password"]
-        accessToken=None
+        accessToken = None
 
         adminData = admin_collection.find_one({"phn_no": userId})
         if adminData is not None:
-            if check_password_hash(adminData["password"],psw)==True:
+            if check_password_hash(adminData["password"], psw) == True:
                 id = adminData["_id"]
                 x = json.loads(dumps(adminData))
                 expires = datetime.timedelta(hours=8)
-                accessToken = create_access_token(identity=str(id), expires_delta=expires)
+                accessToken = create_access_token(
+                    identity=str(id), expires_delta=expires)
                 msg = "SUCCESS"
                 error = False
             else:
@@ -41,5 +42,5 @@ class AdminLogin(Resource):
             "msg": msg,
             "error": error,
             "data": x,
-            "token":accessToken
+            "token": accessToken
         })

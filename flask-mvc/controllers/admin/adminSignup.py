@@ -12,18 +12,18 @@ class AdminSignup(Resource):
     @staticmethod
     def post() -> Response:
         data = request.get_json()
-        err_msg=None
+        err_msg = None
         userId = data["phn_no"]
         psw = data["password"]
         dt = {
             "f_name": data["f_name"],
             "l_name": data["l_name"],
-            "email": "",            
+            "email": "",
             "password": generate_password_hash(data["password"]),
             "phn_no": data["phn_no"],
             "del_date": "",
             "del_resone": "",
-            "profile_pic": "",            
+            "profile_pic": "",
             "del_status": False,
             "create_date": datetime.datetime.now()
         }
@@ -35,10 +35,8 @@ class AdminSignup(Resource):
         except Exception as ex:
             msg = "SUCCESS"
             error = True
-            err_msg=ex
         return jsonify({
             "msg": msg,
             "error": error,
-            "err_msg" : str(err_msg),
             "data": json.loads(dumps(dt))
         })

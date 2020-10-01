@@ -11,28 +11,28 @@ class SearchVehicle(Resource):
     @staticmethod
     def post() -> Response:
         data = request.get_json()
-        if data["vehicle_type"] and not data["city"]:
+        if data["vehicle_type"] and not data["area"]:
             vId = bsonO.ObjectId(data["vehicle_type"])
             dt = SearchVehicleByType(vId)
-        elif not data["vehicle_type"] and data["city"]:
-            city = bsonO.ObjectId(data["city"])
-            dt = SearchVehicleByLocation(city)
-        elif not data["vehicle_type"] and not data["city"]:
+        elif not data["vehicle_type"] and data["area"]:
+            area = bsonO.ObjectId(data["area"])
+            dt = SearchVehicleByLocation(area)
+        elif not data["vehicle_type"] and not data["area"]:
             dt = SearchVehicleAll()
         else:
             vId = bsonO.ObjectId(data["vehicle_type"])
-            city = bsonO.ObjectId(data["city"])
-            dt = SearchVehicleFIlter(vId, city)
+            area = bsonO.ObjectId(data["area"])
+            dt = SearchVehicleFIlter(vId, area)
         return dt
 
 
-def SearchVehicleByLocation(city):
+def SearchVehicleByLocation(area):
     try:
-        err_msg=None
+        err_msg = None
         dt = mongo.db.vehicles.aggregate(
             [{
                 "$match": {
-                    "city": city,
+                    "area": area,
                     "del_status": False
                 }
             },
@@ -58,7 +58,15 @@ def SearchVehicleByLocation(city):
                     "from": "locationCity",
                     "localField": "city",
                     "foreignField": "_id",
-                    "as": "location_details"
+                    "as": "city_details"
+                }
+            },
+                {
+                "$lookup": {
+                    "from": "locationArea",
+                    "localField": "area",
+                    "foreignField": "_id",
+                    "as": "area_details"
                 }
             }
             ])
@@ -67,18 +75,17 @@ def SearchVehicleByLocation(city):
     except Exception as ex:
         msg = "FAILED"
         error = True
-        err_msg=ex
+        err_msg = ex
     return jsonify({
         "msg": msg,
         "error": error,
-        "err_msg" : str(err_msg),
         "data": json.loads(dumps(dt))
     })
 
 
 def SearchVehicleByType(vId):
     try:
-        err_msg=None
+        err_msg = None
         dt = mongo.db.vehicles.aggregate(
             [{
                 "$match": {
@@ -108,7 +115,15 @@ def SearchVehicleByType(vId):
                     "from": "locationCity",
                     "localField": "city",
                     "foreignField": "_id",
-                    "as": "location_details"
+                    "as": "city_details"
+                }
+            },
+                {
+                "$lookup": {
+                    "from": "locationArea",
+                    "localField": "area",
+                    "foreignField": "_id",
+                    "as": "area_details"
                 }
             }
             ])
@@ -117,23 +132,22 @@ def SearchVehicleByType(vId):
     except Exception as ex:
         msg = "FAILED"
         error = True
-        err_msg=ex
+        err_msg = ex
     return jsonify({
         "msg": msg,
         "error": error,
-        "err_msg" : str(err_msg),
         "data": json.loads(dumps(dt))
     })
 
 
-def SearchVehicleFIlter(vId, city):
+def SearchVehicleFIlter(vId, area):
     try:
-        err_msg=None
+        err_msg = None
         dt = mongo.db.vehicles.aggregate(
             [{
                 "$match": {
                     "vehicle_type": vId,
-                    "city": city,
+                    "area": area,
                     "del_status": False
                 }
             },
@@ -159,7 +173,15 @@ def SearchVehicleFIlter(vId, city):
                     "from": "locationCity",
                     "localField": "city",
                     "foreignField": "_id",
-                    "as": "location_details"
+                    "as": "city_details"
+                }
+            },
+                {
+                "$lookup": {
+                    "from": "locationArea",
+                    "localField": "area",
+                    "foreignField": "_id",
+                    "as": "area_details"
                 }
             }
             ])
@@ -169,18 +191,17 @@ def SearchVehicleFIlter(vId, city):
     except Exception as ex:
         msg = "FAILED"
         error = True
-        err_msg=ex
+        err_msg = ex
     return jsonify({
         "msg": msg,
         "error": error,
-        "err_msg" : str(err_msg),
         "data": json.loads(dumps(dt))
     })
 
 
 def SearchVehicleAll():
     try:
-        err_msg=None
+        err_msg = None
         dt = mongo.db.vehicles.aggregate(
             [{
                 "$match": {
@@ -209,7 +230,15 @@ def SearchVehicleAll():
                     "from": "locationCity",
                     "localField": "city",
                     "foreignField": "_id",
-                    "as": "location_details"
+                    "as": "city_details"
+                }
+            },
+                {
+                "$lookup": {
+                    "from": "locationArea",
+                    "localField": "area",
+                    "foreignField": "_id",
+                    "as": "area_details"
                 }
             }
             ])
@@ -218,10 +247,9 @@ def SearchVehicleAll():
     except Exception as ex:
         msg = "FAILED"
         error = True
-        err_msg=ex
+        err_msg = ex
     return jsonify({
         "msg": msg,
         "error": error,
-        "err_msg" : str(err_msg),
         "data": json.loads(dumps(dt))
     })

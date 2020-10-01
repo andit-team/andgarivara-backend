@@ -26,6 +26,7 @@ def insertData(data):
         "description": data["description"],
         "country": data["country"],
         "city":  bsonO.ObjectId(data["city"]),
+        "area":  bsonO.ObjectId(data["area"]),
         "car_location": data["car_location"],
         "total_seat": data["total_seat"],
         "min_price_per_day": data["min_price_per_day"],
@@ -35,9 +36,7 @@ def insertData(data):
         "year_of_manufacture": data["year_of_manufacture"],
         "color": data["color"],
         "ac": data["ac"],
-        "vehicle_imgs": [
-
-        ],
+        "vehicle_imgs":data["vehicle_imgs"],
         "del_status": False,
         "create_date": datetime.datetime.now()
     }
@@ -91,7 +90,6 @@ class UserVehicleList(Resource):
         return jsonify({
             "msg": msg,
             "error": error,
-            "err_msg" : str(err_msg),
             "data": json.loads(dumps(dt))
         })
 
@@ -132,7 +130,6 @@ class DeleteVehicle(Resource):
         return jsonify({
             "msg": msg,
             "error": error,
-            "err_msg" : str(err_msg),
             "data": json.loads(dumps(data))
         })
 
@@ -153,6 +150,7 @@ def UpdateVehicleInfo(data):
                     "description": data["description"],
                     "country": data["country"],
                     "city":  bsonO.ObjectId(data["city"]),
+                    "area":  bsonO.ObjectId(data["area"]),
                     "car_location": data["car_location"],
                     "total_seat": data["total_seat"],
                     "min_price_per_day": data["min_price_per_day"],
@@ -162,9 +160,7 @@ def UpdateVehicleInfo(data):
                     "year_of_manufacture": data["year_of_manufacture"],
                     "color": data["color"],
                     "ac": data["ac"],
-                    "vehicle_imgs": [
-
-                    ],
+                    "vehicle_imgs":data["vehicle_imgs"],
                     "update_date": datetime.datetime.now()
                 }
             }
