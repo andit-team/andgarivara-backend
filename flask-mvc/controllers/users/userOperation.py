@@ -58,7 +58,7 @@ def UpdateData(data):
 class ProfileDelete(Resource):
     @staticmethod
     @jwt_required
-    def put() -> Response:
+    def delete() -> Response:
         data = request.get_json()
         flag = DeleteData(data)
         return flag
@@ -74,7 +74,7 @@ def DeleteData(data):
             },
             {
                 "$set": {
-                    "del_satus": True,
+                    "del_status": True,
                     "del_resone": data["del_resone"],
                     "del_date": datetime.datetime.now()
                 }

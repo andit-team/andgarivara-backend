@@ -14,7 +14,7 @@
 						{
 							"name": "Edit Vehicle Type",
 							"request": {
-								"method": "POST",
+								"method": "PUT",
 								"header": [],
 								"body": {
 									"mode": "raw",
@@ -84,7 +84,7 @@
 						{
 							"name": "Delete Vehicle Type",
 							"request": {
-								"method": "POST",
+								"method": "DELETE",
 								"header": [],
 								"body": {
 									"mode": "raw",
@@ -115,8 +115,11 @@
 						},
 						{
 							"name": "Vehicle Type List",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
-								"method": "POST",
+								"method": "GET",
 								"header": [],
 								"body": {
 									"mode": "raw",
@@ -186,8 +189,11 @@
 						},
 						{
 							"name": "Vehicle List",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
-								"method": "POST",
+								"method": "GET",
 								"header": [],
 								"body": {
 									"mode": "raw",
@@ -219,7 +225,7 @@
 						{
 							"name": "Edit Vehicle",
 							"request": {
-								"method": "POST",
+								"method": "PUT",
 								"header": [],
 								"body": {
 									"mode": "raw",
@@ -251,7 +257,7 @@
 						{
 							"name": "Delete Vehicle",
 							"request": {
-								"method": "POST",
+								"method": "DELETE",
 								"header": [],
 								"body": {
 									"mode": "raw",
@@ -290,7 +296,7 @@
 						{
 							"name": "Delete User",
 							"request": {
-								"method": "POST",
+								"method": "DELETE",
 								"header": [],
 								"body": {
 									"mode": "raw",
@@ -322,7 +328,7 @@
 						{
 							"name": "User List",
 							"request": {
-								"method": "POST",
+								"method": "GET",
 								"header": [],
 								"url": {
 									"raw": "http://178.128.18.132:5000/admin/user_list",
@@ -416,7 +422,7 @@
 						{
 							"name": "Edit City",
 							"request": {
-								"method": "POST",
+								"method": "PUT",
 								"header": [],
 								"body": {
 									"mode": "raw",
@@ -447,8 +453,11 @@
 						},
 						{
 							"name": "City List",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
-								"method": "POST",
+								"method": "GET",
 								"header": [],
 								"body": {
 									"mode": "raw",
@@ -480,7 +489,7 @@
 						{
 							"name": "Delete City",
 							"request": {
-								"method": "POST",
+								"method": "DELETE",
 								"header": [],
 								"body": {
 									"mode": "raw",
@@ -550,8 +559,11 @@
 						},
 						{
 							"name": "Area List",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
-								"method": "POST",
+								"method": "GET",
 								"header": [],
 								"body": {
 									"mode": "raw",
@@ -583,11 +595,11 @@
 						{
 							"name": "Edit Area",
 							"request": {
-								"method": "POST",
+								"method": "PUT",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"_id\":\"5f71615b76b00857d456c609\",\r\n    \"area\": \"Gollamari\"\r\n\r\n}",
+									"raw": "{\r\n    \"_id\":\"5f7160cf76b00857d456c607\",\r\n    \"area\": \"Rupsha Stand\"\r\n\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -615,7 +627,7 @@
 						{
 							"name": "Delete Area",
 							"request": {
-								"method": "POST",
+								"method": "DELETE",
 								"header": [],
 								"body": {
 									"mode": "raw",
@@ -762,7 +774,7 @@
 						{
 							"name": "Delete Vehicle",
 							"request": {
-								"method": "POST",
+								"method": "DELETE",
 								"header": [
 									{
 										"key": "Authorization",
@@ -806,8 +818,11 @@
 						},
 						{
 							"name": "Vehicle List",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
-								"method": "POST",
+								"method": "GET",
 								"header": [
 									{
 										"key": "Authorization",
@@ -852,7 +867,7 @@
 						{
 							"name": "Edit Vehicle",
 							"request": {
-								"method": "POST",
+								"method": "PUT",
 								"header": [
 									{
 										"key": "Authorization",
@@ -904,7 +919,7 @@
 						{
 							"name": "Delete Profile",
 							"request": {
-								"method": "POST",
+								"method": "DELETE",
 								"header": [
 									{
 										"key": "Authorization",
@@ -949,7 +964,7 @@
 						{
 							"name": "Profile Edit",
 							"request": {
-								"method": "POST",
+								"method": "PUT",
 								"header": [
 									{
 										"key": "Authorization",
@@ -1000,8 +1015,11 @@
 					"item": [
 						{
 							"name": "Favorites List",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
-								"method": "POST",
+								"method": "GET",
 								"header": [
 									{
 										"key": "Authorization",
@@ -1077,7 +1095,7 @@
 						{
 							"name": "Delete Favorites",
 							"request": {
-								"method": "POST",
+								"method": "DELETE",
 								"header": [
 									{
 										"key": "Authorization",
@@ -1188,8 +1206,11 @@
 			"item": [
 				{
 					"name": "Vehicle Profile",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -1220,8 +1241,11 @@
 				},
 				{
 					"name": "Listing Homepage",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -1252,8 +1276,11 @@
 				},
 				{
 					"name": "Search Result Page",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -1265,10 +1292,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5000/and_gari_vara/search_result_page",
+							"raw": "http://178.128.18.132:5000/and_gari_vara/search_result_page",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"178",
+								"128",
+								"18",
+								"132"
 							],
 							"port": "5000",
 							"path": [

@@ -20,7 +20,9 @@ def insertData(data):
     userId = data["phn_no"]
     psw = data["password"]
     err_msg = None
-    countUser = mongo.db.users.find({"phn_no": userId}).count()
+    countUser = 0
+    if mongo.db.users.count() > 0:
+        countUser = mongo.db.users.find({"phn_no": userId}).count()
     if countUser > 0:
         msg = "User Already Exist."
         error = True

@@ -107,7 +107,7 @@ class EditVehicle(Resource):
 class DeleteVehicle(Resource):
     @staticmethod
     @jwt_required
-    def put() -> Response:
+    def delete() -> Response:
         data = request.get_json()
         err_msg = None
         try:

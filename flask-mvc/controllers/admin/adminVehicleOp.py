@@ -97,7 +97,7 @@ class EditVehicleAdmin(Resource):
 
 class DeleteVehicleAdmin(Resource):
     @staticmethod
-    def put() -> Response:
+    def delete() -> Response:
         data = request.get_json()
         err_msg = None
         try:
