@@ -1,7 +1,5 @@
 from flask_restful import Api
 
-from controllers.user import SignUp
-from controllers.user import Login
 from controllers.users.userLogin import UserLogin
 from controllers.users.userSignup import UserSignup
 from controllers.users.userOperation import ProfileEdit, ProfileDelete
@@ -60,7 +58,7 @@ def create_routes(api: Api):
     api.add_resource(AddCity, '/admin/add_city')
     api.add_resource(EditCity, '/admin/edit_city')
     api.add_resource(DeleteCity, '/admin/delete_city')
-    
+
     api.add_resource(AreaList, '/admin/area_list')
     api.add_resource(AddArea, '/admin/add_area')
     api.add_resource(EditArea, '/admin/edit_area')
