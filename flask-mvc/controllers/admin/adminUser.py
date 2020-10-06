@@ -57,7 +57,7 @@ class AddUser(Resource):
 
 class DeleteUser(Resource):
     @staticmethod
-    def post() -> Response:
+    def put() -> Response:
         data = request.get_json()
         err_msg = None
         try:
@@ -89,7 +89,7 @@ class DeleteUser(Resource):
 
 class UserList(Resource):
     @staticmethod
-    def post() -> Response:
+    def get() -> Response:
         data = request.get_json()
         err_msg = None
         try:

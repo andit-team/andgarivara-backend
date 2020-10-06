@@ -34,7 +34,7 @@ class AddVehicleType(Resource):
 
 class EditVehicleType(Resource):
     @staticmethod
-    def post() -> Response:
+    def put() -> Response:
         data = request.get_json()
         err_msg = None
         try:
@@ -64,7 +64,7 @@ class EditVehicleType(Resource):
 
 class DeleteVehicleType(Resource):
     @staticmethod
-    def post() -> Response:
+    def delete() -> Response:
         data = request.get_json()
         err_msg = None
         dt = {
@@ -87,7 +87,7 @@ class DeleteVehicleType(Resource):
 
 class VehicleTypeList(Resource):
     @staticmethod
-    def post() -> Response:
+    def get() -> Response:
         data = request.get_json()
         err_msg = None
         try:

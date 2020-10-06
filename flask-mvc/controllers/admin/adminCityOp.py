@@ -9,7 +9,7 @@ from bson.json_util import dumps
 
 class CityList(Resource):
     @staticmethod
-    def post() -> Response:
+    def get() -> Response:
         data = request.get_json()
         try:
             dt = mongo.db.locationCity.find({})
@@ -51,7 +51,7 @@ class AddCity(Resource):
 
 class EditCity(Resource):
     @staticmethod
-    def post() -> Response:
+    def put() -> Response:
         data = request.get_json()
         try:
             dt = mongo.db.locationCity.update_one(
@@ -80,7 +80,7 @@ class EditCity(Resource):
 
 class DeleteCity(Resource):
     @staticmethod
-    def post() -> Response:
+    def delete() -> Response:
         data = request.get_json()
         try:
             dt = mongo.db.locationCity.delete_one(

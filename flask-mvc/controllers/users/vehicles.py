@@ -5,7 +5,8 @@ import bson.json_util as bsonO
 import datetime
 import json
 from bson.json_util import dumps
-from flask_jwt_extended import jwt_required, get_jwt_identity,create_access_token
+from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
+
 
 class AddVehicle(Resource):
     @staticmethod
@@ -18,7 +19,7 @@ class AddVehicle(Resource):
 
 def insertData(data):
     current_user = bsonO.ObjectId(get_jwt_identity())
-    err_msg=None
+    err_msg = None
     dt = {
         "user_id": current_user,
         "title": data["title"],
@@ -36,7 +37,7 @@ def insertData(data):
         "year_of_manufacture": data["year_of_manufacture"],
         "color": data["color"],
         "ac": data["ac"],
-        "vehicle_imgs":data["vehicle_imgs"],
+        "vehicle_imgs": data["vehicle_imgs"],
         "del_status": False,
         "create_date": datetime.datetime.now()
     }
@@ -45,13 +46,13 @@ def insertData(data):
         msg = "SUCCESS"
         error = False
     except Exception as ex:
-            msg = "FAILED"
-            error = True
-            err_msg=ex
+        msg = "FAILED"
+        error = True
+        err_msg = ex
     return jsonify({
         "msg": msg,
         "error": error,
-        "err_msg" : str(err_msg),
+        "err_msg": str(err_msg),
         "data": json.loads(dumps(dt))
     })
 
@@ -59,10 +60,10 @@ def insertData(data):
 class UserVehicleList(Resource):
     @staticmethod
     @jwt_required
-    def post() -> Response:
+    def get() -> Response:
         data = request.get_json()
-        err_msg=None
-        dt=None
+        err_msg = None
+        dt = None
         current_user = bsonO.ObjectId(get_jwt_identity())
         try:
             dt = mongo.db.vehicles.aggregate(
@@ -86,7 +87,7 @@ class UserVehicleList(Resource):
         except Exception as ex:
             msg = "FAILED"
             error = True
-            err_msg=ex
+            err_msg = ex
         return jsonify({
             "msg": msg,
             "error": error,
@@ -97,17 +98,18 @@ class UserVehicleList(Resource):
 class EditVehicle(Resource):
     @staticmethod
     @jwt_required
-    def post() -> Response:
+    def put() -> Response:
         data = request.get_json()
         flag = UpdateVehicleInfo(data)
         return flag
 
+
 class DeleteVehicle(Resource):
     @staticmethod
     @jwt_required
-    def post() -> Response:
+    def put() -> Response:
         data = request.get_json()
-        err_msg=None
+        err_msg = None
         try:
             update_ = mongo.db.vehicles.update(
                 {
@@ -126,7 +128,7 @@ class DeleteVehicle(Resource):
         except Exception as ex:
             msg = "FAILED"
             error = True
-            err_msg=ex
+            err_msg = ex
         return jsonify({
             "msg": msg,
             "error": error,
@@ -136,7 +138,7 @@ class DeleteVehicle(Resource):
 
 def UpdateVehicleInfo(data):
     current_user = bsonO.ObjectId(get_jwt_identity())
-    err_msg=None
+    err_msg = None
     try:
         update_ = mongo.db.vehicles.update(
             {
@@ -160,7 +162,7 @@ def UpdateVehicleInfo(data):
                     "year_of_manufacture": data["year_of_manufacture"],
                     "color": data["color"],
                     "ac": data["ac"],
-                    "vehicle_imgs":data["vehicle_imgs"],
+                    "vehicle_imgs": data["vehicle_imgs"],
                     "update_date": datetime.datetime.now()
                 }
             }
@@ -168,12 +170,12 @@ def UpdateVehicleInfo(data):
         msg = "SUCCESS"
         error = False
     except Exception as ex:
-            msg = "FAILED"
-            error = True
-            err_msg=ex
+        msg = "FAILED"
+        error = True
+        err_msg = ex
     return jsonify({
         "msg": msg,
         "error": error,
-        "err_msg" : str(err_msg),
+        "err_msg": str(err_msg),
         "data": json.loads(dumps(data))
     })

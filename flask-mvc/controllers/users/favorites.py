@@ -50,7 +50,7 @@ class AddFavorite(Resource):
 class DeleteFavorite(Resource):
     @staticmethod
     @jwt_required
-    def post() -> Response:
+    def delete() -> Response:
         data = request.get_json()
         err_msg = None
         uID = bsonO.ObjectId(get_jwt_identity())
@@ -84,7 +84,7 @@ class DeleteFavorite(Resource):
 class FavoriteList(Resource):
     @staticmethod
     @jwt_required
-    def post() -> Response:
+    def get() -> Response:
         data = request.get_json()
         err_msg = None
         uId = bsonO.ObjectId(get_jwt_identity())

@@ -12,7 +12,7 @@ from werkzeug.security import generate_password_hash
 class ProfileEdit(Resource):
     @staticmethod
     @jwt_required
-    def post() -> Response:
+    def put() -> Response:
         data = request.get_json()
         flag = UpdateData(data)
         return flag
@@ -58,7 +58,7 @@ def UpdateData(data):
 class ProfileDelete(Resource):
     @staticmethod
     @jwt_required
-    def post() -> Response:
+    def put() -> Response:
         data = request.get_json()
         flag = DeleteData(data)
         return flag
