@@ -15,6 +15,7 @@ from controllers.admin.adminAreaOp import AreaList, AddArea, EditArea, DeleteAre
 from controllers.frontEnd.vehicleProfile import VehicleProfile
 from controllers.frontEnd.homepage import HomePage
 from controllers.frontEnd.searchVehicle import SearchVehicle
+from controllers.dropdown_data.getDropdownData import GetAreas, GetCities, GetVehicleType, GetUserList
 
 
 def create_routes(api: Api):
@@ -68,3 +69,9 @@ def create_routes(api: Api):
     api.add_resource(HomePage, '/and_gari_vara/list_homepage')
     api.add_resource(SearchVehicle, '/and_gari_vara/search_result_page')
     api.add_resource(VehicleProfile, '/and_gari_vara/vehicle_profile')
+
+ ########################## DropDown Data ##########################
+    api.add_resource(GetAreas, '/dropdown_data/get_area')
+    api.add_resource(GetCities, '/dropdown_data/get_city')
+    api.add_resource(GetVehicleType, '/dropdown_data/get_vehicle_type')
+    api.add_resource(GetUserList, '/dropdown_data/get_user')

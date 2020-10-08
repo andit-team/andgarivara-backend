@@ -1311,6 +1311,104 @@
 				}
 			],
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Dropdowns",
+			"item": [
+				{
+					"name": "Get All Area",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://178.128.18.132:5000/dropdown_data/get_area",
+							"protocol": "http",
+							"host": [
+								"178",
+								"128",
+								"18",
+								"132"
+							],
+							"port": "5000",
+							"path": [
+								"dropdown_data",
+								"get_area"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All City",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://178.128.18.132:5000/dropdown_data/get_city",
+							"protocol": "http",
+							"host": [
+								"178",
+								"128",
+								"18",
+								"132"
+							],
+							"port": "5000",
+							"path": [
+								"dropdown_data",
+								"get_city"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Vehicle Type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://178.128.18.132:5000/dropdown_data/get_vehicle_type",
+							"protocol": "http",
+							"host": [
+								"178",
+								"128",
+								"18",
+								"132"
+							],
+							"port": "5000",
+							"path": [
+								"dropdown_data",
+								"get_vehicle_type"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://178.128.18.132:5000/dropdown_data/get_user",
+							"protocol": "http",
+							"host": [
+								"178",
+								"128",
+								"18",
+								"132"
+							],
+							"port": "5000",
+							"path": [
+								"dropdown_data",
+								"get_user"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"protocolProfileBehavior": {}
