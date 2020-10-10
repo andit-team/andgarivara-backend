@@ -63,7 +63,7 @@ class GetUserList(Resource):
     def get() -> Response:
         try:
             dt = mongo.db.users.find(
-                {"del_status":False}, {"_id": 1, "f_name": 1, "l_name": 1})
+                {"del_status": False}, {"_id": 1, "f_name": 1, "l_name": 1})
             msg = "SUCCESS"
             error = False
         except:
