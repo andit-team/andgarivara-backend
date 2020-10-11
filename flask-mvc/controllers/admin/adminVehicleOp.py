@@ -58,7 +58,7 @@ def insertData(data):
 
 class AdminVehicleList(Resource):
     @staticmethod
-    def post() -> Response:
+    def get() -> Response:
         data = request.get_json()
         err_msg = None
         try:
@@ -89,7 +89,7 @@ class AdminVehicleList(Resource):
 
 class EditVehicleAdmin(Resource):
     @staticmethod
-    def post() -> Response:
+    def put() -> Response:
         data = request.get_json()
         flag = UpdateVehicleInfo(data)
         return flag
@@ -97,7 +97,7 @@ class EditVehicleAdmin(Resource):
 
 class DeleteVehicleAdmin(Resource):
     @staticmethod
-    def post() -> Response:
+    def delete() -> Response:
         data = request.get_json()
         err_msg = None
         try:

@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "1c4c6867-7ba6-4682-ab6f-e222d55780a2",
-		"name": "AndGarivara Listing",
+		"_postman_id": "a1311bda-422a-4d5d-be18-1a457d4cb07f",
+		"name": "AndGarivara Listing Localhost",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -26,13 +26,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://178.128.18.132:5000/admin/edit_vehicle_type",
+									"raw": "http://localhost:5000/admin/edit_vehicle_type",
 									"protocol": "http",
 									"host": [
-										"178",
-										"128",
-										"18",
-										"132"
+										"localhost"
 									],
 									"port": "5000",
 									"path": [
@@ -64,13 +61,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://178.128.18.132:5000/admin/add_vehicle_type",
+									"raw": "http://localhost:5000/admin/add_vehicle_type",
 									"protocol": "http",
 									"host": [
-										"178",
-										"128",
-										"18",
-										"132"
+										"localhost"
 									],
 									"port": "5000",
 									"path": [
@@ -96,13 +90,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://178.128.18.132:5000/admin/delete_vehicle_type",
+									"raw": "http://localhost:5000/admin/delete_vehicle_type",
 									"protocol": "http",
 									"host": [
-										"178",
-										"128",
-										"18",
-										"132"
+										"localhost"
 									],
 									"port": "5000",
 									"path": [
@@ -131,13 +122,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://178.128.18.132:5000/admin/vehicle_type_list",
+									"raw": "http://localhost:5000/admin/vehicle_type_list",
 									"protocol": "http",
 									"host": [
-										"178",
-										"128",
-										"18",
-										"132"
+										"localhost"
 									],
 									"port": "5000",
 									"path": [
@@ -170,13 +158,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://178.128.18.132:5000/admin/add_vehicle",
+									"raw": "http://localhost:5000/admin/add_vehicle",
 									"protocol": "http",
 									"host": [
-										"178",
-										"128",
-										"18",
-										"132"
+										"localhost"
 									],
 									"port": "5000",
 									"path": [
@@ -205,13 +190,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://178.128.18.132:5000/admin/vehicle_list",
+									"raw": "http://localhost:5000/admin/vehicle_list",
 									"protocol": "http",
 									"host": [
-										"178",
-										"128",
-										"18",
-										"132"
+										"localhost"
 									],
 									"port": "5000",
 									"path": [
@@ -237,13 +219,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://178.128.18.132:5000/admin/edit_vehicle",
+									"raw": "http://localhost:5000/admin/edit_vehicle",
 									"protocol": "http",
 									"host": [
-										"178",
-										"128",
-										"18",
-										"132"
+										"localhost"
 									],
 									"port": "5000",
 									"path": [
@@ -257,7 +236,7 @@
 						{
 							"name": "Delete Vehicle",
 							"request": {
-								"method": "DELETE",
+								"method": "PUT",
 								"header": [],
 								"body": {
 									"mode": "raw",
@@ -269,13 +248,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://178.128.18.132:5000/admin/delete_vehicle",
+									"raw": "http://localhost:5000/admin/delete_vehicle",
 									"protocol": "http",
 									"host": [
-										"178",
-										"128",
-										"18",
-										"132"
+										"localhost"
 									],
 									"port": "5000",
 									"path": [
@@ -296,7 +272,7 @@
 						{
 							"name": "Delete User",
 							"request": {
-								"method": "DELETE",
+								"method": "PUT",
 								"header": [],
 								"body": {
 									"mode": "raw",
@@ -308,13 +284,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://178.128.18.132:5000/admin/delete_user",
+									"raw": "http://localhost:5000/admin/delete_user",
 									"protocol": "http",
 									"host": [
-										"178",
-										"128",
-										"18",
-										"132"
+										"localhost"
 									],
 									"port": "5000",
 									"path": [
@@ -331,13 +304,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://178.128.18.132:5000/admin/user_list",
+									"raw": "http://localhost:5000/admin/user_list",
 									"protocol": "http",
 									"host": [
-										"178",
-										"128",
-										"18",
-										"132"
+										"localhost"
 									],
 									"port": "5000",
 									"path": [
@@ -363,13 +333,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://178.128.18.132:5000/admin/add_user",
+									"raw": "http://localhost:5000/admin/add_user",
 									"protocol": "http",
 									"host": [
-										"178",
-										"128",
-										"18",
-										"132"
+										"localhost"
 									],
 									"port": "5000",
 									"path": [
@@ -402,13 +369,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://178.128.18.132:5000/admin/add_city",
+									"raw": "http://localhost:5000/admin/add_city",
 									"protocol": "http",
 									"host": [
-										"178",
-										"128",
-										"18",
-										"132"
+										"localhost"
 									],
 									"port": "5000",
 									"path": [
@@ -426,7 +390,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n       \"city\": \"x01\",\r\n        \"_id\":\"5f701ebe6fb8ed0407e59a7b\"\r\n}",
+									"raw": "{\r\n\"city\": \"Jassore Sadar\",\r\n\"_id\":\"5f741fc1e8df11da257bcc69\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -434,13 +398,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://178.128.18.132:5000/admin/edit_city",
+									"raw": "http://localhost:5000/admin/edit_city",
 									"protocol": "http",
 									"host": [
-										"178",
-										"128",
-										"18",
-										"132"
+										"localhost"
 									],
 									"port": "5000",
 									"path": [
@@ -469,13 +430,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://178.128.18.132:5000/admin/city_list",
+									"raw": "http://localhost:5000/admin/city_list",
 									"protocol": "http",
 									"host": [
-										"178",
-										"128",
-										"18",
-										"132"
+										"localhost"
 									],
 									"port": "5000",
 									"path": [
@@ -493,7 +451,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n       \r\n        \"_id\":\"5f701ebe6fb8ed0407e59a7b\"\r\n}",
+									"raw": "{\r\n\"_id\":\"5f741fc1e8df11da257bcc69\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -501,13 +459,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://178.128.18.132:5000/admin/delete_city",
+									"raw": "http://localhost:5000/admin/delete_city",
 									"protocol": "http",
 									"host": [
-										"178",
-										"128",
-										"18",
-										"132"
+										"localhost"
 									],
 									"port": "5000",
 									"path": [
@@ -532,7 +487,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n       \"area\": \"gollamari\"\r\n\r\n}",
+									"raw": "{\r\n\"area\": \"bbbb\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -540,13 +495,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://178.128.18.132:5000/admin/add_area",
+									"raw": "http://localhost:5000/admin/add_area",
 									"protocol": "http",
 									"host": [
-										"178",
-										"128",
-										"18",
-										"132"
+										"localhost"
 									],
 									"port": "5000",
 									"path": [
@@ -575,13 +527,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://178.128.18.132:5000/admin/area_list",
+									"raw": "http://localhost:5000/admin/area_list",
 									"protocol": "http",
 									"host": [
-										"178",
-										"128",
-										"18",
-										"132"
+										"localhost"
 									],
 									"port": "5000",
 									"path": [
@@ -599,7 +548,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"_id\":\"5f7160cf76b00857d456c607\",\r\n    \"area\": \"Rupsha Stand\"\r\n\r\n}",
+									"raw": "{\r\n    \"_id\":\"5f7c0caafb6d11dfd2b4064b\",\r\n    \"area\": \"Dolkhola Bazar\"\r\n\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -607,18 +556,22 @@
 									}
 								},
 								"url": {
-									"raw": "http://178.128.18.132:5000/admin/edit_area",
+									"raw": "http://localhost:5000/admin/edit_area",
 									"protocol": "http",
 									"host": [
-										"178",
-										"128",
-										"18",
-										"132"
+										"localhost"
 									],
 									"port": "5000",
 									"path": [
 										"admin",
 										"edit_area"
+									],
+									"query": [
+										{
+											"key": "areaId",
+											"value": "5f7160cf76b00857d456c607",
+											"disabled": true
+										}
 									]
 								}
 							},
@@ -631,7 +584,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n      \"_id\":\"5f71615b76b00857d456c609\"\r\n\r\n}",
+									"raw": "{\r\n      \"_id\":\"5f7c0ce6fb6d11dfd2b4064c\"\r\n\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -639,13 +592,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://178.128.18.132:5000/admin/delete_area",
+									"raw": "http://localhost:5000/admin/delete_area",
 									"protocol": "http",
 									"host": [
-										"178",
-										"128",
-										"18",
-										"132"
+										"localhost"
 									],
 									"port": "5000",
 									"path": [
@@ -675,13 +625,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://178.128.18.132:5000/admin/login",
+							"raw": "http://localhost:5000/admin/login",
 							"protocol": "http",
 							"host": [
-								"178",
-								"128",
-								"18",
-								"132"
+								"localhost"
 							],
 							"port": "5000",
 							"path": [
@@ -707,13 +654,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://178.128.18.132:5000/admin/signup",
+							"raw": "http://localhost:5000/admin/signup",
 							"protocol": "http",
 							"host": [
-								"178",
-								"128",
-								"18",
-								"132"
+								"localhost"
 							],
 							"port": "5000",
 							"path": [
@@ -754,13 +698,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://178.128.18.132:5000/user/add_vehicle",
+									"raw": "http://localhost:5000/user/add_vehicle",
 									"protocol": "http",
 									"host": [
-										"178",
-										"128",
-										"18",
-										"132"
+										"localhost"
 									],
 									"port": "5000",
 									"path": [
@@ -774,7 +715,7 @@
 						{
 							"name": "Delete Vehicle",
 							"request": {
-								"method": "DELETE",
+								"method": "PUT",
 								"header": [
 									{
 										"key": "Authorization",
@@ -784,7 +725,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"_id\":\"5f6b30176426a438ef65bf25\",\r\n        \"del_satus\": true,\r\n        \"del_resone\": \"test Delete With token\",\r\n        \"del_date\":\"\"\r\n}",
+									"raw": "{\r\n    \"_id\":\"5f6b30176426a438ef65bf25\",\r\n        \"del_resone\": \"Vehicle delete\"\r\n        \r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -792,13 +733,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://178.128.18.132:5000/user/delete_vehicle",
+									"raw": "http://localhost:5000/user/delete_vehicle",
 									"protocol": "http",
 									"host": [
-										"178",
-										"128",
-										"18",
-										"132"
+										"localhost"
 									],
 									"port": "5000",
 									"path": [
@@ -826,7 +764,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDA5MzkzMDIsIm5iZiI6MTYwMDkzOTMwMiwianRpIjoiYjRiYTk3NDItY2FmZC00M2MxLWJlNGMtNzZhNzJmMTdjMWVlIiwiZXhwIjoxNjAwOTY4MTAyLCJpZGVudGl0eSI6IjVmNmM2NDkyYzI3NmRjODIyZTQ5MTJlMyIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.pG9STvt5nwdEXuSMirEaOrv7r8X9TjAZa0_hbeH6kQk",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDE1MzE3MzUsIm5iZiI6MTYwMTUzMTczNSwianRpIjoiNWJkZGRlM2UtMDJiZi00NzRmLTliMTgtODM5MTFiNTg2MjYzIiwiZXhwIjoxNjAxNTYwNTM1LCJpZGVudGl0eSI6IjVmNzU2YzE5OTk3Mjg2N2JkNmI2YWFkMCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.nnPVRBG8eCoHhDqnU5efHXrmD7e1pjoOBca7XkmGz3c",
 										"type": "text"
 									}
 								],
@@ -840,13 +778,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://178.128.18.132:5000/user/vehicle_list",
+									"raw": "http://localhost:5000/user/vehicle_list",
 									"protocol": "http",
 									"host": [
-										"178",
-										"128",
-										"18",
-										"132"
+										"localhost"
 									],
 									"port": "5000",
 									"path": [
@@ -885,13 +820,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://178.128.18.132:5000/user/edit_vehicle",
+									"raw": "http://localhost:5000/user/edit_vehicle",
 									"protocol": "http",
 									"host": [
-										"178",
-										"128",
-										"18",
-										"132"
+										"localhost"
 									],
 									"port": "5000",
 									"path": [
@@ -919,7 +851,7 @@
 						{
 							"name": "Delete Profile",
 							"request": {
-								"method": "DELETE",
+								"method": "PUT",
 								"header": [
 									{
 										"key": "Authorization",
@@ -929,7 +861,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \r\n    \"del_satus\": \"\",\r\n    \"del_resone\": \"deleted profile\"\r\n}",
+									"raw": "{   \r\n      \"del_resone\": \"deleted profile\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -937,13 +869,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://178.128.18.132:5000/user/delete_profile",
+									"raw": "http://localhost:5000/user/delete_profile",
 									"protocol": "http",
 									"host": [
-										"178",
-										"128",
-										"18",
-										"132"
+										"localhost"
 									],
 									"port": "5000",
 									"path": [
@@ -968,13 +897,13 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDA5NDIzMTksIm5iZiI6MTYwMDk0MjMxOSwianRpIjoiMGY1NTk2NzUtMmYwZS00ZWZhLWI2NTQtYWI4NzU5NzYwYTM2IiwiZXhwIjoxNjAwOTcxMTE5LCJpZGVudGl0eSI6IjVmNmM2NDkyYzI3NmRjODIyZTQ5MTJlMyIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.Acb7aGWacf3vzbwSxQPXtHf6_kCuqZstG7rWEUSuP-o",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDE1MzE3MzUsIm5iZiI6MTYwMTUzMTczNSwianRpIjoiNWJkZGRlM2UtMDJiZi00NzRmLTliMTgtODM5MTFiNTg2MjYzIiwiZXhwIjoxNjAxNTYwNTM1LCJpZGVudGl0eSI6IjVmNzU2YzE5OTk3Mjg2N2JkNmI2YWFkMCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.nnPVRBG8eCoHhDqnU5efHXrmD7e1pjoOBca7XkmGz3c",
 										"type": "text"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{    \r\n    \"f_name\": \"Kamal\",\r\n    \"l_name\": \"Hasan\",\r\n    \"email\": \"kamalh@gmail\",\r\n    \"country\": \"Bangladesh\",\r\n    \"city\": \"5f6c52f247c066c589e4d5c0\",\r\n    \"address\": \"Khulna\",\r\n    \"password\": \"1002\",\r\n    \"phn_no\":\"00000000000\",\r\n    \"profile_pic\":\"\"\r\n}",
+									"raw": "{    \r\n    \"f_name\": \"Kamal\",\r\n    \"l_name\": \"Hasan\",\r\n    \"email\": \"kamalh@gmail\",\r\n    \"country\": \"Bangladesh\",\r\n    \"city\": \"5f6c52f247c066c589e4d5c0\",\r\n    \"address\": \"Khulna\",\r\n    \"password\": \"54321\",\r\n    \"phn_no\":\"01852258978\",\r\n    \"profile_pic\":\"www.splash.com/avatar.jpg\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -982,13 +911,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://178.128.18.132:5000/user/profile_edit",
+									"raw": "http://localhost:5000/user/profile_edit",
 									"protocol": "http",
 									"host": [
-										"178",
-										"128",
-										"18",
-										"132"
+										"localhost"
 									],
 									"port": "5000",
 									"path": [
@@ -1023,7 +949,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDA5NDI1MDUsIm5iZiI6MTYwMDk0MjUwNSwianRpIjoiMmM5ZDIwZjQtOGI1ZS00MTcyLWFjNDktMDMyMDY5MjAxMzBmIiwiZXhwIjoxNjAwOTcxMzA1LCJpZGVudGl0eSI6IjVmNmM2NDkyYzI3NmRjODIyZTQ5MTJlMyIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.TJkzkifwVi58fUEYDAmSsj-p3VyoEExOQ7vZmMioiqU",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDE1MzE3MzUsIm5iZiI6MTYwMTUzMTczNSwianRpIjoiNWJkZGRlM2UtMDJiZi00NzRmLTliMTgtODM5MTFiNTg2MjYzIiwiZXhwIjoxNjAxNTYwNTM1LCJpZGVudGl0eSI6IjVmNzU2YzE5OTk3Mjg2N2JkNmI2YWFkMCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.nnPVRBG8eCoHhDqnU5efHXrmD7e1pjoOBca7XkmGz3c",
 										"type": "text"
 									}
 								],
@@ -1037,13 +963,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://178.128.18.132:5000/user/favorite_list",
+									"raw": "http://localhost:5000/user/favorite_list",
 									"protocol": "http",
 									"host": [
-										"178",
-										"128",
-										"18",
-										"132"
+										"localhost"
 									],
 									"port": "5000",
 									"path": [
@@ -1075,13 +998,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://178.128.18.132:5000/user/add_favorites",
+									"raw": "http://localhost:5000/user/add_favorites",
 									"protocol": "http",
 									"host": [
-										"178",
-										"128",
-										"18",
-										"132"
+										"localhost"
 									],
 									"port": "5000",
 									"path": [
@@ -1113,13 +1033,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://178.128.18.132:5000/user/delete_favorites",
+									"raw": "http://localhost:5000/user/delete_favorites",
 									"protocol": "http",
 									"host": [
-										"178",
-										"128",
-										"18",
-										"132"
+										"localhost"
 									],
 									"port": "5000",
 									"path": [
@@ -1149,13 +1066,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://178.128.18.132:5000/user/login",
+							"raw": "http://localhost:5000/user/login",
 							"protocol": "http",
 							"host": [
-								"178",
-								"128",
-								"18",
-								"132"
+								"localhost"
 							],
 							"port": "5000",
 							"path": [
@@ -1181,13 +1095,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://178.128.18.132:5000/user/signup",
+							"raw": "http://localhost:5000/user/signup",
 							"protocol": "http",
 							"host": [
-								"178",
-								"128",
-								"18",
-								"132"
+								"localhost"
 							],
 							"port": "5000",
 							"path": [
@@ -1222,13 +1133,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://178.128.18.132:5000/and_gari_vara/vehicle_profile",
+							"raw": "http://localhost:5000/and_gari_vara/vehicle_profile",
 							"protocol": "http",
 							"host": [
-								"178",
-								"128",
-								"18",
-								"132"
+								"localhost"
 							],
 							"port": "5000",
 							"path": [
@@ -1257,13 +1165,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://178.128.18.132:5000/and_gari_vara/list_homepage",
+							"raw": "http://localhost:5000/and_gari_vara/list_homepage",
 							"protocol": "http",
 							"host": [
-								"178",
-								"128",
-								"18",
-								"132"
+								"localhost"
 							],
 							"port": "5000",
 							"path": [
@@ -1292,116 +1197,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://178.128.18.132:5000/and_gari_vara/search_result_page",
+							"raw": "http://localhost:5000/and_gari_vara/search_result_page",
 							"protocol": "http",
 							"host": [
-								"178",
-								"128",
-								"18",
-								"132"
+								"localhost"
 							],
 							"port": "5000",
 							"path": [
 								"and_gari_vara",
 								"search_result_page"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "Dropdowns",
-			"item": [
-				{
-					"name": "Get All Area",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://178.128.18.132:5000/dropdown_data/get_area",
-							"protocol": "http",
-							"host": [
-								"178",
-								"128",
-								"18",
-								"132"
-							],
-							"port": "5000",
-							"path": [
-								"dropdown_data",
-								"get_area"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get All City",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://178.128.18.132:5000/dropdown_data/get_city",
-							"protocol": "http",
-							"host": [
-								"178",
-								"128",
-								"18",
-								"132"
-							],
-							"port": "5000",
-							"path": [
-								"dropdown_data",
-								"get_city"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get All Vehicle Type",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://178.128.18.132:5000/dropdown_data/get_vehicle_type",
-							"protocol": "http",
-							"host": [
-								"178",
-								"128",
-								"18",
-								"132"
-							],
-							"port": "5000",
-							"path": [
-								"dropdown_data",
-								"get_vehicle_type"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get All User",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://178.128.18.132:5000/dropdown_data/get_user",
-							"protocol": "http",
-							"host": [
-								"178",
-								"128",
-								"18",
-								"132"
-							],
-							"port": "5000",
-							"path": [
-								"dropdown_data",
-								"get_user"
 							]
 						}
 					},

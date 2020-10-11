@@ -33,7 +33,7 @@ class AdminSignup(Resource):
             msg = "SUCCESS"
             error = False
         except Exception as ex:
-            msg = "SUCCESS"
+            msg = "FAILED"
             error = True
         return jsonify({
             "msg": msg,

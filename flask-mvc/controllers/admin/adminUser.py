@@ -16,7 +16,9 @@ class AddUser(Resource):
         userId = data["phn_no"]
         psw = data["password"]
         err_msg = None
-        countUser = mongo.db.users.find({"phn_no": userId}).count()
+        countUser = 0
+        if mongo.db.users.count() > 0:
+            countUser = mongo.db.users.find({"phn_no": userId}).count()
         if countUser > 0:
             msg = "User Already Exist."
             error = True
@@ -57,7 +59,7 @@ class AddUser(Resource):
 
 class DeleteUser(Resource):
     @staticmethod
-    def post() -> Response:
+    def delete() -> Response:
         data = request.get_json()
         err_msg = None
         try:
@@ -89,7 +91,7 @@ class DeleteUser(Resource):
 
 class UserList(Resource):
     @staticmethod
-    def post() -> Response:
+    def get() -> Response:
         data = request.get_json()
         err_msg = None
         try:

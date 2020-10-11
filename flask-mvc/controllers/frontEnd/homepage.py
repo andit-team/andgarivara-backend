@@ -9,7 +9,7 @@ from bson.json_util import dumps
 
 class HomePage(Resource):
     @staticmethod
-    def post() -> Response:
+    def get() -> Response:
         data = request.get_json()
         err_msg = None
         try:

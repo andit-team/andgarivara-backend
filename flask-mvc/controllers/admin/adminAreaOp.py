@@ -9,7 +9,7 @@ from bson.json_util import dumps
 
 class AreaList(Resource):
     @staticmethod
-    def post() -> Response:
+    def get() -> Response:
         data = request.get_json()
         try:
             dt = mongo.db.locationArea.find({})
@@ -51,7 +51,7 @@ class AddArea(Resource):
 
 class EditArea(Resource):
     @staticmethod
-    def post() -> Response:
+    def put() -> Response:
         data = request.get_json()
         try:
             dt = mongo.db.locationArea.update_one(
@@ -80,7 +80,7 @@ class EditArea(Resource):
 
 class DeleteArea(Resource):
     @staticmethod
-    def post() -> Response:
+    def delete() -> Response:
         data = request.get_json()
         try:
             dt = mongo.db.locationArea.delete_one(
