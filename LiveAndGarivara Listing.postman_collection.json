@@ -1318,7 +1318,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://178.128.18.132:5000/get_area",
+							"raw": "http://178.128.18.132:5000/area_list",
 							"protocol": "http",
 							"host": [
 								"178",
@@ -1328,7 +1328,7 @@
 							],
 							"port": "5000",
 							"path": [
-								"get_area"
+								"area_list"
 							]
 						}
 					},
@@ -1340,7 +1340,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://178.128.18.132:5000/get_city",
+							"raw": "http://178.128.18.132:5000/city_list",
 							"protocol": "http",
 							"host": [
 								"178",
@@ -1350,7 +1350,7 @@
 							],
 							"port": "5000",
 							"path": [
-								"get_city"
+								"city_list"
 							]
 						}
 					},
@@ -1362,7 +1362,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://178.128.18.132:5000/get_vehicle_type",
+							"raw": "http://178.128.18.132:5000/vehicle_type_list",
 							"protocol": "http",
 							"host": [
 								"178",
@@ -1372,7 +1372,7 @@
 							],
 							"port": "5000",
 							"path": [
-								"get_vehicle_type"
+								"vehicle_type_list"
 							]
 						}
 					},
