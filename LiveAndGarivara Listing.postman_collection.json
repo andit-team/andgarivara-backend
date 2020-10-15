@@ -131,7 +131,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://178.128.18.132:5000/admin/vehicle_type_list",
+									"raw": "http://178.128.18.132:5000/vehicle_type_list",
 									"protocol": "http",
 									"host": [
 										"178",
@@ -141,7 +141,6 @@
 									],
 									"port": "5000",
 									"path": [
-										"admin",
 										"vehicle_type_list"
 									]
 								}
@@ -469,7 +468,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://178.128.18.132:5000/admin/city_list",
+									"raw": "http://178.128.18.132:5000/city_list",
 									"protocol": "http",
 									"host": [
 										"178",
@@ -479,7 +478,6 @@
 									],
 									"port": "5000",
 									"path": [
-										"admin",
 										"city_list"
 									]
 								}
@@ -575,7 +573,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://178.128.18.132:5000/admin/area_list",
+									"raw": "http://178.128.18.132:5000/area_list",
 									"protocol": "http",
 									"host": [
 										"178",
@@ -585,7 +583,6 @@
 									],
 									"port": "5000",
 									"path": [
-										"admin",
 										"area_list"
 									]
 								}

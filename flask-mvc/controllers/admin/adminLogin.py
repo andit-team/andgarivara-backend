@@ -15,9 +15,7 @@ class AdminLogin(Resource):
         data = request.get_json()
         admin_collection = mongo.db.adminsLog
         userId = data["phn_no"]
-        psw = data["password"]
-        accessToken = None
-
+        psw = data["password"]        
         adminData = admin_collection.find_one({"phn_no": userId})
         if adminData is not None:
             if check_password_hash(adminData["password"], psw) == True:
