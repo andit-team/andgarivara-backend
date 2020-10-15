@@ -131,7 +131,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://178.128.18.132:5000/admin/vehicle_type_list",
+									"raw": "http://178.128.18.132:5000/vehicle_type_list",
 									"protocol": "http",
 									"host": [
 										"178",
@@ -141,7 +141,6 @@
 									],
 									"port": "5000",
 									"path": [
-										"admin",
 										"vehicle_type_list"
 									]
 								}
@@ -469,7 +468,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://178.128.18.132:5000/admin/city_list",
+									"raw": "http://178.128.18.132:5000/city_list",
 									"protocol": "http",
 									"host": [
 										"178",
@@ -479,7 +478,6 @@
 									],
 									"port": "5000",
 									"path": [
-										"admin",
 										"city_list"
 									]
 								}
@@ -575,7 +573,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://178.128.18.132:5000/admin/area_list",
+									"raw": "http://178.128.18.132:5000/area_list",
 									"protocol": "http",
 									"host": [
 										"178",
@@ -585,7 +583,6 @@
 									],
 									"port": "5000",
 									"path": [
-										"admin",
 										"area_list"
 									]
 								}
@@ -1321,7 +1318,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://178.128.18.132:5000/dropdown_data/get_area",
+							"raw": "http://178.128.18.132:5000/get_area",
 							"protocol": "http",
 							"host": [
 								"178",
@@ -1331,7 +1328,6 @@
 							],
 							"port": "5000",
 							"path": [
-								"dropdown_data",
 								"get_area"
 							]
 						}
@@ -1344,7 +1340,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://178.128.18.132:5000/dropdown_data/get_city",
+							"raw": "http://178.128.18.132:5000/get_city",
 							"protocol": "http",
 							"host": [
 								"178",
@@ -1354,7 +1350,6 @@
 							],
 							"port": "5000",
 							"path": [
-								"dropdown_data",
 								"get_city"
 							]
 						}
@@ -1367,7 +1362,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://178.128.18.132:5000/dropdown_data/get_vehicle_type",
+							"raw": "http://178.128.18.132:5000/get_vehicle_type",
 							"protocol": "http",
 							"host": [
 								"178",
@@ -1377,7 +1372,6 @@
 							],
 							"port": "5000",
 							"path": [
-								"dropdown_data",
 								"get_vehicle_type"
 							]
 						}
@@ -1390,7 +1384,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://178.128.18.132:5000/dropdown_data/get_user",
+							"raw": "http://178.128.18.132:5000/admin/user_list",
 							"protocol": "http",
 							"host": [
 								"178",
@@ -1400,8 +1394,8 @@
 							],
 							"port": "5000",
 							"path": [
-								"dropdown_data",
-								"get_user"
+								"admin",
+								"user_list"
 							]
 						}
 					},

@@ -15,7 +15,6 @@ from controllers.admin.adminAreaOp import AreaList, AddArea, EditArea, DeleteAre
 from controllers.frontEnd.vehicleProfile import VehicleProfile
 from controllers.frontEnd.homepage import HomePage
 from controllers.frontEnd.searchVehicle import SearchVehicle
-from controllers.dropdown_data.getDropdownData import GetAreas, GetCities, GetVehicleType, GetUserList
 
 
 def create_routes(api: Api):
@@ -23,7 +22,6 @@ def create_routes(api: Api):
    ########################## User ##########################
     api.add_resource(UserSignup, '/user/signup')
     api.add_resource(UserLogin, '/user/login')
-   #  api.add_resource(PhoneVerification, '/user/phone_verification')
 
     api.add_resource(ProfileEdit, '/user/profile_edit')
     api.add_resource(ProfileDelete, '/user/delete_profile')
@@ -41,7 +39,7 @@ def create_routes(api: Api):
     api.add_resource(AdminLogin, '/admin/login')
     api.add_resource(AdminSignup, '/admin/signup')
 
-    api.add_resource(VehicleTypeList, '/admin/vehicle_type_list')
+    api.add_resource(VehicleTypeList, '/vehicle_type_list')
     api.add_resource(AddVehicleType, '/admin/add_vehicle_type')
     api.add_resource(EditVehicleType, '/admin/edit_vehicle_type')
     api.add_resource(DeleteVehicleType, '/admin/delete_vehicle_type')
@@ -55,12 +53,12 @@ def create_routes(api: Api):
     api.add_resource(EditVehicleAdmin, '/admin/edit_vehicle')
     api.add_resource(DeleteVehicleAdmin, '/admin/delete_vehicle')
 
-    api.add_resource(CityList, '/admin/city_list')
+    api.add_resource(CityList, '/city_list')
     api.add_resource(AddCity, '/admin/add_city')
     api.add_resource(EditCity, '/admin/edit_city')
     api.add_resource(DeleteCity, '/admin/delete_city')
 
-    api.add_resource(AreaList, '/admin/area_list')
+    api.add_resource(AreaList, '/area_list')
     api.add_resource(AddArea, '/admin/add_area')
     api.add_resource(EditArea, '/admin/edit_area')
     api.add_resource(DeleteArea, '/admin/delete_area')
@@ -69,9 +67,3 @@ def create_routes(api: Api):
     api.add_resource(HomePage, '/and_gari_vara/list_homepage')
     api.add_resource(SearchVehicle, '/and_gari_vara/search_result_page')
     api.add_resource(VehicleProfile, '/and_gari_vara/vehicle_profile')
-
- ########################## DropDown Data ##########################
-    api.add_resource(GetAreas, '/dropdown_data/get_area')
-    api.add_resource(GetCities, '/dropdown_data/get_city')
-    api.add_resource(GetVehicleType, '/dropdown_data/get_vehicle_type')
-    api.add_resource(GetUserList, '/dropdown_data/get_user')
