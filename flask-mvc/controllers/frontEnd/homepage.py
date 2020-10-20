@@ -11,6 +11,8 @@ class HomePage(Resource):
     @staticmethod
     def get() -> Response:
         data = request.get_json()
+        dtLocation = None
+        dtVT = None
         err_msg = None
         try:
             dtLocation = mongo.db.locationArea.find({})
