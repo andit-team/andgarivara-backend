@@ -12,11 +12,11 @@ class AreaList(Resource):
     def get() -> Response:
         data = request.get_json()
         try:
-            dt = mongo.db.locationArea.find({})
+            dt = mongo.db.areas.find({})
             msg = "SUCCESS"
             error = False
-        except:
-            msg = "FAILED"
+        except Exception as ex:
+            msg = str(ex)
             error = True
         return jsonify({
             "msg": msg,
@@ -31,16 +31,18 @@ class AddArea(Resource):
         data = request.get_json()
 
         try:
-            dt = mongo.db.locationArea.insert_one(
+            indexCreate = mongo.db.areas.create_index(
+                'area', unique=True)
+            dt = mongo.db.areas.insert_one(
                 {
-                    "area": data["area"],
+                    "area": data["area"].upper(),
                     "create_date": datetime.datetime.now()
                 }
             )
             msg = "SUCCESS"
             error = False
-        except:
-            msg = "FAILED"
+        except Exception as ex:
+            msg = str(ex)
             error = True
         return jsonify({
             "msg": msg,
@@ -54,22 +56,22 @@ class EditArea(Resource):
     def put() -> Response:
         data = request.get_json()
         try:
-            dt = mongo.db.locationArea.update_one(
+            dt = mongo.db.areas.update_one(
                 {
                     "_id": bsonO.ObjectId(data["_id"])
                 },
                 {
                     "$set":
                         {
-                            "area": data["area"],
+                            "area": data["area"].upper(),
                             "update_date": datetime.datetime.now()
                         }
                 }
             )
             msg = "SUCCESS"
             error = False
-        except:
-            msg = "FAILED"
+        except Exception as ex:
+            msg = str(ex)
             error = True
         return jsonify({
             "msg": msg,
@@ -83,15 +85,15 @@ class DeleteArea(Resource):
     def delete() -> Response:
         data = request.get_json()
         try:
-            dt = mongo.db.locationArea.delete_one(
+            dt = mongo.db.areas.delete_one(
                 {
                     "_id": bsonO.ObjectId(data["_id"])
                 }
             )
             msg = "SUCCESS"
             error = False
-        except:
-            msg = "FAILED"
+        except Exception as ex:
+            msg = str(ex)
             error = True
         return jsonify({
             "msg": msg,

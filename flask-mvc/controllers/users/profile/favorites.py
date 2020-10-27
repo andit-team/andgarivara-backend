@@ -5,7 +5,7 @@ import bson.json_util as bsonO
 import datetime
 import json
 from bson.json_util import dumps
-from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 
 class AddFavorite(Resource):

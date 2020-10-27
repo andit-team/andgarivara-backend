@@ -12,12 +12,11 @@ class UserLogin(Resource):
     @staticmethod
     def post() -> Response:
         data = request.get_json()
-        user_collection = mongo.db.users
-        userId = data["phn_no"]
+        user_collection = mongo.db.userRegister
+        userId = data["phone_no"]
         psw = data["password"]
         accessToken = None
-
-        userData = user_collection.find_one({"phn_no": userId})
+        userData = user_collection.find_one({"phone_no": userId})
         if userData is not None:
             if check_password_hash(userData["password"], psw) == True:
                 id = userData["_id"]
