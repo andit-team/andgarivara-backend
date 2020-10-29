@@ -4,16 +4,15 @@ from controllers.users.profile.favorites import AddFavorite, DeleteFavorite, Fav
 from controllers.users.profile.userOperation import ProfileEdit, ProfileDelete
 from controllers.users.register.login import UserLogin
 from controllers.users.register.signup import UserSignup
-# from controllers.users.vehicles import UserVehicleList, AddVehicle, EditVehicle, DeleteVehicle
+from controllers.users.vehicles.vehicleOp import AddVehicle, GetVehicleTypeDataField, EditVehicle, DeleteVehicle, UserVehicleList
 
 ########################## Admin ##########################
-# from controllers.admin.avail_payment_method.adminLogin import AdminLogin
 from controllers.admin.fuel_type.fuelTypeOperation import FuelTypeList, AddFuelType, EditFuelType
 from controllers.admin.location.adminAreaOp import AreaList, AddArea, EditArea, DeleteArea
 from controllers.admin.location.adminCityOp import CityList, AddCity, EditCity, DeleteCity
 from controllers.admin.register.login import AdminLogin
 from controllers.admin.register.signup import AdminSignup
-from controllers.admin.vehicles.adminVehicleTypeOp import AddVehicleType, EditVehicleType, DeleteVehicleType, VehicleTypeList
+from controllers.admin.vehicles.adminVehicleTypeOp import AddVehicleType, EditVehicleType, DeleteVehicleType, VehicleTypeList,AddBrandWithVehicleType, EditBrandWithVehicleType, VehicleBrandList
 from controllers.admin.users.adminUser import UserList, DeleteUser, AddUser
 from controllers.admin.vehicles.adminVehicleOp import AdminVehicleList, AddVehicleAdmin, EditVehicleAdmin, DeleteVehicleAdmin
 ########################## Frontend ##########################
@@ -27,10 +26,11 @@ def create_routes(api: Api):
     api.add_resource(UserLogin, '/login')
     api.add_resource(ProfileEdit, '/profile_edit')
     api.add_resource(ProfileDelete, '/delete_profile')
-    # api.add_resource(UserVehicleList, '/vehicle_list')
-    # api.add_resource(AddVehicle, '/user/add_vehicle')
-    # api.add_resource(EditVehicle, '/user/edit_vehicle')
-    # api.add_resource(DeleteVehicle, '/user/delete_vehicle')
+    api.add_resource(UserVehicleList, '/vehicle_list')
+    api.add_resource(GetVehicleTypeDataField, '/vehicle_type_field')
+    api.add_resource(AddVehicle, '/user/add_vehicle')
+    api.add_resource(EditVehicle, '/user/edit_vehicle')
+    api.add_resource(DeleteVehicle, '/user/delete_vehicle')
     api.add_resource(FavoriteList, '/user/favorite_list')
     api.add_resource(AddFavorite, '/user/add_favorites')
     api.add_resource(DeleteFavorite, '/user/delete_favorites')
@@ -56,6 +56,9 @@ def create_routes(api: Api):
     api.add_resource(AddVehicleType, '/admin/add_vehicle_type')
     api.add_resource(EditVehicleType, '/admin/edit_vehicle_type')
     api.add_resource(DeleteVehicleType, '/admin/delete_vehicle_type')
+    api.add_resource(AddBrandWithVehicleType, '/admin/add_vehicle_brand')
+    api.add_resource(EditBrandWithVehicleType, '/admin/edit_vehicle_brand')
+    api.add_resource(VehicleBrandList, '/admin/vehicle_brand_list')
     api.add_resource(UserList, '/admin/user_list')
     api.add_resource(DeleteUser, '/admin/delete_user')
     api.add_resource(AddUser, '/admin/add_user')
