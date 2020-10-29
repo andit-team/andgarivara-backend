@@ -43,6 +43,16 @@ def insertData(data):
                 dt[txt] = data[txt]
     try:
         ins = mongo.db.vehicles.insert(dt)
+        statusChange = mongo.db.userRegister.update(
+            {
+                "_id":userId
+            },
+            {
+                "$addToSet": {
+                    "role":"owner"
+                }
+            }
+        )
         msg = "SUCCESS"
         error = False
     except Exception as ex:

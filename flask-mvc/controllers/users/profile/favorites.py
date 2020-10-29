@@ -21,14 +21,15 @@ class AddFavorite(Resource):
             vData = mongo.db.vehicles.find({"_id": vID})
             for i in vData:
                 title = i["title"]
-            dt = mongo.db.users.update(
+            dt = mongo.db.userRegister.update(
                 {"_id": uId},
                 {
                     "$addToSet": {
                         "bookmarks": {
                             "_id": bsonO.ObjectId(),
                             "car_id": vID,
-                            "title": title,
+                            "brand": title,
+                            "model": title,
                             "bookmark_date": datetime.datetime.now()
                         }
                     }
@@ -56,7 +57,7 @@ class DeleteFavorite(Resource):
         uID = bsonO.ObjectId(get_jwt_identity())
         bId = bsonO.ObjectId(data["_id"])
         try:
-            dt = mongo.db.users.update_one(
+            dt = mongo.db.userRegister.update_one(
                 {
                     "_id": uID
                 },
@@ -86,15 +87,15 @@ class FavoriteList(Resource):
     @jwt_required
     def get() -> Response:
         data = request.get_json()
-        err_msg = None
         uId = bsonO.ObjectId(get_jwt_identity())
         try:
-            dt = mongo.db.users.find_one(
+            dt = mongo.db.userRegister.find(
                 {
                     "_id": uId
                 },
                 {
-                    "bookmarks": 1
+                    "bookmarks": 1,
+                    "_id": 0
                 }
             )
             msg = "SUCCESS"
@@ -102,7 +103,6 @@ class FavoriteList(Resource):
         except Exception as ex:
             msg = "FAILED"
             error = True
-            err_msg = ex
             dt = None
         return jsonify({
             "msg": msg,
