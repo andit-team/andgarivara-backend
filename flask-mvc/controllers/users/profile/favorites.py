@@ -18,27 +18,38 @@ class AddFavorite(Resource):
         vID = bsonO.ObjectId(data["_id"])
         vData = None
         try:
+            brandTitle=""
             vData = mongo.db.vehicles.find({"_id": vID})
             for i in vData:
-                title = i["title"]
-            dt = mongo.db.userRegister.update(
-                {"_id": uId},
-                {
-                    "$addToSet": {
-                        "bookmarks": {
-                            "_id": bsonO.ObjectId(),
-                            "car_id": vID,
-                            "brand": title,
-                            "model": title,
-                            "bookmark_date": datetime.datetime.now()
-                        }
-                    }
-                }
-            )
+                vehicleTypeId= bsonO.ObjectId(i["vehicle_type"])
+                brandId= bsonO.ObjectId(i["brand"])
+                model = i["model"]
+            vTData = mongo.db.vehicleType.find({"_id": vehicleTypeId})
+            for i in vTData:
+                title= i["title"]
+                brands= i["brands"]
+                print(brands)
+                # brandTitle = brands.find_one({"_id":brandId},{"_id":0,"brand":1})
+            # print(brandTitle )
+            # dt = mongo.db.userRegister.update(
+            #     {"_id": uId},
+            #     {
+            #         "$addToSet": {
+            #             "bookmarks": {
+            #                 "_id": bsonO.ObjectId(),
+            #                 "car_id": vID,
+            #                 "title": title,
+            #                 "brand": brand,
+            #                 "model": model,
+            #                 "bookmark_date": datetime.datetime.now()
+            #             }
+            #         }
+            #     }
+            # )
             msg = "SUCCESS"
             error = False
         except Exception as ex:
-            msg = "FAILED"
+            msg = str(ex)
             error = True
             err_msg = ex
         return jsonify({

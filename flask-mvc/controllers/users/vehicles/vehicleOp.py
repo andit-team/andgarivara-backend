@@ -68,6 +68,7 @@ def insertData(data):
 
 class EditVehicle(Resource):
     @staticmethod
+    @jwt_required
     def put() -> Response:
         data = request.get_json()
         userId = bsonO.ObjectId(get_jwt_identity())
@@ -115,28 +116,49 @@ class EditVehicle(Resource):
         })
 class UserVehicleList(Resource):
     @staticmethod
-    def get() -> Response:
+    @jwt_required
+    def post() -> Response:
         data = request.get_json()
-        err_msg = None
+        current_user = bsonO.ObjectId(get_jwt_identity())
         try:
             dt = mongo.db.vehicles.aggregate(
-                [
-                    {
-                        "$lookup": {
-                            "from": "vehicle_types",
-                            "localField": "vehicle_type",
-                            "foreignField": "_id",
-                            "as": "vehicle_type_details"
-                        }
+                [{
+                    "$match": {
+                        "user_id": current_user,
+                        "del_status": False
                     }
+                },
+                {
+                    "$lookup": {
+                        "from": "vehicleType",
+                        "localField": "vehicle_type",
+                        "foreignField": "_id",
+                        "as": "vehicle_type_details"
+                    },
+                },
+                {
+                    "$lookup": {
+                        "from": "cities",
+                        "localField": "city",
+                        "foreignField": "_id",
+                        "as": "city_details"
+                    },
+                },
+                {
+                    "$lookup": {
+                        "from": "areas",
+                        "localField": "area",
+                        "foreignField": "_id",
+                        "as": "area_details"
+                    },
+                }
                 ])
             msg = "SUCCESS"
             error = False
         except Exception as ex:
-            msg = "FAILED"
+            dt=None
+            msg = str(ex)
             error = True
-            err_msg = ex
-            dt = None
         return jsonify({
             "msg": msg,
             "error": error,
@@ -145,9 +167,9 @@ class UserVehicleList(Resource):
 
 class DeleteVehicle(Resource):
     @staticmethod
-    def delete() -> Response:
+    @jwt_required
+    def post() -> Response:
         data = request.get_json()
-        err_msg = None
         try:
             update_ = mongo.db.vehicles.update(
                 {
@@ -156,25 +178,21 @@ class DeleteVehicle(Resource):
                 {
                     "$set": {
                         "del_status": True,
-                        "del_resone": "Deleted By Admin",
+                        "del_resone": data["del_resone"],
                         "del_date": datetime.datetime.now()
                     }
                 }
             )
-            msg = "SUCCESSFULL"
+            msg = "SUCCESS"
             error = False
-        except Exception as ex:
+        except:
             msg = "FAILED"
             error = True
-            err_msg = ex
         return jsonify({
             "msg": msg,
             "error": error,
-            "data": json.loads(dumps(data))
+            "data": None
         })
-
-
-
 
 class GetVehicleTypeDataField(Resource):
     @staticmethod
