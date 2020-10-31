@@ -1,0 +1,1103 @@
+{
+	"info": {
+		"_postman_id": "a0a7f1c4-442d-4572-9741-345f5c14ec95",
+		"name": "AGV MVP Local",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "register",
+					"item": [
+						{
+							"name": "Admin Signup",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"phone_no\": \"01700000000\",\r\n    \"password\": \"12345\",\r\n    \"first_name\": \"Tama\",\r\n    \"last_name\": \"Sarker\",\r\n    \"email\":\"tama2@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/admin/signup",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"signup"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Admin Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"phone_no\": \"01700000000\",\r\n    \"password\": \"12345\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000//admin/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"",
+										"admin",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "vehicelType",
+					"item": [
+						{
+							"name": "Get All Vehicle Type",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/vehicle_type_list",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"vehicle_type_list"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Vehicle Type",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\":\"Car\",\r\n    \"data_fields\" :[\r\n        {\r\n            \"field_label\":\"year\",\r\n            \"field_type\":\"textbox\",\r\n            \"value_type\":\"text\"\r\n        },\r\n        {\r\n            \"field_label\":\"Color\",\r\n            \"field_type\":\"textbox\",\r\n            \"value_type\":\"text\"\r\n        },\r\n        {\r\n            \"field_label\":\"color on paper\",\r\n            \"field_type\":\"textbox\",\r\n            \"value_type\":\"text\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/admin/add_vehicle_type",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"add_vehicle_type"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Vehicle Type",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"_id\":\"5f9a404c2e38271226210dca\",\r\n    \"title\":\" Private Car\",\r\n    \"data_fields\" :[\r\n        {\r\n            \"field_label\":\"year\",\r\n            \"field_type\":\"textbox\",\r\n            \"value_type\":\"text\"\r\n        },\r\n        {\r\n            \"field_label\":\"Color\",\r\n            \"field_type\":\"textbox\",\r\n            \"value_type\":\"text\"\r\n        },\r\n        {\r\n            \"field_label\":\"color on paper\",\r\n            \"field_type\":\"textbox\",\r\n            \"value_type\":\"text\"\r\n        },\r\n        {\r\n            \"field_label\":\"total Seat\",\r\n            \"field_type\":\"textbox\",\r\n            \"value_type\":\"int\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/admin/edit_vehicle_type",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"edit_vehicle_type"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Vehicle Brand",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"_id\":\"5f9a404c2e38271226210dca\",\r\n    \"brand\": \"Toyota\",\r\n    \"model\":\"Avalon\"       \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/admin/add_vehicle_brand",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"add_vehicle_brand"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Vehicle Brand",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"_id\":\"5f9a404c2e38271226210dca\",\r\n    \"brand_id\":\"5f9a411444617ce1d560e407\",\r\n    \"brand\": \"Toyota\",\r\n    \"model\":\"X-Fielder\"        \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/admin/edit_vehicle_brand",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"edit_vehicle_brand"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Vehicle type  fields",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"_id\": \"5f9a404c2e38271226210dca\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/vehicle_type_field",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"vehicle_type_field"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Vehicle Brands",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n     \"_id\":\"5f9a404c2e38271226210dca\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/admin/vehicle_brand_list",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"vehicle_brand_list"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "fuelType",
+					"item": [
+						{
+							"name": "Get All Fuel Type",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/fuel_type_list",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"fuel_type_list"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Fuel Type",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"petrol\",\r\n    \"rate\": 89\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/admin/add_fuel_type",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"add_fuel_type"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Fuel",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"_id\":\"5f97d7c3d72e48e68f239036\",\r\n    \"title\": \"petrol\",\r\n    \"rate\": 86\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/admin/edit_fuel_type",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"edit_fuel_type"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Payment Method",
+					"item": [
+						{
+							"name": "Add Payment Method",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n     \"title\":\"Cash After service\",\r\n     \"image\":\"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/admin/add_avail_Payment_Method",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"add_avail_Payment_Method"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Payment Method List",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/avail_Payment_Method_list",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"avail_Payment_Method_list"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Payment Method",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"_id\":\"5f8a8cf84a989b231ec0fd7a\",\r\n     \"title\":\"Cash Payment\",\r\n     \"image\":\"https://thumbs.dreamstime.com/z/hand-holding-money-hand-banknotes-cash-payment-receiving-money-icon-hand-holding-money-hand-banknotes-cash-payment-115680589.jpg\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/admin/edit_avail_Payment_Method",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"edit_avail_Payment_Method"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "location",
+					"item": [
+						{
+							"name": "city",
+							"item": [
+								{
+									"name": "City List",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:5000/city_list",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"city_list"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Add City",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n       \"city\": \"haka\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:5000/admin/add_city",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"admin",
+												"add_city"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Edit City",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n\"city\": \"Dhaka\",\r\n\"_id\":\"5f97c7bd276d9a0c9bfb83c7\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:5000/admin/edit_city",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"admin",
+												"edit_city"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "area",
+							"item": [
+								{
+									"name": "Area List ",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:5000/area_list",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"area_list"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Area Add",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n\"area\": \"gollamari\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:5000/admin/add_area",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"admin",
+												"add_area"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Edit Area",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"_id\":\"5f97d6dbd72e48e68f239033\",\r\n    \"area\": \"rupsa\"\r\n\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:5000/admin/edit_area",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"admin",
+												"edit_area"
+											],
+											"query": [
+												{
+													"key": "areaId",
+													"value": "5f7160cf76b00857d456c607",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete Area",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n      \"_id\":\"5f7c0ce6fb6d11dfd2b4064c\"\r\n\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:5000/admin/delete_area",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"admin",
+												"delete_area"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "register",
+					"item": [
+						{
+							"name": "signup",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"phone_no\": \"01926393816\",\r\n    \"password\": \"12345\",\r\n    \"first_name\": \"Tama\",\r\n    \"last_name\": \"Sarker\",\r\n    \"email\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/signup",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"signup"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "login",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"phone_no\": \"01926393816\",\r\n    \"password\": \"12345\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Profile",
+					"item": [
+						{
+							"name": "Profile Update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDM3OTY4NDgsIm5iZiI6MTYwMzc5Njg0OCwianRpIjoiYTYwZTdiMzUtYTBlYS00Mjk2LWIwMzEtMTkxZmFmN2U1YjNlIiwiZXhwIjoxNjAzODI1NjQ4LCJpZGVudGl0eSI6IjVmOTdlZjYzYzlkNGI3ZmQxMzY3YmNlNCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.E48pBEZg-HFjRJAfWlfeBbDBHt_rAAkjZlpIGM7PN70",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"phone_no\": \"01926393816\",\r\n    \"password\": \"12345\",\r\n    \"first_name\": \"Tama\",\r\n    \"last_name\": \"Sarker\",\r\n    \"email\":\"tama@gmail.com\",\r\n    \"country\": \"Bangladesh\",\r\n    \"city\":  \"\",\r\n    \"area\":  \"\",\r\n    \"address\": \"\",\r\n    \"profile_pic\": \"url of image\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/profile_edit",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"profile_edit"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Profile",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDM4NTY5NzEsIm5iZiI6MTYwMzg1Njk3MSwianRpIjoiYzk1ZjAyNTMtOWQwNS00NzFiLTlmOTItZjlmY2M5ZDFkYTU4IiwiZXhwIjoxNjAzODg1NzcxLCJpZGVudGl0eSI6IjVmOTdlZjYzYzlkNGI3ZmQxMzY3YmNlNCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.wNN-UOcSGxY0zVKcFlKrzArd2NK5cG9QgtNWtiYH5Y4",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"del_resone\":\"test delete\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/delete_profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"delete_profile"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Vehicle",
+					"item": [
+						{
+							"name": "Add Vehicle",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDM5NDEzMTcsIm5iZiI6MTYwMzk0MTMxNywianRpIjoiN2I4ZmM2N2QtMmUxOS00NDczLWIyNmQtMzViMDY0MjI1NTZkIiwiZXhwIjoxNjAzOTcwMTE3LCJpZGVudGl0eSI6IjVmOTdlZjYzYzlkNGI3ZmQxMzY3YmNlNCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.iw3GIQMuZAD9iJHzuc7tQHjMQiB7o9rl47qPP-y5tB8",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{        \r\n    \"vehicle_type\":\"5f9a404c2e38271226210dca\",\r\n    \"YEAR\" : \"2017\",\r\n    \"COLOR\" : \"red\",\r\n    \"COLOR ON PAPER\" : \"black\", \r\n    \"TOTAL SEAT\" : 4\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/user/add_vehicle",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"user",
+										"add_vehicle"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Vehicle",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDE5Njg0MzEsIm5iZiI6MTYwMTk2ODQzMSwianRpIjoiZGY1YjI2NDAtY2FjYy00ZDdhLTg3M2MtYjkwZWU0OWVhMjc2IiwiZXhwIjoxNjAxOTk3MjMxLCJpZGVudGl0eSI6IjVmN2MxOTIyYjUxNjY2ZmUxNGU1NWNmZCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.nTby5oP3VI1lyb5gGTiR2Y0q0iA8Pp0kyuAtR2-I3U0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"_id\":\"5f7c19b5b51666fe14e55cfe\",\r\n        \"del_resone\": \"Vehicle delete after methood add\"\r\n        \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/user/delete_vehicle",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"user",
+										"delete_vehicle"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Vehicle List",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDE5Njg0MzEsIm5iZiI6MTYwMTk2ODQzMSwianRpIjoiZGY1YjI2NDAtY2FjYy00ZDdhLTg3M2MtYjkwZWU0OWVhMjc2IiwiZXhwIjoxNjAxOTk3MjMxLCJpZGVudGl0eSI6IjVmN2MxOTIyYjUxNjY2ZmUxNGU1NWNmZCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.nTby5oP3VI1lyb5gGTiR2Y0q0iA8Pp0kyuAtR2-I3U0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/user/vehicle_list",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"user",
+										"vehicle_list"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Vehicle",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDE5Njg0MzEsIm5iZiI6MTYwMTk2ODQzMSwianRpIjoiZGY1YjI2NDAtY2FjYy00ZDdhLTg3M2MtYjkwZWU0OWVhMjc2IiwiZXhwIjoxNjAxOTk3MjMxLCJpZGVudGl0eSI6IjVmN2MxOTIyYjUxNjY2ZmUxNGU1NWNmZCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.nTby5oP3VI1lyb5gGTiR2Y0q0iA8Pp0kyuAtR2-I3U0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"_id\":\"5f9a6af24964d67eca357102\",\r\n    \"vehicle_type\":\"5f9a404c2e38271226210dca\",\r\n    \"description\": \"description\",\r\n    \"country\":\"BD\",\r\n    \"city\":\"5f97d695d72e48e68f239032\",\r\n    \"area\":  \"5f97d64dd72e48e68f239030\",\r\n    \"car_location\": \"Sufia Garage\",\r\n    \"cover_img\": \"\",\r\n    \"brand\": \"5f9a411444617ce1d560e407\",\r\n    \"model\": \"Avilon\",\r\n    \"year_of_manufacture\": \"\",\r\n    \"vehicle_imgs\": [\r\n        \"url1\",\r\n        \"url2\",\r\n        \"url3\",\r\n        \"url4\"\r\n    ],\r\n    \"YEAR\" : \"2017\",\r\n    \"COLOR\" : \"red\",\r\n    \"COLOR ON PAPER\" : \"Blue\", \r\n    \"TOTAL SEAT\" : 3\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/user/edit_vehicle",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"user",
+										"edit_vehicle"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "75ba4987-647b-47bb-b01d-3d7b3efd60e5",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "ad909e49-e477-4aeb-a74b-729fc9ddea2b",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

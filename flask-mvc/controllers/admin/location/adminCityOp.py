@@ -12,11 +12,11 @@ class CityList(Resource):
     def get() -> Response:
         data = request.get_json()
         try:
-            dt = mongo.db.locationCity.find({})
+            dt = mongo.db.cities.find({})
             msg = "SUCCESS"
             error = False
-        except:
-            msg = "FAILED"
+        except Exception as ex:
+            msg = str(ex)
             error = True
         return jsonify({
             "msg": msg,
@@ -31,16 +31,18 @@ class AddCity(Resource):
         data = request.get_json()
 
         try:
-            dt = mongo.db.locationCity.insert_one(
+            indexCreate = mongo.db.cities.create_index(
+                'city', unique=True)
+            dt = mongo.db.cities.insert_one(
                 {
-                    "city": data["city"],
+                    "city": data["city"].upper(),
                     "create_date": datetime.datetime.now()
                 }
             )
             msg = "SUCCESS"
             error = False
-        except:
-            msg = "FAILED"
+        except Exception as ex:
+            msg = str(ex)
             error = True
         return jsonify({
             "msg": msg,
@@ -54,22 +56,22 @@ class EditCity(Resource):
     def put() -> Response:
         data = request.get_json()
         try:
-            dt = mongo.db.locationCity.update_one(
+            dt = mongo.db.cities.update_one(
                 {
                     "_id": bsonO.ObjectId(data["_id"])
                 },
                 {
                     "$set":
                         {
-                            "city": data["city"],
+                            "city": data["city"].upper(),
                             "update_date": datetime.datetime.now()
                         }
                 }
             )
             msg = "SUCCESS"
             error = False
-        except:
-            msg = "FAILED"
+        except Exception as ex:
+            msg = str(ex)
             error = True
         return jsonify({
             "msg": msg,
@@ -83,15 +85,15 @@ class DeleteCity(Resource):
     def delete() -> Response:
         data = request.get_json()
         try:
-            dt = mongo.db.locationCity.delete_one(
+            dt = mongo.db.cities.delete_one(
                 {
                     "_id": bsonO.ObjectId(data["_id"])
                 }
             )
             msg = "SUCCESS"
             error = False
-        except:
-            msg = "FAILED"
+        except Exception as ex:
+            msg = str(ex)
             error = True
         return jsonify({
             "msg": msg,

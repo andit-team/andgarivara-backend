@@ -20,22 +20,29 @@ class ProfileEdit(Resource):
 
 def UpdateData(data):
     idU = bson.ObjectId(get_jwt_identity())
+    cityID = ""
+    if data["city"]:
+        cityID= bson.ObjectId(data["city"])
+    areaID = ""
+    if data["area"]:
+        cityID= bson.ObjectId(data["area"])
     err_msg = None
     try:
-        update_ = mongo.db.users.update_one(
+        update_ = mongo.db.userRegister.update_one(
             {
                 "_id": idU
             },
             {
                 "$set": {
-                    "f_name": data["f_name"],
-                    "l_name": data["l_name"],
+                    "first_name": data["first_name"],
+                    "last_name": data["last_name"],
                     "email": data["email"],
                     "country": data["country"],
-                    "city":  bson.ObjectId(data["city"]),
+                    "city":  cityID,
+                    "area": areaID,
                     "address": data["address"],
                     "password": generate_password_hash(data["password"]),
-                    "phn_no": data["phn_no"],
+                    "phone_no": data["phone_no"],
                     "profile_pic": data["profile_pic"],
                     "update_date": datetime.datetime.now()
                 }
@@ -68,7 +75,7 @@ def DeleteData(data):
     idU = bson.ObjectId(get_jwt_identity())
     err_msg = None
     try:
-        update_ = mongo.db.users.update(
+        update_ = mongo.db.userRegister.update(
             {
                 "_id": idU
             },

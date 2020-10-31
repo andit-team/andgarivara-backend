@@ -13,30 +13,25 @@ class AdminSignup(Resource):
     def post() -> Response:
         data = request.get_json()
         err_msg = None
-        userId = data["phn_no"]
-        psw = data["password"]
         dt = {
-            "f_name": data["f_name"],
-            "l_name": data["l_name"],
-            "email": "",
+            "phone_no": data["phone_no"],
             "password": generate_password_hash(data["password"]),
-            "phn_no": data["phn_no"],
-            "del_date": "",
-            "del_resone": "",
-            "profile_pic": "",
-            "del_status": False,
+            "first_name": data["first_name"],
+            "last_name": data["last_name"],
+            "email": data["email"],
+            "role": "admin",
             "create_date": datetime.datetime.now()
         }
-
         try:
-            ins = mongo.db.adminsLog.insert_one(dt)
-            msg = "SUCCESS"
+            indexCreate = mongo.db.adminRegister.create_index(
+                'phone_no', unique=True)
+            ins = mongo.db.adminRegister.insert_one(dt)
+            msg = "Inserted Successfully"
             error = False
         except Exception as ex:
-            msg = "FAILED"
+            msg = str(ex)
             error = True
         return jsonify({
             "msg": msg,
-            "error": error,
-            "data": json.loads(dumps(dt))
+            "error": error
         })
