@@ -10,6 +10,13 @@ from bson.json_util import dumps
 class FuelTypeList(Resource):
     @staticmethod
     def get() -> Response:
+        dt = None
+        # data = request.get_json()
+        # try:
+        #     if data["_id"]:
+        #         dt = mongo.db.fuelType.find({"_id":bsonO.objectID(data["_id"])})
+        #     else:
+        #          dt = mongo.db.fuelType.find()
         try:
             dt = mongo.db.fuelType.find()
             msg = "SUCCESSFUL"
