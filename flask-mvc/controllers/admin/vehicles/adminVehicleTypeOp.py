@@ -12,22 +12,13 @@ class AddVehicleType(Resource):
     @staticmethod
     def post() -> Response:
         data = request.get_json()
-        dtList = []
-        dtDict = None
-        for dt in data["data_fields"]:
-            dtDict = {
-            "_id": bson.ObjectId(),
-            "field_label":dt["field_label"].upper(),
-            "field_type":dt["field_type"],
-            "value_type":dt["value_type"]
-            }
-            dtList.append(dtDict)
         dt = {
             "title": data["title"],
-            "data_fields": dtList,
             "create_date": datetime.datetime.now()
         }
         try:
+            indexCreate = mongo.db.vehicleType.create_index(
+                'title', unique=True)
             insD = mongo.db.vehicleType.insert_one(dt)
             msg = "SUCCESSFULL"
             error = False
@@ -45,16 +36,6 @@ class EditVehicleType(Resource):
     @staticmethod
     def put() -> Response:
         data = request.get_json()
-        dtList = []
-        dtDict = None
-        for dt in data["data_fields"]:
-            dtDict = {
-            "_id": bson.ObjectId(),
-            "field_label":dt["field_label"].upper(),
-            "field_type":dt["field_type"],
-            "value_type":dt["value_type"]
-            }
-            dtList.append(dtDict)
         try:
             insD = mongo.db.vehicleType.update_one(
                 {
@@ -63,7 +44,6 @@ class EditVehicleType(Resource):
                 {
                     "$set": {
                         "title": data["title"],
-                        "data_fields": dtList,
                         "update_date": datetime.datetime.now()
                     }
                 }
@@ -71,7 +51,7 @@ class EditVehicleType(Resource):
             msg = "SUCCESSFULL"
             error = False
         except Exception as ex:
-            msg =str(ex)
+            msg = str(ex)
             error = True
         return jsonify({
             "msg": msg,
@@ -104,10 +84,9 @@ class DeleteVehicleType(Resource):
 class VehicleTypeList(Resource):
     @staticmethod
     def get() -> Response:
-        data = request.get_json()
-
+        data = None
         try:
-            dt = mongo.db.vehicleType.find({})
+            data = mongo.db.vehicleType.find({},{"_id":1,"title":1,})
             msg = "SUCCESSFULL"
             error = False
         except Exception as ex:
@@ -116,8 +95,9 @@ class VehicleTypeList(Resource):
         return jsonify({
             "msg": msg,
             "error": error,
-            "data": json.loads(dumps(dt))
+            "data": json.loads(dumps(data))
         })
+
 
 class AddBrandWithVehicleType(Resource):
     @staticmethod
@@ -125,9 +105,9 @@ class AddBrandWithVehicleType(Resource):
         data = request.get_json()
 
         try:
-            countModel=mongo.db.vehicleType.find({
-            "_id": bson.ObjectId(data["_id"]),
-            "brands.model": data["model"]
+            countModel = mongo.db.vehicleType.find({
+                "_id": bson.ObjectId(data["_id"]),
+                "brands.model": data["model"]
             }).count()
             if countModel > 0:
                 return jsonify({
@@ -141,7 +121,7 @@ class AddBrandWithVehicleType(Resource):
                 },
                 {
                     "$addToSet": {
-                        "brands":{
+                        "brands": {
                             "_id": bson.ObjectId(),
                             "brand": data["brand"]
                         }
@@ -173,7 +153,7 @@ class EditBrandWithVehicleType(Resource):
                 },
                 {
                     "$set": {
-                        "brands.$":{
+                        "brands.$": {
                             "_id": bson.ObjectId(data["brand_id"]),
                             "brand": data["brand"]
                         }
@@ -183,7 +163,7 @@ class EditBrandWithVehicleType(Resource):
             msg = "SUCCESSFULL"
             error = False
         except Exception as ex:
-            msg =  str(ex)
+            msg = str(ex)
             error = True
         return jsonify({
             "msg": msg,
@@ -191,12 +171,15 @@ class EditBrandWithVehicleType(Resource):
             "data": json.loads(dumps(data))
         })
 
+
 class VehicleBrandList(Resource):
     @staticmethod
     def post() -> Response:
         data = request.get_json()
+        dt = None
         try:
-            dt = mongo.db.vehicleType.find({"_id":bson.ObjectId(data["_id"])},{"_id":0,"brands":1})
+            dt = mongo.db.vehicleType.find(
+                {"_id": bson.ObjectId(data["_id"])}, {"_id": 0, "brands": 1})
             msg = "SUCCESSFULL"
             error = False
         except Exception as ex:
