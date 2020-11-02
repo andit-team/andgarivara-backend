@@ -1,2 +1,2 @@
-.env
-__pycache__
+flask-mvc/__pycache__
+flask-mvc/.env
