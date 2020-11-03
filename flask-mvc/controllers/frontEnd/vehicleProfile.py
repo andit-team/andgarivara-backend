@@ -11,7 +11,6 @@ class VehicleProfile(Resource):
     @staticmethod
     def get() -> Response:
         data = request.get_json()
-        err_msg = None
         try:
             dt = mongo.db.vehicles.aggregate(
                 [{

@@ -19,7 +19,17 @@ class UserSignup(Resource):
             "first_name": data["first_name"],
             "last_name": data["last_name"],
             "email": data["email"],
-            "role": ["passenger"],
+            "role": ["passenger"],            
+            "pushNotification": {
+                "on_message_send": True,
+                "on_booking": True,
+                "on_suppport_reply": True
+            },
+            "smsNotification": {
+                "on_message_send": True,
+                "on_booking": True,
+                "on_suppport_reply": True
+            },
             "create_date": datetime.datetime.now()
         }
         try:

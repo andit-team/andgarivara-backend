@@ -42,3 +42,10 @@ class UserLogin(Resource):
             "data": x,
             "token": accessToken
         })
+        
+        
+# class UserLogin(Resource):
+#     @staticmethod
+#     def post() -> Response:
+#         jti = get_jwt_identity()
+#         blacklist.add(jti)

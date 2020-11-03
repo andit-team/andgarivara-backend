@@ -1,2 +1,15 @@
 flask-mvc/__pycache__
+flask-mvc/controllers/admin/__pycache__
+flask-mvc/controllers/admin/fuel_type/__pycache__
+flask-mvc/controllers/admin/location/__pycache__
+flask-mvc/controllers/__pycache__
+flask-mvc/controllers/admin/register/__pycache__
+flask-mvc/controllers/admin/users/__pycache__
+flask-mvc/controllers/admin/vehicles/__pycache__
+flask-mvc/controllers/frontEnd/__pycache__
+flask-mvc/controllers/users/__pycache__
+flask-mvc/controllers/users/profile/__pycache__
+flask-mvc/controllers/users/register/__pycache__
+flask-mvc/controllers/users/vehicles/__pycache__
+flask-mvc/routes/__pycache__
 flask-mvc/.env

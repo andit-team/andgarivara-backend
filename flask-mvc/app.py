@@ -10,6 +10,11 @@ from flask_jwt_extended import JWTManager
 def create_app(config_object='settings'):
     flask_app = Flask(__name__)
     CORS(flask_app)
+    cors = CORS(flask_app, resources={
+        r"/*":{
+        "origins": "*"    
+        }
+    })
 
     flask_app.config.from_object(config_object)
     mongo.init_app(flask_app)
