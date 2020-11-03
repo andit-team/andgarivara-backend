@@ -59,7 +59,27 @@ class EditVehicleType(Resource):
             "data": json.loads(dumps(data))
         })
 
-
+class VehicleTypeById(Resource):
+    @staticmethod
+    def post() -> Response:
+        data = request.get_json()
+        allData = None
+        try:
+            allData = mongo.db.vehicleType.find_one(
+                {
+                    "_id": bson.ObjectId(data["_id"])
+                })   
+            msg = "SUCCESSFULL"
+            error = False
+        except Exception as ex:
+            msg = str(ex)
+            error = True
+        return jsonify({
+            "msg": msg,
+            "error": error,
+            "data": json.loads(dumps(allData))
+        })
+        
 class DeleteVehicleType(Resource):
     @staticmethod
     def delete() -> Response:
@@ -171,7 +191,28 @@ class EditBrandWithVehicleType(Resource):
             "data": json.loads(dumps(data))
         })
 
-
+class BrandWithVehicleTypeById(Resource):
+    @staticmethod
+    def post() -> Response:
+        data = request.get_json()
+        allData = None
+        try:
+            allData = mongo.db.vehicleType.find_one(
+                {
+                   "_id": bson.ObjectId(data["_id"]),
+                    "brands._id": bson.ObjectId(data["brand_id"])
+                })   
+            msg = "SUCCESSFULL"
+            error = False
+        except Exception as ex:
+            msg = str(ex)
+            error = True
+        return jsonify({
+            "msg": msg,
+            "error": error,
+            "data": json.loads(dumps(allData))
+        })
+        
 class VehicleBrandList(Resource):
     @staticmethod
     def post() -> Response:

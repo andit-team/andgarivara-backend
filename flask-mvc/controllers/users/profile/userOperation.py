@@ -19,13 +19,7 @@ class ProfileEdit(Resource):
 
 
 def UpdateData(data):
-    idU = bson.ObjectId(get_jwt_identity())
-    cityID = ""
-    if data["city"]:
-        cityID= bson.ObjectId(data["city"])
-    areaID = ""
-    if data["area"]:
-        cityID= bson.ObjectId(data["area"])
+    idU = bson.ObjectId(get_jwt_identity())   
     err_msg = None
     try:
         update_ = mongo.db.userRegister.update_one(
@@ -38,12 +32,20 @@ def UpdateData(data):
                     "last_name": data["last_name"],
                     "email": data["email"],
                     "country": data["country"],
-                    "city":  cityID,
-                    "area": areaID,
+                    "default_contact_number":  data["default_contact_number"],
                     "address": data["address"],
                     "password": generate_password_hash(data["password"]),
-                    "phone_no": data["phone_no"],
                     "profile_pic": data["profile_pic"],
+                    "pushNotification": {
+                    "on_message_send": data["push_on_message_send"],
+                    "on_booking": data["push_on_booking"],
+                    "on_suppport_reply": data["push_on_suppport_reply"]
+                    },
+                    "smsNotification": {
+                        "on_message_send": data["sms_on_message_send"],
+                        "on_booking": data["sms_on_booking"],
+                        "on_suppport_reply": data["sms_on_suppport_reply"]
+                    },
                     "update_date": datetime.datetime.now()
                 }
             }

@@ -12,7 +12,6 @@ class UserSignup(Resource):
     @staticmethod
     def post() -> Response:
         data = request.get_json()
-        err_msg = None
         dt = {
             "phone_no": data["phone_no"],
             "password": generate_password_hash(data["password"]),

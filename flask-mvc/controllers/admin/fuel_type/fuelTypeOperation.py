@@ -85,6 +85,26 @@ class EditFuelType(Resource):
             "error": error
         })
 
+class FuelTypeById(Resource):
+    @staticmethod
+    def post() -> Response:
+        data = request.get_json()
+        allData = None
+        try:
+            allData = mongo.db.fuelType.find_one(
+                {
+                    "_id": bsonO.ObjectId(data["_id"])
+                })            
+            msg = "SUCCESSFUL"
+            error = False
+        except Exception as ex:
+            msg = str(ex)
+            error = True
+        return jsonify({
+            "data": json.loads(dumps(allData)),
+            "msg": msg,
+            "error": error
+        })
 
 class DeleteFuelType(Resource):
     @staticmethod
