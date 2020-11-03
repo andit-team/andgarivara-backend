@@ -58,7 +58,7 @@ class AddFuelType(Resource):
 
 class EditFuelType(Resource):
     @staticmethod
-    def get() -> Response:
+    def put() -> Response:
         data = request.get_json()
         try:
 
@@ -87,7 +87,7 @@ class EditFuelType(Resource):
 
 class FuelTypeById(Resource):
     @staticmethod
-    def post() -> Response:
+    def get() -> Response:
         data = request.get_json()
         allData = None
         try:
