@@ -12,7 +12,9 @@ def create_app(config_object='settings'):
     CORS(flask_app)
     cors = CORS(flask_app, resources={
         r"/*":{
-        "origins": "*"    
+        "origins": "*",
+        "methods": ["OPTIONS", "GET", "POST", "PUT", "DELETE"], 
+        "allow_headers": ["Authorization", "Content-Type"]
         }
     })
 
