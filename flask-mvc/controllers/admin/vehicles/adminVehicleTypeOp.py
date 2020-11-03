@@ -61,14 +61,14 @@ class EditVehicleType(Resource):
 
 class VehicleTypeById(Resource):
     @staticmethod
-    def post() -> Response:
+    def get() -> Response:
         data = request.get_json()
         allData = None
         try:
             allData = mongo.db.vehicleType.find_one(
                 {
                     "_id": bson.ObjectId(data["_id"])
-                })   
+                })  
             msg = "SUCCESSFULL"
             error = False
         except Exception as ex:
@@ -117,13 +117,11 @@ class VehicleTypeList(Resource):
             "error": error,
             "data": json.loads(dumps(data))
         })
-
-
+        
 class AddBrandWithVehicleType(Resource):
     @staticmethod
-    def put() -> Response:
+    def post() -> Response:
         data = request.get_json()
-
         try:
             countModel = mongo.db.vehicleType.find({
                 "_id": bson.ObjectId(data["_id"]),
@@ -159,7 +157,6 @@ class AddBrandWithVehicleType(Resource):
             "data": json.loads(dumps(data))
         })
 
-
 class EditBrandWithVehicleType(Resource):
     @staticmethod
     def put() -> Response:
@@ -193,15 +190,20 @@ class EditBrandWithVehicleType(Resource):
 
 class BrandWithVehicleTypeById(Resource):
     @staticmethod
-    def post() -> Response:
+    def get() -> Response:
         data = request.get_json()
+        brandId = bson.ObjectId(data["brand_id"])
         allData = None
         try:
-            allData = mongo.db.vehicleType.find_one(
+            getAllData = mongo.db.vehicleType.find_one(
                 {
                    "_id": bson.ObjectId(data["_id"]),
-                    "brands._id": bson.ObjectId(data["brand_id"])
-                })   
+                    "brands._id": brandId
+                }) 
+            if getAllData !=None:
+                for i in getAllData["brands"]:
+                    if i["_id"] == brandId:
+                        allData = i                   
             msg = "SUCCESSFULL"
             error = False
         except Exception as ex:

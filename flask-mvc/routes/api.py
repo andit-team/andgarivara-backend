@@ -44,13 +44,13 @@ def create_routes(api: Api):
     ########################## Admin.vehicle.vehicleTYpe ##########################
     api.add_resource(VehicleTypeList, '/api/vehicle_type_list')
     api.add_resource(AddVehicleType, '/api/admin/add_vehicle_type')
-    api.add_resource(EditVehicleType, '/api/admin/edit_vehicle_type')
-    api.add_resource(VehicleTypeById, '/api/admin/update_vehicle_type')
+    api.add_resource(VehicleTypeById, '/api/admin/edit_vehicle_type')
+    api.add_resource(EditVehicleType, '/api/admin/update_vehicle_type')
     api.add_resource(DeleteVehicleType, '/api/admin/delete_vehicle_type')
     ########################## Admin.vehicle.vehicleBrand ##########################
     api.add_resource(AddBrandWithVehicleType, '/api/admin/add_vehicle_brand')
-    api.add_resource(EditBrandWithVehicleType, '/api/admin/edit_vehicle_brand')
-    api.add_resource(BrandWithVehicleTypeById, '/api/admin/update_vehicle_brand')
+    api.add_resource(BrandWithVehicleTypeById, '/api/admin/edit_vehicle_brand')
+    api.add_resource(EditBrandWithVehicleType, '/api/admin/update_vehicle_brand')
     api.add_resource(VehicleBrandList, '/api/vehicle_brand_list')
      ########################## Admin.vehicle.User ##########################
     api.add_resource(UserList, '/api/admin/user_list')
