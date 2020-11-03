@@ -21,12 +21,12 @@ class HomePage(Resource):
         try:
             if get_jwt_identity() != None:
                 uId = bsonO.ObjectId(get_jwt_identity())
-            userData = mongo.db.users.find_one(
-                {"_id": uId},
-                {
+                userData = mongo.db.users.find_one(
+                    {"_id": uId},
+                    {
 
-                }
-            )
+                    }
+                )
             # retrive rental vehicles by rating
             dtRentalVehicle = mongo.db.locationArea.find({})
 

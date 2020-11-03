@@ -107,7 +107,7 @@ class AddBrandWithVehicleType(Resource):
         try:
             countModel = mongo.db.vehicleType.find({
                 "_id": bson.ObjectId(data["_id"]),
-                "brands.model": data["model"]
+                "brands.brand": data["brand"]
             }).count()
             if countModel > 0:
                 return jsonify({
