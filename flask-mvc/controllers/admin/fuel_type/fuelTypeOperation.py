@@ -58,7 +58,7 @@ class AddFuelType(Resource):
 
 class EditFuelType(Resource):
     @staticmethod
-    def put() -> Response:
+    def get() -> Response:
         data = request.get_json()
         try:
 
