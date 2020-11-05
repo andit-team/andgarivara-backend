@@ -101,3 +101,30 @@ def DeleteData(data):
         "err_msg": str(err_msg),
         "data": json.loads(dumps(data))
     })
+
+
+class GetUserDataByToken(Resource):
+    @staticmethod
+    @jwt_required
+    def get() -> Response:
+        uId = bson.ObjectId(get_jwt_identity())
+        try:
+            dt = mongo.db.userRegister.find(
+                {
+                    "_id": uId
+                },
+                {
+                    "password": 0
+                }
+            )
+            msg = "SUCCESS"
+            error = False
+        except Exception as ex:
+            msg = str(ex)
+            error = True
+            dt = None
+        return jsonify({
+            "msg": msg,
+            "error": error,
+            "data": json.loads(dumps(dt))
+        })

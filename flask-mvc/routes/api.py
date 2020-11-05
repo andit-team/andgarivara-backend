@@ -1,7 +1,7 @@
 from flask_restful import Api
 ########################## User ##########################
 from controllers.users.profile.favorites import AddFavorite, DeleteFavorite, FavoriteList
-from controllers.users.profile.userOperation import ProfileEdit, ProfileDelete
+from controllers.users.profile.userOperation import ProfileEdit, ProfileDelete, GetUserDataByToken
 from controllers.users.register.login import UserLogin
 from controllers.users.register.signup import UserSignup
 from controllers.users.vehicles.vehicleOp import AddVehicle, GetVehicleTypeDataField, EditVehicle, DeleteVehicle, UserVehicleList
@@ -19,16 +19,19 @@ from controllers.frontEnd.homepage import HomePage
 from controllers.frontEnd.searchVehicle import SearchVehicle
 
 def create_routes(api: Api):
-   ########################## User ##########################
+   ########################## User.Reg ##########################
     api.add_resource(UserSignup, '/api/signup')
     api.add_resource(UserLogin, '/api/login')
-    api.add_resource(ProfileEdit, '/api/profile_edit')
+    ########################## User.Profile ##########################
+    api.add_resource(ProfileEdit, '/api/profile_update')
     api.add_resource(ProfileDelete, '/api/delete_profile')
+    api.add_resource(GetUserDataByToken, '/api/user/profile_info')
+    ########################## User.vehicle ##########################
     api.add_resource(UserVehicleList, '/api/vehicle_list')
-    api.add_resource(GetVehicleTypeDataField, '/api/vehicle_type_field')
     api.add_resource(AddVehicle, '/api/add_vehicle')
     api.add_resource(EditVehicle, '/api/edit_vehicle')
     api.add_resource(DeleteVehicle, '/api/delete_vehicle')
+    ########################## User.favorite ##########################
     api.add_resource(FavoriteList, '/api/favorite_list')
     api.add_resource(AddFavorite, '/api/add_favorites')
     api.add_resource(DeleteFavorite, '/api/delete_favorites')
