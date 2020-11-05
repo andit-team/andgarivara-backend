@@ -1,7 +1,7 @@
 from flask_restful import Api
 ########################## User ##########################
 from controllers.users.profile.favorites import AddFavorite, DeleteFavorite, FavoriteList
-from controllers.users.profile.userOperation import ProfileEdit, ProfileDelete, GetUserDataByToken
+from controllers.users.profile.userOperation import ProfileEdit, ProfileDelete, GetUserDataByToken, UpdateUserProfileImage
 from controllers.users.register.login import UserLogin
 from controllers.users.register.signup import UserSignup
 from controllers.users.vehicles.vehicleOp import AddVehicle, GetVehicleTypeDataField, EditVehicle, DeleteVehicle, UserVehicleList
@@ -12,6 +12,7 @@ from controllers.admin.register.login import AdminLogin
 from controllers.admin.register.signup import AdminSignup
 from controllers.admin.vehicles.adminVehicleTypeOp import AddVehicleType, EditVehicleType, VehicleTypeById, DeleteVehicleType, VehicleTypeList,AddBrandWithVehicleType, EditBrandWithVehicleType, BrandWithVehicleTypeById, VehicleBrandList
 from controllers.admin.users.adminUser import UserList, DeleteUser, AddUser
+from controllers.admin.calculation_setup.commissionDistribution import GetAllComDistData, SetupComDistData
 from controllers.admin.vehicles.adminVehicleOp import AdminVehicleList, AddVehicleAdmin, EditVehicleAdmin, DeleteVehicleAdmin
 ########################## Frontend ##########################
 from controllers.frontEnd.vehicleProfile import VehicleProfile
@@ -26,6 +27,7 @@ def create_routes(api: Api):
     api.add_resource(ProfileEdit, '/api/profile_update')
     api.add_resource(ProfileDelete, '/api/delete_profile')
     api.add_resource(GetUserDataByToken, '/api/user/profile_info')
+    api.add_resource(UpdateUserProfileImage, '/api/user/update_profile_image')
     ########################## User.vehicle ##########################
     api.add_resource(UserVehicleList, '/api/vehicle_list')
     api.add_resource(AddVehicle, '/api/add_vehicle')
@@ -55,11 +57,13 @@ def create_routes(api: Api):
     api.add_resource(BrandWithVehicleTypeById, '/api/admin/edit_vehicle_brand/<string:id>')
     api.add_resource(EditBrandWithVehicleType, '/api/admin/update_vehicle_brand')
     api.add_resource(VehicleBrandList, '/api/vehicle_brand_list/<string:id>')
-     ########################## Admin.vehicle.User ##########################
+     ########################## Admin.User ##########################
     api.add_resource(UserList, '/api/admin/user_list')
     # api.add_resource(DeleteUser, '/admin/delete_user')
     # api.add_resource(AddUser, '/admin/add_user')
-    # api.add_resource(AdminVehicleList, '/admin/vehicle_list')
+    ########################## Admin.commissionDistribution ##########################
+    api.add_resource(GetAllComDistData, '/api/admin/commission_info')
+    api.add_resource(SetupComDistData, '/api/admin/update_commission_info')
     # api.add_resource(AddVehicleAdmin, '/admin/add_vehicle')
     # api.add_resource(EditVehicleAdmin, '/admin/edit_vehicle')
     # api.add_resource(DeleteVehicleAdmin, '/admin/delete_vehicle')
