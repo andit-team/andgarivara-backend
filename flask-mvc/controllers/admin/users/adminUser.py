@@ -7,10 +7,12 @@ import datetime
 import bson
 import json
 from werkzeug.security import generate_password_hash
+from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
 
 
 class AddUser(Resource):
     @staticmethod
+    @jwt_required
     def post() -> Response:
         data = request.get_json()
         userId = data["phn_no"]
@@ -59,6 +61,7 @@ class AddUser(Resource):
 
 class DeleteUser(Resource):
     @staticmethod
+    @jwt_required
     def delete() -> Response:
         data = request.get_json()
         err_msg = None
@@ -91,6 +94,7 @@ class DeleteUser(Resource):
 
 class UserList(Resource):
     @staticmethod
+    @jwt_required
     def post() -> Response:
         data = request.get_json()
         try:

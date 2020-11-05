@@ -5,10 +5,12 @@ import bson.json_util as bsonO
 import datetime
 import json
 from bson.json_util import dumps
+from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
 
 
 class FuelTypeList(Resource):
     @staticmethod
+    @jwt_required
     def get() -> Response:
         dt = None
         # data = request.get_json()
@@ -33,6 +35,7 @@ class FuelTypeList(Resource):
 
 class AddFuelType(Resource):
     @staticmethod
+    @jwt_required
     def post() -> Response:
         data = request.get_json()
         dt = {
@@ -58,6 +61,7 @@ class AddFuelType(Resource):
 
 class EditFuelType(Resource):
     @staticmethod
+    @jwt_required
     def put() -> Response:
         data = request.get_json()
         try:
@@ -87,13 +91,13 @@ class EditFuelType(Resource):
 
 class FuelTypeById(Resource):
     @staticmethod
-    def get() -> Response:
-        data = request.get_json()
+    @jwt_required
+    def get(id) -> Response: 
         allData = None
         try:
             allData = mongo.db.fuelType.find_one(
                 {
-                    "_id": bsonO.ObjectId(data["_id"])
+                    "_id": bsonO.ObjectId(id)
                 })            
             msg = "SUCCESSFUL"
             error = False
@@ -108,6 +112,7 @@ class FuelTypeById(Resource):
 
 class DeleteFuelType(Resource):
     @staticmethod
+    @jwt_required
     def delete() -> Response:
         data = request.get_json()
         try:
