@@ -226,12 +226,11 @@ class BrandWithVehicleTypeById(Resource):
 class VehicleBrandList(Resource):
     @staticmethod
     @jwt_required
-    def post() -> Response:
-        data = request.get_json()
+    def get(id) -> Response:
         dt = None
         try:
             dt = mongo.db.vehicleType.find(
-                {"_id": bson.ObjectId(data["_id"])}, {"_id": 0, "brands": 1})
+                {"_id": bson.ObjectId(id)}, {"_id": 0, "brands": 1})
             msg = "SUCCESSFULL"
             error = False
         except Exception as ex:
