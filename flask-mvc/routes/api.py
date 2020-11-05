@@ -35,7 +35,7 @@ def create_routes(api: Api):
     ########################## Admin.FuelType ##########################
     api.add_resource(FuelTypeList, '/api/fuel_type_list')
     api.add_resource(AddFuelType, '/api/admin/add_fuel_type')
-    api.add_resource(FuelTypeById, '/api/admin/edit_fuel_type')
+    api.add_resource(FuelTypeById, '/api/admin/edit_fuel_type/<string:id>')
     api.add_resource(EditFuelType, '/api/admin/update_fuel_type')
     
     ########################## Admin.register ##########################
@@ -44,12 +44,12 @@ def create_routes(api: Api):
     ########################## Admin.vehicle.vehicleTYpe ##########################
     api.add_resource(VehicleTypeList, '/api/vehicle_type_list')
     api.add_resource(AddVehicleType, '/api/admin/add_vehicle_type')
-    api.add_resource(VehicleTypeById, '/api/admin/edit_vehicle_type')
+    api.add_resource(VehicleTypeById, '/api/admin/edit_vehicle_type/<string:id>')
     api.add_resource(EditVehicleType, '/api/admin/update_vehicle_type')
     api.add_resource(DeleteVehicleType, '/api/admin/delete_vehicle_type')
     ########################## Admin.vehicle.vehicleBrand ##########################
     api.add_resource(AddBrandWithVehicleType, '/api/admin/add_vehicle_brand')
-    api.add_resource(BrandWithVehicleTypeById, '/api/admin/edit_vehicle_brand')
+    api.add_resource(BrandWithVehicleTypeById, '/api/admin/edit_vehicle_brand/<string:id>')
     api.add_resource(EditBrandWithVehicleType, '/api/admin/update_vehicle_brand')
     api.add_resource(VehicleBrandList, '/api/vehicle_brand_list')
      ########################## Admin.vehicle.User ##########################

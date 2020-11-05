@@ -6,10 +6,12 @@ from extension import mongo
 import datetime
 import bson
 import json
+from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
 
 
 class AddVehicleType(Resource):
     @staticmethod
+    @jwt_required
     def post() -> Response:
         data = request.get_json()
         dt = {
@@ -34,6 +36,7 @@ class AddVehicleType(Resource):
 
 class EditVehicleType(Resource):
     @staticmethod
+    @jwt_required
     def put() -> Response:
         data = request.get_json()
         try:
@@ -61,13 +64,13 @@ class EditVehicleType(Resource):
 
 class VehicleTypeById(Resource):
     @staticmethod
-    def get() -> Response:
-        data = request.get_json()
+    @jwt_required
+    def get(id) -> Response:
         allData = None
         try:
             allData = mongo.db.vehicleType.find_one(
                 {
-                    "_id": bson.ObjectId(data["_id"])
+                    "_id": bson.ObjectId(id)
                 })  
             msg = "SUCCESSFULL"
             error = False
@@ -82,6 +85,7 @@ class VehicleTypeById(Resource):
         
 class DeleteVehicleType(Resource):
     @staticmethod
+    @jwt_required
     def delete() -> Response:
         data = request.get_json()
         dt = {
@@ -103,6 +107,7 @@ class DeleteVehicleType(Resource):
 
 class VehicleTypeList(Resource):
     @staticmethod
+    @jwt_required
     def get() -> Response:
         data = None
         try:
@@ -120,6 +125,7 @@ class VehicleTypeList(Resource):
         
 class AddBrandWithVehicleType(Resource):
     @staticmethod
+    @jwt_required
     def post() -> Response:
         data = request.get_json()
         try:
@@ -159,6 +165,7 @@ class AddBrandWithVehicleType(Resource):
 
 class EditBrandWithVehicleType(Resource):
     @staticmethod
+    @jwt_required
     def put() -> Response:
         data = request.get_json()
 
@@ -190,20 +197,21 @@ class EditBrandWithVehicleType(Resource):
 
 class BrandWithVehicleTypeById(Resource):
     @staticmethod
-    def get() -> Response:
-        data = request.get_json()
-        brandId = bson.ObjectId(data["brand_id"])
+    @jwt_required
+    def get(id) -> Response:
+        brandId = bson.ObjectId(id)
         allData = None
         try:
             getAllData = mongo.db.vehicleType.find_one(
                 {
-                   "_id": bson.ObjectId(data["_id"]),
-                    "brands._id": brandId
+                   "brands._id": brandId
                 }) 
             if getAllData !=None:
                 for i in getAllData["brands"]:
                     if i["_id"] == brandId:
                         allData = i                   
+            allData["vehicle_type"] = getAllData["title"]
+            allData["vehicle_type_id"] = getAllData["_id"]
             msg = "SUCCESSFULL"
             error = False
         except Exception as ex:
@@ -217,6 +225,7 @@ class BrandWithVehicleTypeById(Resource):
         
 class VehicleBrandList(Resource):
     @staticmethod
+    @jwt_required
     def post() -> Response:
         data = request.get_json()
         dt = None
