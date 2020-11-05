@@ -9,16 +9,9 @@ from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_tok
 
 
 class FuelTypeList(Resource):
-    @staticmethod
-    @jwt_required
+    @staticmethod    
     def get() -> Response:
-        dt = None
-        # data = request.get_json()
-        # try:
-        #     if data["_id"]:
-        #         dt = mongo.db.fuelType.find({"_id":bsonO.objectID(data["_id"])})
-        #     else:
-        #          dt = mongo.db.fuelType.find()
+        dt = None        
         try:
             dt = mongo.db.fuelType.find()
             msg = "SUCCESSFUL"

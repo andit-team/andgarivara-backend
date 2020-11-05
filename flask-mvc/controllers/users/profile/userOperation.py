@@ -19,8 +19,7 @@ class ProfileEdit(Resource):
 
 
 def UpdateData(data):
-    idU = bson.ObjectId(get_jwt_identity())   
-    err_msg = None
+    idU = bson.ObjectId(get_jwt_identity()) 
     try:
         update_ = mongo.db.userRegister.update_one(
             {
@@ -53,13 +52,11 @@ def UpdateData(data):
         msg = "SUCCESS"
         error = False
     except Exception as ex:
-        msg = "FAILED"
+        msg = str(ex)
         error = True
-        err_msg = ex
     return jsonify({
         "msg": msg,
         "error": error,
-        "err_msg": str(err_msg),
         "data": json.loads(dumps(data))
     })
 
@@ -101,3 +98,62 @@ def DeleteData(data):
         "err_msg": str(err_msg),
         "data": json.loads(dumps(data))
     })
+
+
+class GetUserDataByToken(Resource):
+    @staticmethod
+    @jwt_required
+    def get() -> Response:
+        uId = bson.ObjectId(get_jwt_identity())
+        try:
+            dt = mongo.db.userRegister.find(
+                {
+                    "_id": uId
+                },
+                {
+                    "password": 0
+                }
+            )
+            msg = "SUCCESS"
+            error = False
+        except Exception as ex:
+            msg = str(ex)
+            error = True
+            dt = None
+        return jsonify({
+            "msg": msg,
+            "error": error,
+            "data": json.loads(dumps(dt))
+        })
+        
+        
+class UpdateUserProfileImage(Resource):
+    @staticmethod
+    @jwt_required
+    def put() -> Response:
+        data = request.get_json()
+        uId = bson.ObjectId(get_jwt_identity())
+        try:
+            update_ = mongo.db.userRegister.update_one(
+                {
+                "_id": uId
+                },
+                {
+                "$set": {
+                    "profile_pic": data["profile_pic"],                    
+                    "update_date": datetime.datetime.now()
+                    }
+                }
+                )
+            msg = "SUCCESS"
+            error = False
+        except Exception as ex:
+            msg = str(ex)
+            error = True
+            dt = None
+        return jsonify({
+            "msg": msg,
+            "error": error,
+            "data": json.loads(dumps(data))
+        })
+
