@@ -106,8 +106,7 @@ class DeleteVehicleType(Resource):
 
 
 class VehicleTypeList(Resource):
-    @staticmethod
-    @jwt_required
+    @staticmethod    
     def get() -> Response:
         data = None
         try:
@@ -224,8 +223,7 @@ class BrandWithVehicleTypeById(Resource):
         })
         
 class VehicleBrandList(Resource):
-    @staticmethod
-    @jwt_required
+    @staticmethod    
     def get(id) -> Response:
         dt = None
         try:
