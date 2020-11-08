@@ -14,44 +14,64 @@ class AddVehicle(Resource):
         data = request.get_json()
         flag = insertData(data)
         return flag
-
+def getAllDataField(data):
+    userId = bsonO.ObjectId(get_jwt_identity())
+    dt = {
+            "user_id": userId,
+            "vehicle_type": bsonO.ObjectId(data["vehicle_type"]),
+            "vehicleNumber": data["vehicleNumber"],
+            "regNumber": data["regNumber"],
+            "chassisNumber": bsonO.ObjectId(data["chassisNumber"]),
+            "engineNumber":  bsonO.ObjectId(data["engineNumber"]),
+            "tiresNumber": data["tiresNumber"],
+            "capacity": data["capacity"],
+            "vehicleCC": data["vehicleCC"],
+            "color": data["color"],
+            "vehicleLength": data["vehicleLength"],
+            "licenceVelidation": data["licenceVelidation"],
+            "coverImage": data["coverImage"],
+            "vehicle_imgs": data["vehicle_imgs"],
+            "description": data["description"],
+            "brand": data["brand"],
+            "model": data["model"],
+            "manufactureYear": data["manufactureYear"],
+            "video": data["video"],
+            "fuelType": data["fuelType"],
+            "millage": data["millage"],
+            "gearType": data["gearType"],
+            "policyType": data["policyType"],
+            "policyNumber": data["policyNumber"],
+            "insuranceName": data["insuranceName"],
+            "insuranceExpiry": data["insuranceExpiry"],
+            "insuranceCompany": data["insuranceCompany"],
+            "country": data["country"],
+            "carLocation": data["carLocation"],
+            "carAddress": data["carAddress"],
+            "del_status": False,
+            "activeStatus" :"pending",
+            "create_date": datetime.datetime.now()
+    }
+    return dt
 
 def insertData(data):
-    userId = bsonO.ObjectId(get_jwt_identity())
-    vehicelTypeId = bsonO.ObjectId(data["vehicle_type"])
-    dt = {
-        "user_id": userId,
-        "vehicle_type": bsonO.ObjectId(data["vehicle_type"]),
-        "vehicleNumber": data["description"],
-        "regNumber": data["country"],
-        "chassisNumber": bsonO.ObjectId(data["city"]),
-        "engineNumber":  bsonO.ObjectId(data["area"]),
-        "tiresNumber": data["car_location"],
-        "capacity": data["cover_img"],
-        "vehicleCC": data["brand"],
-        "color": data["model"],
-        "vehicleLength": data["year_of_manufacture"],
-        "licenceVelidation": data["year_of_manufacture"],
-        "coverImage": data["vehicle_imgs"],
-        "vehicle_imgs": data["vehicle_imgs"],
-        "description": data["vehicle_imgs"],
-        "brand": data["vehicle_imgs"],
-        "model": data["vehicle_imgs"],
-        "manufactureYear": data["vehicle_imgs"],
-        "video": data["vehicle_imgs"],
-        "fuelType": data["vehicle_imgs"],
-        "milage": data["vehicle_imgs"],
-        "gearType": data["vehicle_imgs"],
-        "gear": data["vehicle_imgs"],
-        "del_status": False,
-        "create_date": datetime.datetime.now()
-    }
-    fieldData = GetDataFields(vehicelTypeId)
-    if fieldData != None:
-        for key, value in fieldData.items():
-            for valueData in value:
-                txt = valueData["field_label"]
-                dt[txt] = data[txt]
+    userId = bsonO.ObjectId(get_jwt_identity())    
+    dt = getAllDataField(data) 
+    userRole = data["role"]
+    driverInfo = []
+    ownerInfo  = []
+    if userRole =="owner":
+        driverInfo=data["driverInfo"]
+        if data["refType"] == "byOwner" :
+            driverInfo["_id"] = bsonO.ObjectId()
+            driverInfo["refType"] = data["refType"]
+        else:
+            driverInfo["refType"] = "byAdmin"
+        dt["driver"] = driverInfo["_id"]
+    else:
+        ownerInfo=data["ownerInfo"]
+        dt["driver"] = userId
+        driverInfo["_id"] = userId
+        driverInfo["refType"] = "byDriver"
     try:
         ins = mongo.db.vehicles.insert(dt)
         statusChange = mongo.db.userRegister.update(
@@ -60,7 +80,9 @@ def insertData(data):
             },
             {
                 "$addToSet": {
-                    "role":"owner"
+                    "role":userRole,
+                    "driverInfo" : driverInfo,
+                    "ownerInfo" : ownerInfo
                 }
             }
         )
@@ -84,28 +106,7 @@ class EditVehicle(Resource):
         data = request.get_json()
         userId = bsonO.ObjectId(get_jwt_identity())
         vehicelTypeId = bsonO.ObjectId(data["vehicle_type"])
-        dt = {
-            "user_id": userId,
-            "vehicle_type": bsonO.ObjectId(data["vehicle_type"]),
-            "description": data["description"],
-            "country": data["country"],
-            "city": bsonO.ObjectId(data["city"]),
-            "area":  bsonO.ObjectId(data["area"]),
-            "car_location": data["car_location"],
-            "cover_img": data["cover_img"],
-            "brand": data["brand"],
-            "model": data["model"],
-            "year_of_manufacture": data["year_of_manufacture"],
-            "vehicle_imgs": data["vehicle_imgs"],
-            "del_status": False,
-            "update_date": datetime.datetime.now()
-        }
-        fieldData = GetDataFields(vehicelTypeId)
-        if fieldData != None:
-            for key, value in fieldData.items():
-                for valueData in value:
-                    txt = valueData["field_label"]
-                    dt[txt] = data[txt]
+        dt = getAllDataField(data)
         try:
             update_ = mongo.db.vehicles.update(
                 {
@@ -204,30 +205,3 @@ class DeleteVehicle(Resource):
             "error": error,
             "data": None
         })
-
-class GetVehicleTypeDataField(Resource):
-    @staticmethod
-    def post() -> Response:
-        data = request.get_json()
-        try:
-            data = GetDataFields(bsonO.ObjectId(data["_id"]))
-            msg = "SUCCESS"
-            error = False
-        except Exception as e:
-            msg = str(ex)
-            error = True
-            err_msg = ex
-            dt = None
-        return jsonify({
-            "msg": msg,
-            "error": error,
-            "data": json.loads(dumps(data))
-        })
-
-
-def GetDataFields(vehicleID):
-    try:
-        fieldData = mongo.db.vehicleType.find_one({"_id":vehicleID},{"data_fields": 1,"_id":0})
-        return fieldData
-    except Exception as e:
-        return None

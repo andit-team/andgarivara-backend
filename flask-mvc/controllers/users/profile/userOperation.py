@@ -33,7 +33,6 @@ def UpdateData(data):
                     "country": data["country"],
                     "default_contact_number":  data["default_contact_number"],
                     "address": data["address"],
-                    "password": generate_password_hash(data["password"]),
                     "profile_pic": data["profile_pic"],
                     "pushNotification": {
                     "on_message_send": data["push_on_message_send"],
@@ -141,6 +140,36 @@ class UpdateUserProfileImage(Resource):
                 {
                 "$set": {
                     "profile_pic": data["profile_pic"],                    
+                    "update_date": datetime.datetime.now()
+                    }
+                }
+                )
+            msg = "SUCCESS"
+            error = False
+        except Exception as ex:
+            msg = str(ex)
+            error = True
+            dt = None
+        return jsonify({
+            "msg": msg,
+            "error": error,
+            "data": json.loads(dumps(data))
+        })
+        
+class ResetPassword(Resource):
+    @staticmethod
+    @jwt_required
+    def put() -> Response:
+        data = request.get_json()
+        uId = bson.ObjectId(get_jwt_identity())
+        try:
+            update_ = mongo.db.userRegister.update_one(
+                {
+                "_id": uId
+                },
+                {
+                "$set": {
+                    "password": generate_password_hash(data["password"]),                    
                     "update_date": datetime.datetime.now()
                     }
                 }

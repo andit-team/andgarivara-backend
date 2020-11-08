@@ -29,6 +29,7 @@ class UserSignup(Resource):
                 "on_booking": True,
                 "on_suppport_reply": True
             },
+            "del_status":False,
             "create_date": datetime.datetime.now()
         }
         try:
