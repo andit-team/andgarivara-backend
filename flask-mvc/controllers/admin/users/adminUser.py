@@ -98,7 +98,7 @@ class UserList(Resource):
     def post() -> Response:
         data = request.get_json()
         try:
-            dt = mongo.db.userRegister.find({"role":data["role"]})
+            dt = mongo.db.userRegister.find({"role":data["role"],"del_status":False})
             msg = "SUCCESSFULL"
             error = False
         except Exception as ex:

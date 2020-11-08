@@ -17,12 +17,13 @@ class AddVehicle(Resource):
 def getAllDataField(data):
     userId = bsonO.ObjectId(get_jwt_identity())
     dt = {
-            "user_id": userId,
-            "vehicle_type": bsonO.ObjectId(data["vehicle_type"]),
+            "userId": userId,
+            "vehicleType": bsonO.ObjectId(data["vehicle_type"]),
+            "fuelType": bsonO.ObjectId(data["fuelType"]),
             "vehicleNumber": data["vehicleNumber"],
             "regNumber": data["regNumber"],
-            "chassisNumber": bsonO.ObjectId(data["chassisNumber"]),
-            "engineNumber":  bsonO.ObjectId(data["engineNumber"]),
+            "chassisNumber": data["chassisNumber"],
+            "engineNumber":  data["engineNumber"],
             "tiresNumber": data["tiresNumber"],
             "capacity": data["capacity"],
             "vehicleCC": data["vehicleCC"],
@@ -36,7 +37,6 @@ def getAllDataField(data):
             "model": data["model"],
             "manufactureYear": data["manufactureYear"],
             "video": data["video"],
-            "fuelType": data["fuelType"],
             "millage": data["millage"],
             "gearType": data["gearType"],
             "policyType": data["policyType"],
@@ -54,6 +54,8 @@ def getAllDataField(data):
     return dt
 
 def insertData(data):
+    error = False
+    msg = ""
     userId = bsonO.ObjectId(get_jwt_identity())    
     dt = getAllDataField(data) 
     userRole = data["role"]
@@ -61,18 +63,33 @@ def insertData(data):
     ownerInfo  = []
     if userRole =="owner":
         driverInfo=data["driverInfo"]
-        if data["refType"] == "byOwner" :
-            driverInfo["_id"] = bsonO.ObjectId()
+        driverId = bsonO.ObjectId()
+        if data["refType"] == "byOwner" :            
+            driverInfo["_id"] = driverId
             driverInfo["refType"] = data["refType"]
         else:
             driverInfo["refType"] = "byAdmin"
-        dt["driver"] = driverInfo["_id"]
+        dt["driver"] = driverId
     else:
         ownerInfo=data["ownerInfo"]
         dt["driver"] = userId
         driverInfo["_id"] = userId
         driverInfo["refType"] = "byDriver"
     try:
+        fuelData = mongo.db.fuelType.find({"_id":bsonO.ObjectId(data["fuelType"])}).count()
+        if fuelData == 0:
+            return jsonify({
+            "msg": "Fuel is not valid",
+            "error": True,
+            "data": json.loads(dumps(dt))
+        })      
+        vehicleTypeData = mongo.db.vehicleType.find({"_id":bsonO.ObjectId(data["vehicle_type"])}).count()
+        if vehicleTypeData == 0:
+            return jsonify({
+            "msg": "Vehicle Type is not valid",
+            "error": True,
+            "data": json.loads(dumps(dt))
+        })                     
         ins = mongo.db.vehicles.insert(dt)
         statusChange = mongo.db.userRegister.update(
             {
@@ -81,8 +98,8 @@ def insertData(data):
             {
                 "$addToSet": {
                     "role":userRole,
-                    "driverInfo" : driverInfo,
-                    "ownerInfo" : ownerInfo
+                    "drivers" : driverInfo,
+                    "owners" : ownerInfo
                 }
             }
         )
@@ -91,7 +108,6 @@ def insertData(data):
     except Exception as ex:
         msg = str(ex)
         error = True
-        err_msg = ex
         dt = None
     return jsonify({
         "msg": msg,
@@ -129,42 +145,34 @@ class EditVehicle(Resource):
 class UserVehicleList(Resource):
     @staticmethod
     @jwt_required
-    def post() -> Response:
+    def get() -> Response:
         data = request.get_json()
+        msg = ""
         current_user = bsonO.ObjectId(get_jwt_identity())
         try:
             dt = mongo.db.vehicles.aggregate(
                 [{
                     "$match": {
-                        "user_id": current_user,
+                        "userId": current_user,
                         "del_status": False
                     }
-                },
+                },                
                 {
                     "$lookup": {
-                        "from": "vehicleType",
-                        "localField": "vehicle_type",
+                        "from": "fuelType",
+                        "localField": "fuelType",
                         "foreignField": "_id",
-                        "as": "vehicle_type_details"
-                    },
-                },
-                {
-                    "$lookup": {
-                        "from": "cities",
-                        "localField": "city",
-                        "foreignField": "_id",
-                        "as": "city_details"
-                    },
-                },
-                {
-                    "$lookup": {
-                        "from": "areas",
-                        "localField": "area",
-                        "foreignField": "_id",
-                        "as": "area_details"
+                        "as": "fuel_details"
                     },
                 }
                 ])
+            # vehicelTypeId = bsonO.ObjectId(dt["vehicle_type"])
+            # dt["vehicleTypeId"]=
+            # for i in vehicelTypeId["brands"]:
+            #     if dt["brand"] == i["_id"]:
+            #         vehicleDetails["brandId"]= i["_id"]
+            #         vehicleDetails["brandTitle"]= i["brand"]
+                    
             msg = "SUCCESS"
             error = False
         except Exception as ex:
