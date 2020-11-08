@@ -1,10 +1,10 @@
 from flask_restful import Api
 ########################## User ##########################
 from controllers.users.profile.favorites import AddFavorite, DeleteFavorite, FavoriteList
-from controllers.users.profile.userOperation import ProfileEdit, ProfileDelete, GetUserDataByToken, UpdateUserProfileImage
+from controllers.users.profile.userOperation import ProfileEdit, ProfileDelete, GetUserDataByToken, UpdateUserProfileImage, ResetPassword
 from controllers.users.register.login import UserLogin
 from controllers.users.register.signup import UserSignup
-from controllers.users.vehicles.vehicleOp import AddVehicle, GetVehicleTypeDataField, EditVehicle, DeleteVehicle, UserVehicleList
+from controllers.users.vehicles.vehicleOp import AddVehicle, EditVehicle, DeleteVehicle, UserVehicleList
 
 ########################## Admin ##########################
 from controllers.admin.fuel_type.fuelTypeOperation import FuelTypeList, AddFuelType, EditFuelType, FuelTypeById
@@ -27,6 +27,7 @@ def create_routes(api: Api):
     api.add_resource(ProfileDelete, '/api/delete_profile')
     api.add_resource(GetUserDataByToken, '/api/user/profile_info')
     api.add_resource(UpdateUserProfileImage, '/api/user/update_profile_image')
+    api.add_resource(ResetPassword, '/api/user/reset_password')
     ########################## User.vehicle ##########################
     api.add_resource(UserVehicleList, '/api/vehicle_list')
     api.add_resource(AddVehicle, '/api/add_vehicle')
