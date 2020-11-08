@@ -6,7 +6,7 @@ import datetime
 import bson
 import json
 from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class ProfileEdit(Resource):
@@ -163,19 +163,25 @@ class ResetPassword(Resource):
         data = request.get_json()
         uId = bson.ObjectId(get_jwt_identity())
         try:
-            update_ = mongo.db.userRegister.update_one(
-                {
-                "_id": uId
-                },
-                {
-                "$set": {
-                    "password": generate_password_hash(data["password"]),                    
-                    "update_date": datetime.datetime.now()
+            userData = mongo.db.userRegister.find_one({"_id": uId},{"password":1})
+            print(userData["password"])
+            if check_password_hash(userData["password"], data["oldPassword"]) == True:
+                update_ = mongo.db.userRegister.update_one(
+                    {
+                    "_id": uId
+                    },
+                    {
+                    "$set": {
+                        "password": generate_password_hash(data["newPassword"]),                    
+                        "update_date": datetime.datetime.now()
+                        }
                     }
-                }
-                )
-            msg = "SUCCESS"
-            error = False
+                    )
+                msg = "SUCCESS"
+                error = False
+            else:
+                msg = "Password Didn't match!!!"
+                error = True
         except Exception as ex:
             msg = str(ex)
             error = True

@@ -19,6 +19,8 @@ class UserSignup(Resource):
             "last_name": data["last_name"],
             "email": data["email"],
             "role": ["passenger"],            
+            "address": "",            
+            "country": "",            
             "pushNotification": {
                 "on_message_send": True,
                 "on_booking": True,
@@ -29,6 +31,7 @@ class UserSignup(Resource):
                 "on_booking": True,
                 "on_suppport_reply": True
             },
+            "default_contact_number" :"",
             "del_status":False,
             "create_date": datetime.datetime.now()
         }
