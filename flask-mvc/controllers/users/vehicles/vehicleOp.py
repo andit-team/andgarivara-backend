@@ -50,6 +50,7 @@ def getAllDataField(data):
             "del_status": False,
             "activeStatus" :"pending",
             "default_contact_number":data["default_contact_number"],
+            "refType": data["refType"],
             "create_date": datetime.datetime.now()
     }
     return dt
@@ -67,13 +68,11 @@ def insertData(data):
     references = []
     if userRole =="owner":        
         driverId = bsonO.ObjectId()
+        driverInfo["_id"] = driverId
+        driverInfo["refType"] = data["refType"]
         if data["refType"] == "byOwner" :            
-            driverInfo["_id"] = driverId
-            driverInfo["refType"] = data["refType"]
-            driverInfo["vehicleId"] = vehicleId            
-        else:
-            driverInfo["refType"] = "byAdmin"
-        dt["driver"] = driverId
+            driverInfo["vehicleId"] = vehicleId 
+            dt["driver"] = driverId         
     else:
         ownerInfo=data["ownerInfo"]
         dt["driver"] = userId
