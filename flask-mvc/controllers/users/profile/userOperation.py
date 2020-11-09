@@ -33,7 +33,6 @@ def UpdateData(data):
                     "country": data["country"],
                     "default_contact_number":  data["default_contact_number"],
                     "address": data["address"],
-                    "profile_pic": data["profile_pic"],
                     "pushNotification": {
                     "on_message_send": data["push_on_message_send"],
                     "on_booking": data["push_on_booking"],

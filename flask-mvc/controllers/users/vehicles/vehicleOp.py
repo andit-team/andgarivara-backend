@@ -49,6 +49,7 @@ def getAllDataField(data):
             "carAddress": data["carAddress"],
             "del_status": False,
             "activeStatus" :"pending",
+            "default_contact_number":data["default_contact_number"],
             "create_date": datetime.datetime.now()
     }
     return dt
@@ -56,25 +57,29 @@ def getAllDataField(data):
 def insertData(data):
     error = False
     msg = ""
+    vehicleId = bsonO.ObjectId()
     userId = bsonO.ObjectId(get_jwt_identity())    
     dt = getAllDataField(data) 
+    dt["_id"] = vehicleId
     userRole = data["role"]
-    driverInfo = []
+    driverInfo=data["driverInfo"]
     ownerInfo  = []
-    if userRole =="owner":
-        driverInfo=data["driverInfo"]
+    references = []
+    if userRole =="owner":        
         driverId = bsonO.ObjectId()
         if data["refType"] == "byOwner" :            
             driverInfo["_id"] = driverId
             driverInfo["refType"] = data["refType"]
+            driverInfo["vehicleId"] = vehicleId            
         else:
             driverInfo["refType"] = "byAdmin"
         dt["driver"] = driverId
     else:
         ownerInfo=data["ownerInfo"]
         dt["driver"] = userId
-        driverInfo["_id"] = userId
-        driverInfo["refType"] = "byDriver"
+        ownerInfo["_id"] = bsonO.ObjectId()
+        ownerInfo["vehicleId"] = vehicleId
+        references = data["reference"]
     try:
         fuelData = mongo.db.fuelType.find({"_id":bsonO.ObjectId(data["fuelType"])}).count()
         if fuelData == 0:
@@ -94,14 +99,15 @@ def insertData(data):
         statusChange = mongo.db.userRegister.update(
             {
                 "_id":userId
-            },
+            },           
             {
                 "$addToSet": {
                     "role":userRole,
                     "drivers" : driverInfo,
-                    "owners" : ownerInfo
+                    "owners" : ownerInfo,
+                    "reference":references                    
                 }
-            }
+            }            
         )
         msg = "SUCCESS"
         error = False
@@ -218,3 +224,4 @@ class DeleteVehicle(Resource):
             "error": error,
             "data": None
         })
+        

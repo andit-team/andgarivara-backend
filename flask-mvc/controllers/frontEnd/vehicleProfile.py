@@ -9,50 +9,45 @@ from bson.json_util import dumps
 
 class VehicleProfile(Resource):
     @staticmethod
-    def get() -> Response:
-        data = request.get_json()
+    def get(id) -> Response:
+        vehicleDetails = None
         try:
             dt = mongo.db.vehicles.aggregate(
                 [{
                     "$match": {
-                        "_id": bsonO.ObjectId(data["_id"])
+                        "_Id": id,
+                        "del_status": False
                     }
-                },
-                    {
+                },                
+                {
                     "$lookup": {
-                        "from": "vehicle_types",
-                        "localField": "vehicle_type",
+                        "from": "fuelType",
+                        "localField": "fuelType",
                         "foreignField": "_id",
-                        "as": "vehicle_type_details"
+                        "as": "fuel_details"
                     },
-
-                },
-                    {
-                    "$lookup": {
-                        "from": "users",
-                        "localField": "user_id",
-                        "foreignField": "_id",
-                        "as": "user_details"
-                    }
-                },
-                    {
-                    "$lookup": {
-                        "from": "locationCity",
-                        "localField": "city",
-                        "foreignField": "_id",
-                        "as": "location_details"
-                    }
                 }
                 ])
+            vehicelTypeId = None            
+            for i in dt:
+                if i["vehicleType"] != None:               
+                    vehicelTypeId = bsonO.ObjectId(i["vehicleType"])
+                    vehicleDetails=i
+            vehicleTypeDetails = mongo.db.vehicleType.find_one({"_id":vehicelTypeId})
+            vehicleDetails["vehicleTypeTitle"]= vehicleTypeDetails["title"]  
+            for i in vehicleTypeDetails["brands"]:
+                if i["_id"] ==  bsonO.ObjectId(vehicleDetails["brand"]):
+                    vehicleDetails["brandTitle"]=i["brand"]
+                    print(vehicleDetails["brandTitle"])  
+                
             msg = "SUCCESS"
             error = False
         except Exception as ex:
-            msg = "FAILED"
+            dt=None
+            msg = str(ex)
             error = True
-            err_msg = ex
-
         return jsonify({
             "msg": msg,
             "error": error,
-            "data": json.loads(dumps(dt))
+            "data": json.loads(dumps(vehicleDetails))
         })
