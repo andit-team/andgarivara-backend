@@ -146,8 +146,8 @@ class UserVehicleList(Resource):
     @staticmethod
     @jwt_required
     def get() -> Response:
-        data = request.get_json()
         msg = ""
+        vehicleDetails = None
         current_user = bsonO.ObjectId(get_jwt_identity())
         try:
             dt = mongo.db.vehicles.aggregate(
@@ -166,13 +166,18 @@ class UserVehicleList(Resource):
                     },
                 }
                 ])
-            # vehicelTypeId = bsonO.ObjectId(dt["vehicle_type"])
-            # dt["vehicleTypeId"]=
-            # for i in vehicelTypeId["brands"]:
-            #     if dt["brand"] == i["_id"]:
-            #         vehicleDetails["brandId"]= i["_id"]
-            #         vehicleDetails["brandTitle"]= i["brand"]
-                    
+            vehicelTypeId = None            
+            for i in dt:
+                if i["vehicleType"] != None:               
+                    vehicelTypeId = bsonO.ObjectId(i["vehicleType"])
+                    vehicleDetails=i
+            vehicleTypeDetails = mongo.db.vehicleType.find_one({"_id":vehicelTypeId})
+            vehicleDetails["vehicleTypeTitle"]= vehicleTypeDetails["title"]  
+            for i in vehicleTypeDetails["brands"]:
+                if i["_id"] ==  bsonO.ObjectId(vehicleDetails["brand"]):
+                    vehicleDetails["brandTitle"]=i["brand"]
+                    print(vehicleDetails["brandTitle"])  
+                
             msg = "SUCCESS"
             error = False
         except Exception as ex:
@@ -182,7 +187,7 @@ class UserVehicleList(Resource):
         return jsonify({
             "msg": msg,
             "error": error,
-            "data": json.loads(dumps(dt))
+            "data": json.loads(dumps(vehicleDetails))
         })
 
 class DeleteVehicle(Resource):
