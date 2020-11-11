@@ -5,6 +5,8 @@ import bson.json_util as bsonO
 import datetime
 import json
 from bson.json_util import dumps
+from flask_jwt_extended import jwt_required
+
 
 
 class AddVehicleAdmin(Resource):
@@ -56,11 +58,10 @@ def insertData(data):
     })
 
 
-class AdminVehicleList(Resource):
+class AdminVehicleListv(Resource):
     @staticmethod
     def get() -> Response:
         data = request.get_json()
-        err_msg = None
         try:
             dt = mongo.db.vehicles.aggregate(
                 [
@@ -169,3 +170,25 @@ def UpdateVehicleInfo(data):
         "err_msg": str(err_msg),
         "data": json.loads(dumps(data))
     })
+class AdminVehicleList(Resource):
+    @staticmethod
+    @jwt_required
+    def get(status) -> Response:
+        msg = ""
+        vehicleList = []
+        i=None
+        try:
+            dt= mongo.db.vehicles.find({"activeStatus": status,"del_status": False})            
+            for i in dt:
+                print(i) 
+                vehicleList.append(i)           
+            msg = "SUCCESS"
+            error = False
+        except Exception as ex:
+            msg = str(ex)
+            error = True
+        return jsonify({
+            "msg": msg,
+            "error": error,
+            "data": json.loads(dumps(vehicleList))
+        })
