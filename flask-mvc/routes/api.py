@@ -12,7 +12,7 @@ from controllers.admin.register.login import AdminLogin
 from controllers.admin.register.signup import AdminSignup
 from controllers.admin.vehicles.adminVehicleTypeOp import AddVehicleType, EditVehicleType, VehicleTypeById, DeleteVehicleType, VehicleTypeList,AddBrandWithVehicleType, EditBrandWithVehicleType, BrandWithVehicleTypeById, VehicleBrandList
 from controllers.admin.users.adminUser import UserList, DeleteUser, AddUser
-from controllers.admin.vehicles.adminVehicleOp import AdminVehicleList, AddVehicleAdmin, EditVehicleAdmin, DeleteVehicleAdmin
+from controllers.admin.vehicles.adminVehicleOp import AdminVehicleList, AdminVehicleStatusChange
 ########################## Frontend ##########################
 from controllers.frontEnd.vehicleProfile import VehicleProfile
 from controllers.frontEnd.homepage import HomePage
@@ -61,11 +61,14 @@ def create_routes(api: Api):
    api.add_resource(UserList, '/api/admin/user_list')
    # api.add_resource(DeleteUser, '/admin/delete_user')
    # api.add_resource(AddUser, '/admin/add_user')
+   
    ########################## Admin.Vehicle ##########################    
    # api.add_resource(AddVehicleAdmin, '/admin/add_vehicle')
    # api.add_resource(EditVehicleAdmin, '/admin/edit_vehicle')
-   # api.add_resource(DeleteVehicleAdmin, '/admin/delete_vehicle')
+   # api.add_resource(DeleteVehicleAdmin, '/admin/delete_vehicle')AdminVehicleVerifyList
+   api.add_resource(AdminVehicleList, '/api/admin/vehicle_list/<string:status>')
+   api.add_resource(AdminVehicleStatusChange, '/api/admin/vehicle_status_change/<string:id>')
    ########################## Frontend ##########################
    api.add_resource(HomePage, '/api/and_gari_vara/list_homepage')
    api.add_resource(SearchVehicle, '/api/and_gari_vara/search_result_page')
-   api.add_resource(VehicleProfile, '/api/and_gari_vara/vehicle_profile/<string:id>')
+   api.add_resource(VehicleProfile, '/api/vehicle_details/<string:id>')

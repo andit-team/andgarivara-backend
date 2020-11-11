@@ -32,8 +32,7 @@ def getAllDataField(data):
             "licenceVelidation": data["licenceVelidation"],
             "coverImage": data["coverImage"],
             "vehicle_imgs": data["vehicle_imgs"],
-            "description": data["description"],
-            "brand": data["brand"],
+            "brand": bsonO.ObjectId(data["brand"]),
             "model": data["model"],
             "manufactureYear": data["manufactureYear"],
             "video": data["video"],
@@ -176,12 +175,12 @@ class UserVehicleList(Resource):
                 if i["vehicleType"] != None:               
                     vehicelTypeId = bsonO.ObjectId(i["vehicleType"])
                     vehicleDetails=i
-            vehicleTypeDetails = mongo.db.vehicleType.find_one({"_id":vehicelTypeId})
-            vehicleDetails["vehicleTypeTitle"]= vehicleTypeDetails["title"]  
-            for i in vehicleTypeDetails["brands"]:
-                if i["_id"] ==  bsonO.ObjectId(vehicleDetails["brand"]):
-                    vehicleDetails["brandTitle"]=i["brand"]
-                    print(vehicleDetails["brandTitle"])  
+                    vehicleTypeDetails = mongo.db.vehicleType.find_one({"_id":vehicelTypeId})
+                    vehicleDetails["vehicleTypeTitle"]= vehicleTypeDetails["title"]  
+                    for i in vehicleTypeDetails["brands"]:
+                        if i["_id"] ==  bsonO.ObjectId(vehicleDetails["brand"]):
+                            vehicleDetails["brandTitle"]=i["brand"]
+                            print(vehicleDetails["brandTitle"])  
                 
             msg = "SUCCESS"
             error = False
