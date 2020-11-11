@@ -11,11 +11,12 @@ class VehicleProfile(Resource):
     @staticmethod
     def get(id) -> Response:
         vehicleDetails = None
+        dt = None
         try:
             dt = mongo.db.vehicles.aggregate(
                 [{
                     "$match": {
-                        "_Id": id,
+                        "_Id": bsonO.ObjectId(id),
                         "del_status": False
                     }
                 },                
@@ -28,18 +29,20 @@ class VehicleProfile(Resource):
                     },
                 }
                 ])
-            vehicelTypeId = None            
-            for i in dt:
-                if i["vehicleType"] != None:               
-                    vehicelTypeId = bsonO.ObjectId(i["vehicleType"])
-                    vehicleDetails=i
-            vehicleTypeDetails = mongo.db.vehicleType.find_one({"_id":vehicelTypeId})
-            vehicleDetails["vehicleTypeTitle"]= vehicleTypeDetails["title"]  
-            for i in vehicleTypeDetails["brands"]:
-                if i["_id"] ==  bsonO.ObjectId(vehicleDetails["brand"]):
-                    vehicleDetails["brandTitle"]=i["brand"]
-                    print(vehicleDetails["brandTitle"])  
-                
+            vehicelTypeId = None
+                  
+            for i in dt:   
+                print(i["_id"])             
+            #     if not i["vehicleType"]:               
+            #         vehicelTypeId = bsonO.ObjectId(i["vehicleType"])
+            #         vehicleDetails=i
+            #         print(vehicleDetails)
+            #         vehicleTypeDetails = mongo.db.vehicleType.find_one({"_id":vehicelTypeId})
+            #         vehicleDetails["vehicleTypeTitle"]= vehicleTypeDetails["title"]  
+            #         for i in vehicleTypeDetails["brands"]:
+            #             if i["_id"] ==  bsonO.ObjectId(vehicleDetails["brand"]):
+            #                 vehicleDetails["brandTitle"]=i["brand"]
+            #                 print(vehicleDetails["brandTitle"]) 
             msg = "SUCCESS"
             error = False
         except Exception as ex:

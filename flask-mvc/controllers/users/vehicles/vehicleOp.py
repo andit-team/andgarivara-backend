@@ -175,12 +175,12 @@ class UserVehicleList(Resource):
                 if i["vehicleType"] != None:               
                     vehicelTypeId = bsonO.ObjectId(i["vehicleType"])
                     vehicleDetails=i
-            vehicleTypeDetails = mongo.db.vehicleType.find_one({"_id":vehicelTypeId})
-            vehicleDetails["vehicleTypeTitle"]= vehicleTypeDetails["title"]  
-            for i in vehicleTypeDetails["brands"]:
-                if i["_id"] ==  bsonO.ObjectId(vehicleDetails["brand"]):
-                    vehicleDetails["brandTitle"]=i["brand"]
-                    print(vehicleDetails["brandTitle"])  
+                    vehicleTypeDetails = mongo.db.vehicleType.find_one({"_id":vehicelTypeId})
+                    vehicleDetails["vehicleTypeTitle"]= vehicleTypeDetails["title"]  
+                    for i in vehicleTypeDetails["brands"]:
+                        if i["_id"] ==  bsonO.ObjectId(vehicleDetails["brand"]):
+                            vehicleDetails["brandTitle"]=i["brand"]
+                            print(vehicleDetails["brandTitle"])  
                 
             msg = "SUCCESS"
             error = False

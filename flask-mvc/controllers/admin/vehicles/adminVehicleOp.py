@@ -180,7 +180,6 @@ class AdminVehicleList(Resource):
         try:
             dt= mongo.db.vehicles.find({"activeStatus": status,"del_status": False})            
             for i in dt:
-                print(i) 
                 vehicleList.append(i)           
             msg = "SUCCESS"
             error = False
@@ -191,4 +190,31 @@ class AdminVehicleList(Resource):
             "msg": msg,
             "error": error,
             "data": json.loads(dumps(vehicleList))
+        })
+class AdminVehicleStatusChange(Resource):
+    @staticmethod
+    def put(id) -> Response:
+        data = request.get_json()
+        try:
+            update_ = mongo.db.vehicles.update_one(
+                {
+                    "del_status": False,
+                    "_id": bsonO.ObjectId(id)
+                },
+                {
+                    "$set": {
+                        "activeStatus": data["status"],                      
+                        "status_change_date": datetime.datetime.now()
+                    }
+                }
+            )
+            msg = "SUCCESSFULL"
+            error = False
+        except Exception as ex:
+            msg = str(ex)
+            error = True
+        return jsonify({
+            "msg": msg,
+            "error": error,
+            "data": json.loads(dumps(data))
         })
