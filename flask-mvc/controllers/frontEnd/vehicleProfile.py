@@ -11,38 +11,17 @@ class VehicleProfile(Resource):
     @staticmethod
     def get(id) -> Response:
         vehicleDetails = None
-        dt = None
         try:
-            dt = mongo.db.vehicles.aggregate(
-                [{
-                    "$match": {
-                        "_Id": bsonO.ObjectId(id),
-                        "del_status": False
-                    }
-                },                
-                {
-                    "$lookup": {
-                        "from": "fuelType",
-                        "localField": "fuelType",
-                        "foreignField": "_id",
-                        "as": "fuel_details"
-                    },
-                }
-                ])
-            vehicelTypeId = None
-                  
-            for i in dt:   
-                print(i["_id"])             
-            #     if not i["vehicleType"]:               
-            #         vehicelTypeId = bsonO.ObjectId(i["vehicleType"])
-            #         vehicleDetails=i
-            #         print(vehicleDetails)
-            #         vehicleTypeDetails = mongo.db.vehicleType.find_one({"_id":vehicelTypeId})
-            #         vehicleDetails["vehicleTypeTitle"]= vehicleTypeDetails["title"]  
-            #         for i in vehicleTypeDetails["brands"]:
-            #             if i["_id"] ==  bsonO.ObjectId(vehicleDetails["brand"]):
-            #                 vehicleDetails["brandTitle"]=i["brand"]
-            #                 print(vehicleDetails["brandTitle"]) 
+            vehicleDetails = mongo.db.vehicles.find_one({"del_status": False,"_id":bsonO.ObjectId(id)})                     
+            vehicelTypeId = bsonO.ObjectId(vehicleDetails["vehicleType"])
+            fuelTypeDetails = mongo.db.fuelType.find_one({"_id":bsonO.ObjectId(vehicleDetails["fuelType"])})
+            vehicleTypeDetails = mongo.db.vehicleType.find_one({"_id":vehicelTypeId})
+            vehicleDetails["vehicleTypeTitle"]= vehicleTypeDetails["title"]  
+            vehicleDetails["fuelTypeTitle"]= fuelTypeDetails["title"]  
+            for i in vehicleTypeDetails["brands"]:
+                if i["_id"] ==  bsonO.ObjectId(vehicleDetails["brand"]):
+                    vehicleDetails["brandTitle"]=i["brand"]
+                    print(vehicleDetails["brandTitle"]) 
             msg = "SUCCESS"
             error = False
         except Exception as ex:
