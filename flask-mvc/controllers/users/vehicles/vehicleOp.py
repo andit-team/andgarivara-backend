@@ -4,6 +4,7 @@ from extension import mongo
 import bson.json_util as bsonO
 import datetime
 import json
+from pymongo import UpdateOne
 from bson.json_util import dumps
 from flask_jwt_extended import jwt_required, get_jwt_identity
 import constants.constantValue as constants
@@ -120,8 +121,10 @@ def insertDataForNewUser(data):
                 }            
             )
         else:
-            statusChange = mongo.db.userRegister.update_one(
-                {
+            bulkAction = mongo.db.vehicles.bulk_write(
+                [
+                    UpdateOne(
+                         {
                     "_id":userId
                 },           
                 {
@@ -130,18 +133,21 @@ def insertDataForNewUser(data):
                         "owners" : ownerInfo,
                         "reference":references                    
                     }
-                }            
+                } 
+                    ),
+                    UpdateOne(
+                    {
+                        "_id":userId
+                    },
+                    {
+                        "$set": {
+                            "drivers" : driverInfo
+                        }
+                    }
+                    )
+                ]
             )
-            driverInfoUpdate = mongo.db.userRegister.update_one(
-                {
-                    "_id":userId
-                },
-                {
-                     "$set": {
-                         "drivers" : driverInfo
-                     }
-                }
-            )
+            
         msg = "SUCCESS"
         error = False
     except Exception as ex:

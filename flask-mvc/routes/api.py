@@ -5,6 +5,7 @@ from controllers.users.profile.userOperation import ProfileEdit, ProfileDelete, 
 from controllers.users.register.login import UserLogin
 from controllers.users.register.signup import UserSignup
 from controllers.users.vehicles.vehicleOp import AddVehicle, EditVehicle, DeleteVehicle, UserVehicleList
+from controllers.users.vehicles.services import AddVehicleInService
 
 ########################## Admin ##########################
 from controllers.admin.fuel_type.fuelTypeOperation import FuelTypeList, AddFuelType, EditFuelType, FuelTypeById
@@ -33,6 +34,8 @@ def create_routes(api: Api):
    api.add_resource(AddVehicle, '/api/add_vehicle')
    api.add_resource(EditVehicle, '/api/edit_vehicle')
    api.add_resource(DeleteVehicle, '/api/delete_vehicle')
+   ########################## User.vehicle.service ##########################
+   api.add_resource(AddVehicleInService, '/api/add_service_cost/<string:id>')
    ########################## User.favorite ##########################
    api.add_resource(FavoriteList, '/api/favorite_list')
    api.add_resource(AddFavorite, '/api/add_favorites')
