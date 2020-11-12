@@ -6,14 +6,16 @@ import datetime
 import json
 from bson.json_util import dumps
 from flask_jwt_extended import jwt_required, get_jwt_identity
+import constants.constantValue as constants
 
 class AddVehicle(Resource):
     @staticmethod
     @jwt_required
     def post() -> Response:
-        data = request.get_json()
-        flag = insertData(data)
+        data = request.get_json()        
+        flag = insertDataForNewUser(data)
         return flag
+    
 def getAllDataField(data):
     userId = bsonO.ObjectId(get_jwt_identity())
     dt = {
@@ -48,29 +50,30 @@ def getAllDataField(data):
             "carAddress": data["carAddress"],
             "del_status": False,
             "activeStatus" :"pending",
-            "default_contact_number":data["default_contact_number"],
-            "refType": data["refType"],
+            "default_contact_number":data["default_contact_number"],           
             "create_date": datetime.datetime.now()
     }
     return dt
 
-def insertData(data):
+def insertDataForNewUser(data):
     error = False
     msg = ""
     vehicleId = bsonO.ObjectId()
     userId = bsonO.ObjectId(get_jwt_identity())    
     dt = getAllDataField(data) 
     dt["_id"] = vehicleId
+    dt["refType"] = data["refType"]
     userRole = data["role"]
     driverInfo=data["driverInfo"]
+    driverInfo["refType"] = data["refType"]
     ownerInfo  = []
     references = []
-    if userRole =="owner":        
-        driverId = bsonO.ObjectId()
-        driverInfo["_id"] = driverId
-        driverInfo["refType"] = data["refType"]
-        if data["refType"] == "byOwner" :            
-            driverInfo["vehicleId"] = vehicleId 
+    
+    if userRole == constants.ROLL_OWNER:
+        if data["refType"] == constants.REFFERENCE_TYPE_OWNER :            
+            driverInfo["vehicleId"] = vehicleId
+            driverId = bsonO.ObjectId()
+            driverInfo["_id"] = driverId
             dt["driver"] = driverId         
     else:
         ownerInfo=data["ownerInfo"]
@@ -94,19 +97,51 @@ def insertData(data):
             "data": json.loads(dumps(dt))
         })                     
         ins = mongo.db.vehicles.insert(dt)
-        statusChange = mongo.db.userRegister.update(
-            {
-                "_id":userId
-            },           
-            {
-                "$addToSet": {
-                    "role":userRole,
-                    "drivers" : driverInfo,
-                    "owners" : ownerInfo,
-                    "reference":references                    
+        userRollData = mongo.db.userRegister.find_one({"_id":userId},{"role" : 1, "_id": 0})
+        rolleNew = constants.ROLL_PASSENGER
+        for i in userRollData["role"]:
+            if i == constants.ROLL_OWNER:
+                rolleNew = constants.ROLL_OWNER
+            elif i == constants.ROLL_DRIVER:
+                rolleNew = constants.ROLL_DRIVER
+        print("rolleNew:" + rolleNew)
+        if rolleNew != constants.ROLL_DRIVER: 
+            statusChange = mongo.db.userRegister.update(
+                {
+                    "_id":userId
+                },           
+                {
+                    "$addToSet": {
+                        "role":userRole,
+                        "drivers" : driverInfo,
+                        "owners" : ownerInfo,
+                        "reference":references                    
+                    }
+                }            
+            )
+        else:
+            statusChange = mongo.db.userRegister.update_one(
+                {
+                    "_id":userId
+                },           
+                {
+                    "$addToSet": {
+                        "role":userRole,
+                        "owners" : ownerInfo,
+                        "reference":references                    
+                    }
+                }            
+            )
+            driverInfoUpdate = mongo.db.userRegister.update_one(
+                {
+                    "_id":userId
+                },
+                {
+                     "$set": {
+                         "drivers" : driverInfo
+                     }
                 }
-            }            
-        )
+            )
         msg = "SUCCESS"
         error = False
     except Exception as ex:
@@ -145,7 +180,7 @@ class EditVehicle(Resource):
             "msg": msg,
             "error": error,
             "data": json.loads(dumps(data))
-        })
+        })        
 class UserVehicleList(Resource):
     @staticmethod
     @jwt_required
