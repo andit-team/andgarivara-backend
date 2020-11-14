@@ -13,10 +13,10 @@ class AddVehicle(Resource):
     @staticmethod
     @jwt_required
     def post() -> Response:
-        data = request.get_json()        
-        flag = insertDataForNewUser(data)
+        data = request.get_json()
+        flag = insertData(data)
         return flag
-    
+
 def getAllDataField(data):
     userId = bsonO.ObjectId(get_jwt_identity())
     dt = {
@@ -50,18 +50,18 @@ def getAllDataField(data):
             "carLocation": data["carLocation"],
             "carAddress": data["carAddress"],
             "del_status": False,
-            "activeStatus" :"pending",
-            "default_contact_number":data["default_contact_number"],           
+            "activeStatus" :constants.STATUS_PENDING,
+            "default_contact_number":data["default_contact_number"],
             "create_date": datetime.datetime.now()
     }
     return dt
 
-def insertDataForNewUser(data):
+def insertData(data):
     error = False
     msg = ""
     vehicleId = bsonO.ObjectId()
-    userId = bsonO.ObjectId(get_jwt_identity())    
-    dt = getAllDataField(data) 
+    userId = bsonO.ObjectId(get_jwt_identity())
+    dt = getAllDataField(data)
     dt["_id"] = vehicleId
     dt["refType"] = data["refType"]
     userRole = data["role"]
@@ -69,13 +69,13 @@ def insertDataForNewUser(data):
     driverInfo["refType"] = data["refType"]
     ownerInfo  = []
     references = []
-    
+
     if userRole == constants.ROLL_OWNER:
-        if data["refType"] == constants.REFFERENCE_TYPE_OWNER :            
+        if data["refType"] == constants.REFFERENCE_TYPE_OWNER :
             driverInfo["vehicleId"] = vehicleId
             driverId = bsonO.ObjectId()
             driverInfo["_id"] = driverId
-            dt["driver"] = driverId         
+            dt["driver"] = driverId
     else:
         ownerInfo=data["ownerInfo"]
         dt["driver"] = userId
@@ -89,14 +89,14 @@ def insertDataForNewUser(data):
             "msg": "Fuel is not valid",
             "error": True,
             "data": json.loads(dumps(dt))
-        })      
+        })
         vehicleTypeData = mongo.db.vehicleType.find({"_id":bsonO.ObjectId(data["vehicle_type"])}).count()
         if vehicleTypeData == 0:
             return jsonify({
             "msg": "Vehicle Type is not valid",
             "error": True,
             "data": json.loads(dumps(dt))
-        })                     
+        })
         ins = mongo.db.vehicles.insert(dt)
         userRollData = mongo.db.userRegister.find_one({"_id":userId},{"role" : 1, "_id": 0})
         rolleNew = constants.ROLL_PASSENGER
@@ -106,19 +106,20 @@ def insertDataForNewUser(data):
             elif i == constants.ROLL_DRIVER:
                 rolleNew = constants.ROLL_DRIVER
         print("rolleNew:" + rolleNew)
-        if rolleNew != constants.ROLL_DRIVER: 
+        if rolleNew != constants.ROLL_DRIVER:
             statusChange = mongo.db.userRegister.update(
                 {
                     "_id":userId
-                },           
+                },
                 {
                     "$addToSet": {
                         "role":userRole,
                         "drivers" : driverInfo,
                         "owners" : ownerInfo,
-                        "reference":references                    
+                        "driverStatus" : constants.STATUS_PENDING,
+                        "reference": references
                     }
-                }            
+                }
             )
         else:
             bulkAction = mongo.db.vehicles.bulk_write(
@@ -126,14 +127,14 @@ def insertDataForNewUser(data):
                     UpdateOne(
                          {
                     "_id":userId
-                },           
+                },
                 {
                     "$addToSet": {
                         "role":userRole,
                         "owners" : ownerInfo,
-                        "reference":references                    
+                        "reference":references
                     }
-                } 
+                }
                     ),
                     UpdateOne(
                     {
@@ -147,7 +148,7 @@ def insertDataForNewUser(data):
                     )
                 ]
             )
-            
+
         msg = "SUCCESS"
         error = False
     except Exception as ex:
@@ -186,7 +187,7 @@ class EditVehicle(Resource):
             "msg": msg,
             "error": error,
             "data": json.loads(dumps(data))
-        })        
+        })
 class UserVehicleList(Resource):
     @staticmethod
     @jwt_required
@@ -201,7 +202,7 @@ class UserVehicleList(Resource):
                         "userId": current_user,
                         "del_status": False
                     }
-                },                
+                },
                 {
                     "$lookup": {
                         "from": "fuelType",
@@ -211,18 +212,18 @@ class UserVehicleList(Resource):
                     },
                 }
                 ])
-            vehicelTypeId = None            
+            vehicelTypeId = None
             for i in dt:
-                if i["vehicleType"] != None:               
+                if i["vehicleType"] != None:
                     vehicelTypeId = bsonO.ObjectId(i["vehicleType"])
                     vehicleDetails=i
                     vehicleTypeDetails = mongo.db.vehicleType.find_one({"_id":vehicelTypeId})
-                    vehicleDetails["vehicleTypeTitle"]= vehicleTypeDetails["title"]  
+                    vehicleDetails["vehicleTypeTitle"]= vehicleTypeDetails["title"]
                     for i in vehicleTypeDetails["brands"]:
                         if i["_id"] ==  bsonO.ObjectId(vehicleDetails["brand"]):
                             vehicleDetails["brandTitle"]=i["brand"]
-                            print(vehicleDetails["brandTitle"])  
-                
+                            print(vehicleDetails["brandTitle"])
+
             msg = "SUCCESS"
             error = False
         except Exception as ex:
@@ -263,4 +264,3 @@ class DeleteVehicle(Resource):
             "error": error,
             "data": None
         })
-        
