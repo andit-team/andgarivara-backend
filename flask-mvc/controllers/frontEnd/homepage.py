@@ -6,42 +6,41 @@ import datetime
 import json
 from bson.json_util import dumps
 from flask_jwt_extended import jwt_required, get_jwt_identity
+import constants.constantValue as constants
 
 
 class HomePage(Resource):
     @staticmethod
     def get() -> Response:
-        data = request.get_json()
         dtRentalVehicle = None
         # dtLeasingVehicle = None
         # dtRideShareVehicle = None
         # dtInstantRideVehicle = None
-        # dtDrive = None
-        userData = None
+        dtDrive = None
         try:
-            if get_jwt_identity() != None:
-                uId = bsonO.ObjectId(get_jwt_identity())
-                userData = mongo.db.users.find_one(
-                    {"_id": uId},
-                    {
+            # if get_jwt_identity() != None:
+            #     uId = bsonO.ObjectId(get_jwt_identity())
+            #     userData = mongo.db.userRegister.find_one(
+            #         {"_id": uId},
+            #         {
 
-                    }
-                )
+            #         }
+            #     )
             # retrive rental vehicles by rating
-            dtRentalVehicle = mongo.db.locationArea.find({})
-
+            dtRentalVehicle = mongo.db.vehicles.find({"activeService": constants.SERVICE_RENTAL, "activeStatus" : constants.STATUS_VERIFIED, "del_status" : False})
+            print("vehicles On Rental: " + str(dtRentalVehicle.count()))
             # # retrive Leasing vehicles by rating
-            # dtLeasingVehicle = mongo.db.locationArea.find({})
+            # dtLeasingVehicle = mongo.db.vehicles.find({})
             #
             # # retrive ride share vehicles by rating
-            # dtRideShareVehicle = mongo.db.locationArea.find({})
+            # dtRideShareVehicle = mongo.db.vehicles.find({})
             #
             # # retrive instant ride vehicles by rating
-            # dtInstantRideVehicle = mongo.db.locationArea.find({})
+            # dtInstantRideVehicle = mongo.db.vehicles.find({})
             #
-            # # retrive driver data by rating
-            # dtDrive = mongo.db.drivers.find({})
-
+            # retrive driver data by rating
+            dtDrive = mongo.db.userRegister.find({"driverStatus" : constants.STATUS_VERIFIED, "del_status" : False})
+            print("Drivers: " + str(dtDrive.count()))
             msg = "SUCCESS"
             error = False
         except Exception as ex:
@@ -50,10 +49,10 @@ class HomePage(Resource):
         return jsonify({
             "msg": msg,
             "error": error,
-            "user_data": json.loads(dumps(userData)),
+            # "user_data": json.loads(dumps(userData)),
             "rental_data": json.loads(dumps(dtRentalVehicle)),
             # "leasing_data": json.loads(dumps(dtLeasingVehicle)),
             # "ride_share_data": json.loads(dumps(dtRideShareVehicle)),
             # "instant_ride_data": json.loads(dumps(dtInstantRideVehicle)),
-            # "driver_data": json.loads(dumps(dtDrive))
+            "driver_data": json.loads(dumps(dtDrive))
         })

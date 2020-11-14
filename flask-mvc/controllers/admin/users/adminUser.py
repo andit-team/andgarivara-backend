@@ -97,6 +97,7 @@ class UserList(Resource):
     @jwt_required
     def post() -> Response:
         data = request.get_json()
+        msg = None
         try:
             dt = mongo.db.userRegister.find({"role":data["role"],"del_status":False})
             msg = "SUCCESSFULL"
@@ -109,4 +110,57 @@ class UserList(Resource):
             "msg": msg,
             "error": error,
             "data": json.loads(dumps(dt))
+        })
+
+class VerifyDriver(Resource):
+    @staticmethod
+    @jwt_required
+    def put(id) -> Response:
+        data = request.get_json()
+        try:
+            update_ = mongo.db.userRegister.update_one(
+                {
+                    "del_status": False,
+                    "_id": bson.ObjectId(id)
+                },
+                {
+                    "$set": {
+                        "driverStatus": data["status"],
+                        "status_change_date": datetime.datetime.now()
+                    }
+                }
+            )
+            msg = "SUCCESS"
+            error = False
+        except Exception as ex:
+            msg = str(ex)
+            error = True
+            dt = None
+        return jsonify({
+            "msg": msg,
+            "error": error,
+            "data": json.loads(dumps(data))
+        })
+
+class DriverList(Resource):
+    @staticmethod
+    @jwt_required
+    def get(status) -> Response:
+        msg = ""
+        driverList = []
+        i=None
+        try:
+            dt= mongo.db.userRegister.find({"driverStatus": status,"del_status": False})
+            print(dt.count())
+            for i in dt:
+                driverList.append(i)
+            msg = "SUCCESS"
+            error = False
+        except Exception as ex:
+            msg = str(ex)
+            error = True
+        return jsonify({
+            "msg": msg,
+            "error": error,
+            "data": json.loads(dumps(driverList))
         })
