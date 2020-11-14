@@ -204,6 +204,7 @@ class AdminVehicleStatusChange(Resource):
                 {
                     "$set": {
                         "activeStatus": data["status"],                      
+                        "vehicleLicenceType": data["vehicleLicenceType"],                      
                         "status_change_date": datetime.datetime.now()
                     }
                 }

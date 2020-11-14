@@ -6,6 +6,7 @@ import datetime
 import json
 from bson.json_util import dumps
 from werkzeug.security import generate_password_hash
+import constants.constantValue as constants
 
 
 class UserSignup(Resource):
@@ -18,9 +19,9 @@ class UserSignup(Resource):
             "first_name": data["first_name"],
             "last_name": data["last_name"],
             "email": data["email"],
-            "role": ["passenger"],            
-            "address": "",            
-            "country": "",            
+            "role": constants.ROLL_PASSENGER,
+            "address": "",
+            "country": "",
             "pushNotification": {
                 "on_message_send": True,
                 "on_booking": True,
