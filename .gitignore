@@ -1,6 +1,7 @@
 flask-mvc/__pycache__
 flask-mvc/controllers/admin/__pycache__
 flask-mvc/controllers/admin/fuel_type/__pycache__
+flask-mvc/controllers/admin/appSetup/__pycache__
 flask-mvc/controllers/admin/calculation_setup/__pycache__
 flask-mvc/controllers/admin/location/__pycache__
 flask-mvc/controllers/__pycache__
