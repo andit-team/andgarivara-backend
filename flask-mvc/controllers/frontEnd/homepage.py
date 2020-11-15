@@ -12,6 +12,7 @@ import constants.constantValue as constants
 class HomePage(Resource):
     @staticmethod
     def get() -> Response:
+        data = request.get_json()
         dtRentalVehicle = None
         # dtLeasingVehicle = None
         # dtRideShareVehicle = None
@@ -27,7 +28,17 @@ class HomePage(Resource):
             #         }
             #     )
             # retrive rental vehicles by rating
-            dtRentalVehicle = mongo.db.vehicles.find({"activeService": constants.SERVICE_RENTAL, "activeStatus" : constants.STATUS_VERIFIED, "del_status" : False})
+            dtRentalVehicle = mongo.db.vehicles.find({"activeService": constants.SERVICE_RENTAL, "activeStatus" : constants.STATUS_VERIFIED, "del_status" : False,
+                                                      "carLocation": {
+                                                                    "$near": {
+                                                                    "$maxDistance": 20000,
+                                                                    "$geometry": {
+                                                                    "type": "Point",
+                                                                    "coordinates": [data["long"],data["lat"]]
+                                                                    }
+                                                                }
+                                                            }
+                                                      })
             print("vehicles On Rental: " + str(dtRentalVehicle.count()))
             # # retrive Leasing vehicles by rating
             # dtLeasingVehicle = mongo.db.vehicles.find({})

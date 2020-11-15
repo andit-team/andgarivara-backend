@@ -6,12 +6,13 @@ from controllers.users.register.login import UserLogin
 from controllers.users.register.signup import UserSignup
 from controllers.users.register.driverSignup import DriverSignup
 from controllers.users.vehicles.vehicleOp import AddVehicle, EditVehicle, DeleteVehicle, UserVehicleList
-from controllers.users.vehicles.services import AddVehicleInService
+from controllers.users.vehicles.services import AddVehicleInService, GetVehicleServiceCost
 
 ########################## Admin ##########################
 from controllers.admin.fuel_type.fuelTypeOperation import FuelTypeList, AddFuelType, EditFuelType, FuelTypeById
 from controllers.admin.register.login import AdminLogin
 from controllers.admin.register.signup import AdminSignup
+from controllers.admin.appSetup.setupPage import GetAppSetupData, UpdateAppSetupData
 from controllers.admin.vehicles.adminVehicleTypeOp import AddVehicleType, EditVehicleType, VehicleTypeById, DeleteVehicleType, VehicleTypeList,AddBrandWithVehicleType, EditBrandWithVehicleType, BrandWithVehicleTypeById, VehicleBrandList
 from controllers.admin.users.adminUser import UserList, DeleteUser, AddUser, VerifyDriver, DriverList
 from controllers.admin.vehicles.adminVehicleOp import AdminVehicleList, AdminVehicleStatusChange
@@ -21,6 +22,10 @@ from controllers.frontEnd.homepage import HomePage
 from controllers.frontEnd.searchVehicle import SearchVehicle
 
 def create_routes(api: Api):
+   ########################## User.Setuppage ##########################
+   api.add_resource(GetAppSetupData, '/api/admin/get_app_setup')
+   # api.add_resource(AddAppSetupData, '/api/admin/add_app_setup')
+   api.add_resource(UpdateAppSetupData, '/api/admin/update_app_setup')
    ########################## User.Reg ##########################
    api.add_resource(UserSignup, '/api/signup')
    api.add_resource(UserLogin, '/api/login')
@@ -38,6 +43,7 @@ def create_routes(api: Api):
    api.add_resource(DeleteVehicle, '/api/delete_vehicle')
    ########################## User.vehicle.service ##########################
    api.add_resource(AddVehicleInService, '/api/add_service_cost/<string:id>')
+   api.add_resource(GetVehicleServiceCost, '/api/get_service_cost/<string:id>')
    ########################## User.favorite ##########################
    api.add_resource(FavoriteList, '/api/favorite_list')
    api.add_resource(AddFavorite, '/api/add_favorites')

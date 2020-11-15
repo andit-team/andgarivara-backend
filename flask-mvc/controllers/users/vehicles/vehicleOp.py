@@ -4,7 +4,7 @@ from extension import mongo
 import bson.json_util as bsonO
 import datetime
 import json
-from pymongo import UpdateOne
+from pymongo import GEO2D, UpdateOne, MongoClient, GEOSPHERE 
 from bson.json_util import dumps
 from flask_jwt_extended import jwt_required, get_jwt_identity
 import constants.constantValue as constants
@@ -59,6 +59,7 @@ def getAllDataField(data):
 def insertData(data):
     error = False
     msg = ""
+    
     vehicleId = bsonO.ObjectId()
     userId = bsonO.ObjectId(get_jwt_identity())
     dt = getAllDataField(data)
@@ -83,6 +84,7 @@ def insertData(data):
         ownerInfo["vehicleId"] = vehicleId
         references = data["reference"]
     try:
+        createIndex = mongo.db.vehicles.create_index([("carLocation", GEOSPHERE)] )
         fuelData = mongo.db.fuelType.find({"_id":bsonO.ObjectId(data["fuelType"])}).count()
         if fuelData == 0:
             return jsonify({
@@ -97,6 +99,7 @@ def insertData(data):
             "error": True,
             "data": json.loads(dumps(dt))
         })
+        
         ins = mongo.db.vehicles.insert(dt)
         userRollData = mongo.db.userRegister.find_one({"_id":userId},{"role" : 1, "_id": 0})
         rolleNew = constants.ROLL_PASSENGER

@@ -1,4 +1,3 @@
-from bson import objectid
 from flask import Response, request, jsonify
 from flask_restful import Resource
 from extension import mongo
@@ -16,7 +15,8 @@ class AddVehicleInService(Resource):
     @jwt_required
     def put(id) -> Response:
         data = request.get_json()
-        vehicelTypeId = bsonO.ObjectId(id)
+        vehicelId = bsonO.ObjectId(id)
+        userId = bsonO.ObjectId(get_jwt_identity())
         serviceDetails = None
         serviceType = None
         msg = None
@@ -49,7 +49,8 @@ class AddVehicleInService(Resource):
                 [
                     UpdateOne(
                         {
-                            "_id":vehicelTypeId
+                            "_id":vehicelId,
+                            "userId":userId
                         },
                         {
                             "$set":{
@@ -63,7 +64,8 @@ class AddVehicleInService(Resource):
                     ),
                     UpdateOne(
                         {
-                            "_id":vehicelTypeId
+                            "_id":vehicelId,
+                            "userId":userId
                         },
                         {
                             "$addToSet": {  
@@ -82,4 +84,36 @@ class AddVehicleInService(Resource):
             "msg": msg,
             "error": error,
             "data": json.loads(dumps(data))
+        })  
+
+class GetVehicleServiceCost(Resource):
+    @staticmethod
+    @jwt_required
+    def get(id) -> Response:
+        vehicelId = bsonO.ObjectId(id)
+        serviceData = None
+        msg = None
+        error = None  
+        try:           
+            serviceData = mongo.db.vehicles.find_one(
+                {
+                    "_id" : vehicelId
+                },
+                {
+                    "activeService" : 1,
+                    "serviceDetails" : 1,
+                    "description" : 1,
+                    "vehicle_imgs" : 1,
+                    "video" : 1,
+                }
+            )
+            msg = "SUCCESSFULL"
+            error = False
+        except Exception as ex:
+            msg = str(ex)
+            error = True
+        return jsonify({
+            "msg": msg,
+            "error": error,
+            "data": json.loads(dumps(serviceData))
         })  
