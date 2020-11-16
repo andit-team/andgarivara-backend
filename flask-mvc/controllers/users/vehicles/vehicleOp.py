@@ -111,7 +111,7 @@ def insertData(data):
             elif i == constants.ROLL_DRIVER:
                 rolleNew = constants.ROLL_DRIVER
         
-        if rolleNew != constants.ROLL_DRIVER:
+        if rolleNew == constants.ROLL_PASSENGER and userRole == constants.ROLL_DRIVER:
             statusChange = mongo.db.userRegister.update(
                 {
                     "_id":userId
@@ -120,9 +120,21 @@ def insertData(data):
                     "$addToSet": {
                         "role":userRole,
                         "drivers" : driverInfo,
-                        "owners" : ownerInfo,
-                        "driverStatus" : constants.STATUS_PENDING,
+                        "owners" : ownerInfo,   
+                        "driverStatus" : constants.STATUS_PENDING,                     
                         "reference": references
+                    }
+                }
+            )
+        elif userRole == constants.ROLL_OWNER:
+            statusChange = mongo.db.userRegister.update(
+                {
+                    "_id":userId
+                },
+                {
+                    "$addToSet": {
+                        "role":userRole,
+                        "drivers" : driverInfo,
                     }
                 }
             )
@@ -172,8 +184,10 @@ class EditVehicle(Resource):
     def put(id) -> Response:
         data = request.get_json()
         userId = bsonO.ObjectId(get_jwt_identity())
-        vehicelId = bsonO.ObjectId(id)
+        vehicelId = bsonO.ObjectId(id)        
+        data["vehicleType"] = data["vehicle_type"]
         data["update_date"] = datetime.datetime.now()
+        data.pop("vehicle_type")
         try:
             update_ = mongo.db.vehicles.update(
                 {
@@ -292,3 +306,4 @@ class GetVehicleDataById(Resource):
             "error": error,
             "data": json.loads(dumps(vehicleData))
         })
+        
