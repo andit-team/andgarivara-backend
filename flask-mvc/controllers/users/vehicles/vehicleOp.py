@@ -23,6 +23,8 @@ def getAllDataField(data):
             "userId": userId,
             "vehicleType": bsonO.ObjectId(data["vehicle_type"]),
             "fuelType": bsonO.ObjectId(data["fuelType"]),
+            "ac": data["ac"],
+            "vehicleTitle": data["vehicleTitle"],
             "vehicleNumber": data["vehicleNumber"],
             "regNumber": data["regNumber"],
             "chassisNumber": data["chassisNumber"],
@@ -108,7 +110,7 @@ def insertData(data):
                 rolleNew = constants.ROLL_OWNER
             elif i == constants.ROLL_DRIVER:
                 rolleNew = constants.ROLL_DRIVER
-        print("rolleNew:" + rolleNew)
+        
         if rolleNew != constants.ROLL_DRIVER:
             statusChange = mongo.db.userRegister.update(
                 {
@@ -167,18 +169,19 @@ def insertData(data):
 class EditVehicle(Resource):
     @staticmethod
     @jwt_required
-    def put() -> Response:
+    def put(id) -> Response:
         data = request.get_json()
         userId = bsonO.ObjectId(get_jwt_identity())
-        vehicelTypeId = bsonO.ObjectId(data["vehicle_type"])
-        dt = getAllDataField(data)
+        vehicelId = bsonO.ObjectId(id)
+        data["update_date"] = datetime.datetime.now()
         try:
             update_ = mongo.db.vehicles.update(
                 {
-                    "_id": bsonO.ObjectId(data["_id"])
+                    "_id": vehicelId,
+                    "userId" : userId
                 },
                 {
-                    "$set": dt
+                    "$set": data
                 }
             )
             msg = "SUCCESSFULL"
@@ -196,6 +199,7 @@ class UserVehicleList(Resource):
     @jwt_required
     def get() -> Response:
         msg = ""
+        vList = []
         vehicleDetails = None
         current_user = bsonO.ObjectId(get_jwt_identity())
         try:
@@ -225,7 +229,7 @@ class UserVehicleList(Resource):
                     for i in vehicleTypeDetails["brands"]:
                         if i["_id"] ==  bsonO.ObjectId(vehicleDetails["brand"]):
                             vehicleDetails["brandTitle"]=i["brand"]
-                            print(vehicleDetails["brandTitle"])
+                    vList.append(vehicleDetails)
 
             msg = "SUCCESS"
             error = False
@@ -236,18 +240,18 @@ class UserVehicleList(Resource):
         return jsonify({
             "msg": msg,
             "error": error,
-            "data": json.loads(dumps(vehicleDetails))
+            "data": json.loads(dumps(vList))
         })
 
 class DeleteVehicle(Resource):
     @staticmethod
     @jwt_required
-    def post() -> Response:
+    def put(id) -> Response:
         data = request.get_json()
         try:
             update_ = mongo.db.vehicles.update(
                 {
-                    "_id": bsonO.ObjectId(data["_id"])
+                    "_id": bsonO.ObjectId(id)
                 },
                 {
                     "$set": {
@@ -259,11 +263,32 @@ class DeleteVehicle(Resource):
             )
             msg = "SUCCESS"
             error = False
-        except:
-            msg = "FAILED"
-            error = True
+        except Exception as ex:
+            msg = str(ex)
+            error = True 
+            
         return jsonify({
             "msg": msg,
             "error": error,
             "data": None
+        })
+
+class GetVehicleDataById(Resource):
+    @staticmethod
+    @jwt_required
+    def get(id) ->Response:
+        vehicleData = None
+        msg = ""
+        error = None
+        try:
+            vehicleData = mongo.db.vehicles.find_one({"_id" : bsonO.ObjectId(id)})
+            msg = "SUCCESS"
+            error = False
+        except Exception as ex:
+            msg = str(ex)
+            error = True
+        return jsonify({
+            "msg": msg,
+            "error": error,
+            "data": json.loads(dumps(vehicleData))
         })
