@@ -78,7 +78,7 @@ def insertData(data):
             driverInfo["vehicleId"] = vehicleId
             driverId = bsonO.ObjectId()
             driverInfo["_id"] = driverId
-            dt["driver"] = driverId
+            dt["driver"] = driverId        
     else:
         ownerInfo=data["ownerInfo"]
         dt["driver"] = userId
@@ -111,35 +111,60 @@ def insertData(data):
             elif i == constants.ROLL_DRIVER:
                 rolleNew = constants.ROLL_DRIVER
         
-        if rolleNew == constants.ROLL_PASSENGER and userRole == constants.ROLL_DRIVER:
-            statusChange = mongo.db.userRegister.update(
-                {
+        if rolleNew == constants.ROLL_PASSENGER and userRole == constants.ROLL_DRIVER:            
+            bulkAction = mongo.db.userRegister.bulk_write(
+                [
+                    UpdateOne(
+                         {
                     "_id":userId
                 },
                 {
                     "$addToSet": {
                         "role":userRole,
                         "drivers" : driverInfo,
-                        "owners" : ownerInfo,   
-                        "driverStatus" : constants.STATUS_PENDING,                     
+                        "owners" : ownerInfo,                      
                         "reference": references
                     }
                 }
+                    ),
+                    UpdateOne(
+                    {
+                        "_id":userId
+                    },
+                    {
+                        "$set": {
+                            "driverStatus" : constants.STATUS_PENDING
+                        }
+                    }
+                    )
+                ]
             )
         elif userRole == constants.ROLL_OWNER:
-            statusChange = mongo.db.userRegister.update(
-                {
-                    "_id":userId
-                },
-                {
-                    "$addToSet": {
-                        "role":userRole,
-                        "drivers" : driverInfo,
+            if data["refType"] == constants.REFFERENCE_TYPE_OWNER:
+                statusChange = mongo.db.userRegister.update(
+                    {
+                        "_id":userId
+                    },
+                    {
+                        "$addToSet": {
+                            "role":userRole,
+                            "drivers" : driverInfo,
+                        }
                     }
-                }
-            )
+                )
+            else:
+                statusChange = mongo.db.userRegister.update(
+                    {
+                        "_id":userId
+                    },
+                    {
+                        "$addToSet": {
+                            "role":userRole
+                        }
+                    }
+                )
         else:
-            bulkAction = mongo.db.vehicles.bulk_write(
+            bulkAction = mongo.db.userRegister.bulk_write(
                 [
                     UpdateOne(
                          {
