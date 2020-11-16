@@ -5,7 +5,7 @@ from controllers.users.profile.userOperation import ProfileEdit, ProfileDelete, 
 from controllers.users.register.login import UserLogin
 from controllers.users.register.signup import UserSignup
 from controllers.users.register.driverSignup import DriverSignup
-from controllers.users.vehicles.vehicleOp import AddVehicle, EditVehicle, DeleteVehicle, UserVehicleList
+from controllers.users.vehicles.vehicleOp import AddVehicle, EditVehicle, DeleteVehicle, UserVehicleList, GetVehicleDataById
 from controllers.users.vehicles.services import AddVehicleInService, GetVehicleServiceCost
 
 ########################## Admin ##########################
@@ -39,8 +39,9 @@ def create_routes(api: Api):
    ########################## User.vehicle ##########################
    api.add_resource(UserVehicleList, '/api/vehicle_list')
    api.add_resource(AddVehicle, '/api/add_vehicle')
-   api.add_resource(EditVehicle, '/api/edit_vehicle')
-   api.add_resource(DeleteVehicle, '/api/delete_vehicle')
+   api.add_resource(GetVehicleDataById, '/api/edit_vehicle/<string:id>')
+   api.add_resource(EditVehicle, '/api/update_vehicle/<string:id>')
+   api.add_resource(DeleteVehicle, '/api/delete_vehicle/<string:id>')
    ########################## User.vehicle.service ##########################
    api.add_resource(AddVehicleInService, '/api/add_service_cost/<string:id>')
    api.add_resource(GetVehicleServiceCost, '/api/get_service_cost/<string:id>')
