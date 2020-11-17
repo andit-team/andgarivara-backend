@@ -75,33 +75,51 @@ def insertData(data):
 
     if userRole == constants.ROLL_OWNER:
         if data["refType"] == constants.REFFERENCE_TYPE_OWNER :
-            driverInfo["vehicleId"] = vehicleId
-            driverId = bsonO.ObjectId()
-            driverInfo["_id"] = driverId
-            dt["driver"] = driverId        
+            driverData = mongo.db.userRegister.distinct("drivers.drivingLicence",{"_id" : userId})
+            if data["drivingLicence"] in driverData:
+                error = True
+                msg = "Driver is already Added to another Vehicle!!!" 
+                return jsonify({
+                "msg": msg,
+                "error": error
+                })
+            else:
+                driverInfo["vehicleId"] = vehicleId
+                driverId = bsonO.ObjectId()
+                driverInfo["_id"] = driverId
+                dt["driver"] = driverId 
+                  
     else:
-        ownerInfo=data["ownerInfo"]
-        dt["driver"] = userId
-        ownerInfo["_id"] = bsonO.ObjectId()
-        ownerInfo["vehicleId"] = vehicleId
-        references = data["reference"]
+        vehicleData = mongo.db.vehicles.find({"driver" : userId, "del_status" : False}).count()
+        if vehicleData > 0:
+            error = True
+            msg = "Driver is already Occupied!!!" 
+            return jsonify({
+            "msg": msg,
+            "error": error
+            })
+        else:
+            ownerInfo=data["ownerInfo"]
+            dt["driver"] = userId
+            ownerInfo["_id"] = bsonO.ObjectId()
+            ownerInfo["vehicleId"] = vehicleId
+            references = data["reference"]
     try:
         createIndex = mongo.db.vehicles.create_index([("carLocation", GEOSPHERE)] )
-        fuelData = mongo.db.fuelType.find({"_id":bsonO.ObjectId(data["fuelType"])}).count()
-        if fuelData == 0:
-            return jsonify({
-            "msg": "Fuel is not valid",
-            "error": True,
-            "data": json.loads(dumps(dt))
-        })
-        vehicleTypeData = mongo.db.vehicleType.find({"_id":bsonO.ObjectId(data["vehicle_type"])}).count()
-        if vehicleTypeData == 0:
-            return jsonify({
-            "msg": "Vehicle Type is not valid",
-            "error": True,
-            "data": json.loads(dumps(dt))
-        })
-        
+        # fuelData = mongo.db.fuelType.find({"_id":bsonO.ObjectId(data["fuelType"])}).count()
+        # if fuelData == 0:
+        #     return jsonify({
+        #     "msg": "Fuel is not valid",
+        #     "error": True,
+        #     "data": json.loads(dumps(dt))
+        # })
+        # vehicleTypeData = mongo.db.vehicleType.find({"_id":bsonO.ObjectId(data["vehicle_type"])}).count()
+        # if vehicleTypeData == 0:
+        #     return jsonify({
+        #     "msg": "Vehicle Type is not valid",
+        #     "error": True,
+        #     "data": json.loads(dumps(dt))
+        # })        
         ins = mongo.db.vehicles.insert(dt)
         userRollData = mongo.db.userRegister.find_one({"_id":userId},{"role" : 1, "_id": 0})
         rolleNew = constants.ROLL_PASSENGER
@@ -133,7 +151,8 @@ def insertData(data):
                     },
                     {
                         "$set": {
-                            "driverStatus" : constants.STATUS_PENDING
+                            "driverStatus" : constants.STATUS_PENDING,
+                            "driverOccupied" : True
                         }
                     }
                     )
