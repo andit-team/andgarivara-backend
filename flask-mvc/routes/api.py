@@ -8,6 +8,7 @@ from controllers.users.register.driverSignup import DriverSignup
 from controllers.users.vehicles.vehicleOp import AddVehicle, EditVehicle, DeleteVehicle, UserVehicleList, GetVehicleDataById
 from controllers.users.vehicles.services import AddVehicleInService, GetVehicleServiceCost 
 from controllers.users.vehicles.ownersOp import GetAllDriversList, GetDriverDataById, CheckIfDriverAdded 
+from controllers.users.vehicles.driverOp import GetAllOwnersList, GetOwnerDataById 
 
 ########################## Admin ##########################
 from controllers.admin.fuel_type.fuelTypeOperation import FuelTypeList, AddFuelType, EditFuelType, FuelTypeById
@@ -47,9 +48,12 @@ def create_routes(api: Api):
    api.add_resource(AddVehicleInService, '/api/add_service_cost/<string:id>')
    api.add_resource(GetVehicleServiceCost, '/api/get_service_cost/<string:id>')
    ########################## User.vehicle.OwnerOp ##########################
-   api.add_resource(GetAllDriversList, '/api/get_all_drivers')
+   api.add_resource(GetAllDriversList, '/api/owner/get_all_drivers')
    api.add_resource(CheckIfDriverAdded, '/api/check_if_driver_added')
    api.add_resource(GetDriverDataById, '/api/get_driver_data/<string:id>')
+    ########################## User.vehicle.DriverOp ##########################
+   api.add_resource(GetAllOwnersList, '/api/driver/get_all_owners')
+   api.add_resource(GetOwnerDataById, '/api/get_owner_data/<string:id>')
    ########################## User.favorite ##########################
    api.add_resource(FavoriteList, '/api/favorite_list')
    api.add_resource(AddFavorite, '/api/add_favorites')

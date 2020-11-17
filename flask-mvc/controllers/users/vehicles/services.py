@@ -56,9 +56,7 @@ class AddVehicleInService(Resource):
                             "$set":{
                                 "activeService" : serviceType,
                                 "serviceDetails": serviceDetails,
-                                "description": data["description"],
-                                "vehicle_imgs": data["vehicle_imgs"],
-                                "video": data["video"]
+                                "description": data["description"]
                             }
                         }
                     ),
@@ -102,9 +100,7 @@ class GetVehicleServiceCost(Resource):
                 {
                     "activeService" : 1,
                     "serviceDetails" : 1,
-                    "description" : 1,
-                    "vehicle_imgs" : 1,
-                    "video" : 1,
+                    "description" : 1
                 }
             )
             msg = "SUCCESSFULL"
