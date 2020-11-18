@@ -7,7 +7,8 @@ import datetime
 import bson
 import json
 from werkzeug.security import generate_password_hash
-from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
+from flask_jwt_extended import jwt_required
+import constants.constantValue as constants
 
 
 class AddUser(Resource):
@@ -117,6 +118,7 @@ class VerifyDriver(Resource):
     @jwt_required
     def put(id) -> Response:
         data = request.get_json()
+        data["status_change_date"] = datetime.datetime.now()
         try:
             update_ = mongo.db.userRegister.update_one(
                 {
@@ -124,10 +126,7 @@ class VerifyDriver(Resource):
                     "_id": bson.ObjectId(id)
                 },
                 {
-                    "$set": {
-                        "driverStatus": data["status"],
-                        "status_change_date": datetime.datetime.now()
-                    }
+                    "$set": data
                 }
             )
             msg = "SUCCESS"
@@ -151,7 +150,52 @@ class DriverList(Resource):
         i=None
         try:
             dt= mongo.db.userRegister.find({"driverStatus": status,"del_status": False})
-            print(dt.count())
+            for i in dt:
+                driverList.append(i)
+            msg = "SUCCESS"
+            error = False
+        except Exception as ex:
+            msg = str(ex)
+            error = True
+        return jsonify({
+            "msg": msg,
+            "error": error,
+            "data": json.loads(dumps(driverList))
+        })
+
+
+class GetFreeDriverList(Resource):
+    @staticmethod
+    @jwt_required
+    def get() -> Response:
+        msg = ""
+        driverList = []
+        i=None
+        try:
+            dt= mongo.db.userRegister.find({"driverStatus": constants.STATUS_VERIFIED,"del_status": False, "driverOccupied": False})
+            for i in dt:
+                driverList.append(i)
+            msg = "SUCCESS"
+            error = False
+        except Exception as ex:
+            msg = str(ex)
+            error = True
+        return jsonify({
+            "msg": msg,
+            "error": error,
+            "data": json.loads(dumps(driverList))
+        })
+        
+        
+class AssignDriver(Resource):
+    @staticmethod
+    @jwt_required
+    def get() -> Response:
+        msg = ""
+        driverList = []
+        i=None
+        try:
+            dt= mongo.db.userRegister.find({"driverStatus": constants.STATUS_VERIFIED,"del_status": False, "driverOccupied": False})
             for i in dt:
                 driverList.append(i)
             msg = "SUCCESS"

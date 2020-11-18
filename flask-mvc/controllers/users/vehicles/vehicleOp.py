@@ -351,3 +351,46 @@ class GetVehicleDataById(Resource):
             "data": json.loads(dumps(vehicleData))
         })
         
+class GetVehicleServiceHelperData(Resource):
+    @staticmethod
+    @jwt_required
+    def get(id) ->Response:
+        vehicleData = None
+        msg = ""
+        error = None
+        try:
+            vehicleData = mongo.db.vehicles.find_one({})
+            vehicleData = mongo.db.vehicles.aggregate(
+                                                        [{
+                                                            "$match": {
+                                                                "_id" : bsonO.ObjectId(id),
+                                                                "activeStatus" : constants.STATUS_VERIFIED,
+                                                                "del_status": False
+                                                            }
+                                                        },
+                                                            {
+                                                            "$lookup": {
+                                                                "from": "fuelType",
+                                                                "localField": "fuelType",
+                                                                "foreignField": "_id",
+                                                                "as": "fuel_type_details"
+                                                            }
+                                                        },
+                                                            { "$project" : 
+                                                                { 
+                                                                    "millage": 1,
+                                                                    "activeStatus": 1,
+                                                                    "fuel_type_details": 1
+                                                                }
+                                                        }                                                           
+                                                        ])
+            msg = "SUCCESS"
+            error = False
+        except Exception as ex:
+            msg = str(ex)
+            error = True
+        return jsonify({
+            "msg": msg,
+            "error": error,
+            "data": json.loads(dumps(vehicleData))
+        })

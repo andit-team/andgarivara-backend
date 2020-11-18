@@ -22,9 +22,10 @@ class UserLogin(Resource):
                 x = json.loads(dumps(userData))
                 expires = datetime.timedelta(hours=8)
                 accessToken = create_access_token(
-                    identity=str(id), expires_delta=expires)
+                    identity=str(id), expires_delta=expires)                
                 msg = "SUCCESS"
                 error = False
+                # handle_message(msg)
             else:
                 x = None
                 msg = "User name or password not matched"
@@ -41,8 +42,11 @@ class UserLogin(Resource):
             "data": x,
             "token": accessToken
         })
-        
-        
+
+def handle_message(message):
+    import app
+    # print('message: ' + message)
+    app.socketio.emit(message, broadcast= True)        
 # class UserLogin(Resource):
 #     @staticmethod
 #     def post() -> Response:
