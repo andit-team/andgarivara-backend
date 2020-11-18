@@ -5,7 +5,7 @@ from controllers.users.profile.userOperation import ProfileEdit, ProfileDelete, 
 from controllers.users.register.login import UserLogin
 from controllers.users.register.signup import UserSignup
 from controllers.users.register.driverSignup import DriverSignup
-from controllers.users.vehicles.vehicleOp import AddVehicle, EditVehicle, DeleteVehicle, UserVehicleList, GetVehicleDataById
+from controllers.users.vehicles.vehicleOp import AddVehicle, EditVehicle, DeleteVehicle, UserVehicleList, GetVehicleDataById, GetVehicleServiceHelperData
 from controllers.users.vehicles.services import AddVehicleInService, GetVehicleServiceCost 
 from controllers.users.vehicles.ownersOp import GetAllDriversList, GetDriverDataById, CheckIfDriverAdded 
 from controllers.users.vehicles.driverOp import GetAllOwnersList, GetOwnerDataById 
@@ -16,7 +16,7 @@ from controllers.admin.register.login import AdminLogin
 from controllers.admin.register.signup import AdminSignup
 from controllers.admin.appSetup.setupPage import GetAppSetupData, UpdateAppSetupData
 from controllers.admin.vehicles.adminVehicleTypeOp import AddVehicleType, EditVehicleType, VehicleTypeById, DeleteVehicleType, VehicleTypeList,AddBrandWithVehicleType, EditBrandWithVehicleType, BrandWithVehicleTypeById, VehicleBrandList
-from controllers.admin.users.adminUser import UserList, DeleteUser, AddUser, VerifyDriver, DriverList
+from controllers.admin.users.adminUser import UserList, DeleteUser, AddUser, VerifyDriver, DriverList, GetFreeDriverList
 from controllers.admin.vehicles.adminVehicleOp import AdminVehicleList, AdminVehicleStatusChange
 ########################## Frontend ##########################
 from controllers.frontEnd.vehicleProfile import VehicleProfile
@@ -44,6 +44,7 @@ def create_routes(api: Api):
    api.add_resource(GetVehicleDataById, '/api/edit_vehicle/<string:id>')
    api.add_resource(EditVehicle, '/api/update_vehicle/<string:id>')
    api.add_resource(DeleteVehicle, '/api/delete_vehicle/<string:id>')
+   api.add_resource(GetVehicleServiceHelperData, '/api/get_service_helper_data/<string:id>')
    ########################## User.vehicle.service ##########################
    api.add_resource(AddVehicleInService, '/api/add_service_cost/<string:id>')
    api.add_resource(GetVehicleServiceCost, '/api/get_service_cost/<string:id>')
@@ -82,6 +83,7 @@ def create_routes(api: Api):
    api.add_resource(UserList, '/api/admin/user_list')
    api.add_resource(VerifyDriver, '/api/admin/driver_verification/<string:id>')
    api.add_resource(DriverList, '/api/admin/driver_list/<string:status>')
+   api.add_resource(GetFreeDriverList, '/api/admin/unoccupied_driver_list/')
 
    # api.add_resource(DeleteUser, '/api/admin/delete_user')
    # api.add_resource(AddUser, '/api/admin/add_user')

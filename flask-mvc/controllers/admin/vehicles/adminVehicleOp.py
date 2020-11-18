@@ -195,6 +195,7 @@ class AdminVehicleStatusChange(Resource):
     @staticmethod
     def put(id) -> Response:
         data = request.get_json()
+        data["status_change_date"] = datetime.datetime.now()
         try:
             update_ = mongo.db.vehicles.update_one(
                 {
@@ -202,11 +203,7 @@ class AdminVehicleStatusChange(Resource):
                     "_id": bsonO.ObjectId(id)
                 },
                 {
-                    "$set": {
-                        "activeStatus": data["status"],                      
-                        "vehicleLicenceType": data["vehicleLicenceType"],                      
-                        "status_change_date": datetime.datetime.now()
-                    }
+                    "$set": data
                 }
             )
             msg = "SUCCESSFULL"

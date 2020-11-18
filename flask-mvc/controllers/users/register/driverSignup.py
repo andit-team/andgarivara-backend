@@ -42,6 +42,7 @@ class DriverSignup(Resource):
                             "$set": {
                                 "drivers" : driverInfo,
                                 "driverStatus": constants.STATUS_PENDING,
+                                "driverOccupied" : False,
                                 "default_contact_number":data["default_contact_number"]
                             }
                         }
