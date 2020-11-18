@@ -5,7 +5,7 @@ from flask_restful import Api
 from extension import mongo
 from routes.api import create_routes
 from flask_jwt_extended import JWTManager
-from flask_socketio import SocketIO
+# from flask_socketio import SocketIO
 
 
 def create_app(config_object='settings'):
