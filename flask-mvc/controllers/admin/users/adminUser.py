@@ -149,9 +149,7 @@ class DriverList(Resource):
         driverList = []
         i=None
         try:
-            dt= mongo.db.userRegister.find({"driverStatus": status,"del_status": False})
-            for i in dt:
-                driverList.append(i)
+            driverList= mongo.db.userRegister.find({"driverStatus": status,"del_status": False})           
             msg = "SUCCESS"
             error = False
         except Exception as ex:
@@ -172,9 +170,7 @@ class GetFreeDriverList(Resource):
         driverList = []
         i=None
         try:
-            dt= mongo.db.userRegister.find({"driverStatus": constants.STATUS_VERIFIED,"del_status": False, "driverOccupied": False})
-            for i in dt:
-                driverList.append(i)
+            driverList= mongo.db.userRegister.find({"driverStatus": constants.STATUS_VERIFIED,"del_status": False, "driverOccupied": False})            
             msg = "SUCCESS"
             error = False
         except Exception as ex:
@@ -192,12 +188,11 @@ class AssignDriver(Resource):
     @jwt_required
     def get() -> Response:
         msg = ""
-        driverList = []
         i=None
         try:
-            dt= mongo.db.userRegister.find({"driverStatus": constants.STATUS_VERIFIED,"del_status": False, "driverOccupied": False})
-            for i in dt:
-                driverList.append(i)
+            _updateDriver= mongo.db.vehicles.update_one({"driverStatus": constants.STATUS_VERIFIED,"del_status": False, "driverOccupied": False})
+            _updateUser= mongo.db.userRegister.update_one({"driverStatus": constants.STATUS_VERIFIED,"del_status": False, "driverOccupied": False})
+           
             msg = "SUCCESS"
             error = False
         except Exception as ex:
@@ -205,6 +200,5 @@ class AssignDriver(Resource):
             error = True
         return jsonify({
             "msg": msg,
-            "error": error,
-            "data": json.loads(dumps(driverList))
+            "error": error
         })

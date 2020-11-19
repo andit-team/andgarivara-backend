@@ -106,20 +106,20 @@ def insertData(data):
             references = data["reference"]
     try:
         createIndex = mongo.db.vehicles.create_index([("carLocation", GEOSPHERE)] )
-        # fuelData = mongo.db.fuelType.find({"_id":bsonO.ObjectId(data["fuelType"])}).count()
-        # if fuelData == 0:
-        #     return jsonify({
-        #     "msg": "Fuel is not valid",
-        #     "error": True,
-        #     "data": json.loads(dumps(dt))
-        # })
-        # vehicleTypeData = mongo.db.vehicleType.find({"_id":bsonO.ObjectId(data["vehicle_type"])}).count()
-        # if vehicleTypeData == 0:
-        #     return jsonify({
-        #     "msg": "Vehicle Type is not valid",
-        #     "error": True,
-        #     "data": json.loads(dumps(dt))
-        # })        
+        fuelData = mongo.db.fuelType.find({"_id":bsonO.ObjectId(data["fuelType"])}).count()
+        if fuelData == 0:
+            return jsonify({
+            "msg": "Fuel is not valid",
+            "error": True,
+            "data": json.loads(dumps(dt))
+        })
+        vehicleTypeData = mongo.db.vehicleType.find({"_id":bsonO.ObjectId(data["vehicle_type"])}).count()
+        if vehicleTypeData == 0:
+            return jsonify({
+            "msg": "Vehicle Type is not valid",
+            "error": True,
+            "data": json.loads(dumps(dt))
+        })        
         ins = mongo.db.vehicles.insert(dt)
         userRollData = mongo.db.userRegister.find_one({"_id":userId},{"role" : 1, "_id": 0})
         rolleNew = constants.ROLL_PASSENGER
@@ -279,15 +279,24 @@ class UserVehicleList(Resource):
                 ])
             vehicelTypeId = None
             for i in dt:
-                if i["vehicleType"] != None:
-                    vehicelTypeId = bsonO.ObjectId(i["vehicleType"])
-                    vehicleDetails=i
-                    vehicleTypeDetails = mongo.db.vehicleType.find_one({"_id":vehicelTypeId})
-                    vehicleDetails["vehicleTypeTitle"]= vehicleTypeDetails["title"]
-                    for i in vehicleTypeDetails["brands"]:
-                        if i["_id"] ==  bsonO.ObjectId(vehicleDetails["brand"]):
-                            vehicleDetails["brandTitle"]=i["brand"]
-                    vList.append(vehicleDetails)
+                if i != None:                    
+                    vehicleTypeId = bsonO.ObjectId(i["vehicleType"])
+                    vehicleTypeDetails = mongo.db.vehicleType.find_one(
+                        {
+                            "_id" : vehicleTypeId,
+                            "brands" :
+                                {
+                                    "$elemMatch":{
+                                        "_id" : bsonO.ObjectId(i["brand"])
+                                    }
+                                }
+                        },
+                        {
+                            "_id" : 0, "brands.$" : 1, "title" : 1
+                        }
+                    )
+                    i["vehicleTypeDetails"] = vehicleTypeDetails
+                    vList.append(i)
 
             msg = "SUCCESS"
             error = False
@@ -358,8 +367,7 @@ class GetVehicleServiceHelperData(Resource):
         vehicleData = None
         msg = ""
         error = None
-        try:
-            vehicleData = mongo.db.vehicles.find_one({})
+        try:            
             vehicleData = mongo.db.vehicles.aggregate(
                                                         [{
                                                             "$match": {
