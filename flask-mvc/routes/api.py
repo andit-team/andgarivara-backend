@@ -17,7 +17,7 @@ from controllers.admin.register.signup import AdminSignup
 from controllers.admin.appSetup.setupPage import GetAppSetupData, UpdateAppSetupData
 from controllers.admin.vehicles.adminVehicleTypeOp import AddVehicleType, EditVehicleType, VehicleTypeById, DeleteVehicleType, VehicleTypeList,AddBrandWithVehicleType, EditBrandWithVehicleType, BrandWithVehicleTypeById, VehicleBrandList
 from controllers.admin.users.adminUser import UserList, DeleteUser, AddUser, VerifyDriver, DriverList, GetFreeDriverList
-from controllers.admin.vehicles.adminVehicleOp import AdminVehicleList, AdminVehicleStatusChange
+from controllers.admin.vehicles.adminVehicleOp import AdminVehicleList, AdminVehicleStatusChange, GetVehicleData
 ########################## Frontend ##########################
 from controllers.frontEnd.vehicleProfile import VehicleProfile
 from controllers.frontEnd.homepage import HomePage
@@ -94,6 +94,7 @@ def create_routes(api: Api):
    # api.add_resource(DeleteVehicleAdmin, '/admin/delete_vehicle')AdminVehicleVerifyList
    api.add_resource(AdminVehicleList, '/api/admin/vehicle_list/<string:status>')
    api.add_resource(AdminVehicleStatusChange, '/api/admin/vehicle_verification/<string:id>')
+   api.add_resource(GetVehicleData, '/api/admin/get_vehicle_data/<string:id>')
    ########################## Frontend ##########################
    api.add_resource(HomePage, '/api/and_gari_vara/homepage')
    api.add_resource(SearchVehicle, '/api/and_gari_vara/search_result_page')
