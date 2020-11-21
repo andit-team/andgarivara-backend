@@ -142,6 +142,8 @@ class AdminVehicleStatusChange(Resource):
     @staticmethod
     def put(id) -> Response:
         data = request.get_json()
+        if data["activeStatus"] == constants.STATUS_REJECTED:
+            
         data["status_change_date"] = datetime.datetime.now()
         try:
             update_ = mongo.db.vehicles.update_one(
