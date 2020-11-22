@@ -142,17 +142,47 @@ class AdminVehicleStatusChange(Resource):
     @staticmethod
     def put(id) -> Response:
         data = request.get_json()
-        data["status_change_date"] = datetime.datetime.now()
+        dataSet = None
+        driverId = None
+        driverOfV =  mongo.db.vehicles.find_one({"del_status": False, "_id": bsonO.ObjectId(id)}, {"_id" : 0,"driver" : 1})
+        print(driverOfV["driver"])
         try:
-            update_ = mongo.db.vehicles.update_one(
-                {
-                    "del_status": False,
-                    "_id": bsonO.ObjectId(id)
-                },
-                {
-                    "$set": data
+            if data["activeStatus"] == constants.STATUS_REJECTED:
+                dataSet = {
+                "activeStatus" : constants.STATUS_REJECTED,
+                "comment" : data["comment"],
+                "status_change_date" : datetime.datetime.now()
                 }
-            )
+                _updateVehicle = vehicleStatusUpdate(dataSet)
+                                 
+            else:
+                if data["refType"] == constants.REFFERENCE_TYPE_ADMIN:
+                    driverId = bsonO.ObjectId(data["driverId"])
+                else:
+                    driverOfV =  mongo.db.vehicles.find_one({"del_status": False, "_id": bsonO.ObjectId(id)}, {"driver" : 1})
+                    print(driverOfV)
+                    driverId = driverOfV[""]
+                    dataSet = {
+                        "activeStatus" : constants.STATUS_VERIFIED,
+                        "driver" : driverId,
+                        "status_change_date" : datetime.datetime.now()
+                    }
+                    _updateVehicle = vehicleStatusUpdate(dataSet)
+                    _updateDriver = mongo.db.vehicles.update_one(
+                                        {
+                                            "del_status": False,
+                                            "_id": driverId
+                                        },
+                                        {
+                                            "$set": {
+                                                "driverOccupied" : True,
+                                                "driverStatus" : constants.STATUS_VERIFIED,
+                                                "status_change_date" : datetime.datetime.now()
+                                            }
+                                        }
+                                    )
+               
+           
             msg = "SUCCESSFULL"
             error = False
         except Exception as ex:
@@ -164,6 +194,16 @@ class AdminVehicleStatusChange(Resource):
             "data": json.loads(dumps(data))
         })
 
+def vehicleStatusUpdate(dataSet):
+    update_ = mongo.db.vehicles.update_one(
+                {
+                    "del_status": False,
+                    "_id": bsonO.ObjectId(id)
+                },
+                {
+                    "$set": dataSet
+                }
+            ) 
 class GetVehicleData(Resource):
     @staticmethod
     @jwt_required
