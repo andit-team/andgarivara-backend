@@ -270,7 +270,7 @@ class GetVehicleData(Resource):
 
                                                                        },{"_id" : 0, "owners.$" : 1, "drivers" : 1})
                         i["ownersDetails"] = allDetails["owners"]
-                        i["driverDetails"] = allDetails["drivers"]
+                        i["driverDetails"] = [allDetails["drivers"]]
                     else:
                         if "driver" in i:
                                 driverDetails = mongo.db.userRegister.find_one({
