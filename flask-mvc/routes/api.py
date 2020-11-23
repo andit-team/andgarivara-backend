@@ -82,11 +82,11 @@ def create_routes(api: Api):
    api.add_resource(VehicleBrandList, '/api/vehicle_brand_list/<string:id>')
    ########################## Admin.User ##########################
    api.add_resource(UserList, '/api/admin/user_list')
-   ########################## Admin.User ##########################
+   ########################## Admin.Driver ##########################
    api.add_resource(VerifyDriver, '/api/admin/driver_verification/<string:id>')
    api.add_resource(GetDriverInfoById, '/api/get_driver_info/<string:id>')
    api.add_resource(DriverList, '/api/admin/driver_list/<string:status>')
-   api.add_resource(GetFreeDriverList, '/api/admin/unoccupied_driver_list/')
+   api.add_resource(GetFreeDriverList, '/api/admin/unoccupied_driver_list/<int:type>')
 
    # api.add_resource(DeleteUser, '/api/admin/delete_user')
    # api.add_resource(AddUser, '/api/admin/add_user')
