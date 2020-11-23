@@ -243,7 +243,7 @@ class GetVehicleData(Resource):
                     i["vehicleTypeDetails"] = vehicleTypeDetails 
                     
                     if i["refType"] == constants.REFFERENCE_TYPE_OWNER:
-                        driverDetails = mongo.db.userRegister.find_one({
+                        allDetails = mongo.db.userRegister.find_one({
                                                                             "_id" : bsonO.ObjectId(i["userId"]),
                                                                             "drivers" :{
                                                                                 "$elemMatch":{
@@ -251,9 +251,14 @@ class GetVehicleData(Resource):
                                                                                 }
                                                                             }
 
-                                                                       },{"_id" : 0, "drivers.$" : 1})
-                        i["driverDetails"] = driverDetails["drivers"]
-                    
+                                                                       },{"_id" : 0, "drivers.$" : 1, "first_name" : 1, "last_name" : 1, "default_contact_number" : 1, "address" : 1})
+                        i["driverDetails"] = allDetails["drivers"]                        
+                        ownerDetails = {
+                            "name" : allDetails["first_name"] + " " + allDetails["last_name"],
+                            "default_contact_number" : allDetails["default_contact_number"],
+                            "address" : allDetails["address"],
+                        }
+                        i["ownerDetails"] = ownerDetails
                     else:
                         if "driver" in i:
                             driverDetails = mongo.db.userRegister.find_one({
