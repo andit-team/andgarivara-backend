@@ -11,7 +11,7 @@ import constants.constantValue as constants
 
 class HomePage(Resource):
     @staticmethod
-    def get() -> Response:
+    def post() -> Response:
         data = request.get_json()
         dtRentalVehicle = None
         # dtLeasingVehicle = None
@@ -29,16 +29,29 @@ class HomePage(Resource):
             #     )
             # retrive rental vehicles by rating
             dtRentalVehicle = mongo.db.vehicles.find({"activeService": constants.SERVICE_RENTAL, "activeStatus" : constants.STATUS_VERIFIED, "del_status" : False,
-                                                    #   "carLocation": {
-                                                    #                 "$near": {
-                                                    #                 "$maxDistance": 20000,
-                                                    #                 "$geometry": {
-                                                    #                 "type": "Point",
-                                                    #                 "coordinates": [data["long"],data["lat"]]
-                                                    #                 }
-                                                    #             }
-                                                    #         }
-                                                      })
+                                                      "carLocation": {
+                                                                    "$near": {
+                                                                    "$maxDistance": 20000,
+                                                                    "$geometry": {
+                                                                    "type": "Point",
+                                                                    "coordinates": [data["long"],data["lat"]]
+                                                                    }
+                                                                }
+                                                            }
+                                                      },
+                                                     {
+                                                         "_id" : 1,
+                                                         "vehicleTitle" : 1,
+                                                         "carLocation" : 1,
+                                                         "carAddress" : 1,
+                                                         "vehicle_imgs" : 1,
+                                                         "model" : 1,
+                                                         "manufactureYear" : 1,
+                                                         "ac" : 1,
+                                                         "millage" : 1,
+                                                         "serviceDetails.perDayRent" : 1,
+                                                     }
+                                                     )            
             print("vehicles On Rental: " + str(dtRentalVehicle.count()))
             # # retrive Leasing vehicles by rating
             # dtLeasingVehicle = mongo.db.vehicles.find({})
@@ -50,7 +63,11 @@ class HomePage(Resource):
             # dtInstantRideVehicle = mongo.db.vehicles.find({})
             #
             # retrive driver data by rating
-            dtDrive = mongo.db.userRegister.find({"driverStatus" : constants.STATUS_VERIFIED, "del_status" : False})
+            dtDrive = mongo.db.userRegister.find({"driverStatus" : constants.STATUS_VERIFIED, "del_status" : False},
+                                                 {
+                                                     "drivers" : 1
+                                                 }
+                                                 )
             print("Drivers: " + str(dtDrive.count()))
             msg = "SUCCESS"
             error = False
