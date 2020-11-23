@@ -62,12 +62,12 @@ class DriverList(Resource):
 class GetFreeDriverList(Resource):
     @staticmethod
     @jwt_required
-    def get() -> Response:
+    def get(type) -> Response:
         msg = ""
         driverList = []
         i=None
         try:
-            driverList= mongo.db.userRegister.find({"driverStatus": constants.STATUS_VERIFIED,"del_status": False, "driverOccupied": False})            
+            driverList= mongo.db.userRegister.find({"driverStatus": constants.STATUS_VERIFIED,"del_status": False, "driverOccupied": False, "drivers.drivingLicenceType" : type})            
             msg = "SUCCESS"
             error = False
         except Exception as ex:
