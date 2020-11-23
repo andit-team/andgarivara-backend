@@ -251,11 +251,11 @@ class GetVehicleData(Resource):
                                                                                 }
                                                                             }
 
-                                                                     },{"_id" : 0, "drivers.$" : 1, "first_name" : 1, "last_name" : 1, "default_contact_number" : 1, "address" : 1})
+                                                                     },{"_id" : 0, "drivers.$" : 1, "first_name" : 1, "last_name" : 1, "phone_no" : 1, "address" : 1})
                         i["driverDetails"] = allDetails["drivers"]
                         ownerDetails = {
                             "name" : allDetails["first_name"] + " " + allDetails["last_name"],
-                            "default_contact_number" : allDetails["default_contact_number"],
+                            "contact" : allDetails["phone_no"],
                             "address" : allDetails["address"],
                         }
                         i["ownerDetails"] = [ownerDetails]
@@ -287,10 +287,10 @@ class GetVehicleData(Resource):
                                                                             "_id" : bsonO.ObjectId(i["userId"]),
                                                                            
                                                                       },
-                                                                      {"_id" : 0, "first_name" : 1, "last_name" : 1, "default_contact_number" : 1, "address" : 1})                        
+                                                                      {"_id" : 0, "first_name" : 1, "last_name" : 1, "phone_no" : 1, "address" : 1})                        
                         ownerDetails = {
                             "name" : allDetails["first_name"] + " " + allDetails["last_name"],
-                            "default_contact_number" : allDetails["default_contact_number"],
+                            "contact" : allDetails["phone_no"],
                             "address" : allDetails["address"],
                         }
                         i["ownersDetails"] = [ownerDetails]
