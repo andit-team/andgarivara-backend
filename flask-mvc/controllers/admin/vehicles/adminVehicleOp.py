@@ -258,7 +258,7 @@ class GetVehicleData(Resource):
                             "default_contact_number" : allDetails["default_contact_number"],
                             "address" : allDetails["address"],
                         }
-                        i["ownerDetails"] = ownerDetails
+                        i["ownerDetails"] = [ownerDetails]
                     elif i["refType"] == constants.REFFERENCE_TYPE_DRIVER:
                         allDetails = mongo.db.userRegister.find_one({
                                                                             "_id" : bsonO.ObjectId(i["userId"]),
@@ -293,7 +293,7 @@ class GetVehicleData(Resource):
                             "default_contact_number" : allDetails["default_contact_number"],
                             "address" : allDetails["address"],
                         }
-                        i["ownersDetails"] = ownerDetails
+                        i["ownersDetails"] = [ownerDetails]
                     vehicleDataList.append(i)                    
             msg = "SUCCESS"
             error = False
