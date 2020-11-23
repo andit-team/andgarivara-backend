@@ -151,7 +151,7 @@ class AdminVehicleStatusChange(Resource):
                 "comment" : data["comment"],
                 "status_change_date" : datetime.datetime.now()
                 }
-                _updateVehicle = vehicleStatusUpdate(dataSet)
+                _updateVehicle = vehicleStatusUpdate(dataSet, id)
                                  
             else:
                 if data["refType"] == constants.REFFERENCE_TYPE_ADMIN:
@@ -164,7 +164,7 @@ class AdminVehicleStatusChange(Resource):
                     "driver" : driverId,
                     "status_change_date" : datetime.datetime.now()
                 }
-                _updateVehicle = vehicleStatusUpdate(dataSet)
+                _updateVehicle = vehicleStatusUpdate(dataSet, id)
                 _updateDriver = mongo.db.userRegister.update_one(
                                     {
                                         "del_status": False,
@@ -190,7 +190,7 @@ class AdminVehicleStatusChange(Resource):
             "data": json.loads(dumps(data))
         })
 
-def vehicleStatusUpdate(dataSet):
+def vehicleStatusUpdate(dataSet, id):
     update_ = mongo.db.vehicles.update_one(
                 {
                     "del_status": False,
@@ -245,35 +245,22 @@ class GetVehicleData(Resource):
                     if i["refType"] == constants.REFFERENCE_TYPE_OWNER:
                         allDetails = mongo.db.userRegister.find_one({
                                                                             "_id" : bsonO.ObjectId(i["userId"]),
-                                                                            "drivers" :{
+                                                                           "drivers" :{
                                                                                 "$elemMatch":{
                                                                                     "_id" : bsonO.ObjectId(i["driver"])
                                                                                 }
                                                                             }
 
-                                                                       },{"_id" : 0, "drivers.$" : 1, "first_name" : 1, "last_name" : 1, "default_contact_number" : 1, "address" : 1})
-                        i["driverDetails"] = allDetails["drivers"]                        
+                                                                     },{"_id" : 0, "drivers.$" : 1, "first_name" : 1, "last_name" : 1, "default_contact_number" : 1, "address" : 1})
+                        i["driverDetails"] = allDetails["drivers"]
                         ownerDetails = {
                             "name" : allDetails["first_name"] + " " + allDetails["last_name"],
                             "default_contact_number" : allDetails["default_contact_number"],
                             "address" : allDetails["address"],
                         }
                         i["ownerDetails"] = ownerDetails
-                    else:
-                        if "driver" in i:
-                            driverDetails = mongo.db.userRegister.find_one({
-                                                                            "_id" : bsonO.ObjectId(i["driver"]),
-                                                                            
-                                                                       },
-                                                                       {
-                                                                           "_id" : 0, "drivers" : 1
-                                                                        })
-                            i["driverDetails"] = driverDetails["drivers"]
-                        else:
-                            i["driverDetails"] = []
-                    vehicleDataList.append(i)   
-                    if i["refType"] == constants.REFFERENCE_TYPE_DRIVER:
-                        ownerDetails = mongo.db.userRegister.find_one({
+                    elif i["refType"] == constants.REFFERENCE_TYPE_DRIVER:
+                        allDetails = mongo.db.userRegister.find_one({
                                                                             "_id" : bsonO.ObjectId(i["userId"]),
                                                                             "owners" :{
                                                                                 "$elemMatch":{
@@ -281,8 +268,33 @@ class GetVehicleData(Resource):
                                                                                 }
                                                                             }
 
-                                                                       },{"_id" : 0, "owners.$" : 1})
-                        i["ownersDetails"] = ownerDetails["owners"]
+                                                                       },{"_id" : 0, "owners.$" : 1, "drivers" : 1})
+                        i["ownersDetails"] = allDetails["owners"]
+                        i["driverDetails"] = allDetails["drivers"]
+                    else:
+                        if "driver" in i:
+                                driverDetails = mongo.db.userRegister.find_one({
+                                                                            "_id" : bsonO.ObjectId(i["driver"]),
+                                                                            
+                                                                       },
+                                                                       {
+                                                                           "_id" : 0, "drivers" : 1
+                                                                        })
+                                i["driverDetails"] = driverDetails["drivers"]
+                        else:
+                            i["driverDetails"] = []
+                        allDetails = mongo.db.userRegister.find_one({
+                                                                            "_id" : bsonO.ObjectId(i["userId"]),
+                                                                           
+                                                                      },
+                                                                      {"_id" : 0, "first_name" : 1, "last_name" : 1, "default_contact_number" : 1, "address" : 1})                        
+                        ownerDetails = {
+                            "name" : allDetails["first_name"] + " " + allDetails["last_name"],
+                            "default_contact_number" : allDetails["default_contact_number"],
+                            "address" : allDetails["address"],
+                        }
+                        i["ownersDetails"] = ownerDetails
+                    vehicleDataList.append(i)                    
             msg = "SUCCESS"
             error = False
         except Exception as ex:
