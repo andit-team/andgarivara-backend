@@ -113,7 +113,7 @@ class GetDriverInfoById(Resource):
                     "del_status": False
                 },
                 {
-                    "driverInfo" : 1,
+                    "drivers" : 1,
                     "reference" : 1,
                     "default_contact_number" : 1
                 }
