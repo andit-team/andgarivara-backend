@@ -143,9 +143,7 @@ class AdminVehicleStatusChange(Resource):
     def put(id) -> Response:
         data = request.get_json()
         dataSet = None
-        driverId = None
-        driverOfV =  mongo.db.vehicles.find_one({"del_status": False, "_id": bsonO.ObjectId(id)}, {"_id" : 0,"driver" : 1})
-        print(driverOfV["driver"])
+        driverId = None        
         try:
             if data["activeStatus"] == constants.STATUS_REJECTED:
                 dataSet = {
@@ -159,29 +157,27 @@ class AdminVehicleStatusChange(Resource):
                 if data["refType"] == constants.REFFERENCE_TYPE_ADMIN:
                     driverId = bsonO.ObjectId(data["driverId"])
                 else:
-                    driverOfV =  mongo.db.vehicles.find_one({"del_status": False, "_id": bsonO.ObjectId(id)}, {"driver" : 1})
-                    print(driverOfV)
-                    driverId = driverOfV[""]
-                    dataSet = {
-                        "activeStatus" : constants.STATUS_VERIFIED,
-                        "driver" : driverId,
-                        "status_change_date" : datetime.datetime.now()
-                    }
-                    _updateVehicle = vehicleStatusUpdate(dataSet)
-                    _updateDriver = mongo.db.vehicles.update_one(
-                                        {
-                                            "del_status": False,
-                                            "_id": driverId
-                                        },
-                                        {
-                                            "$set": {
-                                                "driverOccupied" : True,
-                                                "driverStatus" : constants.STATUS_VERIFIED,
-                                                "status_change_date" : datetime.datetime.now()
-                                            }
+                    driverOfV =  mongo.db.vehicles.find_one({"del_status": False, "_id": bsonO.ObjectId(id)}, {"_id" : 0,"driver" : 1})        
+                    driverId = bsonO.ObjectId(driverOfV["driver"])
+                dataSet = {
+                    "activeStatus" : constants.STATUS_VERIFIED,
+                    "driver" : driverId,
+                    "status_change_date" : datetime.datetime.now()
+                }
+                _updateVehicle = vehicleStatusUpdate(dataSet)
+                _updateDriver = mongo.db.userRegister.update_one(
+                                    {
+                                        "del_status": False,
+                                        "_id": driverId
+                                    },
+                                    {
+                                        "$set": {
+                                            "driverOccupied" : True,
+                                            "driverStatus" : constants.STATUS_VERIFIED,
+                                            "status_change_date" : datetime.datetime.now()
                                         }
-                                    )
-               
+                                    }
+                                )              
            
             msg = "SUCCESSFULL"
             error = False

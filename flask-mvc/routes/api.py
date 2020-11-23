@@ -16,7 +16,8 @@ from controllers.admin.register.login import AdminLogin
 from controllers.admin.register.signup import AdminSignup
 from controllers.admin.appSetup.setupPage import GetAppSetupData, UpdateAppSetupData
 from controllers.admin.vehicles.adminVehicleTypeOp import AddVehicleType, EditVehicleType, VehicleTypeById, DeleteVehicleType, VehicleTypeList,AddBrandWithVehicleType, EditBrandWithVehicleType, BrandWithVehicleTypeById, VehicleBrandList
-from controllers.admin.users.adminUser import UserList, DeleteUser, AddUser, VerifyDriver, DriverList, GetFreeDriverList
+from controllers.admin.users.adminUser import UserList, DeleteUser, AddUser
+from controllers.admin.users.drivers import VerifyDriver, DriverList, GetFreeDriverList, GetDriverInfoById
 from controllers.admin.vehicles.adminVehicleOp import AdminVehicleList, AdminVehicleStatusChange, GetVehicleData
 ########################## Frontend ##########################
 from controllers.frontEnd.vehicleProfile import VehicleProfile
@@ -81,7 +82,9 @@ def create_routes(api: Api):
    api.add_resource(VehicleBrandList, '/api/vehicle_brand_list/<string:id>')
    ########################## Admin.User ##########################
    api.add_resource(UserList, '/api/admin/user_list')
+   ########################## Admin.User ##########################
    api.add_resource(VerifyDriver, '/api/admin/driver_verification/<string:id>')
+   api.add_resource(GetDriverInfoById, '/api/get_driver_info/<string:id>')
    api.add_resource(DriverList, '/api/admin/driver_list/<string:status>')
    api.add_resource(GetFreeDriverList, '/api/admin/unoccupied_driver_list/')
 
@@ -94,7 +97,7 @@ def create_routes(api: Api):
    # api.add_resource(DeleteVehicleAdmin, '/admin/delete_vehicle')AdminVehicleVerifyList
    api.add_resource(AdminVehicleList, '/api/admin/vehicle_list/<string:status>')
    api.add_resource(AdminVehicleStatusChange, '/api/admin/vehicle_verification/<string:id>')
-   api.add_resource(GetVehicleData, '/api/admin/get_vehicle_data/<string:id>')
+   api.add_resource(GetVehicleData, '/api/get_vehicle_data/<string:id>')
    ########################## Frontend ##########################
    api.add_resource(HomePage, '/api/and_gari_vara/homepage')
    api.add_resource(SearchVehicle, '/api/and_gari_vara/search_result_page')
