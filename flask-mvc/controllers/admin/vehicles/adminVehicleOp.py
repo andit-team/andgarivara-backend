@@ -280,7 +280,7 @@ class GetVehicleData(Resource):
                                                                        {
                                                                            "_id" : 0, "drivers" : 1
                                                                         })
-                                i["driverDetails"] = driverDetails["drivers"]
+                                i["driverDetails"] = [driverDetails["drivers"]]
                         else:
                             i["driverDetails"] = []
                         allDetails = mongo.db.userRegister.find_one({
