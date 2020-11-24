@@ -39,7 +39,7 @@ class GetRentalList(Resource):
                                                         "millage" : 1,
                                                         "serviceDetails.perDayRent" : 1,
                                                     }
-                                                    ).limit(4)
+                                                    ).limit(5)
         except Exception as ex:
             msg = str(ex)
             error = True        
@@ -65,7 +65,7 @@ class GetDriverList(Resource):
                                                     "address" : 1,
                                                     "profile_pic" : 1
                                                 }
-                                                ).limit(4)
+                                                ).limit(5)
         except Exception as ex:
             msg = str(ex)
             error = True 
