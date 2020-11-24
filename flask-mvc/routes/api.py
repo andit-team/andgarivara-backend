@@ -21,7 +21,7 @@ from controllers.admin.users.drivers import VerifyDriver, DriverList, GetFreeDri
 from controllers.admin.vehicles.adminVehicleOp import AdminVehicleList, AdminVehicleStatusChange, GetVehicleData
 ########################## Frontend ##########################
 from controllers.frontEnd.vehicleProfile import VehicleProfile
-from controllers.frontEnd.homepage import HomePage
+from controllers.frontEnd.homepage import GetRentalList, GetDriverList
 from controllers.frontEnd.searchVehicle import SearchVehicle
 
 def create_routes(api: Api):
@@ -99,6 +99,7 @@ def create_routes(api: Api):
    api.add_resource(AdminVehicleStatusChange, '/api/admin/vehicle_verification/<string:id>')
    api.add_resource(GetVehicleData, '/api/get_vehicle_data/<string:id>')
    ########################## Frontend ##########################
-   api.add_resource(HomePage, '/api/and_gari_vara/homepage')
-   api.add_resource(SearchVehicle, '/api/and_gari_vara/search_result_page')
+   api.add_resource(GetRentalList, '/api/rental_list')
+   api.add_resource(GetDriverList, '/api/home_driver_list')
+   api.add_resource(SearchVehicle, '/api/search_result_page')
    api.add_resource(VehicleProfile, '/api/vehicle_details/<string:id>')
