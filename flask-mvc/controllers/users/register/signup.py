@@ -33,6 +33,7 @@ class UserSignup(Resource):
                 "on_suppport_reply": True
             },
             "default_contact_number" :"",
+            "profile_pic" :"",
             "del_status":False,
             "create_date": datetime.datetime.now()
         }
