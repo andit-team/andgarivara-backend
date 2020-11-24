@@ -101,5 +101,5 @@ def create_routes(api: Api):
    ########################## Frontend ##########################
    api.add_resource(GetRentalList, '/api/rental_list')
    api.add_resource(GetDriverList, '/api/home_driver_list')
-   api.add_resource(SearchVehicle, '/api/search_result_page')
+   api.add_resource(SearchVehicle, '/api/search_vehicle')
    api.add_resource(VehicleProfile, '/api/vehicle_details/<string:id>')
