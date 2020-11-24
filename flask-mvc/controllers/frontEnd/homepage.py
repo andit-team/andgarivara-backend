@@ -11,22 +11,21 @@ import constants.constantValue as constants
         
 class GetRentalList(Resource):
     @staticmethod
-    def post() -> Response:
-        data = request.get_json()
+    def get() -> Response:
         dtRentalVehicle = None
         msg = None
         error = False
         try:
             dtRentalVehicle = mongo.db.vehicles.find({"activeService": constants.SERVICE_RENTAL, "activeStatus" : constants.STATUS_VERIFIED, "del_status" : False,
-                                                    "carLocation": {
-                                                                "$near": {
-                                                                "$maxDistance": 20000,
-                                                                "$geometry": {
-                                                                "type": "Point",
-                                                                "coordinates": [data["long"],data["lat"]]
-                                                                }
-                                                            }
-                                                        }
+                                                    # "carLocation": {
+                                                    #             "$near": {
+                                                    #             "$maxDistance": 20000,
+                                                    #             "$geometry": {
+                                                    #             "type": "Point",
+                                                    #             "coordinates": [data["long"],data["lat"]]
+                                                    #             }
+                                                    #         }
+                                                    #     }
                                                     },
                                                     {
                                                         "_id" : 1,
@@ -40,7 +39,7 @@ class GetRentalList(Resource):
                                                         "millage" : 1,
                                                         "serviceDetails.perDayRent" : 1,
                                                     }
-                                                    ).limit(4)
+                                                    ).limit(5)
         except Exception as ex:
             msg = str(ex)
             error = True        
@@ -66,7 +65,7 @@ class GetDriverList(Resource):
                                                     "address" : 1,
                                                     "profile_pic" : 1
                                                 }
-                                                ).limit(4)
+                                                ).limit(5)
         except Exception as ex:
             msg = str(ex)
             error = True 
