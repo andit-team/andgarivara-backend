@@ -12,7 +12,7 @@ class SearchVehicle(Resource):
     @staticmethod
     def post() -> Response:
         msg = None
-        error = None
+        error = False
         dtVehicle = []
         data = request.get_json()
         queryCodition = {
