@@ -11,22 +11,21 @@ import constants.constantValue as constants
         
 class GetRentalList(Resource):
     @staticmethod
-    def post() -> Response:
-        data = request.get_json()
+    def get() -> Response:
         dtRentalVehicle = None
         msg = None
         error = False
         try:
             dtRentalVehicle = mongo.db.vehicles.find({"activeService": constants.SERVICE_RENTAL, "activeStatus" : constants.STATUS_VERIFIED, "del_status" : False,
-                                                    "carLocation": {
-                                                                "$near": {
-                                                                "$maxDistance": 20000,
-                                                                "$geometry": {
-                                                                "type": "Point",
-                                                                "coordinates": [data["long"],data["lat"]]
-                                                                }
-                                                            }
-                                                        }
+                                                    # "carLocation": {
+                                                    #             "$near": {
+                                                    #             "$maxDistance": 20000,
+                                                    #             "$geometry": {
+                                                    #             "type": "Point",
+                                                    #             "coordinates": [data["long"],data["lat"]]
+                                                    #             }
+                                                    #         }
+                                                    #     }
                                                     },
                                                     {
                                                         "_id" : 1,
