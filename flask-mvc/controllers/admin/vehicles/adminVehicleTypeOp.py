@@ -110,7 +110,7 @@ class VehicleTypeList(Resource):
     def get() -> Response:
         data = None
         try:
-            data = mongo.db.vehicleType.find({},{"_id":1,"title":1,})
+            data = mongo.db.vehicleType.find({},{"_id":1,"title":1,}).sort("create_date" , -1)
             msg = "SUCCESSFULL"
             error = False
         except Exception as ex:
