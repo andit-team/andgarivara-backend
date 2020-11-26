@@ -269,7 +269,7 @@ class GetVehicleData(Resource):
                                                                             }
 
                                                                        },{"_id" : 0, "owners.$" : 1, "drivers" : 1})
-                        i["ownersDetails"] = allDetails["owners"]
+                        i["ownerDetails"] = allDetails["owners"]
                         i["driverDetails"] = [allDetails["drivers"]]
                     else:
                         if "driver" in i:
@@ -293,7 +293,7 @@ class GetVehicleData(Resource):
                             "contact" : allDetails["phone_no"],
                             "address" : allDetails["address"],
                         }
-                        i["ownersDetails"] = [ownerDetails]
+                        i["ownerDetails"] = [ownerDetails]
                     vehicleDataList.append(i)                    
             msg = "SUCCESS"
             error = False
