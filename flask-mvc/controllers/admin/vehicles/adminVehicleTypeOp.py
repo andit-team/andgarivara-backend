@@ -146,8 +146,7 @@ class AddBrandWithVehicleType(Resource):
                     "$addToSet": {
                         "brands": {
                             "_id": bson.ObjectId(),
-                            "brand": data["brand"],
-                            "create_date": datetime.datetime.now()
+                            "brand": data["brand"]
                         }
                     }
                 }
@@ -229,7 +228,7 @@ class VehicleBrandList(Resource):
         dt = None
         try:
             dt = mongo.db.vehicleType.find(
-                {"_id": bson.ObjectId(id)}, {"_id": 0, "brands": 1}).sort("brands.create_date" , 1)
+                {"_id": bson.ObjectId(id)}, {"_id": 0, "brands": 1})
             msg = "SUCCESSFULL"
             error = False
         except Exception as ex:
