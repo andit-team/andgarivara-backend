@@ -69,6 +69,7 @@ def insertData(data):
     dt["refType"] = data["refType"]
     userRole = data["role"]
     driverInfo=data["driverInfo"]
+    driverInfo["drivingLicenceType"]= int(data["drivingLicenceType"])
     driverInfo["refType"] = data["refType"]
     ownerInfo  = []
     references = []

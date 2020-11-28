@@ -17,8 +17,8 @@ class DriverSignup(Resource):
         error = None
         data = request.get_json()
         userId = bsonO.ObjectId(get_jwt_identity())
-        print(get_jwt_identity())
         driverInfo = data["driverInfo"]
+        driverInfo["drivingLicenceType"] = int(data["driverInfo"])
         try:            
             bulkAction = mongo.db.userRegister.bulk_write(
                 [
