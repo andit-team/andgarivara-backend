@@ -13,7 +13,7 @@ class FuelTypeList(Resource):
     def get() -> Response:
         dt = None        
         try:
-            dt = mongo.db.fuelType.find().sort("create_date" , -1)
+            dt = mongo.db.fuelType.find().sort("create_date")
             msg = "SUCCESSFUL"
             error = False
         except Exception as ex:
