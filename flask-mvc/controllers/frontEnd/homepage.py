@@ -63,7 +63,7 @@ class GetDriverList(Resource):
                                                     "first_name" : 1,
                                                     "last_name" : 1,
                                                     "address" : 1,
-                                                    "profile_pic" : 1,
+                                                    "drivers.image" : 1,
                                                     "status_change_date" : 1
                                                 }
                                                 ).limit(5)
