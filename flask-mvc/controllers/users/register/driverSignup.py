@@ -20,7 +20,7 @@ class DriverSignup(Resource):
         
         try:            
             driverInfo = data["driverInfo"]
-            driverInfo["drivingLicenceType"] = int(data["driverInfo"])
+            driverInfo["drivingLicenceType"] = int(data["drivingLicenceType"])
             bulkAction = mongo.db.userRegister.bulk_write(
                 [
                     UpdateOne(
