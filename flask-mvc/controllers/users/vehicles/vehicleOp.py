@@ -138,8 +138,7 @@ def insertData(data):
                 },
                 {
                     "$addToSet": {
-                        "role":userRole,
-                        "drivers" : driverInfo,
+                        "role":userRole,                        
                         "owners" : ownerInfo,                      
                         "reference": references
                     }
@@ -152,6 +151,7 @@ def insertData(data):
                     {
                         "$set": {
                             "driverStatus" : constants.STATUS_PENDING,
+                            "drivers" : driverInfo,
                             "driverOccupied" : True
                         }
                     }
