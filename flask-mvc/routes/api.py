@@ -86,7 +86,7 @@ def create_routes(api: Api):
    api.add_resource(VerifyDriver, '/api/admin/driver_verification/<string:id>')
    api.add_resource(GetDriverInfoById, '/api/get_driver_info/<string:id>')
    api.add_resource(DriverList, '/api/admin/driver_list/<string:status>')
-   api.add_resource(GetFreeDriverList, '/api/admin/unoccupied_driver_list/<int:type>')
+   api.add_resource(GetFreeDriverList, '/api/admin/unoccupied_driver_list/<string:type>')
 
    # api.add_resource(DeleteUser, '/api/admin/delete_user')
    # api.add_resource(AddUser, '/api/admin/add_user')
