@@ -202,45 +202,30 @@ def vehicleStatusUpdate(dataSet, id):
             ) 
 class GetVehicleData(Resource):
     @staticmethod
-    @jwt_required
+    # @jwt_required
     def get(id) -> Response:
         msg = ""
         vehicleDataList = []
         try:
-            vehicleData = mongo.db.vehicles.aggregate(
-                                                        [{
-                                                            "$match": {
-                                                                "_id" : bsonO.ObjectId(id),
-                                                                "del_status": False
-                                                            }
-                                                        },
-                                                            {
-                                                            "$lookup": {
-                                                                "from": "fuelType",
-                                                                "localField": "fuelType",
-                                                                "foreignField": "_id",
-                                                                "as": "fuel_type_details"
-                                                            }
-                                                        }                                                                                                               
-                                                        ]) 
+            vehicleData = mongo.db.vehicles.find({"_id": bsonO.ObjectId(id), "del_status": False}) 
             for i in vehicleData:
                if i != None:                    
-                    vehicleTypeId = bsonO.ObjectId(i["vehicleType"])
-                    vehicleTypeDetails = mongo.db.vehicleType.find_one(
-                        {
-                            "_id" : vehicleTypeId,
-                            "brands" :
-                                {
-                                    "$elemMatch":{
-                                        "_id" : bsonO.ObjectId(i["brand"])
-                                    }
-                                }
-                        },
-                        {
-                            "_id" : 0, "brands.$" : 1, "title" : 1
-                        }
-                    )  
-                    i["vehicleTypeDetails"] = vehicleTypeDetails 
+                    # vehicleTypeId = bsonO.ObjectId(i["vehicleType"])
+                    # vehicleTypeDetails = mongo.db.vehicleType.find_one(
+                    #     {
+                    #         "_id" : vehicleTypeId,
+                    #         "brands" :
+                    #             {
+                    #                 "$elemMatch":{
+                    #                     "_id" : bsonO.ObjectId(i["brand"])
+                    #                 }
+                    #             }
+                    #     },
+                    #     {
+                    #         "_id" : 0, "brands.$" : 1, "title" : 1
+                    #     }
+                    # )  
+                    # i["vehicleTypeDetails"] = vehicleTypeDetails 
                     
                     if i["refType"] == constants.REFFERENCE_TYPE_OWNER:
                         allDetails = mongo.db.userRegister.find_one({

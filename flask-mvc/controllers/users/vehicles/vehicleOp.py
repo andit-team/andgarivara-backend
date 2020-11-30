@@ -266,24 +266,6 @@ class UserVehicleList(Resource):
         current_user = bsonO.ObjectId(get_jwt_identity())
         try:
             vList = mongo.db.vehicles.find({"userId": current_user, "del_status": False})
-            # dt = mongo.db.vehicles.aggregate(
-            #     [{
-            #         "$match": {
-            #             "userId": current_user,
-            #             "del_status": False
-            #         }
-            #     },
-            #     {
-            #         "$lookup": {
-            #             "from": "fuelType",
-            #             "localField": "fuelType",
-            #             "foreignField": "_id",
-            #             "as": "fuel_details"
-            #         },
-            #     }
-            #     ])
-            
-
             msg = "SUCCESS"
             error = False
         except Exception as ex:
