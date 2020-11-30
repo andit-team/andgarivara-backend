@@ -22,7 +22,9 @@ def getAllDataField(data):
     dt = {
             "userId": userId,
             "vehicleType": bsonO.ObjectId(data["vehicle_type"]),
+            "vehicleTypeTitle": data["vehicleTypeTitle"],
             "fuelType": bsonO.ObjectId(data["fuelType"]),
+            "fuelTypeTitle": data["fuelTypeTitle"],
             "ac": data["ac"],
             "vehicleTitle": data["vehicleTitle"],
             "vehicleNumber": data["vehicleNumber"],
@@ -38,6 +40,7 @@ def getAllDataField(data):
             "coverImage": data["coverImage"],
             "vehicle_imgs": data["vehicle_imgs"],
             "brand": bsonO.ObjectId(data["brand"]),
+            "brandTitle": data["brandTitle"],
             "model": data["model"],
             "manufactureYear": data["manufactureYear"],
             "video": data["video"],
