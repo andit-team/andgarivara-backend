@@ -38,6 +38,8 @@ def getAllDataField(data):
             "vehicleLength": data["vehicleLength"],
             "licenceVelidation": data["licenceVelidation"],
             "coverImage": data["coverImage"],
+            "thumbImage": data["thumbImage"],
+            "amenities": data["amenities"],
             "vehicle_imgs": data["vehicle_imgs"],
             "brand": bsonO.ObjectId(data["brand"]),
             "brandTitle": data["brandTitle"],
@@ -260,46 +262,27 @@ class UserVehicleList(Resource):
     @jwt_required
     def get() -> Response:
         msg = ""
-        vList = []
-        vehicleDetails = None
+        vList = None
         current_user = bsonO.ObjectId(get_jwt_identity())
         try:
-            dt = mongo.db.vehicles.aggregate(
-                [{
-                    "$match": {
-                        "userId": current_user,
-                        "del_status": False
-                    }
-                },
-                {
-                    "$lookup": {
-                        "from": "fuelType",
-                        "localField": "fuelType",
-                        "foreignField": "_id",
-                        "as": "fuel_details"
-                    },
-                }
-                ])
-            vehicelTypeId = None
-            for i in dt:
-                if i != None:                    
-                    vehicleTypeId = bsonO.ObjectId(i["vehicleType"])
-                    vehicleTypeDetails = mongo.db.vehicleType.find_one(
-                        {
-                            "_id" : vehicleTypeId,
-                            "brands" :
-                                {
-                                    "$elemMatch":{
-                                        "_id" : bsonO.ObjectId(i["brand"])
-                                    }
-                                }
-                        },
-                        {
-                            "_id" : 0, "brands.$" : 1, "title" : 1
-                        }
-                    )
-                    i["vehicleTypeDetails"] = vehicleTypeDetails
-                    vList.append(i)
+            vList = mongo.db.vehicles.find({"userId": current_user, "del_status": False})
+            # dt = mongo.db.vehicles.aggregate(
+            #     [{
+            #         "$match": {
+            #             "userId": current_user,
+            #             "del_status": False
+            #         }
+            #     },
+            #     {
+            #         "$lookup": {
+            #             "from": "fuelType",
+            #             "localField": "fuelType",
+            #             "foreignField": "_id",
+            #             "as": "fuel_details"
+            #         },
+            #     }
+            #     ])
+            
 
             msg = "SUCCESS"
             error = False
