@@ -57,9 +57,8 @@ def getAllDataField(data):
             "carLocation": data["carLocation"],
             "carAddress": data["carAddress"],
             "del_status": False,
-            "activeStatus" :constants.STATUS_PENDING,
-            "default_contact_number":data["default_contact_number"],
-            "create_date": datetime.datetime.now()
+            "activeStatus": constants.STATUS_PENDING,
+            "default_contact_number": data["default_contact_number"]
     }
     return dt
 
@@ -75,6 +74,7 @@ def insertData(data):
     userRole = data["role"]
     driverInfo=data["driverInfo"]
     driverInfo["refType"] = data["refType"]
+    dt["create_date"] = datetime.datetime.now()
     ownerInfo  = []
     references = []
 
@@ -227,36 +227,70 @@ def insertData(data):
         "data": json.loads(dumps(dt))
     })
 
-class EditVehicle(Resource):
-    @staticmethod
-    @jwt_required
-    def put(id) -> Response:
-        data = request.get_json()
-        userId = bsonO.ObjectId(get_jwt_identity())
-        vehicelId = bsonO.ObjectId(id)        
-        data["vehicleType"] = data["vehicle_type"]
-        data["update_date"] = datetime.datetime.now()
-        data.pop("vehicle_type")
-        try:
-            update_ = mongo.db.vehicles.update(
-                {
-                    "_id": vehicelId,
-                    "userId" : userId
-                },
-                {
-                    "$set": data
-                }
-            )
-            msg = "SUCCESSFULL"
-            error = False
-        except Exception as ex:
-            msg = str(ex)
-            error = True
-        return jsonify({
-            "msg": msg,
-            "error": error,
-            "data": json.loads(dumps(data))
-        })
+# class EditVehicle(Resource):
+#     @staticmethod
+#     @jwt_required
+#     def put(id) -> Response:
+#         data = request.get_json()
+#         userId = bsonO.ObjectId(get_jwt_identity())
+#         vehicleId = bsonO.ObjectId(id)
+#         error = False
+#         msg = ""
+#         dt = getAllDataField(data)
+#         refType = data["refType"]
+#         dt["refType"] = refType
+#         userRole = data["role"]
+#         driverInfo = data["driverInfo"]
+#         driverInfo["refType"] = data["refType"]
+#         ownerInfo = []
+#         references = []
+#         dt["del_status"] = data["del_status"]
+#         dt["activeStatus"] = data["activeStatus"]
+#         dt["create_date"] = data["create_date"]
+#         dt["update_date"] = datetime.datetime.now()
+#         try:
+#             if userRole == constants.ROLL_OWNER:
+#                 if refType == constants.REFFERENCE_TYPE_OWNER:
+#                     # update driver info & set driverId
+#                     driverId = bsonO.ObjectId(data["driver"])
+#                     dt["driver"] = driverId
+#                     update_Driver  = mongo.db.userRegister.update_one(
+#                         {
+#                             "_id": vehicleId,
+#                             "userId":  userId,
+#                             "drivers._id": driverId
+#                         },
+#                         {
+#                             "$set": {
+#                                 "drivers.$": driverInfo
+#                             }
+#                         }
+#                     )
+#                     pass
+#                 # update vehicle info
+#                 update_ = mongo.db.vehicles.update(
+#                     {
+#                         "_id": vehicleId,
+#                         "userId": userId
+#                     },
+#                     {
+#                         "$set": dt
+#                     }
+#                 )
+#
+#
+#
+#             msg = "SUCCESSFULL"
+#             error = False
+#         except Exception as ex:
+#             msg = str(ex)
+#             error = True
+#         return jsonify({
+#             "msg": msg,
+#             "error": error,
+#             "data": json.loads(dumps(data))
+#         })
+
 class UserVehicleList(Resource):
     @staticmethod
     @jwt_required
