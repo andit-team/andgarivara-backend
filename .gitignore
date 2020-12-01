@@ -13,6 +13,7 @@ flask-mvc/controllers/users/__pycache__
 flask-mvc/controllers/users/profile/__pycache__
 flask-mvc/controllers/users/register/__pycache__
 flask-mvc/controllers/users/vehicles/__pycache__
+flask-mvc/controllers/users/serviceBooking/__pycache__
 flask-mvc/routes/__pycache__
 flask-mvc/constants/__pycache__
 flask-mvc/.env

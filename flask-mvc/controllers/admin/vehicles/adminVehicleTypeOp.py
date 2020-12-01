@@ -134,7 +134,7 @@ class AddBrandWithVehicleType(Resource):
             }).count()
             if countModel > 0:
                 return jsonify({
-                    "msg": "Duplicate Model Found!!!",
+                    "msg": "Duplicate Brand Found!!!",
                     "error": True,
                     "data": json.loads(dumps(data))
                 })
