@@ -25,7 +25,6 @@ def getAllDataField(data):
             "vehicleTypeTitle": data["vehicleTypeTitle"],
             "fuelType": bsonO.ObjectId(data["fuelType"]),
             "fuelTypeTitle": data["fuelTypeTitle"],
-            "ac": data["ac"],
             "vehicleTitle": data["vehicleTitle"],
             "vehicleNumber": data["vehicleNumber"],
             "regNumber": data["regNumber"],
