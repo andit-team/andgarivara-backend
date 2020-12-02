@@ -25,6 +25,10 @@ from controllers.frontEnd.vehicleProfile import VehicleProfile
 from controllers.frontEnd.homepage import GetRentalList, GetDriverList
 from controllers.frontEnd.searchVehicle import SearchVehicle
 
+########################## Locations ##########################
+from controllers.frontEnd.addressByLocationDiv import GetDivisionList, GetDistrictList, GetUpazillaList,GetUnionList, GetVillageList, GetMunicipleList, GetWordList
+
+
 def create_routes(api: Api):
    ########################## User.Setuppage ##########################
    api.add_resource(GetAppSetupData, '/api/admin/get_app_setup')
@@ -107,3 +111,13 @@ def create_routes(api: Api):
    api.add_resource(GetDriverList, '/api/home_driver_list')
    api.add_resource(SearchVehicle, '/api/search_vehicle')
    api.add_resource(VehicleProfile, '/api/vehicle_details/<string:id>')
+   ########################## Location ##########################
+   api.add_resource(GetDivisionList, '/api/get_division')
+   api.add_resource(GetDistrictList, '/api/get_district/<string:id>')
+   api.add_resource(GetUpazillaList, '/api/get_upazila/<string:id>')
+   api.add_resource(GetUnionList, '/api/get_union/<string:id>')
+   api.add_resource(GetVillageList, '/api/get_village/<string:id>')
+   api.add_resource(GetMunicipleList, '/api/get_municiple/<string:id>')
+   api.add_resource(GetWordList, '/api/get_word/<string:id>')
+
+
