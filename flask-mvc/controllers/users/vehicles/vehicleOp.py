@@ -312,7 +312,7 @@ class EditVehicle(Resource):
                 dt["driver"] = bsonO.ObjectId(data["driver"])
                 updateUser = mongo.db.userRegister.update_one(
                             {
-                                "userId":  userId
+                                "_id":  userId
                             },
                             { "$set": 
                                 {
