@@ -118,6 +118,6 @@ def create_routes(api: Api):
    api.add_resource(GetUnionList, '/api/get_union/<string:id>')
    api.add_resource(GetVillageList, '/api/get_village/<string:id>')
    api.add_resource(GetMunicipleList, '/api/get_municiple/<string:id>')
-   api.add_resource(GetWordList, '/api/get_word/<string:id>')
+   api.add_resource(GetWordList, '/api/get_ward/<string:id>')
 
 
