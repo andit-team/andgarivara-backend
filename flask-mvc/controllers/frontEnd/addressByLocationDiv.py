@@ -128,7 +128,7 @@ class GetWordList(Resource):
         data = []
         error = False
         try:
-            data = mongo.db.words.find({"municipal_id" : id})
+            data = mongo.db.wards.find({"municipal_id" : id})
             print(data.count())
             msg = "SUCCESSFULL"
         except Exception as ex:
