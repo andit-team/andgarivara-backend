@@ -17,4 +17,5 @@ flask-mvc/controllers/users/serviceBooking/__pycache__
 flask-mvc/routes/__pycache__
 flask-mvc/constants/__pycache__
 flask-mvc/.env
+.idea/
 .vscode/

@@ -249,58 +249,97 @@ class EditVehicle(Resource):
         vehicleId = bsonO.ObjectId(id)
         error = False
         msg = ""
-        # dt = getAllDataField(data)
-        # refType = data["refType"]
-        # dt["refType"] = refType
-        # userRole = data["role"]
-        # driverInfo = data["driverInfo"]
-        # driverInfo["refType"] = data["refType"]
-        # ownerInfo = []
-        # references = []
-        # dt["del_status"] = data["del_status"]
-        # dt["activeStatus"] = data["activeStatus"]
-        # dt["create_date"] = data["create_date"]
-        # dt["update_date"] = datetime.datetime.now()
-        # try:
-        #     if userRole == constants.ROLL_OWNER:
-        #         if refType == constants.REFFERENCE_TYPE_OWNER:
-        #             # update driver info & set driverId
-        #             driverId = bsonO.ObjectId(data["driver"])
-        #             dt["driver"] = driverId
-        #             update_Driver  = mongo.db.userRegister.update_one(
-        #                 {
-        #                     "_id": vehicleId,
-        #                     "userId":  userId,
-        #                     "drivers._id": driverId
-        #                 },
-        #                 {
-        #                     "$set": {
-        #                         "drivers.$": driverInfo
-        #                     }
-        #                 }
-        #             )
-        #             pass
-        #         # update vehicle info
-        #         update_ = mongo.db.vehicles.update(
-        #             {
-        #                 "_id": vehicleId,
-        #                 "userId": userId
-        #             },
-        #             {
-        #                 "$set": dt
-        #             }
-        #         )
+        dt = getAllDataField(data)
+        refType = data["refType"]
+        dt["refType"] = refType
+        userRole = data["role"]
+        driverInfo = data["driverInfo"]
+        driverInfo["refType"] = data["refType"]
+        driverId = data["driver"]
+        ownerInfo = []
+        references = []
+        dt["del_status"] = data["del_status"]
+        dt["activeStatus"] = data["activeStatus"]
+        dt["create_date"] = data["create_date"]
+        dt["update_date"] = datetime.datetime.now()
+        try:
+            if userRole == constants.ROLL_OWNER:
+                if driverId :
+                    driverId = bsonO.ObjectId(data["driver"])
+                    if refType == constants.REFFERENCE_TYPE_OWNER:
+                        # update driver info
+                        update_Driver  = mongo.db.userRegister.update_one(
+                            {
+                                "_id": userId,
+                                "drivers._id": driverId
+                            },
+                            {
+                                "$set": {
+                                    "drivers.$": driverInfo
+                                }
+                            }
+                        )
+                    else:
+                        # Pop drivers  & update refType
+                        dt["driver"] = None
+                        updateUser = mongo.db.userRegister.update_one(
+                            {
+                                "_id":  userId,
+                                "drivers._id": driverId
+                            },
+                            { "$pull": 
+                                {
+                                    "drivers":{"_id" : driverId}
+                                }
+                            }
+                        )
+                else:
+                    if refType == constants.REFFERENCE_TYPE_OWNER:
+                        driverId = bsonO.ObjectId()
+                        dt["driver"] = driverId
+                        driverInfo["_id"] = driverId
+                        updateUser = mongo.db.userRegister.update_one(
+                            {
+                                "_id":userId
+                            },
+                            {
+                                "$addToSet": {
+                                    "drivers" : driverInfo
+                                }
+                            }
+                        )
+            else:
+                dt["driver"] = bsonO.ObjectId(data["driver"])
+                updateUser = mongo.db.userRegister.update_one(
+                            {
+                                "userId":  userId
+                            },
+                            { "$set": 
+                                {
+                                    "drivers" : driverInfo
+                                }
+                            }
+                        )  
+            # update vehicle info
+            update_ = mongo.db.vehicles.update(
+                {
+                    "_id": vehicleId,
+                    "userId": userId
+                },
+                {
+                    "$set": dt
+                }
+            )
 
-        #     msg = "SUCCESSFULL"
-        #     error = False
-        # except Exception as ex:
-        #     msg = str(ex)
-        #     error = True
-        # return jsonify({
-        #     "msg": msg,
-        #     "error": error,
-        #     "data": json.loads(dumps(data))
-        # })
+            msg = "SUCCESSFULL"
+            error = False
+        except Exception as ex:
+            msg = str(ex)
+            error = True
+        return jsonify({
+            "msg": msg,
+            "error": error
+        })
 
 class UserVehicleList(Resource):
     @staticmethod
