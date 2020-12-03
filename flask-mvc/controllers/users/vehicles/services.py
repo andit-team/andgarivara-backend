@@ -25,10 +25,15 @@ class AddVehicleInService(Resource):
         if data["serviceType"] == "rental":
             serviceType = constants.SERVICE_RENTAL
             serviceDetails ={
-                "service" : serviceType,
-                "faq" :data["faq"],
-                "perDayRent": data["perDayRent"],
-                "perHourRent": data["perHourRent"]
+                "service": serviceType,
+                "faq": data["faq"],
+                "perDayBodyRent": data["perDayBodyRent"],
+                "perDayBodyRentNightStay": data["perDayBodyRentNightStay"],
+                "perHourRentWithFuel": data["perHourRentWithFuel"],
+                "perHourRentWithoutFuel": data["perHourRentWithoutFuel"],
+                "fuelCost": data["fuelCost"],
+                "fuelCostPerKM": data["fuelCostPerKM"],
+                "fuelCostPerKMUpDown": data["fuelCostPerKMUpDown"]
             }
             
         elif data["serviceType"] == "lease":
@@ -49,12 +54,12 @@ class AddVehicleInService(Resource):
                 [
                     UpdateOne(
                         {
-                            "_id":vehicelId,
-                            "userId":userId
+                            "_id": vehicelId,
+                            "userId": userId
                         },
                         {
-                            "$set":{
-                                "activeService" : serviceType,
+                            "$set": {
+                                "activeService": serviceType,
                                 "serviceDetails": serviceDetails,
                                 "description": data["description"]
                             }
@@ -62,8 +67,8 @@ class AddVehicleInService(Resource):
                     ),
                     UpdateOne(
                         {
-                            "_id":vehicelId,
-                            "userId":userId
+                            "_id": vehicelId,
+                            "userId": userId
                         },
                         {
                             "$addToSet": {  
