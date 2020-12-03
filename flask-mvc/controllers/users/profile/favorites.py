@@ -11,42 +11,22 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 class AddFavorite(Resource):
     @staticmethod
     @jwt_required
-    def post() -> Response:
-        data = request.get_json()
+    def put(id) -> Response:
         uId = bsonO.ObjectId(get_jwt_identity())
-        vID = bsonO.ObjectId(data["_id"])
+        vID = bsonO.ObjectId(id)
         vData = None
-        brandTitle = ""
-        vehicle_type = ""
-        model = ""
-        vehicleTypeId = None
-        brandId = None
         try:
-            vData = mongo.db.vehicles.find({"_id": vID})
-            for i in vData:
-                vehicleTypeId = bsonO.ObjectId(i["vehicle_type"])
-                brandId = bsonO.ObjectId(i["brand"])
-                model = i["model"]
-            vTData = mongo.db.vehicleType.find({"_id": vehicleTypeId})
-            for i in vTData:
-                vehicle_type = i["title"]
-                brands = i["brands"]
-                for i in brands:
-                    if bsonO.ObjectId(i["_id"]) == brandId:
-                        brandTitle = i["brand"]
-                        print(brandTitle)
-
+            vData = mongo.db.vehicles.find_one({"_id": vID}, {"_id": 1, "vehicleTypeTitle": 1, "brandTitle": 1,
+                                                              "model": 1, "manufactureYear": 1})
+            vehicleDetails = vData["brandTitle"] + " " + vData["model"] + " " + vData["manufactureYear"]
             dt = mongo.db.userRegister.update(
                 {"_id": uId},
                 {
                     "$addToSet": {
                         "bookmarks": {
-                            "_id": bsonO.ObjectId(),
-                            "car_id": vID,
-                            "vehicle_type": vehicle_type,
-                            "brand": brandTitle,
-                            "model": model,
-                            "bookmark_date": datetime.datetime.now()
+                            "_id": vID,
+                            "vehicleTypeTitle": vData["vehicleTypeTitle"],
+                            "vehicleDetails": vehicleDetails
                         }
                     }
                 }
@@ -62,14 +42,13 @@ class AddFavorite(Resource):
             "data": json.loads(dumps(vData))
         })
 
-
 class DeleteFavorite(Resource):
     @staticmethod
     @jwt_required
-    def delete() -> Response:
+    def delete(id) -> Response:
         data = request.get_json()
         uID = bsonO.ObjectId(get_jwt_identity())
-        bId = bsonO.ObjectId(data["_id"])
+        bId = bsonO.ObjectId(id)
         try:
             dt = mongo.db.userRegister.update_one(
                 {
@@ -90,8 +69,7 @@ class DeleteFavorite(Resource):
             error = True
         return jsonify({
             "msg": msg,
-            "error": error,
-            "data": json.loads(dumps(data))
+            "error": error
         })
 
 

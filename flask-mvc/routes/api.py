@@ -63,8 +63,8 @@ def create_routes(api: Api):
    api.add_resource(GetOwnerDataById, '/api/get_owner_data/<string:id>')
    ########################## User.favorite ##########################
    api.add_resource(FavoriteList, '/api/favorite_list')
-   api.add_resource(AddFavorite, '/api/add_favorites')
-   api.add_resource(DeleteFavorite, '/api/delete_favorites')   
+   api.add_resource(AddFavorite, '/api/add_favorites/<string:id>')
+   api.add_resource(DeleteFavorite, '/api/delete_favorites/<string:id>')
    ########################## User.serviceBooking.Rental ##########################
    # api.add_resource(GetAllOwnersList, '/api/driver/get_all_owners')
    api.add_resource(RentalBooking, '/api/rental_booking/<string:id>')
