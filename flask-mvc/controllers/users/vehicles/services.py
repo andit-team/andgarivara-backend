@@ -21,40 +21,44 @@ class AddVehicleInService(Resource):
         serviceType = None
         msg = None
         error = None
-        
+
         if data["serviceType"] == "rental":
             serviceType = constants.SERVICE_RENTAL
-            serviceDetails ={
-                "service" : serviceType,
-                "faq" :data["faq"],
-                "perDayRent": data["perDayRent"],
-                "perHourRent": data["perHourRent"]
+            serviceDetails = {
+                "service": serviceType,
+                "faq": data["faq"],
+                "perDayBodyRent": data["perDayBodyRent"],
+                "perDayBodyRentNightStay": data["perDayBodyRentNightStay"],
+                "perHourRentWithFuel": data["perHourRentWithFuel"],
+                "perHourRentWithoutFuel": data["perHourRentWithoutFuel"],
+                "fuelCost": data["fuelCost"],
+                "fuelCostPerKM": data["fuelCostPerKM"],
+                "fuelCostPerKMUpDown": data["fuelCostPerKMUpDown"]
             }
-            
+
         elif data["serviceType"] == "lease":
             serviceType = constants.SERVICE_LEASE
-            serviceDetails ={
-                "service" : serviceType,
-                "faq" :data["faq"],
+            serviceDetails = {
+                "service": serviceType,
+                "faq": data["faq"],
                 "leaseRate": data["leaseRate"]
             }
         elif data["serviceType"] == "rideshare":
             serviceType = constants.SERVICE_RIDESHARE
         else:
             serviceType = constants.SERVICE_INSTANTRIDE
-            
-        
-        try:           
+
+        try:
             bulkAction = mongo.db.vehicles.bulk_write(
                 [
                     UpdateOne(
                         {
-                            "_id":vehicelId,
-                            "userId":userId
+                            "_id": vehicelId,
+                            "userId": userId
                         },
                         {
-                            "$set":{
-                                "activeService" : serviceType,
+                            "$set": {
+                                "activeService": serviceType,
                                 "serviceDetails": serviceDetails,
                                 "description": data["description"]
                             }
@@ -62,15 +66,15 @@ class AddVehicleInService(Resource):
                     ),
                     UpdateOne(
                         {
-                            "_id":vehicelId,
-                            "userId":userId
+                            "_id": vehicelId,
+                            "userId": userId
                         },
                         {
-                            "$addToSet": {  
-                                "service": serviceType                                         
+                            "$addToSet": {
+                                "service": serviceType
                             }
                         }
-                        )
+                    )
                 ]
             )
             msg = "SUCCESSFULL"
@@ -82,7 +86,8 @@ class AddVehicleInService(Resource):
             "msg": msg,
             "error": error,
             "data": json.loads(dumps(data))
-        })  
+        })
+
 
 class GetVehicleServiceCost(Resource):
     @staticmethod
@@ -91,16 +96,16 @@ class GetVehicleServiceCost(Resource):
         vehicelId = bsonO.ObjectId(id)
         serviceData = None
         msg = None
-        error = None  
-        try:           
+        error = None
+        try:
             serviceData = mongo.db.vehicles.find_one(
                 {
-                    "_id" : vehicelId
+                    "_id": vehicelId
                 },
                 {
-                    "activeService" : 1,
-                    "serviceDetails" : 1,
-                    "description" : 1
+                    "activeService": 1,
+                    "serviceDetails": 1,
+                    "description": 1
                 }
             )
             msg = "SUCCESSFULL"
@@ -112,4 +117,4 @@ class GetVehicleServiceCost(Resource):
             "msg": msg,
             "error": error,
             "data": json.loads(dumps(serviceData))
-        })  
+        })
