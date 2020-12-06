@@ -8,6 +8,7 @@ import json
 from bson.json_util import dumps
 import constants.constantValue as constants
 
+
 class SearchVehicle(Resource):
     @staticmethod
     def post() -> Response:
@@ -16,36 +17,38 @@ class SearchVehicle(Resource):
         dtVehicle = []
         data = request.get_json()
         queryCodition = {
-            "activeService": data["service"], "activeStatus" : constants.STATUS_VERIFIED, "del_status" : False,
-                                                      "carLocation": {
-                                                                    "$near": {
-                                                                    "$maxDistance": 20000,
-                                                                    "$geometry": {
-                                                                    "type": "Point",
-                                                                    "coordinates": [data["long"],data["lat"]]
-                                                                    }
-                                                                }
-                                                            }
+            "activeService": data["service"], "activeStatus": constants.STATUS_VERIFIED, "del_status": False,
+            "carLocation": {
+                "$near": {
+                    "$maxDistance": 20000,
+                    "$geometry": {
+                        "type": "Point",
+                        "coordinates": [data["long"], data["lat"]]
+                    }
+                }
+            }
         }
-        if data["vehicleType"] :
+        if data["vehicleType"]:
             queryCodition["vehicleType"] = bsonO.ObjectId(data["vehicleType"])
-        
+
         dtVehicle = mongo.db.vehicles.find(queryCodition,
-                                                     {
-                                                         "_id" : 1,
-                                                         "vehicleTitle" : 1,
-                                                         "carLocation" : 1,
-                                                         "carAddress" : 1,
-                                                         "vehicle_imgs" : 1,
-                                                         "model" : 1,
-                                                         "manufactureYear" : 1,
-                                                         "ac" : 1,
-                                                         "millage" : 1,
-                                                         "serviceDetails.perDayRent" : 1,
-                                                     }
-                                                     )
+                                           {
+                                               "_id": 1,
+                                               "vehicleTypeTitle": 1,
+                                               "fuelTypeTitle": 1,
+                                               "brandTitle": 1,
+                                               "carLocation": 1,
+                                               "carAddress": 1,
+                                               "thumbImage": 1,
+                                               "model": 1,
+                                               "manufactureYear": 1,
+                                               "amenities.ac": 1,
+                                               "millage": 1,
+                                               "serviceDetails.perDayRent": 1
+                                           }
+                                           )
         return jsonify({
             "msg": msg,
-            "error": error,            
+            "error": error,
             "data": json.loads(dumps(dtVehicle))
         })
