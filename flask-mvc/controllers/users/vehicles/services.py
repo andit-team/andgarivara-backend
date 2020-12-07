@@ -30,10 +30,7 @@ class AddVehicleInService(Resource):
                 "perDayBodyRent": data["perDayBodyRent"],
                 "perDayBodyRentNightStay": data["perDayBodyRentNightStay"],
                 "perHourRentWithFuel": data["perHourRentWithFuel"],
-                "perHourRentWithoutFuel": data["perHourRentWithoutFuel"],
-                "fuelCost": data["fuelCost"],
-                "fuelCostPerKM": data["fuelCostPerKM"],
-                "fuelCostPerKMUpDown": data["fuelCostPerKMUpDown"]
+                "perHourRentWithoutFuel": data["perHourRentWithoutFuel"]
             }
 
         elif data["serviceType"] == "lease":
