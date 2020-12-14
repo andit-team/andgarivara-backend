@@ -42,7 +42,7 @@ class GetRentalList(Resource):
                     "manufactureYear": 1,
                     "amenities.ac": 1,
                     "millage": 1,
-                    "serviceDetails.perDayRent": 1
+                    "serviceDetails.perDayBodyRent": 1
                 }
                 ).limit(5)
         except Exception as ex:
