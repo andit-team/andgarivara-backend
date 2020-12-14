@@ -5,7 +5,7 @@ import bson.json_util as bsonO
 import datetime
 import json
 from bson.json_util import dumps
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required, get_jwt_identity
 import constants.constantValue as constants
 
 
@@ -208,10 +208,17 @@ def vehicleStatusUpdate(dataSet, id):
 
 class GetVehicleData(Resource):
     @staticmethod
-    # @jwt_required
+    @jwt_required
     def get(id) -> Response:
         msg = ""
         try:
+            adminCount = mongo.db.adminRegister.find({"_id": bsonO.ObjectId(get_jwt_identity())}).count()
+            if adminCount == 0:
+                return jsonify({
+                    "msg": "Your Are not Authentic Admin",
+                    "error": True,
+                    "data": None
+                })
             vehicleData = mongo.db.vehicles.find_one({"_id": bsonO.ObjectId(id), "del_status": False})
             if vehicleData["refType"] == constants.REFFERENCE_TYPE_OWNER:
                 allDetails = mongo.db.userRegister.find_one({
