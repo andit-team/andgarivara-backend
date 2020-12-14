@@ -44,7 +44,7 @@ class SearchVehicle(Resource):
                                                "manufactureYear": 1,
                                                "amenities.ac": 1,
                                                "millage": 1,
-                                               "serviceDetails.perDayRent": 1
+                                               "serviceDetails.perDayBodyRent": 1
                                            }
                                            )
         return jsonify({
