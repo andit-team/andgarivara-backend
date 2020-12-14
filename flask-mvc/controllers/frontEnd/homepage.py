@@ -55,7 +55,6 @@ class GetRentalList(Resource):
             "data": json.loads(dumps(dtRentalVehicle))
         })
 
-
 class GetDriverList(Resource):
     @staticmethod
     def get() -> Response:
@@ -68,7 +67,7 @@ class GetDriverList(Resource):
                                                       "_id": 1,
                                                       "first_name": 1,
                                                       "last_name": 1,
-                                                      "address": 1,
+                                                      "drivers.address": 1,
                                                       "drivers.image": 1,
                                                       "status_change_date": 1
                                                   }
