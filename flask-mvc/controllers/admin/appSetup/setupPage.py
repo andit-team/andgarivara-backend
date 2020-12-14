@@ -15,6 +15,13 @@ class GetAppSetupData(Resource):
     def get() -> Response:
         dt = None        
         try:
+            adminCount = mongo.db.adminRegister.find({"_id": bsonO.ObjectId(get_jwt_identity())}).count()
+            if adminCount == 0:
+                return jsonify({
+                    "msg": "Your Are not Authenticate Admin",
+                    "error": True,
+                    "data": None
+                })
             dt = mongo.db.adminAppSetupPage.find({"setupTitle" : constants.APP_SETUP_TITLE})
             msg = "SUCCESSFUL"
             error = False

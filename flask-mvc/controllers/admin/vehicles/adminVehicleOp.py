@@ -127,6 +127,13 @@ class AdminVehicleList(Resource):
         vehicleList = []
         i = None
         try:
+            adminCount = mongo.db.adminRegister.find({"_id": bsonO.ObjectId(get_jwt_identity())}).count()
+            if adminCount == 0:
+                return jsonify({
+                    "msg": "Your Are not Authenticate Admin",
+                    "error": True,
+                    "data": None
+                })
             vehicleList = mongo.db.vehicles.find({"activeStatus": status, "del_status": False})
             msg = "SUCCESS"
             error = False
@@ -142,11 +149,19 @@ class AdminVehicleList(Resource):
 
 class AdminVehicleStatusChange(Resource):
     @staticmethod
+    @jwt_required
     def put(id) -> Response:
         data = request.get_json()
         dataSet = None
         driverId = None
         try:
+            adminCount = mongo.db.adminRegister.find({"_id": bsonO.ObjectId(get_jwt_identity())}).count()
+            if adminCount == 0:
+                return jsonify({
+                    "msg": "Your Are not Authenticate Admin",
+                    "error": True,
+                    "data": None
+                })
             if data["activeStatus"] == constants.STATUS_REJECTED:
                 dataSet = {
                     "activeStatus": constants.STATUS_REJECTED,
@@ -215,7 +230,7 @@ class GetVehicleData(Resource):
             adminCount = mongo.db.adminRegister.find({"_id": bsonO.ObjectId(get_jwt_identity())}).count()
             if adminCount == 0:
                 return jsonify({
-                    "msg": "Your Are not Authentic Admin",
+                    "msg": "Your Are not Authenticate Admin",
                     "error": True,
                     "data": None
                 })
