@@ -81,7 +81,7 @@ def create_routes(api: Api):
    api.add_resource(VehicleTypeList, '/api/vehicle_type_list')
    api.add_resource(AddVehicleType, '/api/admin/add_vehicle_type')
    api.add_resource(VehicleTypeById, '/api/admin/edit_vehicle_type/<string:id>')
-   api.add_resource(EditVehicleType, '/api/admin/update_vehicle_type')
+   api.add_resource(EditVehicleType, '/api/admin/update_vehicle_type/<string:id>')
    api.add_resource(DeleteVehicleType, '/api/admin/delete_vehicle_type')
    ########################## Admin.vehicle.vehicleBrand ##########################
    api.add_resource(AddBrandWithVehicleType, '/api/admin/add_vehicle_brand')
