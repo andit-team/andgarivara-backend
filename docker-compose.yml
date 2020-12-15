@@ -3,4 +3,4 @@ services:
   flask-mvc:
     build: ./flask-mvc
     ports:
-      - "5000:5000"
+      - "7000:7000"
