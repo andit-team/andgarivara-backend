@@ -42,7 +42,7 @@ class GetRentalList(Resource):
                     "manufactureYear": 1,
                     "amenities.ac": 1,
                     "millage": 1,
-                    "serviceDetails.perDayRent": 1
+                    "serviceDetails.perDayBodyRent": 1
                 }
                 ).limit(5)
         except Exception as ex:
@@ -54,7 +54,6 @@ class GetRentalList(Resource):
             "error": error,
             "data": json.loads(dumps(dtRentalVehicle))
         })
-
 
 class GetDriverList(Resource):
     @staticmethod
@@ -68,7 +67,7 @@ class GetDriverList(Resource):
                                                       "_id": 1,
                                                       "first_name": 1,
                                                       "last_name": 1,
-                                                      "address": 1,
+                                                      "drivers.address": 1,
                                                       "drivers.image": 1,
                                                       "status_change_date": 1
                                                   }

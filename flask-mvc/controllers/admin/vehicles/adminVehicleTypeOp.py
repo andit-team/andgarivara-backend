@@ -6,7 +6,7 @@ from extension import mongo
 import datetime
 import bson
 import json
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 
 class AddVehicleType(Resource):
@@ -19,6 +19,13 @@ class AddVehicleType(Resource):
             "create_date": datetime.datetime.now()
         }
         try:
+            adminCount = mongo.db.adminRegister.find({"_id": bson.ObjectId(get_jwt_identity())}).count()
+            if adminCount == 0:
+                return jsonify({
+                    "msg": "Your Are not Authenticate Admin",
+                    "error": True,
+                    "data": None
+                })
             indexCreate = mongo.db.vehicleType.create_index(
                 'title', unique=True)
             insD = mongo.db.vehicleType.insert_one(dt)
@@ -40,6 +47,13 @@ class EditVehicleType(Resource):
     def put() -> Response:
         data = request.get_json()
         try:
+            adminCount = mongo.db.adminRegister.find({"_id": bson.ObjectId(get_jwt_identity())}).count()
+            if adminCount == 0:
+                return jsonify({
+                    "msg": "Your Are not Authenticate Admin",
+                    "error": True,
+                    "data": None
+                })
             insD = mongo.db.vehicleType.update_one(
                 {
                     "_id": bson.ObjectId(data["_id"])
@@ -68,6 +82,13 @@ class VehicleTypeById(Resource):
     def get(id) -> Response:
         allData = None
         try:
+            adminCount = mongo.db.adminRegister.find({"_id": bson.ObjectId(get_jwt_identity())}).count()
+            if adminCount == 0:
+                return jsonify({
+                    "msg": "Your Are not Authenticate Admin",
+                    "error": True,
+                    "data": None
+                })
             allData = mongo.db.vehicleType.find_one(
                 {
                     "_id": bson.ObjectId(id)
@@ -92,6 +113,13 @@ class DeleteVehicleType(Resource):
             "_id": bson.ObjectId(data["_id"])
         }
         try:
+            adminCount = mongo.db.adminRegister.find({"_id": bson.ObjectId(get_jwt_identity())}).count()
+            if adminCount == 0:
+                return jsonify({
+                    "msg": "Your Are not Authenticate Admin",
+                    "error": True,
+                    "data": None
+                })
             delD = mongo.db.vehicleType.delete_one(dt)
             msg = "SUCCESSFULL"
             error = False
@@ -128,6 +156,13 @@ class AddBrandWithVehicleType(Resource):
     def post() -> Response:
         data = request.get_json()
         try:
+            adminCount = mongo.db.adminRegister.find({"_id": bson.ObjectId(get_jwt_identity())}).count()
+            if adminCount == 0:
+                return jsonify({
+                    "msg": "Your Are not Authenticate Admin",
+                    "error": True,
+                    "data": None
+                })
             countModel = mongo.db.vehicleType.find({
                 "_id": bson.ObjectId(data["_id"]),
                 "brands.brand": data["brand"]
@@ -169,6 +204,13 @@ class EditBrandWithVehicleType(Resource):
         data = request.get_json()
 
         try:
+            adminCount = mongo.db.adminRegister.find({"_id": bson.ObjectId(get_jwt_identity())}).count()
+            if adminCount == 0:
+                return jsonify({
+                    "msg": "Your Are not Authenticate Admin",
+                    "error": True,
+                    "data": None
+                })
             insD = mongo.db.vehicleType.update_one(
                 {
                     "_id": bson.ObjectId(data["_id"]),
@@ -201,6 +243,13 @@ class BrandWithVehicleTypeById(Resource):
         brandId = bson.ObjectId(id)
         allData = None
         try:
+            adminCount = mongo.db.adminRegister.find({"_id": bson.ObjectId(get_jwt_identity())}).count()
+            if adminCount == 0:
+                return jsonify({
+                    "msg": "Your Are not Authenticate Admin",
+                    "error": True,
+                    "data": None
+                })
             getAllData = mongo.db.vehicleType.find_one(
                 {
                    "brands._id": brandId

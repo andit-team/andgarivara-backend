@@ -1,4 +1,3 @@
-
 from bson.json_util import dumps
 from flask import Response, request, jsonify
 from flask_restful import Resource
@@ -7,7 +6,7 @@ import datetime
 import bson
 import json
 from werkzeug.security import generate_password_hash
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required, get_jwt_identity
 import constants.constantValue as constants
 
 
@@ -100,7 +99,14 @@ class UserList(Resource):
         data = request.get_json()
         msg = None
         try:
-            dt = mongo.db.userRegister.find({"role":data["role"],"del_status":False})
+            adminCount = mongo.db.adminRegister.find({"_id": bson.ObjectId(get_jwt_identity())}).count()
+            if adminCount == 0:
+                return jsonify({
+                    "msg": "Your Are not Authenticate Admin",
+                    "error": True,
+                    "data": None
+                })
+            dt = mongo.db.userRegister.find({"role": data["role"], "del_status": False})
             msg = "SUCCESSFULL"
             error = False
         except Exception as ex:
@@ -112,4 +118,3 @@ class UserList(Resource):
             "error": error,
             "data": json.loads(dumps(dt))
         })
-

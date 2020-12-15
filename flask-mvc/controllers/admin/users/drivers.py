@@ -1,4 +1,3 @@
-
 from bson.json_util import dumps
 from flask import Response, request, jsonify
 from flask_restful import Resource
@@ -7,8 +6,9 @@ import datetime
 import bson
 import json
 from werkzeug.security import generate_password_hash
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required, get_jwt_identity
 import constants.constantValue as constants
+
 
 class VerifyDriver(Resource):
     @staticmethod
@@ -17,6 +17,13 @@ class VerifyDriver(Resource):
         data = request.get_json()
         data["status_change_date"] = datetime.datetime.now()
         try:
+            adminCount = mongo.db.adminRegister.find({"_id": bson.ObjectId(get_jwt_identity())}).count()
+            if adminCount == 0:
+                return jsonify({
+                    "msg": "Your Are not Authenticate Admin",
+                    "error": True,
+                    "data": None
+                })
             update_ = mongo.db.userRegister.update_one(
                 {
                     "del_status": False,
@@ -38,15 +45,23 @@ class VerifyDriver(Resource):
             "data": json.loads(dumps(data))
         })
 
+
 class DriverList(Resource):
     @staticmethod
     @jwt_required
     def get(status) -> Response:
         msg = ""
         driverList = []
-        i=None
+        i = None
         try:
-            driverList= mongo.db.userRegister.find({"driverStatus": status,"del_status": False})           
+            adminCount = mongo.db.adminRegister.find({"_id": bson.ObjectId(get_jwt_identity())}).count()
+            if adminCount == 0:
+                return jsonify({
+                    "msg": "Your Are not Authenticate Admin",
+                    "error": True,
+                    "data": None
+                })
+            driverList = mongo.db.userRegister.find({"driverStatus": status, "del_status": False})
             msg = "SUCCESS"
             error = False
         except Exception as ex:
@@ -65,9 +80,18 @@ class GetFreeDriverList(Resource):
     def get(type) -> Response:
         msg = ""
         driverList = []
-        i=None
+        i = None
         try:
-            driverList= mongo.db.userRegister.find({"driverStatus": constants.STATUS_VERIFIED,"del_status": False, "driverOccupied": False, "drivers.drivingLicenceType" : type})            
+            adminCount = mongo.db.adminRegister.find({"_id": bson.ObjectId(get_jwt_identity())}).count()
+            if adminCount == 0:
+                return jsonify({
+                    "msg": "Your Are not Authenticate Admin",
+                    "error": True,
+                    "data": None
+                })
+            driverList = mongo.db.userRegister.find(
+                {"driverStatus": constants.STATUS_VERIFIED, "del_status": False, "driverOccupied": False,
+                 "drivers.drivingLicenceType": type})
             msg = "SUCCESS"
             error = False
         except Exception as ex:
@@ -78,18 +102,27 @@ class GetFreeDriverList(Resource):
             "error": error,
             "data": json.loads(dumps(driverList))
         })
-        
-        
+
+
 class AssignDriver(Resource):
     @staticmethod
     @jwt_required
     def get() -> Response:
         msg = ""
-        i=None
+        i = None
         try:
-            _updateDriver= mongo.db.vehicles.update_one({"driverStatus": constants.STATUS_VERIFIED,"del_status": False, "driverOccupied": False})
-            _updateUser= mongo.db.userRegister.update_one({"driverStatus": constants.STATUS_VERIFIED,"del_status": False, "driverOccupied": False})
-           
+            adminCount = mongo.db.adminRegister.find({"_id": bson.ObjectId(get_jwt_identity())}).count()
+            if adminCount == 0:
+                return jsonify({
+                    "msg": "Your Are not Authenticate Admin",
+                    "error": True,
+                    "data": None
+                })
+            _updateDriver = mongo.db.vehicles.update_one(
+                {"driverStatus": constants.STATUS_VERIFIED, "del_status": False, "driverOccupied": False})
+            _updateUser = mongo.db.userRegister.update_one(
+                {"driverStatus": constants.STATUS_VERIFIED, "del_status": False, "driverOccupied": False})
+
             msg = "SUCCESS"
             error = False
         except Exception as ex:
@@ -99,7 +132,8 @@ class AssignDriver(Resource):
             "msg": msg,
             "error": error
         })
-        
+
+
 class GetDriverInfoById(Resource):
     @staticmethod
     @jwt_required
@@ -107,15 +141,22 @@ class GetDriverInfoById(Resource):
         msg = ""
         driverInfo = None
         try:
+            adminCount = mongo.db.adminRegister.find({"_id": bson.ObjectId(get_jwt_identity())}).count()
+            if adminCount == 0:
+                return jsonify({
+                    "msg": "Your Are not Authenticate Admin",
+                    "error": True,
+                    "data": None
+                })
             driverInfo = mongo.db.userRegister.find_one(
                 {
-                    "_id" : bson.ObjectId(id),
+                    "_id": bson.ObjectId(id),
                     "del_status": False
                 },
                 {
-                    "drivers" : 1,
-                    "reference" : 1,
-                    "default_contact_number" : 1
+                    "drivers": 1,
+                    "reference": 1,
+                    "default_contact_number": 1
                 }
             )
             msg = "SUCCESS"
@@ -126,5 +167,5 @@ class GetDriverInfoById(Resource):
         return jsonify({
             "msg": msg,
             "error": error,
-            "data" : json.loads(dumps(driverInfo))
+            "data": json.loads(dumps(driverInfo))
         })

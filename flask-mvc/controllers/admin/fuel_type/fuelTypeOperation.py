@@ -37,6 +37,13 @@ class AddFuelType(Resource):
             "create_date": datetime.datetime.now()
         }
         try:
+            adminCount = mongo.db.adminRegister.find({"_id": bsonO.ObjectId(get_jwt_identity())}).count()
+            if adminCount == 0:
+                return jsonify({
+                    "msg": "Your Are not Authenticate Admin",
+                    "error": True,
+                    "data": None
+                })
             indexCreate = mongo.db.fuelType.create_index(
                 'title', unique=True)
             _insertOp = mongo.db.fuelType.insert_one(dt)
@@ -58,7 +65,13 @@ class EditFuelType(Resource):
     def put() -> Response:
         data = request.get_json()
         try:
-
+            adminCount = mongo.db.adminRegister.find({"_id": bsonO.ObjectId(get_jwt_identity())}).count()
+            if adminCount == 0:
+                return jsonify({
+                    "msg": "Your Are not Authenticate Admin",
+                    "error": True,
+                    "data": None
+                })
             _updateOp = mongo.db.fuelType.update_one(
                 {
                     "_id": bsonO.ObjectId(data["_id"])
@@ -88,6 +101,13 @@ class FuelTypeById(Resource):
     def get(id) -> Response: 
         allData = None
         try:
+            adminCount = mongo.db.adminRegister.find({"_id": bsonO.ObjectId(get_jwt_identity())}).count()
+            if adminCount == 0:
+                return jsonify({
+                    "msg": "Your Are not Authenticate Admin",
+                    "error": True,
+                    "data": None
+                })
             allData = mongo.db.fuelType.find_one(
                 {
                     "_id": bsonO.ObjectId(id)
