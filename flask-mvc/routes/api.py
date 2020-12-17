@@ -1,6 +1,7 @@
 from flask_restful import Api
 ########################## User ##########################
 from controllers.users.profile.favorites import AddFavorite, DeleteFavorite, FavoriteList
+from controllers.users.profile.favoritePlaces import AddFavoritePlace, DeleteFavoritePlace, FavoritePlaceList
 from controllers.users.profile.userOperation import ProfileEdit, ProfileDelete, GetUserDataByToken, UpdateUserProfileImage, ResetPassword
 from controllers.users.register.login import UserLogin
 from controllers.users.register.signup import UserSignup
@@ -65,6 +66,10 @@ def create_routes(api: Api):
    api.add_resource(FavoriteList, '/api/favorite_list')
    api.add_resource(AddFavorite, '/api/add_favorites/<string:id>')
    api.add_resource(DeleteFavorite, '/api/delete_favorites/<string:id>')
+   ########################## User.favoritePlaces ##########################
+   api.add_resource(FavoritePlaceList, '/api/user/favorite_place_list')
+   api.add_resource(AddFavoritePlace, '/api/user/add_favorite_place')
+   api.add_resource(DeleteFavoritePlace, '/api/user/delete_favorite_place/<string:id>')
    ########################## User.serviceBooking.Rental ##########################
    # api.add_resource(GetAllOwnersList, '/api/driver/get_all_owners')
    api.add_resource(RentalBooking, '/api/rental_booking/<string:id>')
