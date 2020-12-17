@@ -1,4 +1,3 @@
-
 from bson.json_util import dumps
 from flask import Response, request, jsonify
 from flask_restful import Resource
@@ -16,6 +15,7 @@ class AddVehicleType(Resource):
         data = request.get_json()
         dt = {
             "title": data["title"],
+            "typeIcon": data["typeIcon"],
             "create_date": datetime.datetime.now()
         }
         try:
@@ -26,8 +26,7 @@ class AddVehicleType(Resource):
                     "error": True,
                     "data": None
                 })
-            indexCreate = mongo.db.vehicleType.create_index(
-                'title', unique=True)
+            indexCreate = mongo.db.vehicleType.create_index('title', unique=True)
             insD = mongo.db.vehicleType.insert_one(dt)
             msg = "SUCCESSFULL"
             error = False
@@ -44,7 +43,8 @@ class AddVehicleType(Resource):
 class EditVehicleType(Resource):
     @staticmethod
     @jwt_required
-    def put() -> Response:
+    def put(id) -> Response:
+        print(id)
         data = request.get_json()
         try:
             adminCount = mongo.db.adminRegister.find({"_id": bson.ObjectId(get_jwt_identity())}).count()
@@ -56,11 +56,12 @@ class EditVehicleType(Resource):
                 })
             insD = mongo.db.vehicleType.update_one(
                 {
-                    "_id": bson.ObjectId(data["_id"])
+                    "_id": bson.ObjectId(id)
                 },
                 {
                     "$set": {
                         "title": data["title"],
+                        "typeIcon": data["typeIcon"],
                         "update_date": datetime.datetime.now()
                     }
                 }
