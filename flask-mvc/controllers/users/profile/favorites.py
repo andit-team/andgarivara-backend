@@ -72,7 +72,6 @@ class DeleteFavorite(Resource):
             "error": error
         })
 
-
 class FavoriteList(Resource):
     @staticmethod
     @jwt_required
