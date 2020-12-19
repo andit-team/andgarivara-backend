@@ -19,7 +19,7 @@ class UserSignup(Resource):
             "first_name": data["first_name"],
             "last_name": data["last_name"],
             "email": data["email"],
-            "role": [constants.ROLL_PASSENGER],
+            "role": constants.ROLL_PASSENGER,
             "address": "",
             "country": "",
             "pushNotification": {
