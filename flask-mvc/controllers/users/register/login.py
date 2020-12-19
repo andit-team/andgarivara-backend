@@ -6,6 +6,8 @@ import json
 from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
 import datetime
 from werkzeug.security import check_password_hash
+import constants.constantValue as constants
+
 
 
 class UserLogin(Resource):
@@ -15,7 +17,7 @@ class UserLogin(Resource):
         userId = data["phone_no"]
         psw = data["password"]
         accessToken = None
-        userData = mongo.db.userRegister.find_one({"phone_no": userId,"del_status":False})
+        userData = mongo.db.userRegister.find_one({"phone_no": userId,"del_status":False,"role": data["role"]})
         if userData is not None:
             if check_password_hash(userData["password"], psw) == True:
                 id = userData["_id"]
