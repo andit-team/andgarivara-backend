@@ -17,7 +17,9 @@ class DriverSignup(Resource):
         msg = None
         error = None
         data = request.get_json()
-        try:            
+        try:       
+            indexCreate = mongo.db.userRegister.create_index(
+                'phone_no', unique=True)     
             insertDriver = mongo.db.userRegister.insert_one(
                 {
                     "phone_no": data["phone_no"],
@@ -43,9 +45,29 @@ class DriverSignup(Resource):
                     "create_date": datetime.datetime.now(),
                     "role":constants.ROLL_DRIVER,
                     "reference":data["reference"],
-                    "drivers" : driverInfo,
                     "driverStatus": constants.STATUS_PENDING,
-                    "driverOccupied" : False
+                    "driverOccupied" : False,
+                    "isMunicipal": data["isMunicipal"],
+                    "division": data["division"],
+                    "divisionTitle": data["divisionTitle"],
+                    "district": data["district"],
+                    "districtTitle": data["districtTitle"],
+                    "upazila": data["upazila"],
+                    "upazilaTitle": data["upazilaTitle"],
+                    "union": data["union"],
+                    "unionTitle": data["unionTitle"],
+                    "village": data["village"],
+                    "villageTitle": data["villageTitle"],
+                    "municipal": data["municipal"],
+                    "municipalTitle": data["municipalTitle"],
+                    "ward":data["ward"],
+                    "wardTitle": data["wardTitle"],
+                    "dob": data["dob"],
+                    "nid": data["nid"],
+                    "drivingLicence" : data["drivingLicence"],
+                    "drivingLicenceImg": data["drivingLicenceImg"],
+                    "drivingLicenceType": data["drivingLicenceType"],  
+                    "drivingLicenceExpiry": data["drivingLicenceExpiry"]
                 }
             )            
             msg = "Registered Successfully"
@@ -55,6 +77,5 @@ class DriverSignup(Resource):
             error = True
         return jsonify({
             "msg": msg,
-            "error": error,
-            "data" : json.loads(dumps(data))
+            "error": error
         })
