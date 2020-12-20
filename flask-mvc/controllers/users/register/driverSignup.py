@@ -8,46 +8,46 @@ from bson.json_util import dumps
 from flask_jwt_extended import get_jwt_identity, jwt_required
 import constants.constantValue as constants
 from pymongo import UpdateOne
+from werkzeug.security import generate_password_hash
+
 
 class DriverSignup(Resource):
     @staticmethod
-    @jwt_required
-    def put() -> Response:
+    def post() -> Response:
         msg = None
         error = None
         data = request.get_json()
-        userId = bsonO.ObjectId(get_jwt_identity())
-        driverInfo = data["driverInfo"]
         try:            
-            bulkAction = mongo.db.userRegister.bulk_write(
-                [
-                    UpdateOne(
-                    {
-                        "_id":userId,
-                        "del_status" : False
+            insertDriver = mongo.db.userRegister.insert_one(
+                {
+                    "phone_no": data["phone_no"],
+                    "password": generate_password_hash(data["password"]),
+                    "first_name": data["first_name"],
+                    "last_name": data["last_name"],
+                    "email": data["email"],
+                    "address": data["address"],
+                    "country": data["country"],
+                    "pushNotification": {
+                        "on_message_send": True,
+                        "on_booking": True,
+                        "on_suppport_reply": True
                     },
-                    {
-                        "$addToSet": {
-                            "role":constants.ROLL_DRIVER,
-                            "reference":data["reference"]
-                        }
-                    }
-                    ),
-                    UpdateOne(
-                        {
-                            "_id":userId
-                        },
-                        {
-                            "$set": {
-                                "drivers" : driverInfo,
-                                "driverStatus": constants.STATUS_PENDING,
-                                "driverOccupied" : False,
-                                "default_contact_number":data["default_contact_number"]
-                            }
-                        }
-                    )
-                ]
-            )
+                    "smsNotification": {
+                        "on_message_send": True,
+                        "on_booking": True,
+                        "on_suppport_reply": True
+                    },
+                    "default_contact_number" :data["phone_no"],
+                    "profile_pic" :data["profile_pic"],
+                    "del_status":False,
+                    "create_date": datetime.datetime.now(),
+                    "role":constants.ROLL_DRIVER,
+                    "reference":data["reference"],
+                    "drivers" : driverInfo,
+                    "driverStatus": constants.STATUS_PENDING,
+                    "driverOccupied" : False
+                }
+            )            
             msg = "Registered Successfully"
             error = False
         except Exception as ex:
