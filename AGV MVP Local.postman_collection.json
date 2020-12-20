@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a0a7f1c4-442d-4572-9741-345f5c14ec95",
+		"_postman_id": "9bec42a9-8714-47ba-a4e2-40f191b87823",
 		"name": "AGV MVP Local",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -62,14 +62,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000//admin/login",
+									"raw": "http://localhost:7000/api/admin/login",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "5000",
+									"port": "7000",
 									"path": [
-										"",
+										"api",
 										"admin",
 										"login"
 									]
@@ -77,13 +77,269 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
+				},
+				{
+					"name": "fuelType",
+					"item": [
+						{
+							"name": "Get All Fuel Type",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDYzNjQyNjAsIm5iZiI6MTYwNjM2NDI2MCwianRpIjoiN2Y0MDJhMTctMmUyOS00MjUyLWExNmEtMDMwZmY2MTVlYzJiIiwiZXhwIjoxNjA2MzkzMDYwLCJpZGVudGl0eSI6IjVmOTdiZGZjYzJhNTI3YmE0NTc4OWMyYSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.01-GraJ7PSF87nBiSc3gU7w6B4ptBlhUUEqyW2s5faY",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/fuel_type_list",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"fuel_type_list"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Fuel Type",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"petrol\",\r\n    \"rate\": 89\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/admin/add_fuel_type",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"admin",
+										"add_fuel_type"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Fuel",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/admin/edit_fuel_type/5f97d7c3d72e48e68f239036",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"admin",
+										"edit_fuel_type",
+										"5f97d7c3d72e48e68f239036"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "5f97d7c3d72e48e68f239036",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Fuel",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"_id\":\"5f97d7c3d72e48e68f239036\",\r\n    \"title\": \"petrol\",\r\n    \"rate\": 86\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/admin/update_fuel_type",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"admin",
+										"update_fuel_type"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				},
 				{
 					"name": "vehicelType",
 					"item": [
+						{
+							"name": "Add Vehicle Type",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDgwMTA5MzMsIm5iZiI6MTYwODAxMDkzMywianRpIjoiYzAxODI1ZTQtYmY3Zi00MjJiLThiZWItOWI2ZGUxZjlkMzM1IiwiZXhwIjoxNjA4MDM5NzMzLCJpZGVudGl0eSI6IjVmOTdiZGZjYzJhNTI3YmE0NTc4OWMyYSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.RHDkV8JEeevgA1llTXnjYu18fSmASvx6QLd9Yi-vegg",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Bus\",\r\n    \"typeIcon\": \"https://as2.ftcdn.net/jpg/01/13/66/73/500_F_113667388_YKanL37cqCMB8YcDAtIO9EeN98BOxsOM.jpg\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/admin/add_vehicle_type",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"admin",
+										"add_vehicle_type"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Vehicle Type",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDgwMTA5MzMsIm5iZiI6MTYwODAxMDkzMywianRpIjoiYzAxODI1ZTQtYmY3Zi00MjJiLThiZWItOWI2ZGUxZjlkMzM1IiwiZXhwIjoxNjA4MDM5NzMzLCJpZGVudGl0eSI6IjVmOTdiZGZjYzJhNTI3YmE0NTc4OWMyYSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.RHDkV8JEeevgA1llTXnjYu18fSmASvx6QLd9Yi-vegg",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/admin/edit_vehicle_type/5f9e4eb72b0f36774116d06d",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"admin",
+										"edit_vehicle_type",
+										"5f9e4eb72b0f36774116d06d"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Vehicle Type",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDgwMTA5MzMsIm5iZiI6MTYwODAxMDkzMywianRpIjoiYzAxODI1ZTQtYmY3Zi00MjJiLThiZWItOWI2ZGUxZjlkMzM1IiwiZXhwIjoxNjA4MDM5NzMzLCJpZGVudGl0eSI6IjVmOTdiZGZjYzJhNTI3YmE0NTc4OWMyYSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.RHDkV8JEeevgA1llTXnjYu18fSmASvx6QLd9Yi-vegg"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{    \r\n    \"title\":\"Private Car\",\r\n    \"typeIcon\":\"https://www.flaticon.com/svg/static/icons/svg/1085/1085961.svg\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/admin/update_vehicle_type/5f9e4eb72b0f36774116d06d",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"admin",
+										"update_vehicle_type",
+										"5f9e4eb72b0f36774116d06d"
+									]
+								}
+							},
+							"response": []
+						},
 						{
 							"name": "Get All Vehicle Type",
 							"protocolProfileBehavior": {
@@ -109,34 +365,104 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/vehicle_type_list",
+									"raw": "http://localhost:7000/api/vehicle_type_list",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "5000",
+									"port": "7000",
 									"path": [
+										"api",
 										"vehicle_type_list"
 									]
 								}
 							},
 							"response": []
+						}
+					]
+				},
+				{
+					"name": "User's Operation",
+					"item": [
+						{
+							"name": "Passenger List",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"role\":\"passenger\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/admin/user_list",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"admin",
+										"user_list"
+									]
+								}
+							},
+							"response": []
 						},
 						{
-							"name": "Add Vehicle Type",
+							"name": "Owner List",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"role\":\"owner\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/admin/user_list",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"admin",
+										"user_list"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Brands",
+					"item": [
+						{
+							"name": "Add Vehicle Brand",
 							"request": {
 								"method": "POST",
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "",
 										"type": "text",
-										"disabled": true
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDU0OTgxMjUsIm5iZiI6MTYwNTQ5ODEyNSwianRpIjoiYWZjNzQzNTktYzk4OS00NWM5LTg2NTUtN2FjODU3YmEzMmEzIiwiZXhwIjoxNjA1NTI2OTI1LCJpZGVudGl0eSI6IjVmOTdiZGZjYzJhNTI3YmE0NTc4OWMyYSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.N5k6O60RlrKA6iR2uhz1-ycLb0yirfioq2A7kS60BaQ"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"title\":\"Car\",\r\n    \"data_fields\" :[\r\n        {\r\n            \"field_label\":\"year\",\r\n            \"field_type\":\"textbox\",\r\n            \"value_type\":\"text\"\r\n        },\r\n        {\r\n            \"field_label\":\"Color\",\r\n            \"field_type\":\"textbox\",\r\n            \"value_type\":\"text\"\r\n        },\r\n        {\r\n            \"field_label\":\"color on paper\",\r\n            \"field_type\":\"textbox\",\r\n            \"value_type\":\"text\"\r\n        }\r\n    ]\r\n}",
+									"raw": "{\r\n   \"_id\":\"5f9f9f3a57e82337426d04a0\",\r\n    \"brand\": \"Ashok\"     \r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -144,85 +470,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/admin/add_vehicle_type",
+									"raw": "http://localhost:5000/api/admin/add_vehicle_brand",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "5000",
 									"path": [
-										"admin",
-										"add_vehicle_type"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Edit Vehicle Type",
-							"request": {
-								"method": "PUT",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "",
-										"type": "text",
-										"disabled": true
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"_id\":\"5f9a404c2e38271226210dca\",\r\n    \"title\":\" Private Car\",\r\n    \"data_fields\" :[\r\n        {\r\n            \"field_label\":\"year\",\r\n            \"field_type\":\"textbox\",\r\n            \"value_type\":\"text\"\r\n        },\r\n        {\r\n            \"field_label\":\"Color\",\r\n            \"field_type\":\"textbox\",\r\n            \"value_type\":\"text\"\r\n        },\r\n        {\r\n            \"field_label\":\"color on paper\",\r\n            \"field_type\":\"textbox\",\r\n            \"value_type\":\"text\"\r\n        },\r\n        {\r\n            \"field_label\":\"total Seat\",\r\n            \"field_type\":\"textbox\",\r\n            \"value_type\":\"int\"\r\n        }\r\n    ]\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:5000/admin/edit_vehicle_type",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "5000",
-									"path": [
-										"admin",
-										"edit_vehicle_type"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Add Vehicle Brand",
-							"request": {
-								"method": "PUT",
-								"header": [
-									{
-										"key": "Authorization",
-										"type": "text",
-										"value": "",
-										"disabled": true
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n   \"_id\":\"5f9a404c2e38271226210dca\",\r\n    \"brand\": \"Toyota\",\r\n    \"model\":\"Avalon\"       \r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:5000/admin/add_vehicle_brand",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "5000",
-									"path": [
+										"api",
 										"admin",
 										"add_vehicle_brand"
 									]
@@ -232,120 +487,6 @@
 						},
 						{
 							"name": "Edit Vehicle Brand",
-							"request": {
-								"method": "PUT",
-								"header": [
-									{
-										"key": "Authorization",
-										"type": "text",
-										"value": "",
-										"disabled": true
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"_id\":\"5f9a404c2e38271226210dca\",\r\n    \"brand_id\":\"5f9a411444617ce1d560e407\",\r\n    \"brand\": \"Toyota\",\r\n    \"model\":\"X-Fielder\"        \r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:5000/admin/edit_vehicle_brand",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "5000",
-									"path": [
-										"admin",
-										"edit_vehicle_brand"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get All Vehicle type  fields",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Authorization",
-										"type": "text",
-										"value": "",
-										"disabled": true
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"_id\": \"5f9a404c2e38271226210dca\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:5000/vehicle_type_field",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "5000",
-									"path": [
-										"vehicle_type_field"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get All Vehicle Brands",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Authorization",
-										"type": "text",
-										"value": "",
-										"disabled": true
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n     \"_id\":\"5f9a404c2e38271226210dca\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:5000/admin/vehicle_brand_list",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "5000",
-									"path": [
-										"admin",
-										"vehicle_brand_list"
-									]
-								}
-							},
-							"response": []
-						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "fuelType",
-					"item": [
-						{
-							"name": "Get All Fuel Type",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -354,8 +495,8 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "",
 										"type": "text",
+										"value": "",
 										"disabled": true
 									}
 								],
@@ -369,56 +510,37 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/fuel_type_list",
+									"raw": "http://localhost:5000/api/admin/edit_vehicle_brand/5f9fd2373fd204ff848f8641",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "5000",
 									"path": [
-										"fuel_type_list"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Add Fuel Type",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"title\": \"petrol\",\r\n    \"rate\": 89\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:5000/admin/add_fuel_type",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "5000",
-									"path": [
+										"api",
 										"admin",
-										"add_fuel_type"
+										"edit_vehicle_brand",
+										"5f9fd2373fd204ff848f8641"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "Edit Fuel",
+							"name": "Update Vehicle Brand",
 							"request": {
 								"method": "PUT",
-								"header": [],
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"_id\":\"5f97d7c3d72e48e68f239036\",\r\n    \"title\": \"petrol\",\r\n    \"rate\": 86\r\n}",
+									"raw": "{\r\n    \"_id\":\"5f9e4eb72b0f36774116d06d\",\r\n    \"brand_id\":\"5f9fd2373fd204ff848f8641\",\r\n    \"brand\": \"Tata\"        \r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -426,83 +548,39 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/admin/edit_fuel_type",
+									"raw": "http://localhost:5000/api/admin/update_vehicle_brand",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "5000",
 									"path": [
+										"api",
 										"admin",
-										"edit_fuel_type"
-									]
-								}
-							},
-							"response": []
-						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "Payment Method",
-					"item": [
-						{
-							"name": "Add Payment Method",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n     \"title\":\"Cash After service\",\r\n     \"image\":\"\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:5000/admin/add_avail_Payment_Method",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "5000",
-									"path": [
-										"admin",
-										"add_avail_Payment_Method"
+										"update_vehicle_brand"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "Payment Method List",
+							"name": "Get All Vehicle Brands",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:5000/avail_Payment_Method_list",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "5000",
-									"path": [
-										"avail_Payment_Method_list"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Edit Payment Method",
-							"request": {
-								"method": "PUT",
-								"header": [],
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"_id\":\"5f8a8cf84a989b231ec0fd7a\",\r\n     \"title\":\"Cash Payment\",\r\n     \"image\":\"https://thumbs.dreamstime.com/z/hand-holding-money-hand-banknotes-cash-payment-receiving-money-icon-hand-holding-money-hand-banknotes-cash-payment-115680589.jpg\"\r\n}",
+									"raw": "",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -510,249 +588,452 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/admin/edit_avail_Payment_Method",
+									"raw": "http://localhost:5000/api/vehicle_brand_list/5f9e4eb72b0f36774116d06d",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "5000",
 									"path": [
-										"admin",
-										"edit_avail_Payment_Method"
+										"api",
+										"vehicle_brand_list",
+										"5f9e4eb72b0f36774116d06d"
 									]
 								}
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
-					"name": "location",
+					"name": "Driver",
 					"item": [
 						{
-							"name": "city",
-							"item": [
-								{
-									"name": "City List",
-									"request": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "http://localhost:5000/city_list",
-											"protocol": "http",
-											"host": [
-												"localhost"
-											],
-											"port": "5000",
-											"path": [
-												"city_list"
-											]
+							"name": "Driver List",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDYxMDE5NzcsIm5iZiI6MTYwNjEwMTk3NywianRpIjoiODNmZjdkNjItNzE2Yi00MDkzLTlmNTgtOTAyYWZiZWEzZTcyIiwiZXhwIjoxNjA2MTMwNzc3LCJpZGVudGl0eSI6IjVmOTdiZGZjYzJhNTI3YmE0NTc4OWMyYSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.Y7CIADkDlxBSx3XkSg05w_lF7z1VCaqI35KTf7etdY0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									},
-									"response": []
+									}
 								},
-								{
-									"name": "Add City",
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n       \"city\": \"haka\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "http://localhost:5000/admin/add_city",
-											"protocol": "http",
-											"host": [
-												"localhost"
-											],
-											"port": "5000",
-											"path": [
-												"admin",
-												"add_city"
-											]
+								"url": {
+									"raw": "http://localhost:5000/api/admin/driver_list/pending",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"admin",
+										"driver_list",
+										"pending"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
 										}
-									},
-									"response": []
-								},
-								{
-									"name": "Edit City",
-									"request": {
-										"method": "PUT",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n\"city\": \"Dhaka\",\r\n\"_id\":\"5f97c7bd276d9a0c9bfb83c7\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "http://localhost:5000/admin/edit_city",
-											"protocol": "http",
-											"host": [
-												"localhost"
-											],
-											"port": "5000",
-											"path": [
-												"admin",
-												"edit_city"
-											]
-										}
-									},
-									"response": []
+									]
 								}
-							],
-							"protocolProfileBehavior": {},
-							"_postman_isSubFolder": true
+							},
+							"response": []
 						},
 						{
-							"name": "area",
-							"item": [
-								{
-									"name": "Area List ",
-									"protocolProfileBehavior": {
-										"disableBodyPruning": true
-									},
-									"request": {
-										"method": "GET",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "http://localhost:5000/area_list",
-											"protocol": "http",
-											"host": [
-												"localhost"
-											],
-											"port": "5000",
-											"path": [
-												"area_list"
-											]
+							"name": "Free Driver",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDYzODU0NzgsIm5iZiI6MTYwNjM4NTQ3OCwianRpIjoiMDVjMDE0ZTYtNzI5Zi00OWMwLWEzODQtYzgyNmRiOTBiOTM0IiwiZXhwIjoxNjA2NDE0Mjc4LCJpZGVudGl0eSI6IjVmOTdiZGZjYzJhNTI3YmE0NTc4OWMyYSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.sdavTs7r_t2Hw-KXODMIG4zE01aQrza5Vmp49pUSbRc"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									},
-									"response": []
+									}
 								},
-								{
-									"name": "Area Add",
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n\"area\": \"gollamari\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "http://localhost:5000/admin/add_area",
-											"protocol": "http",
-											"host": [
-												"localhost"
-											],
-											"port": "5000",
-											"path": [
-												"admin",
-												"add_area"
-											]
+								"url": {
+									"raw": "http://localhost:5000/api/admin/unoccupied_driver_list/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"admin",
+										"unoccupied_driver_list",
+										"2"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
 										}
-									},
-									"response": []
-								},
-								{
-									"name": "Edit Area",
-									"request": {
-										"method": "PUT",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"_id\":\"5f97d6dbd72e48e68f239033\",\r\n    \"area\": \"rupsa\"\r\n\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "http://localhost:5000/admin/edit_area",
-											"protocol": "http",
-											"host": [
-												"localhost"
-											],
-											"port": "5000",
-											"path": [
-												"admin",
-												"edit_area"
-											],
-											"query": [
-												{
-													"key": "areaId",
-													"value": "5f7160cf76b00857d456c607",
-													"disabled": true
-												}
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "Delete Area",
-									"request": {
-										"method": "DELETE",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n      \"_id\":\"5f7c0ce6fb6d11dfd2b4064c\"\r\n\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "http://localhost:5000/admin/delete_area",
-											"protocol": "http",
-											"host": [
-												"localhost"
-											],
-											"port": "5000",
-											"path": [
-												"admin",
-												"delete_area"
-											]
-										}
-									},
-									"response": []
+									]
 								}
-							],
-							"protocolProfileBehavior": {},
-							"_postman_isSubFolder": true
+							},
+							"response": []
+						},
+						{
+							"name": "Driver Status Change",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDYxMDE5NzcsIm5iZiI6MTYwNjEwMTk3NywianRpIjoiODNmZjdkNjItNzE2Yi00MDkzLTlmNTgtOTAyYWZiZWEzZTcyIiwiZXhwIjoxNjA2MTMwNzc3LCJpZGVudGl0eSI6IjVmOTdiZGZjYzJhNTI3YmE0NTc4OWMyYSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.Y7CIADkDlxBSx3XkSg05w_lF7z1VCaqI35KTf7etdY0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"driverStatus\":\"verified\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/admin/driver_verification/5fbb31111cc6de993aed1925",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"admin",
+										"driver_verification",
+										"5fbb31111cc6de993aed1925"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Driver Info by Id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDc5MjE0MzIsIm5iZiI6MTYwNzkyMTQzMiwianRpIjoiZWU0OGNmOTAtMmU3ZS00ZTNkLTgyYjctNjIwYTliYjNhOGQwIiwiZXhwIjoxNjA3OTUwMjMyLCJpZGVudGl0eSI6IjVmOTdiZGZjYzJhNTI3YmE0NTc4OWMyYSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.oncWXVgxcTt01J2k_7nC-hMlpq5WeNDOQXaYaYBhX4o",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:5000/api/get_driver_info/5fcf15018fbe8f00ddbd4d37",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"get_driver_info",
+										"5fcf15018fbe8f00ddbd4d37"
+									]
+								}
+							},
+							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
+				},
+				{
+					"name": "Vehicle",
+					"item": [
+						{
+							"name": "Vehicle List",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDc5Mzc3NTksIm5iZiI6MTYwNzkzNzc1OSwianRpIjoiNmU3MmVlNDYtMGJmYi00Y2VjLTkwYzgtZDYzODUyZmFhM2M2IiwiZXhwIjoxNjA3OTY2NTU5LCJpZGVudGl0eSI6IjVmOTdiZGZjYzJhNTI3YmE0NTc4OWMyYSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.8RtKgOHxQlVa1ermu5GvEA1MrPHRUX6IkNXrqxIwZxY"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/admin/vehicle_list/verified",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"admin",
+										"vehicle_list",
+										"verified"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Vehicle data",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDc5NDI0NDQsIm5iZiI6MTYwNzk0MjQ0NCwianRpIjoiYzlkNTgyYmUtNWMyZS00MTE3LWI1ZTQtMmVlOTliYjFiMzc5IiwiZXhwIjoxNjA3OTcxMjQ0LCJpZGVudGl0eSI6IjVmOTdiZGZjYzJhNTI3YmE0NTc4OWMyYSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.kmWmVHipHbVgfDlytnRrVwU8CdD-DzW56Qr1fGhKJhI"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/get_vehicle_data/5fcf18e28fbe8f00ddbd4d38",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"get_vehicle_data",
+										"5fcf18e28fbe8f00ddbd4d38"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Vehicle Status Change",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDYyNzg5NTcsIm5iZiI6MTYwNjI3ODk1NywianRpIjoiZTJkNTVlOWYtYTdhNi00ZGQ4LWFmN2ItMTFhZDI0YzcwMjI0IiwiZXhwIjoxNjA2MzA3NzU3LCJpZGVudGl0eSI6IjVmOTdiZGZjYzJhNTI3YmE0NTc4OWMyYSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.ho9m_9NyRbUOqQDb8rhLnlwJ26htEblmK7N1wjR95bM"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{    \r\n    \"activeStatus\":\"verified\",\r\n    \"comment\" : \"\",\r\n    \"vehicleLicenceType\" : 3,\r\n    \"refType\" : \"byAdmin\",\r\n    \"driverId\" : \"5facf621d4ce00c2a9711694\"    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/admin/vehicle_verification/5fc37c2493f301cda50e88be",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"admin",
+										"vehicle_verification",
+										"5fc37c2493f301cda50e88be"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Setup App",
+					"item": [
+						{
+							"name": "Insert App Setup",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDU0MTMxNTUsIm5iZiI6MTYwNTQxMzE1NSwianRpIjoiZWUyNWYwNTMtOTNkYi00YmRlLTg2NGMtMDdjZWYxMGI0ODJmIiwiZXhwIjoxNjA1NDQxOTU1LCJpZGVudGl0eSI6IjVmYThkODlmZmYwMGY3ZmNmZTI0MmY4OSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.feJE0cKXzyizEhKFLA-Mviu6rhl31RQNVdsMCCc0uS8",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ownerCom\": 0,\r\n    \"ownerComUnit\":\"\",\r\n    \"ownerComPer\":\"\",\r\n    \"driverCom\": 0,\r\n    \"driverComUnit\":\"\",\r\n    \"driverComPer\":\"\",\r\n    \"agentCom\": 0,\r\n    \"agentComUnit\":\"\",\r\n    \"agentComPer\":\"\",\r\n    \"awartPoint\": 0,\r\n    \"costSpentPer\": 0,\r\n    \"discountTitle\":\"\",\r\n    \"discountAmount\": 0,\r\n    \"discountUnit\" : \"\",\r\n    \"discountCondition\" : 0,\r\n    \"searchAreaLimit\" : 20\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/admin/add_app_setup",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"admin",
+										"add_app_setup"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update App Setup",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDU0MTMxNTUsIm5iZiI6MTYwNTQxMzE1NSwianRpIjoiZWUyNWYwNTMtOTNkYi00YmRlLTg2NGMtMDdjZWYxMGI0ODJmIiwiZXhwIjoxNjA1NDQxOTU1LCJpZGVudGl0eSI6IjVmYThkODlmZmYwMGY3ZmNmZTI0MmY4OSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.feJE0cKXzyizEhKFLA-Mviu6rhl31RQNVdsMCCc0uS8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ownerCom\": 70,\r\n    \"ownerComUnit\":\"percentage\",\r\n    \"ownerComPer\":\"ride\",\r\n    \"driverCom\": 25000,\r\n    \"driverComUnit\":\"bdt\",\r\n    \"driverComPer\":\"month\",\r\n    \"agentCom\": 10,\r\n    \"agentComUnit\":\"percentage\",\r\n    \"agentComPer\":\"month\",\r\n    \"awartPoint\": 1,\r\n    \"costSpentPer\": 10,\r\n    \"discountTitle\":\"Eid Festival\",\r\n    \"discountAmount\": 10,\r\n    \"discountUnit\" : \"percentage\",\r\n    \"discountCondition\" : 300,\r\n    \"searchAreaLimit\" : 20\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/admin/update_app_setup",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"admin",
+										"update_app_setup"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get App Setup",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDU0MTMxNTUsIm5iZiI6MTYwNTQxMzE1NSwianRpIjoiZWUyNWYwNTMtOTNkYi00YmRlLTg2NGMtMDdjZWYxMGI0ODJmIiwiZXhwIjoxNjA1NDQxOTU1LCJpZGVudGl0eSI6IjVmYThkODlmZmYwMGY3ZmNmZTI0MmY4OSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.feJE0cKXzyizEhKFLA-Mviu6rhl31RQNVdsMCCc0uS8",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ownerCom\": 70,\r\n    \"ownerComUnit\":\"percentage\",\r\n    \"ownerComPer\":\"ride\",\r\n    \"driverCom\": 25000,\r\n    \"driverComUnit\":\"bdt\",\r\n    \"driverComPer\":\"month\",\r\n    \"agentCom\": 10,\r\n    \"agentComUnit\":\"percentage\",\r\n    \"agentComPer\":\"month\",\r\n    \"awartPoint\": 1,\r\n    \"costSpentPer\": 10,\r\n    \"discountTitle\":\"Eid Fastival\",\r\n    \"discountAmount\": 10,\r\n    \"discountUnit\" : \"percentage\",\r\n    \"discountCondition\" : 300,\r\n    \"searchAreaLimit\" : 20\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/admin/get_app_setup",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"admin",
+										"get_app_setup"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "User",
@@ -767,7 +1048,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"phone_no\": \"01926393816\",\r\n    \"password\": \"12345\",\r\n    \"first_name\": \"Tama\",\r\n    \"last_name\": \"Sarker\",\r\n    \"email\": \"\"\r\n}",
+									"raw": "{\r\n    \"phone_no\": \"012345678987\",\r\n    \"password\": \"12345\",\r\n    \"first_name\": \"Mr.\",\r\n    \"last_name\": \"X\",\r\n    \"email\": \"xmail@gmail.com\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -802,7 +1083,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"phone_no\": \"01926393816\",\r\n    \"password\": \"12345\"\r\n}",
+									"raw": "{\r\n    \"phone_no\": \"01230000\",\r\n    \"password\": \"12345678\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -810,22 +1091,56 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/login",
+									"raw": "http://localhost:5000/api/login",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "5000",
 									"path": [
+										"api",
 										"login"
 									]
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Driver Reg",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDYxMDMzMTksIm5iZiI6MTYwNjEwMzMxOSwianRpIjoiNmI3MTIzYzQtYTEyMi00ODY2LThlNGMtNTczZDY1ZjdlZjI0IiwiZXhwIjoxNjA2MTMyMTE5LCJpZGVudGl0eSI6IjVmYmIzMTExMWNjNmRlOTkzYWVkMTkyNSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.ojlsJiXIRT1MnqXuV4X9mWL1F__48hM2tp6i1B8Xe30",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"driverInfo\" : {\r\n                \"name\": \"Saakibul\",\r\n                \"phone_no\": \"0123456789\",\r\n                \"address\": \"Barishal\",\r\n                \"isMunicipal\": false,\r\n                \"division\": \"4\",\r\n                \"divisionTitle\": \"Barishal\",\r\n                \"district\": \"4\",\r\n                \"districtTitle\": \"Barguna\",\r\n                \"upazila\": \"35\",\r\n                \"upazilaTitle\": \"bamna\",\r\n                \"union\": \"2417\",\r\n                \"unionTitle\": \"Bukabunia\",\r\n                \"village\": \"13456\",\r\n                \"villageTitle\": \"Singrabunia\",\r\n                \"municipal\": \"\",\r\n                \"municipalTitle\": \"\",\r\n                \"ward\":\"\",\r\n                \"wardTitle\": \"\",\r\n                \"dob\": \"14/10/1985\",\r\n                \"nid\": \"123658946589523556\",\r\n                \"image\": \"url\",\r\n                \"drivingLicence\" : \"3256535\",\r\n                \"drivingLicenceImg\": \"url\",\r\n                \"drivingLicenceType\": 3,  \r\n                \"drivingLicenceExpiry\": \"14/10/2026\"\r\n            },\r\n            \"reference\": [\r\n                    {\r\n                        \"ref\":\"Reference 1\",\r\n                        \"name\":\"Anis2\",\r\n                        \"relation\":\"Brother\",\r\n                        \"contact\":\"000000\",\r\n                        \"address\":\"Khulna\"\r\n                    },\r\n                    {\r\n                        \"ref\":\"Reference 2\",\r\n                        \"name\":\"Rana2\",\r\n                        \"relation\":\"Brother\",\r\n                        \"contact\":\"111111\",\r\n                        \"address\":\"Khulna\"\r\n                    }\r\n                ],\r\n            \"default_contact_number\":\"659832147596\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/driver_registration",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"driver_registration"
+									]
+								}
+							},
+							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Profile",
@@ -837,13 +1152,13 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDM3OTY4NDgsIm5iZiI6MTYwMzc5Njg0OCwianRpIjoiYTYwZTdiMzUtYTBlYS00Mjk2LWIwMzEtMTkxZmFmN2U1YjNlIiwiZXhwIjoxNjAzODI1NjQ4LCJpZGVudGl0eSI6IjVmOTdlZjYzYzlkNGI3ZmQxMzY3YmNlNCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.E48pBEZg-HFjRJAfWlfeBbDBHt_rAAkjZlpIGM7PN70",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDQzODQ1NjMsIm5iZiI6MTYwNDM4NDU2MywianRpIjoiMjhiMmI1NjktMmQ5My00Mjg2LTgzNzktMjVjMzJiYWJlMTcyIiwiZXhwIjoxNjA0NDEzMzYzLCJpZGVudGl0eSI6IjVmOWZlMzYyOTA2NWU3MzI2OWFhMjM4MSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.DK3PV_wCsljw0ffEgqJ17xWPKVIyQZrb7UDTFTowBxE",
 										"type": "text"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"phone_no\": \"01926393816\",\r\n    \"password\": \"12345\",\r\n    \"first_name\": \"Tama\",\r\n    \"last_name\": \"Sarker\",\r\n    \"email\":\"tama@gmail.com\",\r\n    \"country\": \"Bangladesh\",\r\n    \"city\":  \"\",\r\n    \"area\":  \"\",\r\n    \"address\": \"\",\r\n    \"profile_pic\": \"url of image\"\r\n}",
+									"raw": "{\r\n    \"phone_no\": \"01926393816\",\r\n    \"password\": \"12345\",\r\n    \"first_name\": \"Tama\",\r\n    \"last_name\": \"Sarker\",\r\n    \"email\":\"tama@gmail.com\",\r\n    \"country\": \"Bangladesh\",\r\n    \"address\": \"\",\r\n    \"default_contact_number\":\"\",\r\n    \"profile_pic\": \"url of image\",\r\n    \"push_on_message_send\": true,\r\n    \"push_on_booking\": true,\r\n    \"push_on_suppport_reply\": false,\r\n    \"sms_on_message_send\": false,\r\n    \"sms_on_booking\": true,\r\n    \"sms_on_suppport_reply\": false\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -851,14 +1166,54 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/profile_edit",
+									"raw": "http://localhost:5000/api/profile_edit",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "5000",
 									"path": [
+										"api",
 										"profile_edit"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User Profile Info",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDQ4MjgxMTcsIm5iZiI6MTYwNDgyODExNywianRpIjoiMGIyMjlmYTktMjY4Yy00MzEzLWFkY2QtZDJkOWUxYjU5MjliIiwiZXhwIjoxNjA0ODU2OTE3LCJpZGVudGl0eSI6IjVmOTdlZjYzYzlkNGI3ZmQxMzY3YmNlNCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.qOkcjcfiNNTIxai64fN-V6zG5mEkeAKYEqeBtejU1-k",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"phone_no\": \"01926393816\",\r\n    \"password\": \"12345\",\r\n    \"first_name\": \"Tama\",\r\n    \"last_name\": \"Sarker\",\r\n    \"email\":\"tama@gmail.com\",\r\n    \"country\": \"Bangladesh\",\r\n    \"address\": \"\",\r\n    \"default_contact_number\":\"\",\r\n    \"profile_pic\": \"url of image\",\r\n    \"push_on_message_send\": true,\r\n    \"push_on_booking\": true,\r\n    \"push_on_suppport_reply\": false,\r\n    \"sms_on_message_send\": false,\r\n    \"sms_on_booking\": true,\r\n    \"sms_on_suppport_reply\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/user/profile_info",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"user",
+										"profile_info"
 									]
 								}
 							},
@@ -871,7 +1226,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDM4NTY5NzEsIm5iZiI6MTYwMzg1Njk3MSwianRpIjoiYzk1ZjAyNTMtOWQwNS00NzFiLTlmOTItZjlmY2M5ZDFkYTU4IiwiZXhwIjoxNjAzODg1NzcxLCJpZGVudGl0eSI6IjVmOTdlZjYzYzlkNGI3ZmQxMzY3YmNlNCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.wNN-UOcSGxY0zVKcFlKrzArd2NK5cG9QgtNWtiYH5Y4",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDQzODYyMzQsIm5iZiI6MTYwNDM4NjIzNCwianRpIjoiMzQ5ZGMwMGUtODhmNC00ZjJlLWJhOTctM2Q1MTBmZGQwOTc2IiwiZXhwIjoxNjA0NDE1MDM0LCJpZGVudGl0eSI6IjVmOWE5MzBkYWVlNjU0ZTM5N2QzOGFlZiIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.R-xkXnguRna29XrehyPEtOeP72n6CgDam6MoicCQ168",
 										"type": "text"
 									}
 								],
@@ -885,40 +1240,34 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/delete_profile",
+									"raw": "http://localhost:5000/api/delete_profile",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "5000",
 									"path": [
+										"api",
 										"delete_profile"
 									]
 								}
 							},
 							"response": []
-						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "Vehicle",
-					"item": [
+						},
 						{
-							"name": "Add Vehicle",
+							"name": "Profile image Update",
 							"request": {
-								"method": "POST",
+								"method": "PUT",
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDM5NDEzMTcsIm5iZiI6MTYwMzk0MTMxNywianRpIjoiN2I4ZmM2N2QtMmUxOS00NDczLWIyNmQtMzViMDY0MjI1NTZkIiwiZXhwIjoxNjAzOTcwMTE3LCJpZGVudGl0eSI6IjVmOTdlZjYzYzlkNGI3ZmQxMzY3YmNlNCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.iw3GIQMuZAD9iJHzuc7tQHjMQiB7o9rl47qPP-y5tB8",
-										"type": "text"
+										"type": "text",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDQ1NTg0NzUsIm5iZiI6MTYwNDU1ODQ3NSwianRpIjoiMjFlZDdjOWItNzY0ZC00M2MzLWI0YmEtM2JmYmZlZDhhYTBiIiwiZXhwIjoxNjA0NTg3Mjc1LCJpZGVudGl0eSI6IjVmOTdlZjYzYzlkNGI3ZmQxMzY3YmNlNCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.54kL2aS-mGr_CYymEzdBUztKpex1btRWg3afGrKpQTY"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{        \r\n    \"vehicle_type\":\"5f9a404c2e38271226210dca\",\r\n    \"YEAR\" : \"2017\",\r\n    \"COLOR\" : \"red\",\r\n    \"COLOR ON PAPER\" : \"black\", \r\n    \"TOTAL SEAT\" : 4\r\n}",
+									"raw": "{    \r\n    \"profile_pic\": \"url\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -926,15 +1275,333 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/user/add_vehicle",
+									"raw": "http://localhost:5000/api/user/update_profile_image",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "5000",
 									"path": [
+										"api",
 										"user",
+										"update_profile_image"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Password Reset",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDQ4MTY3MjcsIm5iZiI6MTYwNDgxNjcyNywianRpIjoiYzAzNzM0YjQtNjYyNy00M2ZhLWIzY2YtMWQ1NTA1YWNhNDQyIiwiZXhwIjoxNjA0ODQ1NTI3LCJpZGVudGl0eSI6IjVmOTdlZjYzYzlkNGI3ZmQxMzY3YmNlNCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.nZGu1Zo2Ebno5CJp67j6ZgEuTtGHrWJu58uWegomMNM"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{    \r\n    \"password\": \"1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/user/reset_password",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"user",
+										"reset_password"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Vehicle",
+					"item": [
+						{
+							"name": "Add Vehicle as owner",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDY4OTE5MTIsIm5iZiI6MTYwNjg5MTkxMiwianRpIjoiNjk2MmNiNGYtZWY0Ni00ZTVkLWJjMjgtZjlmNTBlMzhjYjFhIiwiZXhwIjoxNjA2OTIwNzEyLCJpZGVudGl0eSI6IjVmYzM3ZWZlOTNmMzAxY2RhNTBlODhjMCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.rQmflwC-5ZQVqPN0NNa4ltzLbeWYxJaVk-GVj5Z7Bsk",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{            \r\n            \"role\": \"owner\",\r\n            \"vehicleTitle\": \"PC 1\",\r\n            \"refType\": \"byAdmin\",\r\n            \"brandTitle\":\"Toyota\",\r\n            \"fuelTypeTitle\":\"Octane\",\r\n            \"vehicleTypeTitle\":\"Private Car\",\r\n            \"driverInfo\" : {\r\n                \"name\": \"PC 1 Driver xy\",\r\n                \"phone_no\": \"0185623458\",\r\n                \"address\": \"Barishal\",\r\n                \"dob\": \"14/10/1986\",\r\n                \"nid\": \"3568936844316385\",\r\n                \"image\": \"\",\r\n                \"drivingLicence\": \"12345676464\",\r\n                \"drivingLicenceImg\": \"\",\r\n                \"drivingLicenceExpiry\": \"14/10/2023\"\r\n            },\r\n            \"vehicle_type\": \"5f9e4eb72b0f36774116d06d\",\r\n            \"default_contact_number\":\"0123456552\",\r\n            \"vehicleNumber\": \"2564856\",\r\n            \"regNumber\": \"gha-5482\",\r\n            \"chassisNumber\": \"2369658546\",\r\n            \"engineNumber\": \"125478\",\r\n            \"tiresNumber\": \"4\",\r\n            \"capacity\": \"4\",\r\n            \"vehicleCC\": \"\",\r\n            \"color\": \"blue\",\r\n            \"vehicleLength\": \"\",\r\n            \"licenceVelidation\": \"2021\",\r\n            \"coverImage\": \"\",\r\n            \"thumbImage\": \"\",\r\n            \"vehicle_imgs\": \"\",\r\n            \"amenities\":{\r\n                \"Air Bags\" : true,\r\n                \"AC\" : true,\r\n                \"Alloy Rims\" : true,\r\n                \"FM Radio\" : true,\r\n                \"CD player\" : true,\r\n                \"Navigation System\" : true,\r\n                \"Power Locks\" : true,\r\n                \"Animals Carrying\" : true,\r\n                \"Power Mirrors\" : true\r\n            },\r\n            \"brand\": \"5f9fd2293fd204ff848f8640\",\r\n            \"model\": \"X-Fielder 2\",\r\n            \"manufactureYear\": \"2014\",\r\n            \"video\": \"\",\r\n            \"fuelType\": \"5f97d7b6d72e48e68f239035\",\r\n            \"millage\": \"\",\r\n            \"gearType\": \"Auto\",\r\n            \"policyType\": \"\",\r\n            \"policyNumber\": \"\",\r\n            \"insuranceName\": \"\",\r\n            \"insuranceExpiry\": \"\",\r\n            \"insuranceCompany\": \"\",\r\n            \"country\": \"Bangladesh\",\r\n            \"isMunicipal\": false,\r\n            \"division\": \"4\",\r\n            \"divisionTitle\": \"Barishal\",\r\n            \"district\": \"4\",\r\n            \"districtTitle\": \"Barguna\",\r\n            \"upazila\": \"35\",\r\n            \"upazilaTitle\": \"bamna\",\r\n            \"union\": \"2417\",\r\n            \"unionTitle\": \"Bukabunia\",\r\n            \"village\": \"13456\",\r\n            \"villageTitle\": \"Singrabunia\",\r\n            \"municipal\": \"\",\r\n            \"municipalTitle\": \"\",\r\n            \"ward\":\"\",\r\n            \"wardTitle\": \"\",\r\n            \"carLocation\": {\r\n                \"type\" : \"Point\",\r\n                \"coordinates\" :[89.538404,22.8206728]                 \r\n                },\r\n            \"carAddress\": \"Sonadanga Bus Terminal\",\r\n            \"drivingLicence\": \"12345676464\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/add_vehicle",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
 										"add_vehicle"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit vehicle as owner",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDY4OTE5MTIsIm5iZiI6MTYwNjg5MTkxMiwianRpIjoiNjk2MmNiNGYtZWY0Ni00ZTVkLWJjMjgtZjlmNTBlMzhjYjFhIiwiZXhwIjoxNjA2OTIwNzEyLCJpZGVudGl0eSI6IjVmYzM3ZWZlOTNmMzAxY2RhNTBlODhjMCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.rQmflwC-5ZQVqPN0NNa4ltzLbeWYxJaVk-GVj5Z7Bsk"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{            \r\n            \"role\": \"owner\",\r\n            \"driver\": \"5fc76668fdbaae2db1156dae\",\r\n            \"vehicleTitle\": \"PC 1\",\r\n            \"refType\": \"byAdmin\",\r\n            \"brandTitle\":\"Toyota\",\r\n            \"fuelTypeTitle\":\"Octane\",\r\n            \"vehicleTypeTitle\":\"Private Car afftter the update\",\r\n            \"driverInfo\" : {\r\n                \"name\": \"PC 1 Driver lalala\",\r\n                \"phone_no\": \"0185623458\",\r\n                \"address\": \"Barishal\",\r\n                \"dob\": \"14/10/1986\",\r\n                \"nid\": \"3568936844316385\",\r\n                \"image\": \"\",\r\n                \"drivingLicence\": \"12345676464\",\r\n                \"drivingLicenceImg\": \"\",\r\n                \"drivingLicenceExpiry\": \"14/10/2023\"\r\n            },\r\n            \"vehicle_type\": \"5f9e4eb72b0f36774116d06d\",\r\n            \"default_contact_number\":\"0123456552\",\r\n            \"vehicleNumber\": \"2564856\",\r\n            \"regNumber\": \"gha-5482\",\r\n            \"chassisNumber\": \"2369658546\",\r\n            \"engineNumber\": \"125478\",\r\n            \"tiresNumber\": \"4\",\r\n            \"capacity\": \"4\",\r\n            \"vehicleCC\": \"\",\r\n            \"color\": \"blue\",\r\n            \"vehicleLength\": \"\",\r\n            \"licenceVelidation\": \"2021\",\r\n            \"coverImage\": \"\",\r\n            \"thumbImage\": \"\",\r\n            \"vehicle_imgs\": \"\",\r\n            \"amenities\":{\r\n                \"Air Bags\" : true,\r\n                \"AC\" : true,\r\n                \"Alloy Rims\" : true,\r\n                \"FM Radio\" : true,\r\n                \"CD player\" : true,\r\n                \"Navigation System\" : true,\r\n                \"Power Locks\" : true,\r\n                \"Animals Carrying\" : true,\r\n                \"Power Mirrors\" : true\r\n            },\r\n            \"brand\": \"5f9fd2293fd204ff848f8640\",\r\n            \"model\": \"X-Fielder 2\",\r\n            \"manufactureYear\": \"2014\",\r\n            \"video\": \"\",\r\n            \"fuelType\": \"5f97d7b6d72e48e68f239035\",\r\n            \"millage\": \"\",\r\n            \"gearType\": \"Auto\",\r\n            \"policyType\": \"\",\r\n            \"policyNumber\": \"\",\r\n            \"insuranceName\": \"\",\r\n            \"insuranceExpiry\": \"\",\r\n            \"insuranceCompany\": \"\",\r\n            \"country\": \"Bangladesh\",\r\n            \"isMunicipal\": false,\r\n            \"division\": \"4\",\r\n            \"divisionTitle\": \"Barishal\",\r\n            \"district\": \"4\",\r\n            \"districtTitle\": \"Barguna\",\r\n            \"upazila\": \"35\",\r\n            \"upazilaTitle\": \"bamna\",\r\n            \"union\": \"2417\",\r\n            \"unionTitle\": \"Bukabunia\",\r\n            \"village\": \"13456\",\r\n            \"villageTitle\": \"Singrabunia\",\r\n            \"municipal\": \"\",\r\n            \"municipalTitle\": \"\",\r\n            \"ward\":\"\",\r\n            \"wardTitle\": \"\",\r\n            \"del_status\" : false,\r\n            \"create_date\" : \"2020-12-02T12:53:19.695+00:00\",\r\n            \"activeStatus\" : \"pending\",\r\n            \"carLocation\": {\r\n                \"type\" : \"Point\",\r\n                \"coordinates\" :[89.538404,22.8206728]                 \r\n                },\r\n            \"carAddress\": \"Sonadanga Bus Terminal\",\r\n            \"drivingLicence\": \"12345676464\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/update_vehicle/5fc739df9b45f0b0f2c5b6a6",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"update_vehicle",
+										"5fc739df9b45f0b0f2c5b6a6"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Vehicle as driver",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDU2NzI4NTcsIm5iZiI6MTYwNTY3Mjg1NywianRpIjoiYjE3MTg4NDQtZjcxZC00YWZiLWFhZDYtZjI3NDAzMzEyZjYyIiwiZXhwIjoxNjA1NzAxNjU3LCJpZGVudGl0eSI6IjVmYWNmMjUzZDRjZTAwYzJhOTcxMTY5MyIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.H01AXddo-m_WcaE5JHgyyFAohSZbIkLbfCOr-tEEYnc"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{            \r\n            \"role\": \"driver\",\r\n            \"refType\": \"byDriver\",\r\n            \"vehicleTitle\": \"Pickup 1\",\r\n            \"brandTitle\":\"Toyota\",\r\n            \"fuelTypeTitle\":\"Octane\",\r\n            \"vehicleTypeTitle\":\"Private Car\",\r\n            \"ownerInfo\" : {\r\n                \"name\": \"Mr. S\",\r\n                \"contact\": \"5625663\",\r\n                \"address\": \"Barguna\",\r\n                \"nid\":\"65698753265856\"\r\n            },\r\n            \"driverInfo\" : {\r\n                \"name\": \"Hasan Mahmud\",\r\n                \"phone_no\": \"01758521232\",\r\n                \"isMunicipal\": false,\r\n                \"division\": \"4\",\r\n                \"divisionTitle\": \"Barishal\",\r\n                \"district\": \"4\",\r\n                \"districtTitle\": \"Barguna\",\r\n                \"upazila\": \"35\",\r\n                \"upazilaTitle\": \"bamna\",\r\n                \"union\": \"2417\",\r\n                \"unionTitle\": \"Bukabunia\",\r\n                \"village\": \"13456\",\r\n                \"villageTitle\": \"Singrabunia\",\r\n                \"municipal\": \"\",\r\n                \"municipalTitle\": \"\",\r\n                \"ward\":\"\",\r\n                \"wardTitle\": \"\",\r\n                \"address\": \"Barishal\",\r\n                \"dob\": \"14/10/1980\",\r\n                \"nid\": \"12365894685235\",\r\n                \"image\": \"\",\r\n                \"drivingLicence\": \"\",\r\n                \"drivingLicenceImg\": \"\",\r\n                \"drivingLicenceType\": \"medium\",  \r\n                \"drivingLicenceExpiry\": \"14/10/2026\"\r\n            },\r\n            \"reference\": [\r\n                    {\r\n                        \"ref\":\"Reference 1\",\r\n                        \"name\":\"Anis\",\r\n                        \"relation\":\"Brother\",\r\n                        \"contact\":\"000000\",\r\n                        \"address\":\"Khulna\"\r\n                    },\r\n                    {\r\n                        \"ref\":\"Reference 2\",\r\n                        \"name\":\"Rana\",\r\n                        \"relation\":\"Brother\",\r\n                        \"contact\":\"111111\",\r\n                        \"address\":\"Khulna\"\r\n                    }\r\n                ],\r\n            \"default_contact_number\":\"32523\",\r\n            \"vehicle_type\": \"5f9f9f3a57e82337426d04a0\",\r\n            \"vehicleNumber\": \"2564856\",\r\n            \"regNumber\": \"gha-5482\",\r\n            \"chassisNumber\": \"2369658546\",\r\n            \"engineNumber\": \"125478\",\r\n            \"tiresNumber\": \"4\",\r\n            \"capacity\": \"4\",\r\n            \"vehicleCC\": \"\",\r\n            \"color\": \"blue\",\r\n            \"vehicleLength\": \"\",\r\n            \"licenceVelidation\": \"2022\",\r\n            \"coverImage\": \"\",\r\n            \"thumbImage\": \"\",\r\n            \"vehicle_imgs\": \"\",\r\n            \"brand\": \"5f9f9f3a57e82337426d04a0\",\r\n            \"model\": \"Alvise\",\r\n            \"manufactureYear\": \"2017\",\r\n            \"video\": \"url\",\r\n            \"fuelType\": \"5f97d7c3d72e48e68f239036\",\r\n            \"millage\": \"20\",\r\n            \"gearType\": \"manual\",\r\n            \"policyType\": \"\",\r\n            \"policyNumber\": \"\",\r\n            \"insuranceName\": \"\",\r\n            \"insuranceExpiry\": \"\",\r\n            \"insuranceCompany\": \"\",\r\n            \"country\": \"\",\r\n            \"carLocation\": {\r\n                \"type\" : \"Point\",\r\n                \"coordinates\" :[89.538404,22.8206728]                 \r\n                },\r\n            \"carAddress\": \"Sonadanga\",\r\n            \"drivingLicence\": \"\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/add_vehicle",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"add_vehicle"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit vehicle as driver",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDY5MDU0NTMsIm5iZiI6MTYwNjkwNTQ1MywianRpIjoiOWNlNzdkNDQtZjdjYS00MGRiLWFjM2EtNzE4NzE2ODNmODU2IiwiZXhwIjoxNjA2OTM0MjUzLCJpZGVudGl0eSI6IjVmYzM3OGUwOTNmMzAxY2RhNTBlODhiZCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.TWrRbn6e0xSI5AzMVdQsBHQbQM_V1Yl2y-awG57wALE"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{            \r\n            \"role\": \"driver\",\r\n            \"driver\": \"5fc378e093f301cda50e88bd\",\r\n            \"vehicleTitle\": \"PC lalala\",\r\n            \"refType\": \"byDriver\",\r\n            \"brandTitle\":\"Toyota\",\r\n            \"fuelTypeTitle\":\"Octane\",\r\n            \"vehicleTypeTitle\":\"Private Car\",\r\n            \"driverInfo\" : {\r\n                \"name\": \"Utpal\",\r\n                \"phone_no\": \"0185623458\",\r\n                \"address\": \"Barishal\",\r\n                \"dob\": \"14/10/1986\",\r\n                \"nid\": \"3568936844316385\",\r\n                \"image\": \"https://i.ibb.co/wMQznws/0-10-2020-1606646802409.jpg\",\r\n                \"drivingLicence\": \"12345676464\",\r\n                \"drivingLicenceImg\": \"https://i.ibb.co/v4jpKPq/0-10-2020-1606646709843.jpg\",\r\n                \"drivingLicenceExpiry\": \"14/10/2021\",\r\n                \"drivingLicenceType\": \"1\"\r\n            },\r\n            \"vehicle_type\": \"5f9e4eb72b0f36774116d06d\",\r\n            \"default_contact_number\":\"0123456552\",\r\n            \"vehicleNumber\": \"2564856\",\r\n            \"regNumber\": \"gha-5482\",\r\n            \"chassisNumber\": \"2369658546\",\r\n            \"engineNumber\": \"125478\",\r\n            \"tiresNumber\": \"4\",\r\n            \"capacity\": \"4\",\r\n            \"vehicleCC\": \"123\",\r\n            \"color\": \"blue\",\r\n            \"vehicleLength\": \"3\",\r\n            \"licenceVelidation\": \"2021\",\r\n            \"coverImage\": \"\",\r\n            \"thumbImage\": \"\",\r\n            \"vehicle_imgs\": [],\r\n            \"amenities\":{\r\n                \"air_bags\" : false,\r\n                \"ac\" : false,\r\n                \"alloy_rims\" : false,\r\n                \"fm_radio\" : false,\r\n                \"cd_player\" : false,\r\n                \"power_mirrors\" : false,\r\n                \"power_locks\" : false,\r\n                \"navigation_system\" : false\r\n            },\r\n            \"brand\": \"5f9fd2293fd204ff848f8640\",\r\n            \"model\": \"X-Fielder 2\",\r\n            \"manufactureYear\": \"2014\",\r\n            \"video\": \"\",\r\n            \"fuelType\": \"5f97d7b6d72e48e68f239035\",\r\n            \"millage\": \"\",\r\n            \"gearType\": \"Auto\",\r\n            \"policyType\": \"\",\r\n            \"policyNumber\": \"\",\r\n            \"insuranceName\": \"\",\r\n            \"insuranceExpiry\": \"\",\r\n            \"insuranceCompany\": \"\",\r\n            \"country\": \"Bangladesh\",\r\n            \"isMunicipal\": false,\r\n            \"division\": \"4\",\r\n            \"divisionTitle\": \"Barishal\",\r\n            \"district\": \"4\",\r\n            \"districtTitle\": \"Barguna\",\r\n            \"upazila\": \"35\",\r\n            \"upazilaTitle\": \"bamna\",\r\n            \"union\": \"2417\",\r\n            \"unionTitle\": \"Bukabunia\",\r\n            \"village\": \"13456\",\r\n            \"villageTitle\": \"Singrabunia\",\r\n            \"municipal\": \"\",\r\n            \"municipalTitle\": \"\",\r\n            \"ward\":\"\",\r\n            \"wardTitle\": \"\",\r\n            \"del_status\" : false,\r\n            \"create_date\" : \"2020-12-02T12:53:19.695+00:00\",\r\n            \"activeStatus\" : \"pending\",\r\n            \"carLocation\": {\r\n                \"type\" : \"Point\",\r\n                \"coordinates\" :[89.538404,22.8206728]                 \r\n                },\r\n            \"carAddress\": \"Sonadanga Bus Terminal\",\r\n            \"drivingLicence\": \"12345676464\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/update_vehicle/5fc37c2493f301cda50e88be",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"update_vehicle",
+										"5fc37c2493f301cda50e88be"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Vehicle",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDU0OTY2MzYsIm5iZiI6MTYwNTQ5NjYzNiwianRpIjoiN2NjZGMzOGUtOWQ4MS00OGVhLTg1MmEtNWY3OWQwNTBkMzA0IiwiZXhwIjoxNjA1NTI1NDM2LCJpZGVudGl0eSI6IjVmYWNmNjIxZDRjZTAwYzJhOTcxMTY5NCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.L4GyTf_ShKmfTGue1nhi3DIDkLZB9MQQQP-YWHVplw0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{            \r\n            \"vehicleTitle\": \"PC 3\",          \r\n            \"default_contact_number\":\"32523\",\r\n            \"vehicle_type\": \"5f9e4eb72b0f36774116d06d\",\r\n            \"vehicleNumber\": \"2564856\",\r\n            \"regNumber\": \"gha-5452\",\r\n            \"chassisNumber\": \"2369658546\",\r\n            \"engineNumber\": \"125478\",\r\n            \"tiresNumber\": \"4\",\r\n            \"ac\": true,\r\n            \"capacity\": \"7\",\r\n            \"vehicleCC\": \"\",\r\n            \"color\": \"blue\",\r\n            \"vehicleLength\": \"\",\r\n            \"licenceVelidation\": \"2022\",\r\n            \"coverImage\": \"url\",\r\n            \"vehicle_imgs\": \"\",\r\n            \"brand\": \"5f9fd2293fd204ff848f8640\",\r\n            \"model\": \"Alvise\",\r\n            \"manufactureYear\": \"2017\",\r\n            \"video\": \"url\",\r\n            \"fuelType\": \"5f97d7b6d72e48e68f239035\",\r\n            \"millage\": \"33\",\r\n            \"gearType\": \"\",\r\n            \"policyType\": \"\",\r\n            \"policyNumber\": \"\",\r\n            \"insuranceName\": \"\",\r\n            \"insuranceExpiry\": \"\",\r\n            \"insuranceCompany\": \"\",\r\n            \"country\": \"\",\r\n            \"carLocation\": {\r\n                \"type\" : \"Point\",\r\n                \"coordinates\" :[89.5647022,22.8138024]                 \r\n                },\r\n            \"carAddress\": \"Choto Mirzapur\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/update_vehicle/5fb1f1beec4b58b93d5df0ce",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"update_vehicle",
+										"5fb1f1beec4b58b93d5df0ce"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "By ID Vehicle Data",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDU0OTY2MzYsIm5iZiI6MTYwNTQ5NjYzNiwianRpIjoiN2NjZGMzOGUtOWQ4MS00OGVhLTg1MmEtNWY3OWQwNTBkMzA0IiwiZXhwIjoxNjA1NTI1NDM2LCJpZGVudGl0eSI6IjVmYWNmNjIxZDRjZTAwYzJhOTcxMTY5NCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.L4GyTf_ShKmfTGue1nhi3DIDkLZB9MQQQP-YWHVplw0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{            \r\n            \"vehicleTitle\": \"PC 3\",          \r\n            \"default_contact_number\":\"32523\",\r\n            \"vehicle_type\": \"5f9e4eb72b0f36774116d06d\",\r\n            \"vehicleNumber\": \"2564856\",\r\n            \"regNumber\": \"gha-5482\",\r\n            \"chassisNumber\": \"2369658546\",\r\n            \"engineNumber\": \"125478\",\r\n            \"tiresNumber\": \"4\",\r\n            \"capacity\": \"4\",\r\n            \"vehicleCC\": \"\",\r\n            \"color\": \"blue\",\r\n            \"vehicleLength\": \"\",\r\n            \"licenceVelidation\": \"2022\",\r\n            \"coverImage\": \"\",\r\n            \"vehicle_imgs\": \"\",\r\n            \"brand\": \"5f9fd2293fd204ff848f8640\",\r\n            \"model\": \"Alvise\",\r\n            \"manufactureYear\": \"2017\",\r\n            \"video\": \"url\",\r\n            \"fuelType\": \"5f97d7b6d72e48e68f239035\",\r\n            \"millage\": \"\",\r\n            \"gearType\": \"\",\r\n            \"policyType\": \"\",\r\n            \"policyNumber\": \"\",\r\n            \"insuranceName\": \"\",\r\n            \"insuranceExpiry\": \"\",\r\n            \"insuranceCompany\": \"\",\r\n            \"country\": \"\",\r\n            \"carLocation\": {\r\n                \"type\" : \"Point\",\r\n                \"coordinates\" :[89.5647022,22.8138024]                 \r\n                },\r\n            \"carAddress\": \"Choto Mirzapur\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/edit_vehicle/5fb1f1beec4b58b93d5df0ce",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"edit_vehicle",
+										"5fb1f1beec4b58b93d5df0ce"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Vehicle Details",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDQxMTU0NzgsIm5iZiI6MTYwNDExNTQ3OCwianRpIjoiMWNhOTk5ZDUtM2Y0NC00MzhiLWE0M2EtODE2NDVkOWIxZWFhIiwiZXhwIjoxNjA0MTQ0Mjc4LCJpZGVudGl0eSI6IjVmOWE5MzBkYWVlNjU0ZTM5N2QzOGFlZiIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.S_TRdcppHcdqy4wo-A3xx8oUOKkjdEquVSurngk_SNA"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{     \r\n    \"_id\":\"5f9cdd04b17a6f5cef013a04\",   \r\n    \"vehicle_type\":\"5f9a404c2e38271226210dca\",\r\n    \"description\": \"description2\",\r\n    \"country\":\"BD\",\r\n    \"city\":\"5f97d695d72e48e68f239032\",\r\n    \"area\":  \"5f97d658d72e48e68f239031\",\r\n    \"car_location\": \"Opposite of University Gate\",\r\n    \"cover_img\": \"update image url\",\r\n    \"brand\": \"5f9a411444617ce1d560e407\",\r\n    \"model\": \"Fielder\",\r\n    \"year_of_manufacture\": \"2014\",\r\n    \"vehicle_imgs\": [\r\n        \"url1\",\r\n        \"url2\",\r\n        \"url3\",\r\n        \"url4\"\r\n    ],\r\n    \"COLOR\" : \"red\",\r\n    \"COLOR ON PAPER\" : \"black\", \r\n    \"TOTAL SEAT\" : 4\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/vehicle_details",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"vehicle_details"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
 									]
 								}
 							},
@@ -943,17 +1610,17 @@
 						{
 							"name": "Delete Vehicle",
 							"request": {
-								"method": "DELETE",
+								"method": "PUT",
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDE5Njg0MzEsIm5iZiI6MTYwMTk2ODQzMSwianRpIjoiZGY1YjI2NDAtY2FjYy00ZDdhLTg3M2MtYjkwZWU0OWVhMjc2IiwiZXhwIjoxNjAxOTk3MjMxLCJpZGVudGl0eSI6IjVmN2MxOTIyYjUxNjY2ZmUxNGU1NWNmZCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.nTby5oP3VI1lyb5gGTiR2Y0q0iA8Pp0kyuAtR2-I3U0",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDU0OTY2MzYsIm5iZiI6MTYwNTQ5NjYzNiwianRpIjoiN2NjZGMzOGUtOWQ4MS00OGVhLTg1MmEtNWY3OWQwNTBkMzA0IiwiZXhwIjoxNjA1NTI1NDM2LCJpZGVudGl0eSI6IjVmYWNmNjIxZDRjZTAwYzJhOTcxMTY5NCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.L4GyTf_ShKmfTGue1nhi3DIDkLZB9MQQQP-YWHVplw0",
 										"type": "text"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"_id\":\"5f7c19b5b51666fe14e55cfe\",\r\n        \"del_resone\": \"Vehicle delete after methood add\"\r\n        \r\n}",
+									"raw": "{\r\n    \"_id\":\"5f9a9663128079e1ca563cbc\",\r\n    \"del_resone\": \"Vehicle delete after update API\"        \r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -961,15 +1628,16 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/user/delete_vehicle",
+									"raw": "http://localhost:5000/api/delete_vehicle/5fb1f1beec4b58b93d5df0ce",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "5000",
 									"path": [
-										"user",
-										"delete_vehicle"
+										"api",
+										"delete_vehicle",
+										"5fb1f1beec4b58b93d5df0ce"
 									],
 									"query": [
 										{
@@ -992,7 +1660,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDE5Njg0MzEsIm5iZiI6MTYwMTk2ODQzMSwianRpIjoiZGY1YjI2NDAtY2FjYy00ZDdhLTg3M2MtYjkwZWU0OWVhMjc2IiwiZXhwIjoxNjAxOTk3MjMxLCJpZGVudGl0eSI6IjVmN2MxOTIyYjUxNjY2ZmUxNGU1NWNmZCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.nTby5oP3VI1lyb5gGTiR2Y0q0iA8Pp0kyuAtR2-I3U0",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDY3MjQwMTMsIm5iZiI6MTYwNjcyNDAxMywianRpIjoiY2I1ZGJjNjgtN2ViYS00MzI4LTg2MWEtN2EwNzJjNGRkZDMxIiwiZXhwIjoxNjA2NzUyODEzLCJpZGVudGl0eSI6IjVmYmUyMTA1OTg5NGIwZGFjZTcyYmEyOSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.94W1e6wswtkRQyG2nu4toTuAGc7okfGbdCW5YXdejA0",
 										"type": "text"
 									}
 								],
@@ -1006,14 +1674,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/user/vehicle_list",
+									"raw": "http://localhost:5000/api/vehicle_list",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "5000",
 									"path": [
-										"user",
+										"api",
 										"vehicle_list"
 									],
 									"query": [
@@ -1026,21 +1694,29 @@
 								}
 							},
 							"response": []
-						},
+						}
+					]
+				},
+				{
+					"name": "Favorites",
+					"item": [
 						{
-							"name": "Edit Vehicle",
+							"name": "Favorites List",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
-								"method": "PUT",
+								"method": "GET",
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDE5Njg0MzEsIm5iZiI6MTYwMTk2ODQzMSwianRpIjoiZGY1YjI2NDAtY2FjYy00ZDdhLTg3M2MtYjkwZWU0OWVhMjc2IiwiZXhwIjoxNjAxOTk3MjMxLCJpZGVudGl0eSI6IjVmN2MxOTIyYjUxNjY2ZmUxNGU1NWNmZCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.nTby5oP3VI1lyb5gGTiR2Y0q0iA8Pp0kyuAtR2-I3U0",
+										"value": "Bearer    eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDY5ODc4NTAsIm5iZiI6MTYwNjk4Nzg1MCwianRpIjoiYTU5NTdiYWItYjM1MS00OTA2LWE5ZjktZDUwMWE1M2NlMmU1IiwiZXhwIjoxNjA3MDE2NjUwLCJpZGVudGl0eSI6IjVmYzM3OGUwOTNmMzAxY2RhNTBlODhiZCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.LZxgvOJ_1ANA9VmXBa2yF5nrus2K0mZU7gwZyMu9V9E",
 										"type": "text"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"_id\":\"5f9a6af24964d67eca357102\",\r\n    \"vehicle_type\":\"5f9a404c2e38271226210dca\",\r\n    \"description\": \"description\",\r\n    \"country\":\"BD\",\r\n    \"city\":\"5f97d695d72e48e68f239032\",\r\n    \"area\":  \"5f97d64dd72e48e68f239030\",\r\n    \"car_location\": \"Sufia Garage\",\r\n    \"cover_img\": \"\",\r\n    \"brand\": \"5f9a411444617ce1d560e407\",\r\n    \"model\": \"Avilon\",\r\n    \"year_of_manufacture\": \"\",\r\n    \"vehicle_imgs\": [\r\n        \"url1\",\r\n        \"url2\",\r\n        \"url3\",\r\n        \"url4\"\r\n    ],\r\n    \"YEAR\" : \"2017\",\r\n    \"COLOR\" : \"red\",\r\n    \"COLOR ON PAPER\" : \"Blue\", \r\n    \"TOTAL SEAT\" : 3\r\n    }",
+									"raw": "",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1048,37 +1724,611 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/user/edit_vehicle",
+									"raw": "http://localhost:5000/api/favorite_list",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "5000",
 									"path": [
-										"user",
-										"edit_vehicle"
-									],
-									"query": [
-										{
-											"key": "",
-											"value": "",
-											"disabled": true
+										"api",
+										"favorite_list"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Favorites",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer    eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDY5ODc4NTAsIm5iZiI6MTYwNjk4Nzg1MCwianRpIjoiYTU5NTdiYWItYjM1MS00OTA2LWE5ZjktZDUwMWE1M2NlMmU1IiwiZXhwIjoxNjA3MDE2NjUwLCJpZGVudGl0eSI6IjVmYzM3OGUwOTNmMzAxY2RhNTBlODhiZCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.LZxgvOJ_1ANA9VmXBa2yF5nrus2K0mZU7gwZyMu9V9E",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/add_favorites/5fc7284ea1f18f10ba00c531",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"add_favorites",
+										"5fc7284ea1f18f10ba00c531"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Favorites",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer    eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDY5ODc4NTAsIm5iZiI6MTYwNjk4Nzg1MCwianRpIjoiYTU5NTdiYWItYjM1MS00OTA2LWE5ZjktZDUwMWE1M2NlMmU1IiwiZXhwIjoxNjA3MDE2NjUwLCJpZGVudGl0eSI6IjVmYzM3OGUwOTNmMzAxY2RhNTBlODhiZCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.LZxgvOJ_1ANA9VmXBa2yF5nrus2K0mZU7gwZyMu9V9E",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer    eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDY5ODc4NTAsIm5iZiI6MTYwNjk4Nzg1MCwianRpIjoiYTU5NTdiYWItYjM1MS00OTA2LWE5ZjktZDUwMWE1M2NlMmU1IiwiZXhwIjoxNjA3MDE2NjUwLCJpZGVudGl0eSI6IjVmYzM3OGUwOTNmMzAxY2RhNTBlODhiZCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.LZxgvOJ_1ANA9VmXBa2yF5nrus2K0mZU7gwZyMu9V9E",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/delete_favorites/5fc7284ea1f18f10ba00c531",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"delete_favorites",
+										"5fc7284ea1f18f10ba00c531"
 									]
 								}
 							},
 							"response": []
 						}
 					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Favorite Places",
+					"item": [
+						{
+							"name": "Favorites List",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer    eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDgwMjM4OTIsIm5iZiI6MTYwODAyMzg5MiwianRpIjoiMmRlN2Q4MjYtYzBiNi00NjhkLWIzZWYtY2Y1NGU2OTM0OWViIiwiZXhwIjoxNjA4MDUyNjkyLCJpZGVudGl0eSI6IjVmY2UwYjczMTRlNmViMTk0MDcwZDMzMyIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.VeGksiT2SwvUBTjDiB3-Tq8lT7ZDsQnISHGxICdSFhc",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/user/favorite_place_list",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"user",
+										"favorite_place_list"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Favorites",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer    eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDgwMjM4OTIsIm5iZiI6MTYwODAyMzg5MiwianRpIjoiMmRlN2Q4MjYtYzBiNi00NjhkLWIzZWYtY2Y1NGU2OTM0OWViIiwiZXhwIjoxNjA4MDUyNjkyLCJpZGVudGl0eSI6IjVmY2UwYjczMTRlNmViMTk0MDcwZDMzMyIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.VeGksiT2SwvUBTjDiB3-Tq8lT7ZDsQnISHGxICdSFhc",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"placeTitle\": \"home\",\r\n    \"placeAddress\": \"Bgerhat\",\r\n    \"location\": {\r\n                \"type\" : \"Point\",\r\n                \"coordinates\" :[89.771201,22.659347]                 \r\n                }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/user/add_favorite_place",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"user",
+										"add_favorite_place"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Favorites",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer    eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDgwMjM4OTIsIm5iZiI6MTYwODAyMzg5MiwianRpIjoiMmRlN2Q4MjYtYzBiNi00NjhkLWIzZWYtY2Y1NGU2OTM0OWViIiwiZXhwIjoxNjA4MDUyNjkyLCJpZGVudGl0eSI6IjVmY2UwYjczMTRlNmViMTk0MDcwZDMzMyIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.VeGksiT2SwvUBTjDiB3-Tq8lT7ZDsQnISHGxICdSFhc",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/user/delete_favorite_place/5fd8821c172f6068a8d8712b",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"user",
+										"delete_favorite_place",
+										"5fd8821c172f6068a8d8712b"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Service",
+					"item": [
+						{
+							"name": "Add to service",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDYyNzkzNzgsIm5iZiI6MTYwNjI3OTM3OCwianRpIjoiZmUyNjM4NzAtY2Q2YS00NDUxLWFmZjQtYmMxYTFhYzhmMTRkIiwiZXhwIjoxNjA2MzA4MTc4LCJpZGVudGl0eSI6IjVmYThkODlmZmYwMGY3ZmNmZTI0MmY4OSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.DStuiPuWHc1e_tUB65pkcjh5LyPS4vpiThNS5cF-L6w",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"serviceType\" : \"rental\",\r\n    \"description\": \"This is a description for Truck\",\r\n    \"perDayBodyRent\": 3000,\r\n    \"perDayBodyRentNightStay\": 3500,\r\n    \"perHourRentWithFuel\" : 500,\r\n    \"perHourRentWithoutFuel\" : 300,    \r\n    \"faq\" : [\r\n        {\r\n            \"question\" : \"q1 q\",\r\n            \"answer\" : \"q1 a\"            \r\n        },\r\n        {\r\n            \"question\" : \"q2 q\",\r\n            \"answer\" : \"q2 a\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/add_service_cost/5fb49f4e045b130c09699af3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"add_service_cost",
+										"5fb49f4e045b130c09699af3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Service Data",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDU0MzI5MjAsIm5iZiI6MTYwNTQzMjkyMCwianRpIjoiZThkMjc3NzMtZjhhMi00ZDZlLWIwMDYtZDlkODE2MTI3ZTkxIiwiZXhwIjoxNjA1NDYxNzIwLCJpZGVudGl0eSI6IjVmYWNmNjIxZDRjZTAwYzJhOTcxMTY5NCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.Peirou5y1NDcX-oERUfZpc_EpNVBQZDwmusftvf2ywA"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/get_service_cost/5fb101927c6245cac87f6a8c",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"get_service_cost",
+										"5fb101927c6245cac87f6a8c"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "service Helper",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDU2NzMxMDIsIm5iZiI6MTYwNTY3MzEwMiwianRpIjoiYTMzMDZlZjktYjJhMC00NzQ3LWI2ODMtZmZmZjA1MzdmYjA0IiwiZXhwIjoxNjA1NzAxOTAyLCJpZGVudGl0eSI6IjVmYWNmNjIxZDRjZTAwYzJhOTcxMTY5NCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.CeklCTsmvV6xUogDNsr_0mpS6QE_geNYNup8LBaLGic"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/get_service_helper_data/5fb49e79045b130c09699af1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"get_service_helper_data",
+										"5fb49e79045b130c09699af1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "OwnerOP",
+					"item": [
+						{
+							"name": "Get All Driver",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDU1OTY5MjQsIm5iZiI6MTYwNTU5NjkyNCwianRpIjoiYzM4NWExN2UtZWJmOS00YjAyLWJlMWItM2I5ODllYTgxMmNlIiwiZXhwIjoxNjA1NjI1NzI0LCJpZGVudGl0eSI6IjVmYWNmMjUzZDRjZTAwYzJhOTcxMTY5MyIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.Y_H5PBxRHljFzMAd9-cJ0axkXbnOr5MpCtch1KYNOhU"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/owner/get_all_drivers",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"owner",
+										"get_all_drivers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Check Drivwer Added",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDU1ODUzMDgsIm5iZiI6MTYwNTU4NTMwOCwianRpIjoiYmY4MTE0OTQtNzEwYy00OTQ5LTg2Y2ItMWNkYzdjZDRlYzQ1IiwiZXhwIjoxNjA1NjE0MTA4LCJpZGVudGl0eSI6IjVmYThiZTFkNTZjOGY4YzQ5NDM3MDJmZSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.V8x2MPtcWluqpsh-TnYZWXri09XCwc5PfyH8QDks6tc"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nid\" :\"12365894685235\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/get_all_drivers",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"get_all_drivers"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "DriverOP ",
+					"item": [
+						{
+							"name": "Get All Owner",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDU2MTE1MTEsIm5iZiI6MTYwNTYxMTUxMSwianRpIjoiMTg2ZWIwN2YtYTBhMS00NTkwLTlhNmEtZTRmZjMxODQzOTVjIiwiZXhwIjoxNjA1NjQwMzExLCJpZGVudGl0eSI6IjVmYThiZTFkNTZjOGY4YzQ5NDM3MDJmZSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.FI1Vm95IeD-Przbd3xdVWGLSZF_oua2EHPRmnck9yPs"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/owner/get_all_owners",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"owner",
+										"get_all_owners"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Check Drivwer Added",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDU1ODUzMDgsIm5iZiI6MTYwNTU4NTMwOCwianRpIjoiYmY4MTE0OTQtNzEwYy00OTQ5LTg2Y2ItMWNkYzdjZDRlYzQ1IiwiZXhwIjoxNjA1NjE0MTA4LCJpZGVudGl0eSI6IjVmYThiZTFkNTZjOGY4YzQ5NDM3MDJmZSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.V8x2MPtcWluqpsh-TnYZWXri09XCwc5PfyH8QDks6tc"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nid\" :\"12365894685235\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/get_all_drivers",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"get_all_drivers"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Booking",
+					"item": [
+						{
+							"name": "Rental Booking",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDY2MjExMTQsIm5iZiI6MTYwNjYyMTExNCwianRpIjoiZWMxYTU2N2YtNzZmNC00YTJmLWIyODctYjc3ZWJjNmE4YWI0IiwiZXhwIjoxNjA2NjQ5OTE0LCJpZGVudGl0eSI6IjVmYmUyOTJlOTg5NGIwZGFjZTcyYmEyZCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.6O4ynQjBBub5E6At2TAe2rAqSMIkIPHGIVQu-QmTbMU",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{                \r\n        \"pickupDate\": \"date\",\r\n        \"pickupTime\": \"time\",\r\n        \"journeyDuration\": 2,\r\n        \"journeyDurationUnit\": \"hours\",                \r\n        \"fuelPackage\": \"included\",\r\n        \"perDayRent\": 2000,\r\n        \"perHourRentIncludeFuel\": 600,\r\n        \"perHourRentExcludedFuel\": 200,\r\n        \"fuelTypeTitle\": \"petrol\",\r\n        \"fuelCost\": 18,\r\n        \"fuelCostUpDown\": 36,\r\n        \"voucher\": 0,\r\n        \"voucherType\": \"percentage\",\r\n        \"totalFare\": 1200,\r\n        \"grandTotalFare\" : 1200,\r\n        \"paymentType\": \"cash\",\r\n        \"totalDistance\": 100,\r\n        \"from\": {\r\n            \"type\": \"Point\",\r\n            \"coordinates\": [\"longitude\", \"latitude\"]\r\n        },\r\n        \"to\": {\r\n            \"type\": \"Point\",\r\n            \"coordinates\": [\"longitude\", \"latitude\"]\r\n        },\r\n        \"driverId\": \"foreign objectId\",\r\n        \"bookingDate\": \"date\",\r\n        \"status\": \"pending/done/canceled\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/rental_booking/5fbe25319894b0dace72ba2a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"rental_booking",
+										"5fbe25319894b0dace72ba2a"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			],
 			"event": [
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "75ba4987-647b-47bb-b01d-3d7b3efd60e5",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -1088,16 +2338,327 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "ad909e49-e477-4aeb-a74b-729fc9ddea2b",
 						"type": "text/javascript",
 						"exec": [
 							""
 						]
 					}
 				}
+			]
+		},
+		{
+			"name": "FrontEnd",
+			"item": [
+				{
+					"name": "Vehicle Profile",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/vehicle_details/5fab8b7ae59cac99931d7a9b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"vehicle_details",
+								"5fab8b7ae59cac99931d7a9b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Homepage: vehicle List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"long\" : 89.5652629,\r\n    \"lat\" : 22.8136959\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/rental_list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"rental_list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Homepage Driver",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/home_driver_list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"home_driver_list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Result Page",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"service\" : \"rental\",\r\n    \"vehicleType\":\"\",\r\n    \"long\" : 89.5652629,\r\n    \"lat\" : 22.8136959\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/search_vehicle",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"search_vehicle"
+							]
+						}
+					},
+					"response": []
+				}
 			],
-			"protocolProfileBehavior": {}
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Location",
+			"item": [
+				{
+					"name": "Geet Division",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/get_division",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"get_division"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get District",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/get_district/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"get_district",
+								"3"
+							],
+							"query": [
+								{
+									"key": "a",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "b",
+									"value": "3",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upazila",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/get_upazila/35",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"get_upazila",
+								"35"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/get_union/269",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"get_union",
+								"269"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "village",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/get_village/1877",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"get_village",
+								"1877"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "municiple",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/get_municiple/27",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"get_municiple",
+								"27"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Words",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/get_ward/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"get_ward",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
