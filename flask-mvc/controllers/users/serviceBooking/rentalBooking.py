@@ -18,54 +18,41 @@ class RentalBooking(Resource):
         journeyDuration = int(data["journeyDuration"])
         journeyDurationUnit = data["journeyDurationUnit"]
         fuelPackage = data["fuelPackage"]
-        perDayRent = float(data["perDayRent"])
-        perHourRentIncludeFuel = float(data["perHourRentIncludeFuel"])
-        perHourRentExcludedFuel = float(data["perHourRentExcludedFuel"])
-        fuelCost = float(data["fuelCost"])
-        fuelCostUpDown = float(data["fuelCostUpDown"])
-        totalDistance = float(data["totalDistance"])        
-        voucher = float(data["voucher"])
-        voucherType = data["voucherType"]
-        totalFare = data["totalFare"]
-        grandTotalFare = float(data["grandTotalFare"])
-        paymentType = data["paymentType"]        
-        passengerId = bson.ObjectId(get_jwt_identity())
-        driverData = mongo.db.vehicles.find_one({"_id" : bson.ObjectId(id)},{"driver" : 1})
-        driverId = bson.ObjectId(driverData["driver"])
+        driverId = bson.ObjectId(data["driver"])
         totalFareCalculated = 0
         grandtoTalFareCalculated = 0
+        unitRate = 0
         
         if journeyDurationUnit == constants.UNIT_DAY:
             if fuelPackage == constants.INCLUDED_FUEL_COST:
-                totalFareCalculated = perDayRent*journeyDuration + (totalDistance*fuelCostUpDown)
+                if journeyDuration > 1:
+                    unitRate = float(data["perDayBodyRentNightStay"])
+                    totalFareCalculated = float(data["perDayBodyRentNightStay"])*journeyDuration + (float(data["totalDistance"]) *float(data["fuelCostUpDown"]))
+                else:
+                    unitRate = float(data["perDayBodyRent"])
+                    totalFareCalculated = float(data["perDayBodyRent"])*journeyDuration + (float(data["totalDistance"]) *float(data["fuelCostUpDown"]))
             else:
-                totalFareCalculated = perDayRent*journeyDuration
+                if journeyDuration > 1:
+                    unitRate = float(data["perDayBodyRentNightStay"])
+                    totalFareCalculated = float(data["perDayBodyRentNightStay"])*journeyDuration
+                else:
+                    unitRate = float(data["perDayBodyRent"])
+                    totalFareCalculated = float(data["perDayBodyRent"])*journeyDuration
         else:
             if fuelPackage == constants.INCLUDED_FUEL_COST:
-                totalFareCalculated = journeyDuration*perHourRentIncludeFuel
+                unitRate = float(data["perHourRentIncludeFuel"])
+                totalFareCalculated = journeyDuration*float(data["perHourRentIncludeFuel"])
             else:
-                totalFareCalculated = journeyDuration*perHourRentExcludedFuel
-                
-                
-        # if fuelPackage == constants.INCLUDED_FUEL_COST:            
-        #     if journeyDurationUnit == constants.UNIT_DAY:
-        #         totalFareCalculated = perDayRent*journeyDuration + (totalDistance*fuelCostUpDown)
-        #     else:
-        #         totalFareCalculated = 0           
-        # else:
-        #     if journeyDurationUnit == constants.UNIT_DAY:
-        #         totalFareCalculated = perDayRent*journeyDuration
-        #     else:
-        #         totalFareCalculated = 0
-        
-        
-        if voucherType == constants.VOUCHER_TYPE_TK and voucher != 0:
-            grandtoTalFareCalculated = totalFareCalculated - voucher
-        elif voucherType == constants.VOUCHER_TYPE_PERCENTAGE and voucher != 0:
-            grandtoTalFareCalculated = totalFareCalculated - totalFareCalculated *(voucher/100)
+                unitRate = float(data["perHourRentExcludedFuel"])
+                totalFareCalculated = journeyDuration* float(data["perHourRentExcludedFuel"])
+          
+        if data["voucherType"] == constants.VOUCHER_TYPE_TK and float(data["voucher"]) != 0:
+            grandtoTalFareCalculated = totalFareCalculated - float(data["voucher"])
+        elif data["voucherType"] == constants.VOUCHER_TYPE_PERCENTAGE and float(data["voucher"]) != 0:
+            grandtoTalFareCalculated = totalFareCalculated - totalFareCalculated *(float(data["voucher"])/100)
         else:
             grandtoTalFareCalculated = totalFareCalculated    
-        if totalFareCalculated != totalFare or grandtoTalFareCalculated !=grandTotalFare:
+        if totalFareCalculated != float(data["totalFare"]) or grandtoTalFareCalculated != float(data["grandTotalFare"]):
             print(grandtoTalFareCalculated)
             return jsonify({
             "msg": "Calculation is not correct!!!",
@@ -80,21 +67,21 @@ class RentalBooking(Resource):
             "journeyDuration" : journeyDuration,
             "journeyDurationUnit" : journeyDurationUnit,
             "fuelPackage" : fuelPackage,
-            "perDayRent" : perDayRent,
+            "unitRate" : unitRate,
             "fuelTypeTitle" : data["fuelTypeTitle"],
-            "fuelCost" : fuelCost,
-            "fuelCostUpDown" : fuelCostUpDown,
-            "voucher" : voucher,
-            "voucherType" : voucherType,
-            "totalFare" : totalFare,
-            "grandTotalFare" : grandTotalFare,
-            "paymentType" : paymentType,            
+            "fuelCost" : data["fuelCost"],
+            "fuelCostUpDown" : data["fuelCostUpDown"],
+            "voucher" : data["voucher"],
+            "voucherType" : data["voucherType"],
+            "totalFare" : data["totalFare"],
+            "grandTotalFare" : data["grandTotalFare"],
+            "paymentType" : data["paymentType"],            
             "from" : data["from"],
             "to" : data["to"],
-            "totalDistance" : totalDistance,
+            "totalDistance" : data["totalDistance"],
             "vaehicleId" : bson.ObjectId(id),
             "driverId" : driverId,
-            "passengerId" : passengerId,
+            "passengerId" : bson.ObjectId(get_jwt_identity()),
             "bookingDate" : datetime.datetime.now(),
             "status" : constants.STATUS_PENDING,            
         }
