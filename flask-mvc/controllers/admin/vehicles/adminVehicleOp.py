@@ -227,13 +227,13 @@ class GetVehicleData(Resource):
     def get(id) -> Response:
         msg = ""
         try:
-            adminCount = mongo.db.adminRegister.find({"_id": bsonO.ObjectId(get_jwt_identity())}).count()
-            if adminCount == 0:
-                return jsonify({
-                    "msg": "Your Are not Authenticate Admin",
-                    "error": True,
-                    "data": None
-                })
+            # adminCount = mongo.db.adminRegister.find({"_id": bsonO.ObjectId(get_jwt_identity())}).count()
+            # if adminCount == 0:
+            #     return jsonify({
+            #         "msg": "Your Are not Authenticate Admin",
+            #         "error": True,
+            #         "data": None
+            #     })
             vehicleData = mongo.db.vehicles.find_one({"_id": bsonO.ObjectId(id), "del_status": False})
             if vehicleData["refType"] == constants.REFFERENCE_TYPE_OWNER:
                 allDetails = mongo.db.userRegister.find_one({
